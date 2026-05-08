@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="miacaomigo" schema="public" type="PostgreSQL - 15.17 (Debian 15.17-1.pgdg13+1)">
+   <tables>
+      <table name="absence" remarks="stores employee absences, operational interruptions, and approval lifecycle" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_abs" nullable="false" remarks="unique absence identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_absence_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_tim_abs" nullable="false" remarks="absence start timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_tim_abs" nullable="false" remarks="absence end timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mot_abs" nullable="false" remarks="normalized absence reason" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pending'::character varying" digits="0" id="5" name="sta_abs" nullable="false" remarks="current operational absence state" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="res_abs" nullable="true" remarks="employee responsible for absence validation or resolution" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_absence_responsible" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="cre_tim_abs" nullable="false" remarks="absence creation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_abs" sequenceNumberInPK="1"/>
+         <index name="pk_absence" unique="true">
+            <column ascending="true" name="id_abs"/>
+         </index>
+         <checkConstraint constraint="((sta_dat_tim_abs &lt; end_dat_tim_abs))" name="chk_absence_time"/>
+         <checkConstraint constraint="((((mot_abs)::text = lower(TRIM(BOTH FROM mot_abs))) AND (length((mot_abs)::text) &gt; 2)))" name="chk_mot_abs_format"/>
+         <checkConstraint constraint="(((sta_abs)::text = ANY ((ARRAY['pending'::character varying, 'approved'::character varying, 'rejected'::character varying, 'cancelled'::character varying, 'detected'::character varying])::text[])))" name="chk_sta_abs"/>
+      </table>
+      <table name="assistant" remarks="defines assistant employees and their operational functions" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_assistant_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fun_ass" nullable="false" remarks="operational function or assistant role" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_assistant" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+      </table>
+      <table name="client" remarks="stores client authentication and operational lifecycle information" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_cli" nullable="false" remarks="unique client identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="false" remarks="reference to associated user account" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_client_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="pas_cli" nullable="false" remarks="hashed client authentication password" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="reg_dat_cli" nullable="false" remarks="client registration timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="ina_dat_cli" nullable="true" remarks="client inactivation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_cli" sequenceNumberInPK="1"/>
+         <index name="pk_client" unique="true">
+            <column ascending="true" name="id_cli"/>
+         </index>
+         <checkConstraint constraint="(((reg_dat_cli &lt;= CURRENT_TIMESTAMP) AND ((ina_dat_cli IS NULL) OR ((ina_dat_cli &gt;= reg_dat_cli) AND (ina_dat_cli &lt;= CURRENT_TIMESTAMP)))))" name="chk_client_dates"/>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM pas_cli)) &gt;= 16))" name="chk_pas_cli_format"/>
+      </table>
+      <table name="clock_in" remarks="stores employee attendance intervals and operational presence records" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_clk" nullable="false" remarks="unique attendance record identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_clock_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_clk" nullable="false" remarks="attendance start timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_clk" nullable="true" remarks="attendance end timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_clk" sequenceNumberInPK="1"/>
+         <index name="pk_clock_in" unique="true">
+            <column ascending="true" name="id_clk"/>
+         </index>
+         <index name="uq_clock_in_active_per_employee" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <checkConstraint constraint="(((sta_dat_clk &lt;= CURRENT_TIMESTAMP) AND ((end_dat_clk IS NULL) OR ((end_dat_clk &gt; sta_dat_clk) AND (end_dat_clk &lt;= CURRENT_TIMESTAMP)))))" name="chk_clock_time"/>
+      </table>
+      <table name="employee" remarks="stores operational employee authentication and lifecycle information" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="unique employee identifier" size="10" type="int4" typeCode="4">
+            <child column="id_emp" foreignKey="fk_absence_employee" implied="false" onDeleteCascade="true" schema="public" table="absence"/>
+            <child column="res_abs" foreignKey="fk_absence_responsible" implied="false" onDeleteCascade="false" schema="public" table="absence"/>
+            <child column="id_emp" foreignKey="fk_assistant_employee" implied="false" onDeleteCascade="true" schema="public" table="assistant"/>
+            <child column="id_emp" foreignKey="fk_clock_employee" implied="false" onDeleteCascade="true" schema="public" table="clock_in"/>
+            <child column="aut_ina_emp" foreignKey="fk_employee_aut_ina" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+            <child column="aut_reg_emp" foreignKey="fk_employee_aut_reg" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+            <child column="id_emp" foreignKey="fk_occ_employee" implied="false" onDeleteCascade="true" schema="public" table="occupies"/>
+            <child column="id_emp" foreignKey="fk_schedule_employee" implied="false" onDeleteCascade="true" schema="public" table="schedule"/>
+            <child column="id_emp" foreignKey="fk_veterinarian_employee" implied="false" onDeleteCascade="true" schema="public" table="veterinarian"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="false" remarks="reference to associated user account" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_employee_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="2" name="reg_dat_emp" nullable="false" remarks="employee registration timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="aut_reg_emp" nullable="true" remarks="employee responsible for registration" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_employee_aut_reg" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="dea_dat_emp" nullable="true" remarks="employee deactivation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="aut_ina_emp" nullable="true" remarks="employee responsible for deactivation" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_employee_aut_ina" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="pho_emp" nullable="true" remarks="professional contact phone number" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="pho_emg" nullable="true" remarks="emergency contact phone number" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ema_emp" nullable="false" remarks="corporate normalized email address" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="pas_emp" nullable="false" remarks="hashed employee authentication password" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_employee" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="uq_ema_emp" unique="true">
+            <column ascending="true" name="ema_emp"/>
+         </index>
+         <index name="uq_employee_active_per_user" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <checkConstraint constraint="((((ema_emp)::text = lower(TRIM(BOTH FROM ema_emp))) AND ((ema_emp)::text ~ '^[^@\s]+@miacaomigo\.pt$'::text)))" name="chk_ema_emp_format"/>
+         <checkConstraint constraint="(((reg_dat_emp &lt;= CURRENT_TIMESTAMP) AND ((dea_dat_emp IS NULL) OR ((dea_dat_emp &gt;= reg_dat_emp) AND (dea_dat_emp &lt;= CURRENT_TIMESTAMP)))))" name="chk_employee_dates"/>
+         <checkConstraint constraint="((((dea_dat_emp IS NULL) AND (aut_ina_emp IS NULL)) OR ((dea_dat_emp IS NOT NULL) AND (aut_ina_emp IS NOT NULL))))" name="chk_employee_inactivation"/>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM pas_emp)) &gt;= 16))" name="chk_pas_emp_format"/>
+         <checkConstraint constraint="(((pho_emg IS NULL) OR ((pho_emg)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="chk_pho_emg_format"/>
+         <checkConstraint constraint="(((pho_emp IS NULL) OR ((pho_emp)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="chk_pho_emp_format"/>
+      </table>
+      <table name="have" remarks="associates profiles with granular operational permissions" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_pro" nullable="false" remarks="reference to profile entity" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_have_profile" implied="false" onDeleteCascade="true" schema="public" table="profile"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_per" nullable="false" remarks="reference to permission entity" size="10" type="int4" typeCode="4">
+            <parent column="id_per" foreignKey="fk_have_permission" implied="false" onDeleteCascade="true" schema="public" table="permission"/>
+         </column>
+         <primaryKey column="id_pro" sequenceNumberInPK="1"/>
+         <primaryKey column="id_per" sequenceNumberInPK="2"/>
+         <index name="pk_have" unique="true">
+            <column ascending="true" name="id_pro"/>
+            <column ascending="true" name="id_per"/>
+         </index>
+      </table>
+      <table name="login_record" remarks="stores authentication attempts, session lifecycle, and login audit history" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_log" nullable="false" remarks="unique login record identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="1" name="sig_tim_log" nullable="false" remarks="login/sign-in timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sou_tim_log" nullable="true" remarks="logout/sign-out timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="suc_log" nullable="false" remarks="indicates whether authentication was successful" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ip_add_log" nullable="true" remarks="ip address used during authentication attempt" size="2147483647" type="inet" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="eml_usr" nullable="true" remarks="email snapshot used during authentication attempt" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_usr" nullable="true" remarks="reference to associated user account when applicable" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_login_record_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <primaryKey column="id_log" sequenceNumberInPK="1"/>
+         <index name="pk_login_record" unique="true">
+            <column ascending="true" name="id_log"/>
+         </index>
+         <index name="uq_login_single_active_session_email" unique="true">
+            <column ascending="true" name="eml_usr"/>
+         </index>
+         <checkConstraint constraint="(((eml_usr IS NULL) OR (((eml_usr)::text = lower(TRIM(BOTH FROM eml_usr))) AND ((eml_usr)::text ~ '.+@.+\..+'::text))))" name="chk_login_email_format"/>
+         <checkConstraint constraint="(((sig_tim_log &lt;= CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;= CURRENT_TIMESTAMP)))))" name="chk_login_time"/>
+         <checkConstraint constraint="(((suc_log = false) OR ((id_usr IS NOT NULL) AND (eml_usr IS NOT NULL) AND (ip_add_log IS NOT NULL) AND (sig_tim_log IS NOT NULL) AND (ip_add_log IS NOT NULL))))" name="login_record_check"/>
+      </table>
+      <table name="occupies" remarks="associates employees with operational access profiles" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_occ_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pro" nullable="false" remarks="reference to profile entity" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_occ_profile" implied="false" onDeleteCascade="true" schema="public" table="profile"/>
+         </column>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="2"/>
+         <index name="pk_occupies" unique="true">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="id_pro"/>
+         </index>
+      </table>
+      <table name="permission" remarks="defines granular permissions used for access control" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_per" nullable="false" remarks="unique permission identifier" size="10" type="int4" typeCode="4">
+            <child column="id_per" foreignKey="fk_have_permission" implied="false" onDeleteCascade="true" schema="public" table="have"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_per" nullable="false" remarks="normalized permission name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_per" nullable="true" remarks="description of the permission purpose" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_per" sequenceNumberInPK="1"/>
+         <index name="pk_permission" unique="true">
+            <column ascending="true" name="id_per"/>
+         </index>
+         <index name="uq_nam_per" unique="true">
+            <column ascending="true" name="nam_per"/>
+         </index>
+         <checkConstraint constraint="((((nam_per)::text = lower(TRIM(BOTH FROM nam_per))) AND (length((nam_per)::text) &gt; 3) AND ((nam_per)::text ~ '^[a-z0-9_.]+$'::text)))" name="chk_nam_per_format"/>
+      </table>
+      <table name="profile" remarks="defines operational roles and access profiles within the system" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pro" nullable="false" remarks="unique profile identifier" size="10" type="int4" typeCode="4">
+            <child column="id_pro" foreignKey="fk_have_profile" implied="false" onDeleteCascade="true" schema="public" table="have"/>
+            <child column="id_pro" foreignKey="fk_occ_profile" implied="false" onDeleteCascade="true" schema="public" table="occupies"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_pro" nullable="false" remarks="normalized profile name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_pro" nullable="false" remarks="description of profile responsibilities and purpose" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="1"/>
+         <index name="pk_profile" unique="true">
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <index name="uq_nam_pro" unique="true">
+            <column ascending="true" name="nam_pro"/>
+         </index>
+         <checkConstraint constraint="((((nam_pro)::text = lower(TRIM(BOTH FROM nam_pro))) AND (length((nam_pro)::text) &gt; 3) AND ((nam_pro)::text ~ '^[a-zà-ÿ\s]+$'::text)))" name="chk_nam_pro_format"/>
+      </table>
+      <table name="schedule" remarks="defines recurring weekly operational schedules for employees" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_schedule_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="day_wee_sch" nullable="false" remarks="day of the week associated with the schedule entry" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_tim_sch" nullable="false" remarks="schedule start time" size="15" type="time" typeCode="92"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="fin_hou_sch" nullable="false" remarks="schedule end time" size="15" type="time" typeCode="92"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <primaryKey column="day_wee_sch" sequenceNumberInPK="2"/>
+         <primaryKey column="sta_tim_sch" sequenceNumberInPK="3"/>
+         <index name="pk_schedule" unique="true">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="day_wee_sch"/>
+            <column ascending="true" name="sta_tim_sch"/>
+         </index>
+         <index name="ex_schedule_overlap" unique="false">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="day_wee_sch"/>
+         </index>
+         <checkConstraint constraint="(((day_wee_sch &gt;= 1) AND (day_wee_sch &lt;= 7)))" name="chk_schedule_day"/>
+         <checkConstraint constraint="(((sta_tim_sch &lt; fin_hou_sch) AND (sta_tim_sch &gt;= '00:00:00'::time without time zone) AND (fin_hou_sch &lt;= '23:59:59'::time without time zone)))" name="chk_schedule_time"/>
+      </table>
+      <table name="setup" remarks="stores user interface preferences and operational configuration settings" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_usr" nullable="false" remarks="reference to associated user account" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_setup_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="'light'::character varying" digits="0" id="1" name="the_set" nullable="false" remarks="user interface theme preference" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pt-pt'::character varying" digits="0" id="2" name="lan_set" nullable="false" remarks="user interface language preference" size="20" type="varchar" typeCode="12"/>
+         <primaryKey column="id_usr" sequenceNumberInPK="1"/>
+         <index name="pk_setup" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <checkConstraint constraint="((((lan_set)::text = lower(TRIM(BOTH FROM lan_set))) AND ((lan_set)::text ~ '^[a-z]{2}-[a-z]{2}$'::text)))" name="chk_lan_set_format"/>
+         <checkConstraint constraint="((((the_set)::text = lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text = ANY ((ARRAY['light'::character varying, 'dark'::character varying])::text[]))))" name="chk_the_set_format"/>
+      </table>
+      <table name="specialty" remarks="defines veterinary and operational specialties" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_spe" nullable="false" remarks="unique specialty identifier" size="10" type="int4" typeCode="4">
+            <child column="id_spe" foreignKey="fk_veterinarian_specialty" implied="false" onDeleteCascade="false" schema="public" table="veterinarian"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_spe" nullable="false" remarks="name of the specialty" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_spe" nullable="true" remarks="description of specialty scope and responsibilities" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_spe" sequenceNumberInPK="1"/>
+         <index name="pk_specialty" unique="true">
+            <column ascending="true" name="id_spe"/>
+         </index>
+         <index name="uq_nam_spe" unique="true">
+            <column ascending="true" name="nam_spe"/>
+         </index>
+         <checkConstraint constraint="(((des_spe IS NULL) OR (length(TRIM(BOTH FROM des_spe)) &gt; 5)))" name="chk_des_spe_format"/>
+         <checkConstraint constraint="((((nam_spe)::text = TRIM(BOTH FROM nam_spe)) AND (length((nam_spe)::text) &gt; 3) AND ((nam_spe)::text ~ '^[A-Za-zÀ-ÿ\s]+$'::text)))" name="chk_nam_spe_format"/>
+      </table>
+      <table name="user_account" remarks="stores general personal, contact, and identification data for all system users" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_usr" nullable="false" remarks="unique identifier of the user account" size="10" type="int4" typeCode="4">
+            <child column="id_usr" foreignKey="fk_client_user" implied="false" onDeleteCascade="true" schema="public" table="client"/>
+            <child column="id_usr" foreignKey="fk_employee_user" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+            <child column="id_usr" foreignKey="fk_login_record_user" implied="false" onDeleteCascade="true" schema="public" table="login_record"/>
+            <child column="id_usr" foreignKey="fk_setup_user" implied="false" onDeleteCascade="true" schema="public" table="setup"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_usr" nullable="false" remarks="full legal name of the user" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="add_usr" nullable="false" remarks="residential or registered address of the user" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pos_usr" nullable="false" remarks="postal code formatted as xxxx-xxx" size="8" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="nif_usr" nullable="false" remarks="portuguese tax identification number" size="9" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="pho_usr" nullable="true" remarks="personal phone number stored in international format" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ema_usr" nullable="false" remarks="personal normalized email address excluding corporate domains" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id_usr" sequenceNumberInPK="1"/>
+         <index name="pk_user_account" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <index name="uq_ema_usr" unique="true">
+            <column ascending="true" name="ema_usr"/>
+         </index>
+         <index name="uq_nif_usr" unique="true">
+            <column ascending="true" name="nif_usr"/>
+         </index>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM add_usr)) &gt; 3))" name="chk_add_usr_format"/>
+         <checkConstraint constraint="((((ema_usr)::text = lower(TRIM(BOTH FROM ema_usr))) AND ((ema_usr)::text ~ '.+@.+\..+'::text) AND ((ema_usr)::text !~ '@miacaomigo\.pt$'::text)))" name="chk_ema_usr_format"/>
+         <checkConstraint constraint="((((nam_usr)::text ~ '^[A-Za-zÀ-ÿ\s''-]+$'::text) AND (length(TRIM(BOTH FROM nam_usr)) &gt; 3)))" name="chk_nam_usr_format"/>
+         <checkConstraint constraint="(((nif_usr)::text ~ '^[0-9]{9}$'::text))" name="chk_nif_usr_format"/>
+         <checkConstraint constraint="(((pho_usr IS NULL) OR ((pho_usr)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="chk_pho_usr_format"/>
+         <checkConstraint constraint="(((pos_usr)::text ~ '^[0-9]{4}-[0-9]{3}$'::text))" name="chk_pos_usr_format"/>
+      </table>
+      <table name="veterinarian" remarks="defines veterinarian employees and professional specialization" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_veterinarian_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="num_omv_vet" nullable="false" remarks="official veterinarian professional registration number" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_spe" nullable="true" remarks="associated veterinary specialty" size="10" type="int4" typeCode="4">
+            <parent column="id_spe" foreignKey="fk_veterinarian_specialty" implied="false" onDeleteCascade="false" schema="public" table="specialty"/>
+         </column>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_veterinarian" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="uq_num_omv_vet" unique="true">
+            <column ascending="true" name="num_omv_vet"/>
+         </index>
+         <checkConstraint constraint="((((num_omv_vet)::text = TRIM(BOTH FROM num_omv_vet)) AND (length((num_omv_vet)::text) &gt; 3)))" name="chk_num_omv_vet_format"/>
+      </table>
+   </tables>
+</database>

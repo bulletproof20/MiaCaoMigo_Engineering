@@ -1,0 +1,15 @@
+veterinarian
+occupies
+have
+absence
+setup
+schedule
+login_record
+clock_in
+client
+assistant
+employee
+specialty
+permission
+profile
+user_account

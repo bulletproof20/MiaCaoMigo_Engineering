@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>miacaomigo.public</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>miacaomigo</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Columns</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                            <h3 class="box-title">Columns</h3>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="column_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="50"
+                                    data-length-change="false">
+                                <thead align='left'>
+                                    <tr>
+                                        <th>Table</th>
+                                        <th>Type</th>
+                                        <th>Column</th>
+                                        <th>Type</th>
+                                        <th>Size</th>
+                                        <th title='Are nulls allowed?'>Nullable</th>
+                                        <th title='Is column automatically updated?'>Auto</th>
+                                        <th title='Default value'>Default</th>
+                                        <th title='Comments' class="toggle"><span>Comments</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <script>
+                    var tableData = [
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_abs",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique absence identifier</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sta_dat_tim_abs",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>absence start timestamp</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "end_dat_tim_abs",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>absence end timestamp</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "mot_abs",
+        "type": "varchar",
+        "length": 50,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>normalized absence reason</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sta_abs",
+        "type": "varchar",
+        "length": 20,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "'pending'::character varying",
+        "comments": "<p>current operational absence state</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>res_abs",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>employee responsible for absence validation or resolution</p>"
+    },
+    {
+        "tableName": "absence",
+        "tableFileName": "absence",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "cre_tim_abs",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>absence creation timestamp</p>"
+    },
+    {
+        "tableName": "assistant",
+        "tableFileName": "assistant",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "assistant",
+        "tableFileName": "assistant",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "fun_ass",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>operational function or assistant role</p>"
+    },
+    {
+        "tableName": "client",
+        "tableFileName": "client",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_cli",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique client identifier</p>"
+    },
+    {
+        "tableName": "client",
+        "tableFileName": "client",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_usr",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to associated user account</p>"
+    },
+    {
+        "tableName": "client",
+        "tableFileName": "client",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pas_cli",
+        "type": "varchar",
+        "length": 255,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>hashed client authentication password</p>"
+    },
+    {
+        "tableName": "client",
+        "tableFileName": "client",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "reg_dat_cli",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>client registration timestamp</p>"
+    },
+    {
+        "tableName": "client",
+        "tableFileName": "client",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ina_dat_cli",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>client inactivation timestamp</p>"
+    },
+    {
+        "tableName": "clock_in",
+        "tableFileName": "clock_in",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_clk",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique attendance record identifier</p>"
+    },
+    {
+        "tableName": "clock_in",
+        "tableFileName": "clock_in",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "clock_in",
+        "tableFileName": "clock_in",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sta_dat_clk",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>attendance start timestamp</p>"
+    },
+    {
+        "tableName": "clock_in",
+        "tableFileName": "clock_in",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "end_dat_clk",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>attendance end timestamp</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique employee identifier</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_usr",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to associated user account</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "reg_dat_emp",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>employee registration timestamp</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>aut_reg_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>employee responsible for registration</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "dea_dat_emp",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>employee deactivation timestamp</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>aut_ina_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>employee responsible for deactivation</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pho_emp",
+        "type": "varchar",
+        "length": 16,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>professional contact phone number</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pho_emg",
+        "type": "varchar",
+        "length": 16,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>emergency contact phone number</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>ema_emp",
+        "type": "varchar",
+        "length": 255,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>corporate normalized email address</p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pas_emp",
+        "type": "varchar",
+        "length": 255,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>hashed employee authentication password</p>"
+    },
+    {
+        "tableName": "have",
+        "tableFileName": "have",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_pro",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to profile entity</p>"
+    },
+    {
+        "tableName": "have",
+        "tableFileName": "have",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_per",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to permission entity</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_log",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique login record identifier</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sig_tim_log",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>login/sign-in timestamp</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sou_tim_log",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>logout/sign-out timestamp</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "suc_log",
+        "type": "bool",
+        "length": 1,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>indicates whether authentication was successful</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ip_add_log",
+        "type": "inet",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>ip address used during authentication attempt</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>eml_usr",
+        "type": "varchar",
+        "length": 255,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>email snapshot used during authentication attempt</p>"
+    },
+    {
+        "tableName": "login_record",
+        "tableFileName": "login_record",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_usr",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to associated user account when applicable</p>"
+    },
+    {
+        "tableName": "occupies",
+        "tableFileName": "occupies",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "occupies",
+        "tableFileName": "occupies",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_pro",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to profile entity</p>"
+    },
+    {
+        "tableName": "permission",
+        "tableFileName": "permission",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_per",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique permission identifier</p>"
+    },
+    {
+        "tableName": "permission",
+        "tableFileName": "permission",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>nam_per",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>normalized permission name</p>"
+    },
+    {
+        "tableName": "permission",
+        "tableFileName": "permission",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "des_per",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>description of the permission purpose</p>"
+    },
+    {
+        "tableName": "profile",
+        "tableFileName": "profile",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_pro",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique profile identifier</p>"
+    },
+    {
+        "tableName": "profile",
+        "tableFileName": "profile",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>nam_pro",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>normalized profile name</p>"
+    },
+    {
+        "tableName": "profile",
+        "tableFileName": "profile",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "des_pro",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>description of profile responsibilities and purpose</p>"
+    },
+    {
+        "tableName": "schedule",
+        "tableFileName": "schedule",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "schedule",
+        "tableFileName": "schedule",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>day_wee_sch",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>day of the week associated with the schedule entry</p>"
+    },
+    {
+        "tableName": "schedule",
+        "tableFileName": "schedule",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>sta_tim_sch",
+        "type": "time",
+        "length": 15,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>schedule start time</p>"
+    },
+    {
+        "tableName": "schedule",
+        "tableFileName": "schedule",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "fin_hou_sch",
+        "type": "time",
+        "length": 15,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>schedule end time</p>"
+    },
+    {
+        "tableName": "setup",
+        "tableFileName": "setup",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_usr",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to associated user account</p>"
+    },
+    {
+        "tableName": "setup",
+        "tableFileName": "setup",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "the_set",
+        "type": "varchar",
+        "length": 20,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "'light'::character varying",
+        "comments": "<p>user interface theme preference</p>"
+    },
+    {
+        "tableName": "setup",
+        "tableFileName": "setup",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "lan_set",
+        "type": "varchar",
+        "length": 20,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "'pt-pt'::character varying",
+        "comments": "<p>user interface language preference</p>"
+    },
+    {
+        "tableName": "specialty",
+        "tableFileName": "specialty",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_spe",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique specialty identifier</p>"
+    },
+    {
+        "tableName": "specialty",
+        "tableFileName": "specialty",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>nam_spe",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>name of the specialty</p>"
+    },
+    {
+        "tableName": "specialty",
+        "tableFileName": "specialty",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "des_spe",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>description of specialty scope and responsibilities</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_usr",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "null",
+        "comments": "<p>unique identifier of the user account</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "nam_usr",
+        "type": "varchar",
+        "length": 250,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>full legal name of the user</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "add_usr",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>residential or registered address of the user</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pos_usr",
+        "type": "varchar",
+        "length": 8,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>postal code formatted as xxxx-xxx</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>nif_usr",
+        "type": "varchar",
+        "length": 9,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>portuguese tax identification number</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "pho_usr",
+        "type": "varchar",
+        "length": 16,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>personal phone number stored in international format</p>"
+    },
+    {
+        "tableName": "user_account",
+        "tableFileName": "user_account",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>ema_usr",
+        "type": "varchar",
+        "length": 255,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>personal normalized email address excluding corporate domains</p>"
+    },
+    {
+        "tableName": "veterinarian",
+        "tableFileName": "veterinarian",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_emp",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>reference to employee entity</p>"
+    },
+    {
+        "tableName": "veterinarian",
+        "tableFileName": "veterinarian",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>num_omv_vet",
+        "type": "varchar",
+        "length": 50,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>official veterinarian professional registration number</p>"
+    },
+    {
+        "tableName": "veterinarian",
+        "tableFileName": "veterinarian",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id_spe",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>associated veterinary specialty</p>"
+    }
+];
+                    var config = {
+                        pagination: true
+                    };
+                </script>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 7.0.2</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="column.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

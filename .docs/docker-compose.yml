@@ -1,0 +1,33 @@
+# Docker Compose format version
+version: '3.8'
+
+services:
+
+  # Documentation service
+  engineering_docs:
+
+    # Fixed container name
+    container_name: 00_miacaomigo_engineering
+
+    # Official Material for MkDocs image
+    image: squidfunk/mkdocs-material
+
+    # Automatically restarts unless manually stopped
+    restart: unless-stopped
+
+    # Port mapping
+    ports:
+      - "8000:8000"
+
+    volumes:
+      # Mounts repository root
+      - ..:/docs
+
+    # Container working directory
+    working_dir: /docs
+
+    # MkDocs development server
+    command: >
+      serve
+      -f .docs/mkdocs.yml
+      --dev-addr=0.0.0.0:8000

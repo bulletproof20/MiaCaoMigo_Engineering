@@ -1,0 +1,191 @@
+site_name: MiaCaoMigo Engineering
+
+theme:
+  name: material
+
+# =========================================================
+# Documentation Source Directory
+# =========================================================
+# Uses repository root as documentation source.
+#
+# Allows direct access to:
+# - markdown documentation
+# - engineering assets
+# - diagrams
+# - PDF documents
+# - SchemaSpy output
+# - architecture documentation
+# =========================================================
+
+docs_dir: ..
+
+# =========================================================
+# Navigation Structure
+# =========================================================
+# Navigation organization intentionally mirrors
+# the physical repository architecture in order to:
+#
+# - improve maintainability
+# - simplify onboarding
+# - increase traceability
+# - preserve engineering consistency
+# =========================================================
+
+nav:
+
+  # =======================================================
+  # Home
+  # =======================================================
+
+  - Home: index.md
+
+  # =======================================================
+  # 01 — Planning
+  # =======================================================
+
+  - Planning:
+
+      - Sprints:
+
+          - Sprint 1:
+              - Overview: 01_Planning/00_Sprints/Sprint_1/README.md
+
+          - Sprint 2:
+              - Overview: 01_Planning/00_Sprints/Sprint_2/README.md
+
+  # =======================================================
+  # 02 — Requirements
+  # =======================================================
+
+  - Requirements:
+
+      - Overview:
+          - Requirements Overview: 02_Requirements/README.md
+
+  # =======================================================
+  # 03 — Diagrams
+  # =======================================================
+
+  - Diagrams:
+
+      - ER Model:
+          - Overview: 03_Diagrams/00_ER_Model/README.md
+
+      - UML:
+          - Overview: 03_Diagrams/01_UML/README.md
+
+  # =======================================================
+  # 04 — Architecture
+  # =======================================================
+
+  - Architecture:
+
+      # ---------------------------------------------------
+      # System Architecture
+      # ---------------------------------------------------
+
+      - System:
+          - Overview: 04_Architecture/00_System_Architecture.md
+
+      # ---------------------------------------------------
+      # Database Architecture
+      # ---------------------------------------------------
+
+      - Database:
+
+          # =================================================
+          # Naming Conventions
+          # =================================================
+
+          - Naming Conventions:
+
+              - Naming Philosophy:
+                  - Overview: 04_Architecture/01_Database/00_Naming_Conventions/00_Naming_Philosophy.md
+
+              - Schema Objects:
+                  - Overview: 04_Architecture/01_Database/00_Naming_Conventions/01_Schema_Objects.md
+
+              - SQL Programming:
+                  - Overview: 04_Architecture/01_Database/00_Naming_Conventions/02_SQL_Programming.md
+
+          # =================================================
+          # Schemas
+          # =================================================
+
+          - Schemas:
+
+              - Public Schema:
+
+                  - Database Architecture:
+                      - Overview: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database_Architecture.md
+
+                  - Module 1:
+                      - Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1_Architecture.md
+
+                  - Module 2:
+                      - Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2_Architecture.md
+
+                  - Module 3:
+                      - Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md
+
+                  - Module 4:
+                      - Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4_Architecture.md
+
+          # =================================================
+          # Integrity Rules
+          # =================================================
+
+          - Integrity Rules:
+
+              - Integrity Strategy:
+                  - Overview: 04_Architecture/01_Database/02_Integrity_Rules/00_Integrity_Strategy.md
+
+              - Module 1 Integrity:
+
+                  - Structural Integrity:
+                      - Overview: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md
+
+                  - Automated Integrity:
+                      - Overview: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/01_Automated_Integrity.md
+
+                  - Procedural Validation:
+                      - Overview: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/03_Procedural_Validation.md
+
+          # =================================================
+          # SQL Standards
+          # =================================================
+
+          - SQL Standards:
+
+              - Standards:
+                  - Overview: 04_Architecture/01_Database/03_SQL_Standards/00_SQL_Standards.md
+
+          # =================================================
+          # Data Dictionary
+          # =================================================
+
+          - Data Dictionary:
+
+              - Overview:
+                  - Data Dictionary Overview: 04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md
+
+              - Module 1:
+                  - Data Dictionary: 04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md
+
+          # =================================================
+          # SchemaSpy
+          # =================================================
+
+          - SchemaSpy:
+
+              - Documentation:
+                  - Overview: 04_Architecture/01_Database/05_SchemaSpy/00_README.md
+
+  # =======================================================
+  # 05 — Documentation
+  # =======================================================
+
+  - Documentation:
+
+      - Statements:
+          - Academic Statements: indexes/statements.md
