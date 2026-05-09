@@ -130,6 +130,26 @@
                                     <td>null</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="appointment.id_cli references client.id_cli via fk_client"><a href='appointment.html'>appointment</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">fk_client</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="appointment_notification.id_cli references client.id_cli via fk_appointment_notification_client"><a href='appointment_notification.html'>appointment_notification</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">fk_appointment_notification_client</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="ownership.id_cli references client.id_cli via fk_ownership_client"><a href='ownership.html'>ownership</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">fk_ownership_client</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="purchase.id_cli references client.id_cli via fk_purchase_client"><a href='purchase.html'>purchase</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">fk_purchase_client</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td>
@@ -158,7 +178,7 @@
                                             </tr>
                                         </table>
                                     </td>
-                                    <td><p>reference to associated user account</p></td>
+                                    <td><p>reference to associated user account; unique per row (one client per user_account)</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="pas_cli">pas_cli</span></td>
@@ -247,6 +267,12 @@
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>id_cli</td>
                                 </tr>
+                                <tr>
+                                    <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> uq_client_user</td>
+                                    <td>Must be unique</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_usr</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div><!-- /.box-body -->
@@ -306,18 +332,36 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="client.html" target="_top" title="client" alt="" coords="261,5,552,221">
-<area shape="rect" id="node2" href="user_account.html" target="_top" title="user_account" alt="" coords="5,37,217,213">
+<area shape="rect" id="node1" href="appointment.html" target="_top" title="appointment" alt="" coords="656,5,865,240">
+<area shape="rect" id="node2" href="client.html" target="_top" title="client" alt="" coords="261,381,552,597">
+<area shape="rect" id="node4" href="user_account.html" target="_top" title="user_account" alt="" coords="5,413,217,589">
+<area shape="rect" id="node3" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="596,257,925,433">
+<area shape="rect" id="node5" href="ownership.html" target="_top" title="ownership" alt="" coords="668,451,853,656">
+<area shape="rect" id="node6" href="purchase.html" target="_top" title="purchase" alt="" coords="673,673,848,879">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/client.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="client.html" target="_top" title="client" alt="" coords="261,5,552,221">
-<area shape="rect" id="node2" href="user_account.html" target="_top" title="user_account" alt="" coords="5,289,217,465">
-<area shape="rect" id="node3" href="employee.html" target="_top" title="employee" alt="" coords="317,239,496,327">
-<area shape="rect" id="node4" href="login_record.html" target="_top" title="login_record" alt="" coords="305,344,509,432">
-<area shape="rect" id="node5" href="setup.html" target="_top" title="setup" alt="" coords="337,449,476,537">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="1013,211,1201,299">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="656,275,865,510">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="332,557,481,645">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="261,323,552,539">
+<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="317,767,496,855">
+<area shape="rect" id="node7" href="user_account.html" target="_top" title="user_account" alt="" coords="5,507,217,683">
+<area shape="rect" id="node6" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="596,82,925,258">
+<area shape="rect" id="node8" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="1507,679,1783,767">
+<area shape="rect" id="node9" href="purchase.html" target="_top" title="purchase" alt="" coords="1288,429,1463,634">
+<area shape="rect" id="node10" href="invoice.html" target="_top" title="invoice" alt="" coords="1030,106,1183,194">
+<area shape="rect" id="node11" href="login_record.html" target="_top" title="login_record" alt="" coords="305,218,509,306">
+<area shape="rect" id="node12" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="969,317,1244,405">
+<area shape="rect" id="node13" href="ownership.html" target="_top" title="ownership" alt="" coords="668,563,853,769">
+<area shape="rect" id="node14" href="prescription.html" target="_top" title="prescription" alt="" coords="1005,422,1208,510">
+<area shape="rect" id="node15" href="product.html" target="_top" title="product" alt="" coords="1565,398,1725,486">
+<area shape="rect" id="node16" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="1847,334,2064,422">
+<area shape="rect" id="node17" href="purchase_product.html" target="_top" title="purchase_product" alt="" coords="1827,457,2084,545">
+<area shape="rect" id="node18" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1835,118,2075,206">
+<area shape="rect" id="node19" href="setup.html" target="_top" title="setup" alt="" coords="337,662,476,750">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/client.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

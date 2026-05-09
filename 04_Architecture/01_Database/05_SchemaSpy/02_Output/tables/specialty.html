@@ -131,9 +131,9 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="veterinarian.id_spe references specialty.id_spe via fk_veterinarian_specialty"><a href='veterinarian.html'>veterinarian</a><span class='relatedKey'>.id_spe</span></td>
-                                                <td class="constraint detail">fk_veterinarian_specialty</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                                <td title="expert.id_spe references specialty.id_spe via fk_expert_specialty"><a href='expert.html'>expert</a><span class='relatedKey'>.id_spe</span></td>
+                                                <td class="constraint detail">fk_expert_specialty</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -164,7 +164,7 @@
                                     <td><span id="des_spe">des_spe</span></td>
                                     <td>text</td>
                                     <td>2147483647</td>
-                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -175,7 +175,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>description of specialty scope and responsibilities</p></td>
+                                    <td><p>description of specialty scope and responsibilities (required)</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -248,12 +248,12 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_nam_spe_format</td>
-                                    <td>((((nam_spe)::text &#61; TRIM(BOTH FROM nam_spe)) AND (length((nam_spe)::text) &gt; 3) AND ((nam_spe)::text ~ &#39;^[A-Za-zÀ-ÿ\s]+$&#39;::text)))</td>
+                                    <td>chk_des_spe_format</td>
+                                    <td>(((des_spe &#61; TRIM(BOTH FROM des_spe)) AND (length(TRIM(BOTH FROM des_spe)) &gt;&#61; 5)))</td>
                                 </tr>
                                 <tr>
-                                    <td>chk_des_spe_format</td>
-                                    <td>(((des_spe IS NULL) OR (length(TRIM(BOTH FROM des_spe)) &gt; 5)))</td>
+                                    <td>chk_nam_spe_format</td>
+                                    <td>((((nam_spe)::text &#61; lower(TRIM(BOTH FROM nam_spe))) AND (length(TRIM(BOTH FROM nam_spe)) &gt;&#61; 5) AND ((nam_spe)::text ~ &#39;^[a-zà-ÿ\\s]+$&#39;::text)))</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -278,15 +278,15 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="332,5,536,157">
-<area shape="rect" id="node2" href="specialty.html" target="_top" title="specialty" alt="" coords="5,61,288,219">
+<area shape="rect" id="node1" href="expert.html" target="_top" title="expert" alt="" coords="332,5,479,128">
+<area shape="rect" id="node2" href="specialty.html" target="_top" title="specialty" alt="" coords="5,32,288,189">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/specialty.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="332,29,536,181">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="57,5,236,93">
+<area shape="rect" id="node1" href="expert.html" target="_top" title="expert" alt="" coords="332,44,479,167">
+<area shape="rect" id="node2" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="45,5,249,93">
 <area shape="rect" id="node3" href="specialty.html" target="_top" title="specialty" alt="" coords="5,111,288,268">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/specialty.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>

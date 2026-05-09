@@ -64,14 +64,16 @@ Each module must follow the standardized file structure.
 ### Example
 
 ```text
-00_Tables
-01_Functions
-02_Triggers
-03_Indexes
-04_Procedures
-05_Jobs
-06_Queries
+00_Tables_ModX.sql
+01_ForeignKeys_ModX.sql
+02_Functions_ModX.sql
+03_Triggers_ModX.sql
+04_Indexes_ModX.sql
+05_Procedures_ModX.sql
+06_Jobs_ModX.sql
 ```
+
+Reusable query packs (if any) live outside this numbering, typically under `01_DB/Queries/`, and are loaded by the queries loader when enabled.
 
 ---
 
@@ -79,24 +81,27 @@ Each module must follow the standardized file structure.
 
 Database objects must be created in dependency order:
 
-1. tables  
-2. foreign keys  
-3. functions  
-4. triggers  
-5. indexes  
-6. procedures  
-7. jobs  
+1. tables (`00_Tables_ModX.sql`, all modules)  
+2. foreign keys (`01_ForeignKeys_ModX.sql`, all modules)  
+3. functions (`02_Functions_ModX.sql`)  
+4. triggers (`03_Triggers_ModX.sql`)  
+5. indexes / exclusion constraints (`04_Indexes_ModX.sql`)  
+6. procedures (`05_Procedures_ModX.sql`)  
+7. jobs (`06_Jobs_ModX.sql`)  
+
+See also: `00_Schema_Build_Pipeline.md`.
 
 ---
 
 # 3. Constraint Organization
 
-Constraints should follow this order whenever applicable:
+Inside `00_Tables_ModX.sql`, constraints should follow this order whenever applicable:
 
 1. primary keys  
 2. unique constraints  
 3. check constraints  
-4. foreign keys  
+
+**Foreign keys** are declared only in `01_ForeignKeys_ModX.sql` (via `ALTER TABLE … ADD CONSTRAINT`) after all tables exist.
 
 ---
 

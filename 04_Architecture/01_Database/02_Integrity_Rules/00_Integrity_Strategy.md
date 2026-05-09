@@ -67,6 +67,8 @@ Structural integrity is responsible for:
 
 This layer represents the foundational integrity structure of the system.
 
+**Foreign key placement:** declarative FKs are centralized per module in `01_ForeignKeys_ModX.sql` and executed in a dedicated init phase *after* all module tables are created. This keeps creation order deterministic and documents cross-entity dependencies in one place per module (see `00_Schema_Build_Pipeline.md`).
+
 ---
 
 # Automated Integrity

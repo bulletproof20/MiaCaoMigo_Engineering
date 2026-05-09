@@ -316,12 +316,12 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_login_time</td>
-                                    <td>(((sig_tim_log &lt;&#61; CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;&#61; CURRENT_TIMESTAMP)))))</td>
-                                </tr>
-                                <tr>
                                     <td>chk_login_email_format</td>
                                     <td>(((eml_usr IS NULL) OR (((eml_usr)::text &#61; lower(TRIM(BOTH FROM eml_usr))) AND ((eml_usr)::text ~ &#39;.+@.+\..+&#39;::text))))</td>
+                                </tr>
+                                <tr>
+                                    <td>chk_login_time</td>
+                                    <td>(((sig_tim_log &lt;&#61; CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                 </tr>
                                 <tr>
                                     <td>login_record_check</td>

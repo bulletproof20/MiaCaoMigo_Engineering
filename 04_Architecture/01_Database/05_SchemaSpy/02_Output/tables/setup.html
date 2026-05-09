@@ -242,12 +242,12 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_the_set_format</td>
-                                    <td>((((the_set)::text &#61; lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text &#61; ANY ((ARRAY[&#39;light&#39;::character varying, &#39;dark&#39;::character varying])::text[]))))</td>
-                                </tr>
-                                <tr>
                                     <td>chk_lan_set_format</td>
                                     <td>((((lan_set)::text &#61; lower(TRIM(BOTH FROM lan_set))) AND ((lan_set)::text ~ &#39;^[a-z]{2}-[a-z]{2}$&#39;::text)))</td>
+                                </tr>
+                                <tr>
+                                    <td>chk_the_set_format</td>
+                                    <td>((((the_set)::text &#61; lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text &#61; ANY ((ARRAY[&#39;light&#39;::character varying, &#39;dark&#39;::character varying])::text[]))))</td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -147,6 +147,8 @@ nav:
           # SQL Standards
           # =================================================
 
+          - Schema build pipeline: 04_Architecture/01_Database/00_Schema_Build_Pipeline.md
+
           - SQL Standards:  04_Architecture/01_Database/03_SQL_Standards/00_SQL_Standards.md
 
           # =================================================
