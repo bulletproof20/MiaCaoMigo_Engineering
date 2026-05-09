@@ -31,7 +31,7 @@ with the MiaCaoMigo project.
 
 # Available Statements
 
-## APS — Application Development Project
+## APS — Systems Analysis and Design
 
 Official APS project statement and specification document.
 

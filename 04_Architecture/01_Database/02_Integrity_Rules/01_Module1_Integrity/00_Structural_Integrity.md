@@ -31,6 +31,7 @@ This document focuses exclusively on declarative structural integrity mechanisms
 | `pk_employee` | `employee` | Unique employee identification | Entity uniqueness |
 | `pk_assistant` | `assistant` | Employee specialization identification | Structural specialization integrity |
 | `pk_veterinarian` | `veterinarian` | Employee specialization identification | Structural specialization integrity |
+| `pk_expert` | `expert` | Veterinarian-specialty association identification | Specialization attribution integrity |
 | `pk_client` | `client` | Unique client identification | Entity uniqueness |
 | `pk_login_record` | `login_record` | Unique login record identification | Session traceability |
 | `pk_schedule` | `schedule` | Unique schedule identification | Scheduling consistency |
@@ -51,7 +52,8 @@ This document focuses exclusively on declarative structural integrity mechanisms
 | `fk_employee_aut_ina` | `employee` | Associates responsible deactivation employee | Audit traceability |
 | `fk_assistant_employee` | `assistant` | Associates assistant with employee | Specialization integrity |
 | `fk_veterinarian_employee` | `veterinarian` | Associates veterinarian with employee | Specialization integrity |
-| `fk_veterinarian_specialty` | `veterinarian` | Associates veterinarian with specialty | Clinical specialization consistency |
+| `fk_expert_veterinarian` | `expert` | Associates veterinarian specialization assignment with veterinarian | Clinical specialization consistency |
+| `fk_expert_specialty` | `expert` | Associates veterinarian specialization assignment with specialty | Clinical specialization consistency |
 | `fk_client_user` | `client` | Associates client with user account | Identity consistency |
 | `fk_login_record_user` | `login_record` | Associates login record with user account | Authentication traceability |
 | `fk_schedule_employee` | `schedule` | Associates schedule with employee | Workforce consistency |

@@ -92,11 +92,21 @@ Represents veterinarian employees and their professional specialization.
 |---|---|---|---|
 | id_emp | Employee Identifier | Associated employee identifier | PK / FK |
 | num_omv_vet | OMV Registration Number | Veterinary professional registration number | AK |
-| id_spe | Specialty Identifier | Associated specialty identifier | FK |
 
 ---
 
-# 8. CLIENT
+# 8. EXPERT
+
+Associates veterinarians with one or more specialties.
+
+| Attribute | Name | Description | Key Type |
+|---|---|---|---|
+| id_emp | Employee Identifier | Associated veterinarian employee identifier | CPK / FK |
+| id_spe | Specialty Identifier | Associated specialty identifier | CPK / FK |
+
+---
+
+# 9. CLIENT
 
 Represents system clients and their authentication data.
 
@@ -110,7 +120,7 @@ Represents system clients and their authentication data.
 
 ---
 
-# 9. LOGIN_RECORD
+# 10. LOGIN_RECORD
 
 Stores authentication attempts and session activity history.
 
@@ -126,7 +136,7 @@ Stores authentication attempts and session activity history.
 
 ---
 
-# 10. SCHEDULE
+# 11. SCHEDULE
 
 Defines weekly planned working schedules for employees.
 
@@ -139,7 +149,7 @@ Defines weekly planned working schedules for employees.
 
 ---
 
-# 11. ABSENCE
+# 12. ABSENCE
 
 Represents employee absences, including past absences and future absence requests.
 
@@ -156,7 +166,7 @@ Represents employee absences, including past absences and future absence request
 
 ---
 
-# 12. CLOCK_IN
+# 13. CLOCK_IN
 
 Stores employee attendance records, including entry and exit timestamps.
 
@@ -169,7 +179,7 @@ Stores employee attendance records, including entry and exit timestamps.
 
 ---
 
-# 13. SETUP
+# 14. SETUP
 
 Stores user interface and application preference configurations.
 
@@ -181,7 +191,7 @@ Stores user interface and application preference configurations.
 
 ---
 
-# 14. OCCUPIES
+# 15. OCCUPIES
 
 Associates employees with operational system profiles.
 
@@ -192,7 +202,7 @@ Associates employees with operational system profiles.
 
 ---
 
-# 15. HAVE
+# 16. HAVE
 
 Associates profiles with system permissions.
 

@@ -110,11 +110,21 @@ Defines veterinarian employees and their professional specialization.
 |---|---|---|
 | Employee Identifier | id_emp | Identifies the employee associated with the veterinarian role. |
 | Veterinarian Registration Number | num_omv_vet | Official professional registration number associated with the veterinarian. |
-| Specialty Identifier | id_spe | Identifies the specialty associated with the veterinarian professional activity. |
 
 ---
 
-# 8. client
+# 8. expert
+
+Associates veterinarians with one or more specialties.
+
+| Attribute Name | Physical Name | Description |
+|---|---|---|
+| Veterinarian Employee Identifier | id_emp | Identifies the veterinarian employee associated with the specialty assignment. |
+| Specialty Identifier | id_spe | Identifies the specialty assigned to the veterinarian. |
+
+---
+
+# 9. client
 
 Stores authentication and lifecycle information associated with system clients.
 
@@ -128,7 +138,7 @@ Stores authentication and lifecycle information associated with system clients.
 
 ---
 
-# 9. login_record
+# 10. login_record
 
 Stores authentication attempts, session activity, and login audit history.
 
@@ -144,7 +154,7 @@ Stores authentication attempts, session activity, and login audit history.
 
 ---
 
-# 10. schedule
+# 11. schedule
 
 Defines recurring weekly schedules associated with employee operational activity.
 
@@ -157,7 +167,7 @@ Defines recurring weekly schedules associated with employee operational activity
 
 ---
 
-# 11. absence
+# 12. absence
 
 Stores employee absences, interruptions, and operational validation information.
 
@@ -174,7 +184,7 @@ Stores employee absences, interruptions, and operational validation information.
 
 ---
 
-# 12. clock_in
+# 13. clock_in
 
 Stores employee attendance intervals and operational presence records.
 
@@ -187,7 +197,7 @@ Stores employee attendance intervals and operational presence records.
 
 ---
 
-# 13. setup
+# 14. setup
 
 Stores user interface preferences and configuration settings associated with user accounts.
 
@@ -199,7 +209,7 @@ Stores user interface preferences and configuration settings associated with use
 
 ---
 
-# 14. occupies
+# 15. occupies
 
 Associates employees with operational access profiles.
 
@@ -210,7 +220,7 @@ Associates employees with operational access profiles.
 
 ---
 
-# 15. have
+# 16. have
 
 Associates operational profiles with system permissions.
 
