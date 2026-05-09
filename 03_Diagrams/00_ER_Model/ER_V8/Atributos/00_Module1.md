@@ -128,10 +128,12 @@ Associates veterinarians with one or more specialties.
 
 Stores authentication and lifecycle information associated with system clients.
 
+**Identity model:** `id_cli` is the primary key (surrogate). **`id_usr` is unique** in this entity, enforcing a **1:1** relationship between `user_account` and `client` (one client record per user). Downstream modules use **`id_cli`** as the foreign key target.
+
 | Attribute Name | Physical Name | Description |
 |---|---|---|
 | Client Identifier | id_cli | Unique identifier associated with the client record. |
-| Associated User Identifier | id_usr | Identifies the user account associated with the client. |
+| Associated User Identifier | id_usr | Identifies the user account associated with the client; unique across rows (one client per user). |
 | Client Authentication Password | pas_cli | Encrypted authentication credential used by the client to securely access the system. |
 | Client Registration Timestamp | reg_dat_cli | Date and time when the client account was registered in the system. |
 | Client Inactivation Timestamp | ina_dat_cli | Date and time when the client account became inactive within the system. |

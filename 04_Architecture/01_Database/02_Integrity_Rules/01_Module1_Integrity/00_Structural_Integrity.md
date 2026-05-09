@@ -32,7 +32,7 @@ This document focuses exclusively on declarative structural integrity mechanisms
 | `pk_assistant` | `assistant` | Employee specialization identification | Structural specialization integrity |
 | `pk_veterinarian` | `veterinarian` | Employee specialization identification | Structural specialization integrity |
 | `pk_expert` | `expert` | Veterinarian-specialty association identification | Specialization attribution integrity |
-| `pk_client` | `client` | Unique client identification | Entity uniqueness |
+| `pk_client` | `client` | Surrogate primary key on `id_cli` (single-column PK; external FKs target `id_cli`) | Entity uniqueness |
 | `pk_login_record` | `login_record` | Unique login record identification | Session traceability |
 | `pk_schedule` | `schedule` | Unique schedule identification | Scheduling consistency |
 | `pk_absence` | `absence` | Unique absence identification | Absence traceability |
@@ -79,6 +79,7 @@ This document focuses exclusively on declarative structural integrity mechanisms
 | `uq_nam_spe` | `specialty` | Prevent duplicate specialty names | Clinical consistency |
 | `uq_ema_emp` | `employee` | Prevent duplicate corporate emails | Employee uniqueness |
 | `uq_num_omv_vet` | `veterinarian` | Prevent duplicate OMV registrations | Professional identity integrity |
+| `uq_client_user` | `client` | At most one client row per user account | One-to-one `user_account` ↔ `client` |
 
 ---
 
@@ -144,6 +145,8 @@ This document focuses exclusively on declarative structural integrity mechanisms
 ---
 
 ## Client
+
+Declarative **one-to-one** with `user_account` is enforced by **`uq_client_user`** (`UNIQUE` on `id_usr`) in addition to **`fk_client_user`**.
 
 | Constraint | Purpose | Ensures |
 |---|---|---|

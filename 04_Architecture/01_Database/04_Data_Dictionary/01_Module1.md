@@ -110,10 +110,12 @@ Associates veterinarians with one or more specialties.
 
 Represents system clients and their authentication data.
 
+Each client row is identified by a **surrogate primary key** `id_cli`. The association with `user_account` is **one-to-one**: each `user_account` may appear in at most one client row, enforced declaratively by **`uq_client_user` (`UNIQUE` on `id_usr`)** together with **`fk_client_user`**. Other modules reference the client entity by **`id_cli`** (single-column foreign keys).
+
 | Attribute | Name | Description | Key Type |
 |---|---|---|---|
 | id_cli | Client Identifier | Unique client identifier | PK |
-| id_usr | User Identifier | Associated user identifier | FK |
+| id_usr | User Identifier | Associated user identifier; at most one client per user | FK, AK |
 | pas_cli | Password Hash | Client password hash | |
 | reg_dat_cli | Registration Timestamp | Client registration timestamp | |
 | ina_dat_cli | Inactivation Timestamp | Client inactivation timestamp | |

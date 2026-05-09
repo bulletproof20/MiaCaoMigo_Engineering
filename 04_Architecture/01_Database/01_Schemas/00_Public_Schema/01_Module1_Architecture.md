@@ -86,6 +86,7 @@ Authentication operations are centralized through procedural SQL logic and contr
 Responsible for:
 - user registration;
 - employee registration;
+- client registration (credentials and lifecycle on `client`, linked 1:1 to `user_account` via `id_usr` with a unique constraint; primary key remains `id_cli` for references from other modules);
 - employee classification;
 - operational identity management;
 - user lifecycle management.
