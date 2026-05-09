@@ -55,7 +55,11 @@ nav:
   # 02 — Requirements
   # =======================================================
 
-  - Requirements
+  - Requirements:
+
+      - Functional Requirements
+
+      - Non-Functional Requirements
 
   # =======================================================
   # 03 — Diagrams
@@ -63,7 +67,15 @@ nav:
 
   - Diagrams:
 
-      - ER Model
+      - ER Model:
+
+          - ER Model Structure: indexes/er_model.md
+
+          - ER Model Attributes:
+              - Module 1: 03_Diagrams/00_ER_Model/ER_V8/Atributos/00_Module1.md
+              - Module 2
+              - Module 3
+              - Module 4
 
       - UML
 
@@ -77,7 +89,7 @@ nav:
       # System Architecture
       # ---------------------------------------------------
 
-      - System Overview: 04_Architecture/00_System_Architecture.md
+      - System Architecture: 04_Architecture/00_System_Architecture.md
 
       # ---------------------------------------------------
       # Database Architecture
@@ -121,10 +133,9 @@ nav:
 
           - Integrity Rules:
 
-              - Integrity Strategy:
-                  - Overview: 04_Architecture/01_Database/02_Integrity_Rules/00_Integrity_Strategy.md
+              - Integrity Strategy: 04_Architecture/01_Database/02_Integrity_Rules/00_Integrity_Strategy.md
 
-              - Module 1 Integrity:
+              - Module 1:
 
                   - Structural Integrity: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md
 
