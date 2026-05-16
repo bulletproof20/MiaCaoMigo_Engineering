@@ -4,16 +4,16 @@ Centralized engineering and technical documentation repository for the **MiaCaoM
 
 This repository contains the complete engineering foundation of the project, including:
 
-* system architecture;
-* database engineering;
-* integrity validation rules;
-* technical standards;
-* planning artifacts;
-* UML and ER diagrams;
-* academic statements;
-* metadata documentation;
-* SchemaSpy integration;
-* development support documentation.
+- system architecture;
+- database engineering;
+- integrity validation rules;
+- technical standards;
+- planning artifacts;
+- UML and ER diagrams;
+- academic statements;
+- metadata documentation;
+- SchemaSpy integration;
+- development support documentation.
 
 ---
 
@@ -49,12 +49,12 @@ This repository contains the complete engineering foundation of the project, inc
 
 The project follows a modular engineering philosophy focused on:
 
-* maintainability;
-* separation of responsibilities;
-* metadata-driven documentation;
-* integrity-first database design;
-* centralized technical standards;
-* scalable architectural organization.
+- maintainability;
+- separation of responsibilities;
+- metadata-driven documentation;
+- integrity-first database design;
+- centralized technical standards;
+- scalable architectural organization.
 
 ---
 
@@ -82,12 +82,12 @@ http://localhost:8000
 
 The engineering repository aims to provide:
 
-* centralized technical knowledge;
-* architectural visibility;
-* engineering traceability;
-* onboarding support;
-* maintainable documentation;
-* standardized development practices.
+- centralized technical knowledge;
+- architectural visibility;
+- engineering traceability;
+- onboarding support;
+- maintainable documentation;
+- standardized development practices.
 
 ---
 
