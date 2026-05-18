@@ -35,7 +35,7 @@ with the MiaCaoMigo project.
 
 Official APS project statement and specification document.
 
-[Open APS Statement](../05_Docs/00_Statements/00_ProjectStatement_APS.pdf)
+[Open APS Statement](00_ProjectStatement_APS.pdf)
 
 ---
 
@@ -43,7 +43,7 @@ Official APS project statement and specification document.
 
 Official PW project statement and academic requirements.
 
-[Open PW Statement](../05_Docs/00_Statements/01_ProjectStatement_PW.pdf)
+[Open PW Statement](01_ProjectStatement_PW.pdf)
 
 ---
 
@@ -51,7 +51,7 @@ Official PW project statement and academic requirements.
 
 Official PBD project statement and database engineering requirements.
 
-[Open PBD Statement](../05_Docs/00_Statements/02_ProjectStatement_PBD.pdf)
+[Open PBD Statement](02_ProjectStatement_PBD.pdf)
 
 ---
 

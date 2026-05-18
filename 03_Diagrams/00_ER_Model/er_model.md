@@ -14,4 +14,4 @@ The complete attribute documentation, including attribute names, physical naming
 
 ## Structural Model
 
-[Open Structural ER Model](../03_Diagrams/00_ER_Model/ER_V8/Struct_ER_Model.pdf)
+[Open Structural ER Model](ER_V8/Struct_ER_Model.pdf)

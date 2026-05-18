@@ -44,7 +44,7 @@ database structure, including:
 
 ## Open SchemaSpy
 
-[Open Interactive SchemaSpy Documentation](../04_Architecture/01_Database/05_SchemaSpy/02_Output/index.html)
+[Open Interactive SchemaSpy Documentation](02_Output/index.html)
 
 ---
 
