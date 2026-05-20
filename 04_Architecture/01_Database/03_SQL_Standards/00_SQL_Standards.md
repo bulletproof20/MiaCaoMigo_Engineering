@@ -73,7 +73,7 @@ Each module must follow the standardized file structure.
 06_Jobs_ModX.sql
 ```
 
-Reusable query packs (if any) live outside this numbering, typically under `01_DB/Queries/`, and are loaded by the queries loader when enabled.
+Reusable query packs (if any) live outside this numbering, typically under `01_MiaCaoMigo_DataLayer/DataBase/Queries/`, and are reference-only unless explicitly wired into a profile.
 
 ---
 
