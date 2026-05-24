@@ -2,100 +2,75 @@
 
 ## Purpose
 
-This document defines the automated integrity mechanisms adopted within Module 1 of the MiaCaoMigo database system.
+Triggers and pg_cron jobs that enforce Module 1 rules **without** application calls.
 
-Automated integrity mechanisms are responsible for:
-- automatic validation enforcement;
-- operational consistency;
-- temporal consistency;
-- credential protection;
-- audit maintenance;
-- prevention of invalid operational states.
-
-This document follows the global integrity strategy defined for the MiaCaoMigo database system.
+**Source of truth:** `01_MiaCaoMigo_DataLayer/DataBase/Schema/01_Module1_User_Management/`.
 
 ---
 
-# Trigger Strategy
+## Trigger strategy
 
-Triggers are used to:
-- automate validation logic;
-- enforce operational consistency;
-- preserve relational integrity;
-- reduce invalid transactional behavior.
+Triggers (`trg_*`) run **BEFORE** insert/update (and where needed, delete) to block invalid state before commit. Failed checks abort the transaction.
 
-Triggers execute automatically during:
-- INSERT operations;
-- UPDATE operations;
-- DELETE operations.
-
-Validation failures intentionally abort the active transaction in order to preserve operational consistency and relational integrity.
+Defined in: `03_Triggers_Mod1.sql`  
+Helper functions: `02_Functions_Mod1.sql`
 
 ---
 
-# Triggers
+## Triggers (implemented)
 
-| Trigger | Event | Timing | Purpose | Ensures |
-|---|---|---|---|---|
-| `trg_hash_password_employee` | INSERT / UPDATE | BEFORE | Automatically hash employee passwords before persistence | Credential security |
-| `trg_hash_password_client` | INSERT / UPDATE | BEFORE | Automatically hash client passwords before persistence | Credential security |
-| `trg_normalize_email_user` | INSERT / UPDATE | BEFORE | Normalize personal email formatting | Authentication consistency |
-| `trg_normalize_email_employee` | INSERT / UPDATE | BEFORE | Normalize corporate email formatting | Operational consistency |
-| `trg_validate_employee_state` | UPDATE | BEFORE | Validate employee lifecycle transitions | Operational integrity |
-| `trg_validate_absence_state` | INSERT / UPDATE | BEFORE | Validate absence workflow states | Workflow consistency |
-| `trg_prevent_invalid_schedule` | INSERT / UPDATE | BEFORE | Prevent invalid scheduling operations | Temporal consistency |
-| `trg_register_audit_timestamp` | INSERT / UPDATE | BEFORE | Automatically maintain audit timestamps | Operational traceability |
+| Trigger | Table | Timing | Purpose |
+|---------|-------|--------|---------|
+| `trg_block_clock_in_insert` | `clock_in` | BEFORE INSERT | Attendance rules |
+| `trg_block_employee_inactivation` | `employee` | BEFORE UPDATE | Block invalid inactivation |
+| `trg_block_assistant_disjunction` | `assistant` | BEFORE INSERT/UPDATE | Role disjunction |
+| `trg_block_veterinarian_disjunction` | `veterinarian` | BEFORE INSERT/UPDATE | Role disjunction |
+| `trg_block_absence_overlap_by_user` | `absence` | BEFORE INSERT/UPDATE | Absence overlap |
+| `trg_create_default_setup` | `user_account` | AFTER INSERT | Default setup row |
 
----
-
-# Scheduled Job Strategy
-
-Scheduled jobs are used to:
-- automate recurring validation;
-- preserve long-term consistency;
-- maintain operational reliability;
-- reduce manual maintenance operations.
-
-Jobs execute independently from direct user interaction and reinforce continuous operational consistency.
+!!! note "QA coverage"
+    Related integrity scripts: `03_Clocking_Rules.sql`, `04_Absence_Overlap.sql`, `05_Role_Disjunction.sql`, `06_Schedule_Exclusion.sql` (exclusion constraint).
 
 ---
 
-# Scheduled Jobs
+## Scheduled jobs (pg_cron)
 
-| Job | Schedule | Purpose | Ensures |
-|---|---|---|---|
-| `job_expire_sessions` | Scheduled Interval | Automatically invalidate expired sessions | Authentication consistency |
-| `job_validate_schedule_conflicts` | Scheduled Interval | Detect unresolved scheduling inconsistencies | Temporal integrity |
-| `job_cleanup_login_records` | Scheduled Interval | Maintain controlled authentication history | Audit maintainability |
-| `job_attendance_validation` | Scheduled Interval | Validate attendance consistency | Workforce consistency |
-| `job_operational_audit_check` | Scheduled Interval | Verify operational auditing integrity | Traceability consistency |
+Jobs are registered in `06_Jobs_Mod1.sql` and invoke **`jpr_*`** procedures from `05_Procedures_Mod1.sql`.
 
----
+| Cron name | Schedule | Procedure | Purpose |
+|-----------|----------|-----------|---------|
+| `auto_close_clockin_midnight` | `0 0 * * *` | `jpr_auto_close_clock_in_midnight()` | Close open clock-ins at day boundary |
+| `auto_cancel_expired_absences` | `5 0 * * *` | `jpr_auto_cancel_expired_absences()` | Cancel stale pending absences |
 
-# Automated Transaction Protection
-
-Automated integrity mechanisms may intentionally interrupt transactional execution when invalid operational states are detected.
-
-This behavior ensures:
-- rollback of invalid operations;
-- preservation of relational consistency;
-- prevention of partial invalid states.
-
-Transaction abortion on integrity violations is considered expected operational behavior and represents a core component of the system integrity strategy.
+**Requirements:** `pg_cron` extension (`00_Extensions.sql`), `shared_preload_libraries` in Docker command.
 
 ---
 
-# Temporal Integrity Automation
+## Legacy documentation removed
 
-Temporal consistency is reinforced through automated mechanisms responsible for:
-- schedule validation;
-- overlap prevention;
-- absence consistency;
-- operational interval validation.
+The following **were never implemented** under these names and must not be used in new docs or code:
 
-These mechanisms operate together with:
-- exclusion constraints;
-- procedural validation;
-- transactional enforcement.
+| Abandoned name | Use instead |
+|----------------|-------------|
+| `job_expire_sessions` | Session rules via `sp_auth_*` + `login_record` |
+| `job_validate_schedule_conflicts` | `ex_schedule_overlap` + triggers |
+| `trg_hash_password_*` | Password hashing handled at API layer (see Engineering auth docs) |
+| `trg_normalize_email_*` | `fn_normalize_email` at write time in workflows |
 
-This layered approach improves reliability in scheduling-related operations.
+---
+
+## Automated transaction protection
+
+When a trigger raises an exception:
+
+- the current statement fails;
+- the transaction rolls back;
+- QA tests expect `unique_violation` or custom messages via `PASS:`/`FAIL:` notices.
+
+---
+
+## Related documents
+
+- [Structural integrity](00_Structural_Integrity.md)
+- [Procedural validation](03_Procedural_Validation.md)
+- [Integrity strategy](../00_Integrity_Strategy.md)

@@ -131,14 +131,9 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="product.id_sto references stock.id_sto via fk_stock"><a href='product.html'>product</a><span class='relatedKey'>.id_sto</span></td>
-                                                <td class="constraint detail">fk_stock</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="purchase_line.id_sto references stock.id_sto via fk_purchase_line_stock"><a href='purchase_line.html'>purchase_line</a><span class='relatedKey'>.id_sto</span></td>
-                                                <td class="constraint detail">fk_purchase_line_stock</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                                <td title="purchase_line.id_sto&#39;s name implies that it&#39;s a child of stock.id_sto, but it doesn&#39;t reference that column."><a href='purchase_line.html'>purchase_line</a><span class='relatedKey'>.id_sto</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -274,6 +269,12 @@
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>id_sto</td>
                                 </tr>
+                                <tr>
+                                    <td title='Indexed'>ix_stock_id_pro</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_pro</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div><!-- /.box-body -->
@@ -303,7 +304,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_qty_sto</td>
+                                    <td>ck_qty_sto</td>
                                     <td>((qty_sto &gt;&#61; 0))</td>
                                 </tr>
                                 </tbody>
@@ -325,31 +326,51 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="product.html" target="_top" title="product" alt="" coords="321,28,485,263">
-<area shape="rect" id="node2" href="stock.html" target="_top" title="stock" alt="" coords="15,84,277,330">
-<area shape="rect" id="node3" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="529,62,746,267">
+<area shape="rect" id="node1" href="stock.html" target="_top" title="stock" alt="" coords="213,5,475,251">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="5,37,169,184">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/stock.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="556,427,753,515">
-<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="322,219,482,307">
-<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="75,415,219,503">
-<area shape="rect" id="node4" href="purchase.html" target="_top" title="purchase" alt="" coords="60,47,234,135">
-<area shape="rect" id="node5" href="return.html" target="_top" title="return" alt="" coords="74,520,220,608">
-<area shape="rect" id="node6" href="stock.html" target="_top" title="stock" alt="" coords="16,152,278,397">
-<area shape="rect" id="node7" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="546,111,763,199">
-<area shape="rect" id="node8" href="purchase_product.html" target="_top" title="purchase_product" alt="" coords="526,5,783,93">
-<area shape="rect" id="node9" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="534,216,774,304">
-<area shape="rect" id="node10" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="552,321,757,409">
-<area shape="rect" id="node11" href="return_product.html" target="_top" title="return_product" alt="" coords="540,532,769,620">
+<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="433,5,631,93">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="193,267,357,413">
+<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="5,299,149,387">
+<area shape="rect" id="node4" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="423,111,641,199">
+<area shape="rect" id="node5" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="412,216,652,304">
+<area shape="rect" id="node6" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="429,321,635,409">
+<area shape="rect" id="node7" href="return.html" target="_top" title="return" alt="" coords="459,427,605,515">
+<area shape="rect" id="node8" href="stock.html" target="_top" title="stock" alt="" coords="401,532,663,777">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/stock.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="519,5,736,211">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="5,93,169,240">
+<area shape="rect" id="node3" href="stock.html" target="_top" title="stock" alt="" coords="213,115,475,360">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/stock.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="429,633,627,721">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="193,478,353,566">
+<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="5,475,149,563">
+<area shape="rect" id="node4" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="703,57,920,145">
+<area shape="rect" id="node5" href="purchase.html" target="_top" title="purchase" alt="" coords="441,54,615,142">
+<area shape="rect" id="node6" href="stock.html" target="_top" title="stock" alt="" coords="397,159,659,405">
+<area shape="rect" id="node7" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="408,422,648,510">
+<area shape="rect" id="node8" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="425,527,631,615">
+<area shape="rect" id="node9" href="return.html" target="_top" title="return" alt="" coords="739,666,884,754">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/stock.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

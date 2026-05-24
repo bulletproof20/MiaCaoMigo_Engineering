@@ -122,24 +122,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_ana">id_ana</span></td>
-                                    <td>int4</td>
-                                    <td>10</td>
-                                    <td title=''></td>
-                                    <td title='Automatically updated by the database'>√</td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td><p>unique anamnesis identifier</p></td>
-                                </tr>
-                                <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_app">id_app</span></td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_app">id_app</span></td>
                                     <td>int4</td>
                                     <td>10</td>
                                     <td title=''></td>
@@ -228,7 +211,7 @@
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> pk_anamnesis</td>
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span></td>
-                                    <td>id_ana</td>
+                                    <td>id_app</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -253,22 +236,24 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="259,5,572,192">
-<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="5,37,215,272">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="259,5,572,163">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="5,8,215,301">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/anamnesis.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="481,5,795,192">
-<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,312,437,547">
-<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="20,268,169,356">
-<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="26,479,163,567">
-<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,373,184,461">
-<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="561,209,715,297">
-<area shape="rect" id="node7" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="501,315,775,403">
-<area shape="rect" id="node8" href="prescription.html" target="_top" title="prescription" alt="" coords="537,420,739,508">
-<area shape="rect" id="node9" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="518,525,758,613">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="489,429,803,587">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,164,437,457">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="20,5,169,93">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="26,216,163,304">
+<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,111,184,199">
+<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="18,427,171,515">
+<area shape="rect" id="node7" href="specialty.html" target="_top" title="specialty" alt="" coords="9,321,180,409">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="481,8,811,96">
+<area shape="rect" id="node9" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="509,113,783,201">
+<area shape="rect" id="node10" href="prescription.html" target="_top" title="prescription" alt="" coords="545,219,747,307">
+<area shape="rect" id="node11" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="526,324,766,412">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/anamnesis.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

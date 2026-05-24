@@ -135,6 +135,11 @@
                                                 <td class="constraint detail">fk_product_family</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
+                                            <tr>
+                                                <td title="vw_product_stock_levels.id_fam&#39;s name implies that it&#39;s a child of family.id_fam, but it doesn&#39;t reference that column."><a href='vw_product_stock_levels.html'>vw_product_stock_levels</a><span class='relatedKey'>.id_fam</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td>
@@ -146,7 +151,7 @@
                                 <tr>
                                     <td><span id="nam_fam">nam_fam</span></td>
                                     <td>varchar</td>
-                                    <td>100</td>
+                                    <td>70</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -232,30 +237,51 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="product.html" target="_top" title="product" alt="" coords="333,5,497,240">
-<area shape="rect" id="node2" href="family.html" target="_top" title="family" alt="" coords="5,91,289,248">
+<area shape="rect" id="node1" href="product.html" target="_top" title="product" alt="" coords="333,5,497,152">
+<area shape="rect" id="node2" href="family.html" target="_top" title="family" alt="" coords="5,32,289,189">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/family.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="571,427,769,515">
-<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="333,213,497,448">
-<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="5,301,289,459">
-<area shape="rect" id="node4" href="purchase.html" target="_top" title="purchase" alt="" coords="61,91,234,179">
-<area shape="rect" id="node5" href="return.html" target="_top" title="return" alt="" coords="75,476,220,564">
-<area shape="rect" id="node6" href="stock.html" target="_top" title="stock" alt="" coords="79,196,215,284">
-<area shape="rect" id="node7" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="561,111,779,199">
-<area shape="rect" id="node8" href="purchase_product.html" target="_top" title="purchase_product" alt="" coords="541,5,799,93">
-<area shape="rect" id="node9" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="550,216,790,304">
-<area shape="rect" id="node10" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="567,321,773,409">
-<area shape="rect" id="node11" href="return_product.html" target="_top" title="return_product" alt="" coords="555,532,785,620">
+<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="563,5,760,93">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="333,267,497,413">
+<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="5,293,289,451">
+<area shape="rect" id="node4" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="553,111,770,199">
+<area shape="rect" id="node5" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="541,216,781,304">
+<area shape="rect" id="node6" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="559,321,764,409">
+<area shape="rect" id="node7" href="return.html" target="_top" title="return" alt="" coords="589,427,734,515">
+<area shape="rect" id="node8" href="stock.html" target="_top" title="stock" alt="" coords="593,532,729,620">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/family.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="product.html" target="_top" title="product" alt="" coords="411,5,575,152">
+<area shape="rect" id="node2" href="family.html" target="_top" title="family" alt="" coords="5,100,289,257">
+<area shape="rect" id="node3" href="vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="333,169,653,263">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/family.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="719,364,916,452">
+<area shape="rect" id="node2" href="product.html" target="_top" title="product" alt="" coords="411,204,575,351">
+<area shape="rect" id="node3" href="family.html" target="_top" title="family" alt="" coords="5,161,289,319">
+<area shape="rect" id="node4" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="981,12,1199,100">
+<area shape="rect" id="node5" href="stock.html" target="_top" title="stock" alt="" coords="749,48,885,136">
+<area shape="rect" id="node6" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="697,153,937,241">
+<area shape="rect" id="node7" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="715,259,920,347">
+<area shape="rect" id="node8" href="return.html" target="_top" title="return" alt="" coords="1017,397,1163,485">
+<area shape="rect" id="node9" href="vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="333,93,653,187">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/family.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

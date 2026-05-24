@@ -130,6 +130,11 @@
                                     <td>null</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="vw_active_ownership_detail.id_own&#39;s name implies that it&#39;s a child of ownership.id_own, but it doesn&#39;t reference that column."><a href='vw_active_ownership_detail.html'>vw_active_ownership_detail</a><span class='relatedKey'>.id_own</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td>
@@ -332,7 +337,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_ownership_dates</td>
+                                    <td>ck_ownership_dates</td>
                                     <td>(((end_dat_own IS NULL) OR (sta_dat_own &lt;&#61; end_dat_own)))</td>
                                 </tr>
                                 </tbody>
@@ -354,42 +359,83 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
 <area shape="rect" id="node1" href="ownership.html" target="_top" title="ownership" alt="" coords="228,108,512,383">
-<area shape="rect" id="node2" href="animal.html" target="_top" title="animal" alt="" coords="17,169,172,375">
+<area shape="rect" id="node2" href="animal.html" target="_top" title="animal" alt="" coords="14,169,175,375">
 <area shape="rect" id="node3" href="client.html" target="_top" title="client" alt="" coords="18,5,171,152">
-<area shape="rect" id="node4" href="employee.html" target="_top" title="employee" alt="" coords="5,392,184,627">
+<area shape="rect" id="node4" href="employee.html" target="_top" title="employee" alt="" coords="5,392,184,656">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/ownership.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="767,860,931,948">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,857,640,1092">
-<area shape="rect" id="node10" href="user_account.html" target="_top" title="user_account" alt="" coords="205,691,417,779">
-<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="473,172,628,377">
-<area shape="rect" id="node4" href="breed.html" target="_top" title="breed" alt="" coords="241,285,381,373">
-<area shape="rect" id="node5" href="species.html" target="_top" title="species" alt="" coords="5,249,161,337">
-<area shape="rect" id="node6" href="appointment.html" target="_top" title="appointment" alt="" coords="744,321,953,409">
-<area shape="rect" id="node7" href="client.html" target="_top" title="client" alt="" coords="474,459,627,605">
-<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="684,216,1013,304">
-<area shape="rect" id="node9" href="assistant.html" target="_top" title="assistant" alt="" coords="763,965,935,1053">
-<area shape="rect" id="node11" href="clock_in.html" target="_top" title="clock_in" alt="" coords="769,1492,929,1580">
-<area shape="rect" id="node12" href="concession.html" target="_top" title="concession" alt="" coords="753,111,944,199">
-<area shape="rect" id="node13" href="delivery.html" target="_top" title="delivery" alt="" coords="767,5,930,93">
-<area shape="rect" id="node14" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1063,472,1328,560">
-<area shape="rect" id="node15" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="1057,964,1333,1052">
-<area shape="rect" id="node16" href="purchase.html" target="_top" title="purchase" alt="" coords="762,755,935,843">
-<area shape="rect" id="node17" href="employee_return.html" target="_top" title="employee_return" alt="" coords="724,1071,973,1159">
-<area shape="rect" id="node18" href="occupies.html" target="_top" title="occupies" alt="" coords="765,1176,933,1264">
-<area shape="rect" id="node19" href="ownership.html" target="_top" title="ownership" alt="" coords="707,427,991,701">
-<area shape="rect" id="node20" href="schedule.html" target="_top" title="schedule" alt="" coords="763,1281,934,1369">
-<area shape="rect" id="node21" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="747,1387,951,1475">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="744,997,908,1085">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,941,640,1205">
+<area shape="rect" id="node10" href="user_account.html" target="_top" title="user_account" alt="" coords="205,458,417,546">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="470,549,631,754">
+<area shape="rect" id="node4" href="breed.html" target="_top" title="breed" alt="" coords="241,662,381,750">
+<area shape="rect" id="node5" href="species.html" target="_top" title="species" alt="" coords="5,626,161,714">
+<area shape="rect" id="node6" href="appointment.html" target="_top" title="appointment" alt="" coords="721,365,931,453">
+<area shape="rect" id="node7" href="client.html" target="_top" title="client" alt="" coords="474,362,627,509">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1012,182,1341,270">
+<area shape="rect" id="node9" href="assistant.html" target="_top" title="assistant" alt="" coords="740,1138,912,1226">
+<area shape="rect" id="node11" href="clock_in.html" target="_top" title="clock_in" alt="" coords="746,1454,906,1542">
+<area shape="rect" id="node12" href="concession.html" target="_top" title="concession" alt="" coords="731,681,921,769">
+<area shape="rect" id="node13" href="delivery.html" target="_top" title="delivery" alt="" coords="745,576,907,664">
+<area shape="rect" id="node14" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1044,821,1309,909">
+<area shape="rect" id="node15" href="occupies.html" target="_top" title="occupies" alt="" coords="742,786,910,874">
+<area shape="rect" id="node16" href="ownership.html" target="_top" title="ownership" alt="" coords="684,73,968,348">
+<area shape="rect" id="node17" href="purchase.html" target="_top" title="purchase" alt="" coords="739,892,913,980">
+<area shape="rect" id="node18" href="return.html" target="_top" title="return" alt="" coords="753,470,899,558">
+<area shape="rect" id="node19" href="schedule.html" target="_top" title="schedule" alt="" coords="741,1244,911,1332">
+<area shape="rect" id="node20" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="724,1349,928,1437">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/ownership.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="ownership.html" target="_top" title="ownership" alt="" coords="228,81,512,356">
+<area shape="rect" id="node2" href="animal.html" target="_top" title="animal" alt="" coords="14,169,175,375">
+<area shape="rect" id="node3" href="client.html" target="_top" title="client" alt="" coords="18,5,171,152">
+<area shape="rect" id="node4" href="employee.html" target="_top" title="employee" alt="" coords="5,392,184,656">
+<area shape="rect" id="node5" href="vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="556,84,907,236">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/ownership.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="834,5,998,93">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,564,640,828">
+<area shape="rect" id="node10" href="user_account.html" target="_top" title="user_account" alt="" coords="205,844,417,932">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="476,1624,625,1712">
+<area shape="rect" id="node4" href="breed.html" target="_top" title="breed" alt="" coords="241,1725,381,1813">
+<area shape="rect" id="node5" href="species.html" target="_top" title="species" alt="" coords="5,1725,161,1813">
+<area shape="rect" id="node6" href="appointment.html" target="_top" title="appointment" alt="" coords="811,884,1021,972">
+<area shape="rect" id="node7" href="client.html" target="_top" title="client" alt="" coords="482,1115,619,1203">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1203,971,1532,1059">
+<area shape="rect" id="node9" href="assistant.html" target="_top" title="assistant" alt="" coords="830,111,1002,199">
+<area shape="rect" id="node11" href="clock_in.html" target="_top" title="clock_in" alt="" coords="836,216,996,304">
+<area shape="rect" id="node12" href="concession.html" target="_top" title="concession" alt="" coords="821,989,1011,1077">
+<area shape="rect" id="node13" href="delivery.html" target="_top" title="delivery" alt="" coords="835,1621,997,1709">
+<area shape="rect" id="node14" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1235,733,1500,821">
+<area shape="rect" id="node15" href="occupies.html" target="_top" title="occupies" alt="" coords="832,321,1000,409">
+<area shape="rect" id="node16" href="ownership.html" target="_top" title="ownership" alt="" coords="774,1131,1058,1405">
+<area shape="rect" id="node17" href="purchase.html" target="_top" title="purchase" alt="" coords="829,673,1003,761">
+<area shape="rect" id="node18" href="return.html" target="_top" title="return" alt="" coords="843,779,989,867">
+<area shape="rect" id="node19" href="schedule.html" target="_top" title="schedule" alt="" coords="831,427,1001,515">
+<area shape="rect" id="node20" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="814,532,1018,620">
+<area shape="rect" id="node21" href="vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="1192,1400,1543,1464">
+<area shape="rect" id="node22" href="vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="752,1844,1080,1908">
+<area shape="rect" id="node23" href="vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="763,1540,1069,1604">
+<area shape="rect" id="node24" href="vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="729,1763,1103,1827">
+<area shape="rect" id="node25" href="vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="684,1459,1148,1523">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/ownership.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

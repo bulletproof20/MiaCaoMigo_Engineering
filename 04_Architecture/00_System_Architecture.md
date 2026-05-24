@@ -72,6 +72,25 @@ This layer contains:
 
 The database engine is implemented using PostgreSQL.
 
+Implementation repository: **`01_MiaCaoMigo_DataLayer`** (`DataBase/`).
+
+| Concern | Engineering documentation |
+|---------|---------------------------|
+| Database hub (start here) | [01_Database/README.md](01_Database/README.md) |
+| Bootstrap & loaders | [00_Schema_Build_Pipeline.md](01_Database/00_Schema_Build_Pipeline.md) |
+| Governance & QA contracts | [00_Governance/README.md](01_Database/00_Governance/README.md) |
+| Interactive ERD | [05_SchemaSpy/schemaspy.md](01_Database/05_SchemaSpy/schemaspy.md) |
+
+```mermaid
+flowchart LR
+    DL[DataLayer repo]
+    ENG[Engineering docs]
+    APP[ApplicationLayer]
+
+    APP -->|svc_*| DL
+    ENG -.->|describes| DL
+```
+
 ---
 
 # ApplicationLayer

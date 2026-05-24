@@ -80,7 +80,7 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <i class="ion ion-key"></i>
-                            <h3 class="box-title">65 Foreign Key Constraints</h3>
+                            <h3 class="box-title">55 Foreign Key Constraints</h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -230,24 +230,6 @@
                                         <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_invoice</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_inv</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/invoice.html'>invoice</a><span>.id_inv</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
                                         <td>fk_purchase_employee</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
@@ -260,24 +242,6 @@
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
                                                     <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_purchase_client</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_cli</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -338,22 +302,58 @@
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_return_invoice_line</td>
+                                        <td>fk_return_employee</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
-                                                    <td><a href='tables/return.html'>return</a><span>.id_inv_lin</span></td>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_emp</span></td>
                                                 </tr>
                                             </table>
                                         </td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
-                                                    <td><a href='tables/invoice_line.html'>invoice_line</a><span>.id_inv_lin</span></td>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_return_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_return_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_invoice_line_product</td>
@@ -386,42 +386,6 @@
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
                                                     <td><a href='tables/invoice.html'>invoice</a><span>.id_inv</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_emp_pur_employee</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee_purchase.html'>employee_purchase</a><span>.id_emp</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_emp_pur_purchase</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee_purchase.html'>employee_purchase</a><span>.id_pur</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_pur</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -464,60 +428,6 @@
                                         <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_return</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/product.html'>product</a><span>.id_ret</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/return.html'>return</a><span>.id_ret</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_stock</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/product.html'>product</a><span>.id_sto</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/stock.html'>stock</a><span>.id_sto</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_purchase_product</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/product.html'>product</a><span>.id_pur</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_pur</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
-                                    </tr>
-                                    <tr>
                                         <td>fk_veterinarian_employee</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
@@ -536,11 +446,11 @@
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_animal</td>
+                                        <td>fk_appointment_animal</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
-                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_animal</span></td>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_ani</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -548,24 +458,6 @@
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
                                                     <td><a href='tables/animal.html'>animal</a><span>.id_ani</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_client</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_cli</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -588,6 +480,60 @@
                                             </table>
                                         </td>
                                         <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_specialty</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/specialty.html'>specialty</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_invoice</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/invoice.html'>invoice</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_absence_responsible</td>
@@ -660,42 +606,6 @@
                                             </table>
                                         </td>
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_ret_pro_return</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/return_product.html'>return_product</a><span>.id_ret</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/return.html'>return</a><span>.id_ret</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_ret_pro_product</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/return_product.html'>return_product</a><span>.id_pro</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_pre_pro_product</td>
@@ -824,42 +734,6 @@
                                         <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_pur_pro_purchase</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase_product.html'>purchase_product</a><span>.id_pur</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_pur</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_pur_pro_product</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase_product.html'>purchase_product</a><span>.id_pro</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
-                                    </tr>
-                                    <tr>
                                         <td>fk_purchase_line_product</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
@@ -876,24 +750,6 @@
                                             </table>
                                         </td>
                                         <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_purchase_line_stock</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/purchase_line.html'>purchase_line</a><span>.id_sto</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/stock.html'>stock</a><span>.id_sto</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_purchase_line_purchase</td>
@@ -914,7 +770,7 @@
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_appointment</td>
+                                        <td>fk_overall_assessment_appointment</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
@@ -950,22 +806,22 @@
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
-                                        <td>fk_invoice_appointment</td>
+                                        <td>fk_client_user</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
-                                                    <td><a href='tables/invoice.html'>invoice</a><span>.id_app</span></td>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_usr</span></td>
                                                 </tr>
                                             </table>
                                         </td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
-                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_concession_animal</td>
@@ -1020,24 +876,6 @@
                                             </table>
                                         </td>
                                         <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_client_user</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/client.html'>client</a><span>.id_usr</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
                                         <td>fk_assistant_employee</td>
@@ -1112,6 +950,24 @@
                                         <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
                                     </tr>
                                     <tr>
+                                        <td>fk_notification_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment_notification.html'>appointment_notification</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
                                         <td>fk_appointment_notification_client</td>
                                         <td>
                                             <table border='0' cellspacing='0' cellpadding='0'>
@@ -1124,42 +980,6 @@
                                             <table border='0' cellspacing='0' cellpadding='0'>
                                                 <tr>
                                                     <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_emp_ret_employee</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee_return.html'>employee_return</a><span>.id_emp</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fk_emp_ret_return</td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/employee_return.html'>employee_return</a><span>.id_ret</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            <table border='0' cellspacing='0' cellpadding='0'>
-                                                <tr>
-                                                    <td><a href='tables/return.html'>return</a><span>.id_ret</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -1304,232 +1124,232 @@
                                 <tbody>
                                     <tr>
                                         <td><a href='tables/permission.html'>permission</a></td>
-                                        <td>chk_nam_per_format</td>
+                                        <td>ck_nam_per_format</td>
                                         <td>((((nam_per)::text &#61; lower(TRIM(BOTH FROM nam_per))) AND (length((nam_per)::text) &gt; 3) AND ((nam_per)::text ~ &#39;^[a-z0-9_.]+$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/specialty.html'>specialty</a></td>
-                                        <td>chk_des_spe_format</td>
+                                        <td>ck_des_spe_format</td>
                                         <td>(((des_spe &#61; TRIM(BOTH FROM des_spe)) AND (length(TRIM(BOTH FROM des_spe)) &gt;&#61; 5)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/specialty.html'>specialty</a></td>
-                                        <td>chk_nam_spe_format</td>
-                                        <td>((((nam_spe)::text &#61; lower(TRIM(BOTH FROM nam_spe))) AND (length(TRIM(BOTH FROM nam_spe)) &gt;&#61; 5) AND ((nam_spe)::text ~ &#39;^[a-zà-ÿ\\s]+$&#39;::text)))</td>
+                                        <td>ck_nam_spe_format</td>
+                                        <td>((((nam_spe)::text &#61; lower(TRIM(BOTH FROM nam_spe))) AND (length(TRIM(BOTH FROM nam_spe)) &gt;&#61; 5)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/stock.html'>stock</a></td>
-                                        <td>chk_qty_sto</td>
+                                        <td>ck_qty_sto</td>
                                         <td>((qty_sto &gt;&#61; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/delivery.html'>delivery</a></td>
-                                        <td>chk_delivery_dates</td>
+                                        <td>ck_delivery_dates</td>
                                         <td>(((del_dat_del IS NULL) OR (reg_dat_del &lt;&#61; del_dat_del)))</td>
                                     </tr>
                                     <tr>
-                                        <td><a href='tables/purchase.html'>purchase</a></td>
-                                        <td>chk_sta_pur</td>
-                                        <td>((((sta_pur)::text &#61; ANY ((ARRAY[&#39;pending&#39;::character varying, &#39;received&#39;::character varying, &#39;cancelled&#39;::character varying])::text[])) OR (sta_pur IS NULL)))</td>
+                                        <td><a href='tables/login_record.html'>login_record</a></td>
+                                        <td>ck_ema_log_format</td>
+                                        <td>(((ema_log IS NULL) OR (((ema_log)::text &#61; lower(TRIM(BOTH FROM ema_log))) AND ((ema_log)::text ~ &#39;.+@.+\..+&#39;::text))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/login_record.html'>login_record</a></td>
-                                        <td>chk_login_email_format</td>
-                                        <td>(((eml_usr IS NULL) OR (((eml_usr)::text &#61; lower(TRIM(BOTH FROM eml_usr))) AND ((eml_usr)::text ~ &#39;.+@.+\..+&#39;::text))))</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href='tables/login_record.html'>login_record</a></td>
-                                        <td>chk_login_time</td>
+                                        <td>ck_login_time</td>
                                         <td>(((sig_tim_log &lt;&#61; CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/login_record.html'>login_record</a></td>
                                         <td>login_record_check</td>
-                                        <td>(((suc_log &#61; false) OR ((id_usr IS NOT NULL) AND (eml_usr IS NOT NULL) AND (ip_add_log IS NOT NULL) AND (sig_tim_log IS NOT NULL) AND (ip_add_log IS NOT NULL))))</td>
+                                        <td>(((suc_log &#61; false) OR ((id_usr IS NOT NULL) AND (ema_log IS NOT NULL) AND (ip_add_log IS NOT NULL) AND (sig_tim_log IS NOT NULL) AND (ip_add_log IS NOT NULL))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/return.html'>return</a></td>
+                                        <td>ck_qty_ret</td>
+                                        <td>((qty_ret &gt; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/invoice_line.html'>invoice_line</a></td>
-                                        <td>chk_qty_inv_lin</td>
+                                        <td>ck_qty_inv_lin</td>
                                         <td>((qty_inv_lin &gt; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/profile.html'>profile</a></td>
-                                        <td>chk_nam_pro_format</td>
+                                        <td>ck_nam_pro_format</td>
                                         <td>((((nam_pro)::text &#61; lower(TRIM(BOTH FROM nam_pro))) AND (length((nam_pro)::text) &gt; 3) AND ((nam_pro)::text ~ &#39;^[a-zà-ÿ\s]+$&#39;::text)))</td>
                                     </tr>
                                     <tr>
+                                        <td><a href='tables/product.html'>product</a></td>
+                                        <td>ck_min_sto_positive</td>
+                                        <td>((min_sto &gt;&#61; 0))</td>
+                                    </tr>
+                                    <tr>
                                         <td><a href='tables/veterinarian.html'>veterinarian</a></td>
-                                        <td>chk_num_omv_vet_format</td>
+                                        <td>ck_num_omv_vet_format</td>
                                         <td>((((num_omv_vet)::text &#61; TRIM(BOTH FROM num_omv_vet)) AND (length((num_omv_vet)::text) &gt; 3)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/appointment.html'>appointment</a></td>
-                                        <td>chk_app_time</td>
+                                        <td>ck_appointment_flow</td>
                                         <td>((sta_dat_app &lt; end_dat_app))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/absence.html'>absence</a></td>
-                                        <td>chk_absence_time</td>
+                                        <td>ck_absence_time</td>
                                         <td>((sta_dat_tim_abs &lt; end_dat_tim_abs))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/absence.html'>absence</a></td>
-                                        <td>chk_mot_abs_format</td>
+                                        <td>ck_mot_abs_format</td>
                                         <td>((((mot_abs)::text &#61; lower(TRIM(BOTH FROM mot_abs))) AND (length((mot_abs)::text) &gt; 2)))</td>
                                     </tr>
                                     <tr>
-                                        <td><a href='tables/absence.html'>absence</a></td>
-                                        <td>chk_sta_abs</td>
-                                        <td>(((sta_abs)::text &#61; ANY ((ARRAY[&#39;pending&#39;::character varying, &#39;approved&#39;::character varying, &#39;rejected&#39;::character varying, &#39;cancelled&#39;::character varying, &#39;detected&#39;::character varying])::text[])))</td>
-                                    </tr>
-                                    <tr>
                                         <td><a href='tables/schedule.html'>schedule</a></td>
-                                        <td>chk_schedule_day</td>
+                                        <td>ck_schedule_day</td>
                                         <td>(((day_wee_sch &gt;&#61; 1) AND (day_wee_sch &lt;&#61; 7)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/schedule.html'>schedule</a></td>
-                                        <td>chk_schedule_time</td>
+                                        <td>ck_schedule_time</td>
                                         <td>(((sta_tim_sch &lt; fin_hou_sch) AND (sta_tim_sch &gt;&#61; &#39;00:00:00&#39;::time without time zone) AND (fin_hou_sch &lt;&#61; &#39;23:59:59&#39;::time without time zone)))</td>
                                     </tr>
                                     <tr>
-                                        <td><a href='tables/return_product.html'>return_product</a></td>
-                                        <td>chk_qty_return</td>
-                                        <td>((qty_ret_pro &gt; 0))</td>
-                                    </tr>
-                                    <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_add_usr_format</td>
+                                        <td>ck_add_usr_format</td>
                                         <td>((length(TRIM(BOTH FROM add_usr)) &gt; 3))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_ema_usr_format</td>
+                                        <td>ck_ema_usr_format</td>
                                         <td>((((ema_usr)::text &#61; lower(TRIM(BOTH FROM ema_usr))) AND ((ema_usr)::text ~ &#39;.+@.+\..+&#39;::text) AND ((ema_usr)::text !~ &#39;@miacaomigo\.pt$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_nam_usr_format</td>
+                                        <td>ck_nam_usr_format</td>
                                         <td>((((nam_usr)::text ~ &#39;^[A-Za-zÀ-ÿ\s&#39;&#39;-]+$&#39;::text) AND (length(TRIM(BOTH FROM nam_usr)) &gt; 3)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_nif_usr_format</td>
+                                        <td>ck_nif_usr_format</td>
                                         <td>(((nif_usr)::text ~ &#39;^[0-9]{9}$&#39;::text))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_pho_usr_format</td>
+                                        <td>ck_pho_usr_format</td>
                                         <td>(((pho_usr IS NULL) OR ((pho_usr)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/user_account.html'>user_account</a></td>
-                                        <td>chk_pos_usr_format</td>
+                                        <td>ck_pos_usr_format</td>
                                         <td>(((pos_usr)::text ~ &#39;^[0-9]{4}-[0-9]{3}$&#39;::text))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/rel_pre_prod.html'>rel_pre_prod</a></td>
-                                        <td>chk_qty_rel_pre_prod</td>
+                                        <td>ck_qty_rel_pre_prod</td>
                                         <td>((qty_pre_pro &gt; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/animal.html'>animal</a></td>
-                                        <td>chk_gen_ani</td>
+                                        <td>ck_gen_ani</td>
                                         <td>(((gen_ani &#61; ANY (ARRAY[&#39;M&#39;::bpchar, &#39;F&#39;::bpchar])) OR (gen_ani IS NULL)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_ema_emp_format</td>
+                                        <td>ck_ema_emp_format</td>
                                         <td>((((ema_emp)::text &#61; lower(TRIM(BOTH FROM ema_emp))) AND ((ema_emp)::text ~ &#39;^[^@\s]+@miacaomigo\.pt$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_employee_dates</td>
+                                        <td>ck_employee_dates</td>
                                         <td>(((reg_dat_emp &lt;&#61; CURRENT_TIMESTAMP) AND ((dea_dat_emp IS NULL) OR ((dea_dat_emp &gt;&#61; reg_dat_emp) AND (dea_dat_emp &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_employee_inactivation</td>
+                                        <td>ck_employee_inactivation</td>
                                         <td>((((dea_dat_emp IS NULL) AND (aut_ina_emp IS NULL)) OR ((dea_dat_emp IS NOT NULL) AND (aut_ina_emp IS NOT NULL))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_pas_emp_format</td>
+                                        <td>ck_pas_emp_format</td>
                                         <td>((length(TRIM(BOTH FROM pas_emp)) &gt;&#61; 16))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_pho_emg_format</td>
+                                        <td>ck_pho_emg_format</td>
                                         <td>(((pho_emg IS NULL) OR ((pho_emg)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/employee.html'>employee</a></td>
-                                        <td>chk_pho_emp_format</td>
+                                        <td>ck_pho_emp_format</td>
                                         <td>(((pho_emp IS NULL) OR ((pho_emp)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
                                     </tr>
                                     <tr>
-                                        <td><a href='tables/purchase_product.html'>purchase_product</a></td>
-                                        <td>chk_qty_purchase</td>
-                                        <td>((qty_pur_pro &gt; 0))</td>
-                                    </tr>
-                                    <tr>
                                         <td><a href='tables/purchase_line.html'>purchase_line</a></td>
-                                        <td>chk_qty_pln</td>
+                                        <td>ck_qty_pln</td>
                                         <td>((qty_pln &gt; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
-                                        <td>chk_body_temp</td>
-                                        <td>(((body_temp &gt; (0)::double precision) AND (body_temp &lt; (50)::double precision)))</td>
+                                        <td>ck_bod_tmp_ova</td>
+                                        <td>(((bod_tmp_ova IS NULL) OR ((bod_tmp_ova &gt; (20)::numeric) AND (bod_tmp_ova &lt; (50)::numeric))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
-                                        <td>chk_weight</td>
-                                        <td>((weight &gt; (0)::double precision))</td>
+                                        <td>ck_hrt_rat_ova</td>
+                                        <td>(((hrt_rat_ova IS NULL) OR (hrt_rat_ova &gt; 0)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_res_rat_ova</td>
+                                        <td>(((res_rat_ova IS NULL) OR (res_rat_ova &gt; 0)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_wei_ova</td>
+                                        <td>(((wei_ova IS NULL) OR (wei_ova &gt; (0)::numeric)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/external_entity.html'>external_entity</a></td>
-                                        <td>chk_ema_ext_ent_format</td>
+                                        <td>ck_ema_ext_ent_format</td>
                                         <td>(((ema_ext_ent IS NULL) OR ((ema_ext_ent)::text ~ &#39;^[^@\s]+@[^@\s]+\.[^@\s]+$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/external_entity.html'>external_entity</a></td>
-                                        <td>chk_pho_ext_ent_format</td>
+                                        <td>ck_pho_ext_ent_format</td>
                                         <td>(((pho_ext_ent IS NULL) OR ((pho_ext_ent)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/client.html'>client</a></td>
-                                        <td>chk_client_dates</td>
+                                        <td>ck_client_dates</td>
                                         <td>(((reg_dat_cli &lt;&#61; CURRENT_TIMESTAMP) AND ((ina_dat_cli IS NULL) OR ((ina_dat_cli &gt;&#61; reg_dat_cli) AND (ina_dat_cli &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/client.html'>client</a></td>
-                                        <td>chk_pas_cli_format</td>
+                                        <td>ck_pas_cli_format</td>
                                         <td>((length(TRIM(BOTH FROM pas_cli)) &gt;&#61; 16))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/setup.html'>setup</a></td>
-                                        <td>chk_lan_set_format</td>
+                                        <td>ck_lan_set_format</td>
                                         <td>((((lan_set)::text &#61; lower(TRIM(BOTH FROM lan_set))) AND ((lan_set)::text ~ &#39;^[a-z]{2}-[a-z]{2}$&#39;::text)))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/setup.html'>setup</a></td>
-                                        <td>chk_the_set_format</td>
+                                        <td>ck_the_set_format</td>
                                         <td>((((the_set)::text &#61; lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text &#61; ANY ((ARRAY[&#39;light&#39;::character varying, &#39;dark&#39;::character varying])::text[]))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/rel_app_product.html'>rel_app_product</a></td>
-                                        <td>chk_qty_rel_app_product</td>
+                                        <td>ck_qty_rel_app_product</td>
                                         <td>((qty_pre_pro &gt; 0))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/clock_in.html'>clock_in</a></td>
-                                        <td>chk_clock_time</td>
+                                        <td>ck_clock_time</td>
                                         <td>(((sta_dat_clk &lt;&#61; CURRENT_TIMESTAMP) AND ((end_dat_clk IS NULL) OR ((end_dat_clk &gt; sta_dat_clk) AND (end_dat_clk &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                     </tr>
                                     <tr>
                                         <td><a href='tables/ownership.html'>ownership</a></td>
-                                        <td>chk_ownership_dates</td>
+                                        <td>ck_ownership_dates</td>
                                         <td>(((end_dat_own IS NULL) OR (sta_dat_own &lt;&#61; end_dat_own)))</td>
                                     </tr>
                                 </tbody>

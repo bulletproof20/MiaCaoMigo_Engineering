@@ -1,5 +1,9 @@
 # Module 1 — Constraints
 
+!!! info "Source of truth"
+    Live DDL: `01_MiaCaoMigo_DataLayer/DataBase/Schema/01_Module1_User_Management/`.  
+    This inventory reflects implemented constraint **names**; verify against SQL if the schema changes.
+
 ## Purpose
 
 This document defines the structural integrity constraints adopted within Module 1 of the MiaCaoMigo database system.

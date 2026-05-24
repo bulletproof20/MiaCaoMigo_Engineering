@@ -135,8 +135,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="overall_assessment.id_app references appointment.id_app via fk_appointment"><a href='appointment.html'>appointment</a><span class='relatedKey'>.id_app</span></td>
-                                                <td class="constraint detail">fk_appointment</td>
+                                                <td title="overall_assessment.id_app references appointment.id_app via fk_overall_assessment_appointment"><a href='appointment.html'>appointment</a><span class='relatedKey'>.id_app</span></td>
+                                                <td class="constraint detail">fk_overall_assessment_appointment</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
@@ -144,9 +144,9 @@
                                     <td><p>primary key and foreign key to appointment</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="body_temp">body_temp</span></td>
-                                    <td>float8</td>
-                                    <td>17,17</td>
+                                    <td><span id="bod_tmp_ova">bod_tmp_ova</span></td>
+                                    <td>numeric</td>
+                                    <td>4,1</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -161,9 +161,9 @@
                                     <td><p>body temperature in degrees celsius</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="weight">weight</span></td>
-                                    <td>float8</td>
-                                    <td>17,17</td>
+                                    <td><span id="wei_ova">wei_ova</span></td>
+                                    <td>numeric</td>
+                                    <td>6,2</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -178,9 +178,9 @@
                                     <td><p>weight measurement in kilograms</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="hrt_rate">hrt_rate</span></td>
-                                    <td>float8</td>
-                                    <td>17,17</td>
+                                    <td><span id="hrt_rat_ova">hrt_rat_ova</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -195,9 +195,9 @@
                                     <td><p>heart rate in beats per minute</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="resp_rate">resp_rate</span></td>
-                                    <td>float8</td>
-                                    <td>17,17</td>
+                                    <td><span id="res_rat_ova">res_rat_ova</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -212,7 +212,7 @@
                                     <td><p>respiratory rate in breaths per minute</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="general_status">general_status</span></td>
+                                    <td><span id="gen_sta_ova">gen_sta_ova</span></td>
                                     <td>text</td>
                                     <td>2147483647</td>
                                     <td title='nullable'>√</td>
@@ -293,12 +293,20 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_body_temp</td>
-                                    <td>(((body_temp &gt; (0)::double precision) AND (body_temp &lt; (50)::double precision)))</td>
+                                    <td>ck_bod_tmp_ova</td>
+                                    <td>(((bod_tmp_ova IS NULL) OR ((bod_tmp_ova &gt; (20)::numeric) AND (bod_tmp_ova &lt; (50)::numeric))))</td>
                                 </tr>
                                 <tr>
-                                    <td>chk_weight</td>
-                                    <td>((weight &gt; (0)::double precision))</td>
+                                    <td>ck_hrt_rat_ova</td>
+                                    <td>(((hrt_rat_ova IS NULL) OR (hrt_rat_ova &gt; 0)))</td>
+                                </tr>
+                                <tr>
+                                    <td>ck_res_rat_ova</td>
+                                    <td>(((res_rat_ova IS NULL) OR (res_rat_ova &gt; 0)))</td>
+                                </tr>
+                                <tr>
+                                    <td>ck_wei_ova</td>
+                                    <td>(((wei_ova IS NULL) OR (wei_ova &gt; (0)::numeric)))</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -324,21 +332,23 @@
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
 <area shape="rect" id="node1" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="259,5,645,251">
-<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="5,8,215,243">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="5,8,215,301">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/overall_assessment.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="581,5,769,93">
-<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,219,437,453">
-<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="20,175,169,263">
-<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="26,385,163,473">
-<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,280,184,368">
-<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="598,111,751,199">
-<area shape="rect" id="node7" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="481,216,868,461">
-<area shape="rect" id="node8" href="prescription.html" target="_top" title="prescription" alt="" coords="573,479,776,567">
-<area shape="rect" id="node9" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="555,584,795,672">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="581,584,769,672">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,243,437,536">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="20,84,169,172">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="26,295,163,383">
+<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,189,184,277">
+<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="18,505,171,593">
+<area shape="rect" id="node7" href="specialty.html" target="_top" title="specialty" alt="" coords="9,400,180,488">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="510,5,839,93">
+<area shape="rect" id="node9" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="481,111,868,356">
+<area shape="rect" id="node10" href="prescription.html" target="_top" title="prescription" alt="" coords="573,373,776,461">
+<area shape="rect" id="node11" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="555,479,795,567">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/overall_assessment.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

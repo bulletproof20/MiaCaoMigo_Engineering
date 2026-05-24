@@ -130,6 +130,11 @@
                                     <td>null</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="vw_open_clock_in_sessions.id_clk&#39;s name implies that it&#39;s a child of clock_in.id_clk, but it doesn&#39;t reference that column."><a href='vw_open_clock_in_sessions.html'>vw_open_clock_in_sessions</a><span class='relatedKey'>.id_clk</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td>
@@ -161,7 +166,7 @@
                                     <td><p>reference to employee entity</p></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="sta_dat_clk">sta_dat_clk</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="sta_dat_clk">sta_dat_clk</span></td>
                                     <td>timestamp</td>
                                     <td>29,6</td>
                                     <td title=''></td>
@@ -231,6 +236,12 @@
                                     <td>id_clk</td>
                                 </tr>
                                 <tr>
+                                    <td title='Indexed'>ix_clock_in_open_by_start</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>sta_dat_clk</td>
+                                </tr>
+                                <tr>
                                     <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> uq_clock_in_active_per_employee</td>
                                     <td>Must be unique</td>
                                     <td><span title='Ascending'>Asc</span></td>
@@ -265,7 +276,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_clock_time</td>
+                                    <td>ck_clock_time</td>
                                     <td>(((sta_dat_clk &lt;&#61; CURRENT_TIMESTAMP) AND ((end_dat_clk IS NULL) OR ((end_dat_clk &gt; sta_dat_clk) AND (end_dat_clk &lt;&#61; CURRENT_TIMESTAMP)))))</td>
                                 </tr>
                                 </tbody>
@@ -287,34 +298,63 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
 <area shape="rect" id="node1" href="clock_in.html" target="_top" title="clock_in" alt="" coords="228,5,528,192">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="5,37,184,272">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="5,37,184,301">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/clock_in.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
 <area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="552,5,716,93">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,663,440,897">
-<area shape="rect" id="node8" href="user_account.html" target="_top" title="user_account" alt="" coords="5,695,217,783">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,628,440,892">
+<area shape="rect" id="node8" href="user_account.html" target="_top" title="user_account" alt="" coords="5,660,217,748">
 <area shape="rect" id="node3" href="appointment.html" target="_top" title="appointment" alt="" coords="529,111,739,199">
 <area shape="rect" id="node4" href="assistant.html" target="_top" title="assistant" alt="" coords="548,216,720,304">
 <area shape="rect" id="node5" href="clock_in.html" target="_top" title="clock_in" alt="" coords="484,321,784,508">
 <area shape="rect" id="node6" href="concession.html" target="_top" title="concession" alt="" coords="539,525,729,613">
 <area shape="rect" id="node7" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="501,631,767,719">
-<area shape="rect" id="node9" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="828,736,1104,824">
-<area shape="rect" id="node10" href="purchase.html" target="_top" title="purchase" alt="" coords="547,772,721,860">
-<area shape="rect" id="node11" href="employee_return.html" target="_top" title="employee_return" alt="" coords="509,877,759,965">
-<area shape="rect" id="node12" href="occupies.html" target="_top" title="occupies" alt="" coords="550,983,718,1071">
-<area shape="rect" id="node13" href="ownership.html" target="_top" title="ownership" alt="" coords="541,1088,727,1176">
-<area shape="rect" id="node14" href="schedule.html" target="_top" title="schedule" alt="" coords="549,1193,719,1281">
-<area shape="rect" id="node15" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="532,1299,736,1387">
+<area shape="rect" id="node9" href="occupies.html" target="_top" title="occupies" alt="" coords="550,736,718,824">
+<area shape="rect" id="node10" href="ownership.html" target="_top" title="ownership" alt="" coords="541,841,727,929">
+<area shape="rect" id="node11" href="purchase.html" target="_top" title="purchase" alt="" coords="547,947,721,1035">
+<area shape="rect" id="node12" href="return.html" target="_top" title="return" alt="" coords="561,1052,707,1140">
+<area shape="rect" id="node13" href="schedule.html" target="_top" title="schedule" alt="" coords="549,1157,719,1245">
+<area shape="rect" id="node14" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="532,1263,736,1351">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/clock_in.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="clock_in.html" target="_top" title="clock_in" alt="" coords="228,5,528,192">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="5,37,184,301">
+<area shape="rect" id="node3" href="vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="572,8,915,101">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/clock_in.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="552,5,716,93">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,628,440,892">
+<area shape="rect" id="node8" href="user_account.html" target="_top" title="user_account" alt="" coords="5,660,217,748">
+<area shape="rect" id="node3" href="appointment.html" target="_top" title="appointment" alt="" coords="529,111,739,199">
+<area shape="rect" id="node4" href="assistant.html" target="_top" title="assistant" alt="" coords="548,216,720,304">
+<area shape="rect" id="node5" href="clock_in.html" target="_top" title="clock_in" alt="" coords="484,321,784,508">
+<area shape="rect" id="node6" href="concession.html" target="_top" title="concession" alt="" coords="539,525,729,613">
+<area shape="rect" id="node7" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="501,631,767,719">
+<area shape="rect" id="node9" href="occupies.html" target="_top" title="occupies" alt="" coords="550,736,718,824">
+<area shape="rect" id="node10" href="ownership.html" target="_top" title="ownership" alt="" coords="541,841,727,929">
+<area shape="rect" id="node11" href="purchase.html" target="_top" title="purchase" alt="" coords="547,947,721,1035">
+<area shape="rect" id="node12" href="return.html" target="_top" title="return" alt="" coords="561,1052,707,1140">
+<area shape="rect" id="node13" href="schedule.html" target="_top" title="schedule" alt="" coords="549,1157,719,1245">
+<area shape="rect" id="node14" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="532,1263,736,1351">
+<area shape="rect" id="node15" href="vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="828,324,1171,417">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/clock_in.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

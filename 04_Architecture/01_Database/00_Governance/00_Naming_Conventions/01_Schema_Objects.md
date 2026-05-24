@@ -1,5 +1,9 @@
 # Schema Objects Naming Conventions
 
+!!! tip "Views and API"
+    Read models use prefix `vw_*` in `Schema/*/07_Views_*.sql`.  
+    Application entry points use `svc_*` in `Services/` (not schema objects).
+
 ## Purpose
 
 This document defines the naming conventions adopted for structural database objects within the MiaCaoMigo database system.
@@ -199,6 +203,24 @@ idx_<index_context>
 | Original Concept | Standardized Naming |
 |---|---|
 | User Email Index | `idx_usr_email` |
+
+---
+
+# Views
+
+## Naming Rules
+
+Views must:
+- use the `vw_` prefix;
+- represent a read model or reporting shape;
+- remain in `Schema/*/07_Views_ModX.sql`;
+- be exposed to applications through `svc_*` (not called directly as the public contract).
+
+## Structure
+
+```text
+vw_<read_model_context>
+```
 
 ---
 

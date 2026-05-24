@@ -1,81 +1,75 @@
-<div style="text-align: center; margin-top: 40px; margin-bottom: 50px;">
+# SchemaSpy — interactive documentation
 
-<h1 style="margin-bottom: 10px;">
-SchemaSpy Documentation
-</h1>
+<div style="text-align: center; margin-bottom: 1.5rem;">
 
-<h3 style="
-    margin-top: 0;
-    color: #6b7280;
-    font-weight: normal;
-">
-Interactive Database Structure Visualization
+<h3 style="margin-top: 0; color: #6b7280; font-weight: normal;">
+Automatically generated relational model (read-only output)
 </h3>
-
-<p style="
-    max-width: 850px;
-    margin: 30px auto 0 auto;
-    line-height: 1.8;
-    font-size: 1.05rem;
-">
-
-SchemaSpy provides an automatically generated
-interactive visualization of the MiaCaoMigo
-database structure, including:
-
-</p>
 
 </div>
 
----
+SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: tables, columns, FKs, indexes, constraints, and relationship diagrams.
 
-# Available Features
+!!! success "Open interactive documentation"
+    **[Open SchemaSpy — `02_Output/index.html`](02_Output/index.html)**
 
-- schema visualization;
-- table relationships;
-- foreign keys;
-- constraints;
-- indexes;
-- metadata inspection;
-- dependency analysis;
-- HTML-based navigation.
+    Opens the generated site in a new browser tab from this MkDocs page.
+
+!!! warning "Do not edit generated artefacts"
+    Files under `05_SchemaSpy/02_Output/` are **regenerated** by SchemaSpy scripts.
+    Change the database in **`01_MiaCaoMigo_DataLayer`**, then re-run the generator — see [User Guide](00_README.md).
 
 ---
 
-## Open SchemaSpy
+## What you can inspect
 
-[Open Interactive SchemaSpy Documentation](02_Output/index.html)
+| Feature | Description |
+|---------|-------------|
+| Schema overview | All tables in `public` |
+| Relationships | FK navigation between entities |
+| Constraints | PK, UQ, CHECK, exclusions |
+| Indexes | Including GiST-backed rules |
+| Per-table diagrams | 1- and 2-degree neighbourhood graphs |
 
 ---
 
-# Output Location
+## Output location
 
 ```text
-04_Architecture/
-└── 01_Database/
-    └── 05_SchemaSpy/
-        └── 02_Output/
+04_Architecture/01_Database/05_SchemaSpy/
+├── 01_Scripts/          # generate_docs.ps1 · generate_docs.sh
+├── 00_README.md         # regeneration guide
+├── schemaspy.md         # this MkDocs entry (link above)
+└── 02_Output/
+    └── index.html       # interactive site root
 ```
 
 ---
 
-# Technology
+## Related documentation
 
-| Component | Description |
-|---|---|
-| Tool | SchemaSpy |
-| Output Format | HTML |
-| Database | PostgreSQL |
-| Visualization | Interactive Entity Relationship Documentation |
+| Topic | Link |
+|-------|------|
+| Database hub | [../README.md](../README.md) |
+| Data dictionary (semantic) | [../04_Data_Dictionary/00_Overview.md](../04_Data_Dictionary/00_Overview.md) |
+| DDL source of truth | `01_MiaCaoMigo_DataLayer/DataBase/Schema/` |
+| ER model (conceptual) | [../../../03_Diagrams/00_ER_Model/er_model.md](../../../03_Diagrams/00_ER_Model/er_model.md) |
 
 ---
 
-<div style="text-align: center; margin-top: 70px; opacity: 0.8;">
+## Technology
 
-<h3>MiaCaoMigo Engineering</h3>
+| Component | Value |
+|-----------|--------|
+| Tool | SchemaSpy |
+| Format | Static HTML |
+| Database | PostgreSQL |
+| Schema | `public` |
 
-<p>
-Database Engineering • Metadata • Visualization • Architecture
-</p>
+---
+
+<div style="text-align: center; margin-top: 2rem; opacity: 0.85;">
+
+[← Database hub](../README.md) · [User guide](00_README.md)
 
 </div>

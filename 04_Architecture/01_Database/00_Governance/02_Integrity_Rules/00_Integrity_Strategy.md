@@ -2,240 +2,142 @@
 
 ## Purpose
 
-This document defines the global integrity strategy adopted for the MiaCaoMigo database system.
+How MiaCaoMigo enforces correctness: **in-database** rules plus **host-side QA** that validates behaviour without shipping test SQL in the default Docker init.
 
-The purpose of this strategy is to ensure:
-- relational consistency;
-- operational reliability;
-- transactional safety;
-- centralized validation;
-- controlled system behavior;
-- prevention of invalid operational states.
-
-This strategy establishes the integrity philosophy that must be followed across all database modules.
+Implementation: `01_MiaCaoMigo_DataLayer/DataBase/`.
 
 ---
 
-# Integrity Philosophy
+## Integrity philosophy
 
-The MiaCaoMigo database system adopts a database-centric integrity architecture where integrity enforcement is primarily maintained within the PostgreSQL layer.
+The database is the **primary authority** for:
 
-Integrity validation is intentionally centralized inside the database in order to:
-- reduce dependency on external application validation;
-- preserve transactional consistency;
-- ensure operational reliability;
-- standardize validation behavior;
-- centralize business rule enforcement.
+- relational consistency (PK, FK, UNIQUE, CHECK, EXCLUDE)
+- automated guards (triggers, pg_cron)
+- business workflows (`sp_*`, invoked via `svc_*`)
+- audit structures (`login_record`, timestamps, …)
 
-The database is treated as the primary authority for:
-- relational consistency;
-- operational validation;
-- temporal integrity;
-- transactional enforcement;
-- auditability.
+The application should call **`svc_*` only**; it must not bypass triggers or reimplement constraint logic in app code for rules already enforced in PostgreSQL.
 
 ---
 
-# Layered Integrity Strategy
+## Layered model (as implemented)
 
-The integrity architecture follows a layered validation model composed of:
-- structural integrity;
-- automated integrity;
-- procedural integrity;
-- transactional integrity.
+```mermaid
+flowchart TB
+    subgraph L1["L1 — Structural"]
+        T[Tables + PK/UQ/CK]
+        FK[FK layer 01_ForeignKeys_*]
+        IX[Indexes + EXCLUDE]
+    end
 
-Each layer is responsible for enforcing specific categories of validation and operational control.
+    subgraph L2["L2 — Automated"]
+        TR[trg_* triggers]
+        CR[pg_cron → jpr_*]
+    end
 
----
+    subgraph L3["L3 — Procedural"]
+        FN[fn_* helpers]
+        SP[sp_* workflows]
+        SVC[svc_* public API]
+    end
 
-# Structural Integrity
+    subgraph L4["L4 — Host QA"]
+        FIX[fixtures + qa_*]
+        INT[01_Integrity PASS/FAIL]
+        STR[04_Stress optional]
+    end
 
-Structural integrity is enforced through declarative relational mechanisms including:
-- primary keys;
-- foreign keys;
-- unique constraints;
-- check constraints;
-- exclusion constraints;
-- indexes.
+    L1 --> L2 --> L3
+    L3 -.->|validated by| L4
+```
 
-Structural integrity is responsible for:
-- entity consistency;
-- relational consistency;
-- uniqueness enforcement;
-- temporal restriction enforcement;
-- prevention of invalid relational states.
-
-This layer represents the foundational integrity structure of the system.
-
-**Foreign key placement:** declarative FKs are centralized per module in `01_ForeignKeys_ModX.sql` and executed in a dedicated init phase *after* all module tables are created. This keeps creation order deterministic and documents cross-entity dependencies in one place per module (see `00_Schema_Build_Pipeline.md`).
-
----
-
-# Automated Integrity
-
-Automated integrity is enforced through:
-- triggers;
-- scheduled jobs;
-- automatic procedural execution.
-
-This layer is responsible for:
-- automatic validation;
-- operational enforcement;
-- audit maintenance;
-- credential protection;
-- temporal consistency monitoring;
-- workflow consistency.
-
-Automated integrity mechanisms execute without direct user interaction and reinforce continuous operational consistency.
+| Layer | Mechanism | Where |
+|-------|-----------|-------|
+| **Structural** | Declarative constraints | `Schema/*/00_Tables`, `01_ForeignKeys`, `04_Indexes` |
+| **Automated** | Triggers, scheduled jobs | `03_Triggers`, `06_Jobs` |
+| **Procedural** | Functions, procedures, views | `02_Functions`, `05_Procedures`, `07_Views`, `Services/` |
+| **Contract QA** | Executable tests | `QA/01_Integrity`, `ci.ps1` |
+| **Stress QA** | Volume / contention probes | `QA/04_Stress`, optional `-IncludeStress` |
 
 ---
 
-# Procedural Integrity
+## Structural integrity
 
-Procedural integrity is enforced through:
-- functions;
-- procedures;
-- controlled operational queries;
-- validation workflows.
+- **FK phase**: all modules’ tables exist before any `01_ForeignKeys_ModX.sql` runs (see [Schema build pipeline](../../00_Schema_Build_Pipeline.md)).
+- **Exclusion constraints**: GiST-based (e.g. `ex_schedule_overlap` on schedule) — validated in QA `06_Schedule_Exclusion.sql`.
+- **Cross-module FKs**: concentrated in owning module FK files (e.g. Module 4 links to animal, client, employee, invoice).
 
-This layer is responsible for:
-- business rule enforcement;
-- operational validation;
-- controlled transactional execution;
-- workflow orchestration;
-- authentication validation;
-- operational consistency control.
-
-Procedural integrity centralizes complex validation logic that cannot be fully enforced through declarative structural mechanisms alone.
+Module-level constraint inventories: [Module 1 structural](01_Module1_Integrity/00_Structural_Integrity.md).
 
 ---
 
-# Transactional Integrity
+## Automated integrity
 
-Transactional integrity is enforced through:
-- atomic operations;
-- rollback mechanisms;
-- controlled transactional flows;
-- concurrency protection;
-- relational dependency control.
+- **Triggers** (`trg_*`): block invalid transitions before commit.
+- **Jobs** (`cron.schedule` → `call jpr_*()`): hygiene at midnight (M1 clock-in, absences); M4 may add schedules.
 
-This layer is responsible for:
-- preserving consistency during complex operations;
-- preventing partial invalid states;
-- ensuring reliable multi-step operations;
-- maintaining controlled relational behavior.
-
-Transactional integrity ensures that operational workflows remain consistent even under concurrent or failure-prone execution scenarios.
+Details: [Module 1 automated](01_Module1_Integrity/01_Automated_Integrity.md).
 
 ---
 
-# Temporal Integrity Strategy
+## Procedural integrity
 
-The system adopts dedicated temporal integrity mechanisms to prevent:
-- overlapping operational intervals;
-- inconsistent scheduling states;
-- invalid temporal relationships;
-- conflicting operational allocations.
+| Module | Business workflows | Public API |
+|--------|-------------------|------------|
+| **1** | `sp_*` in Services | `svc_*` in `99_Public_API/` |
+| **2–4** | `sp_*` in Schema procedures | `svc_*` in bundled `99_Public_API.sql` |
 
-Temporal consistency is enforced through a combination of:
-- exclusion constraints;
-- procedural validation;
-- automated monitoring mechanisms;
-- transactional validation.
+Authentication example: `svc_auth_login` → `sp_auth_login` → `fn_*` + `login_record`.
+
+Details: [Module 1 procedural](01_Module1_Integrity/03_Procedural_Validation.md).
 
 ---
 
-# Auditability Strategy
+## QA integrity (non-init)
 
-Operational traceability and auditability are treated as fundamental integrity requirements.
+QA does **not** replace triggers; it **proves** they fire under fixture-controlled scenarios.
 
-The system architecture prioritizes:
-- operational accountability;
-- lifecycle traceability;
-- authentication traceability;
-- attendance traceability;
-- controlled operational history.
+| Stage | Script | Count / scope |
+|-------|--------|----------------|
+| Bootstrap contract | `00_Bootstrap/01_Master_Contract.sql` | Master counts, no DemoData in `init_qa` |
+| Fixtures | `fixtures/seed/*.sql` | Semantic `QA-*` keys |
+| Integrity | `01_Integrity/**/*.sql` | **21** tests |
+| Stress | `04_Stress/**/*.sql` | **9** tests (optional) |
 
-Auditability mechanisms are distributed across:
-- relational structures;
-- procedural logic;
-- automated integrity mechanisms;
-- transactional workflows.
+Runner: `DataBase/QA/runners/ci.ps1` (see [Governance README](../README.md)).
 
 ---
 
-# Validation Distribution Strategy
+## Temporal and audit integrity
 
-Integrity validation responsibilities are intentionally distributed according to validation complexity.
-
-## Structural Validation
-
-Used for:
-- relational consistency;
-- uniqueness enforcement;
-- format validation;
-- direct relational restrictions.
+- Scheduling: exclusion constraints + trigger guards + QA overlap tests
+- Attendance: clock-in triggers + `jpr_auto_close_clock_in_midnight`
+- Auth: `login_record` / session rules — `02_Login_Session_Rules.sql`
 
 ---
 
-## Procedural Validation
+## Module documentation map
 
-Used for:
-- business rules;
-- operational workflows;
-- complex temporal validation;
-- authentication logic;
-- multi-entity operations.
-
----
-
-## Transactional Validation
-
-Used for:
-- multi-step consistency;
-- rollback control;
-- concurrent operations;
-- controlled execution flow.
+| Module | Governance | Automated tests (DataLayer) |
+|--------|------------|-------------------------------|
+| 1 | [M1 structural](01_Module1_Integrity/00_Structural_Integrity.md) · [automated](01_Module1_Integrity/01_Automated_Integrity.md) · [procedural](01_Module1_Integrity/03_Procedural_Validation.md) | 6 integrity scripts |
+| 2 | [M2 overview](02_Module2_Integrity/00_Overview.md) | 5 integrity scripts |
+| 3 | [M3 overview](03_Module3_Integrity/00_Overview.md) | 4 integrity scripts |
+| 4 | [M4 overview](04_Module4_Integrity/00_Overview.md) | 6 integrity scripts |
 
 ---
 
-# Scalability Philosophy
+## Consistency rules for new work
 
-The integrity architecture was designed to support:
-- future module expansion;
-- additional validation layers;
-- future procedural automation;
-- scalable transactional workflows;
-- future schema separation if required.
-
-The integrity strategy prioritizes:
-- maintainability;
-- modular consistency;
-- centralized enforcement;
-- progressive scalability.
+1. Prefer **structural** enforcement when sufficient (UNIQUE, EXCLUDE, FK).
+2. Use **triggers** for row-level guards that need context.
+3. Use **`sp_*` / `svc_*`** for multi-step business flows.
+4. Add **`01_Integrity`** test with `PASS:`/`FAIL:` and fixture `REQUIRES` / `CONTRACT` headers.
+5. Update module overview tables when adding tests or constraints.
 
 ---
 
-# Integrity Consistency Rules
+## Final note
 
-All integrity mechanisms introduced into the system must:
-- preserve semantic consistency;
-- preserve relational clarity;
-- preserve transactional reliability;
-- preserve operational maintainability;
-- preserve centralized validation philosophy.
-
-Any new integrity mechanism must be standardized and documented before adoption.
-
----
-
-# Final Notes
-
-The MiaCaoMigo database system adopts a layered integrity architecture designed to balance:
-- operational flexibility;
-- centralized validation;
-- relational consistency;
-- transactional safety;
-- scalable maintainability.
-
-The database layer acts as the primary integrity authority of the system, ensuring consistent operational behavior independently of external application layers.
+Integrity is **distributed by design**: declarative SQL for invariants, Services for workflows, QA for regression proof. Avoid duplicating the same rule in app, trigger, and test without justification — when duplicated, document why in the test header `RULE:` line.

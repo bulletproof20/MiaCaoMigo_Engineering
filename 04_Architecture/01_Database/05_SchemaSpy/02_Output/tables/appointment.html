@@ -84,7 +84,7 @@
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body clearfix">
-                            <p>scheduling and consultation session for a client animal with assigned veterinarian</p>
+                            <p>scheduling and consultation session for a client animal with assigned veterinarian and declared clinical specialty</p>
                         </div><!-- /.box-body -->
                     </div>
                 </section>
@@ -136,13 +136,13 @@
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="invoice.id_app references appointment.id_app via fk_invoice_appointment"><a href='invoice.html'>invoice</a><span class='relatedKey'>.id_app</span></td>
-                                                <td class="constraint detail">fk_invoice_appointment</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                                <td title="appointment_notification.id_app references appointment.id_app via fk_notification_appointment"><a href='appointment_notification.html'>appointment_notification</a><span class='relatedKey'>.id_app</span></td>
+                                                <td class="constraint detail">fk_notification_appointment</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="overall_assessment.id_app references appointment.id_app via fk_appointment"><a href='overall_assessment.html'>overall_assessment</a><span class='relatedKey'>.id_app</span></td>
-                                                <td class="constraint detail">fk_appointment</td>
+                                                <td title="overall_assessment.id_app references appointment.id_app via fk_overall_assessment_appointment"><a href='overall_assessment.html'>overall_assessment</a><span class='relatedKey'>.id_app</span></td>
+                                                <td class="constraint detail">fk_overall_assessment_appointment</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
@@ -164,7 +164,7 @@
                                     <td><p>unique appointment identifier</p></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_animal">id_animal</span></td>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_ani">id_ani</span></td>
                                     <td>int4</td>
                                     <td>10</td>
                                     <td title=''></td>
@@ -177,8 +177,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="appointment.id_animal references animal.id_ani via fk_animal"><a href='animal.html'>animal</a><span class='relatedKey'>.id_ani</span></td>
-                                                <td class="constraint detail">fk_animal</td>
+                                                <td title="appointment.id_ani references animal.id_ani via fk_appointment_animal"><a href='animal.html'>animal</a><span class='relatedKey'>.id_ani</span></td>
+                                                <td class="constraint detail">fk_appointment_animal</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
@@ -221,13 +221,57 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="appointment.id_cli references client.id_cli via fk_client"><a href='client.html'>client</a><span class='relatedKey'>.id_cli</span></td>
-                                                <td class="constraint detail">fk_client</td>
+                                                <td title="appointment.id_cli references client.id_cli via fk_appointment_client"><a href='client.html'>client</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">fk_appointment_client</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
                                     <td><p>client responsible for the visit</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_spe">id_spe</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="appointment.id_spe references specialty.id_spe via fk_appointment_specialty"><a href='specialty.html'>specialty</a><span class='relatedKey'>.id_spe</span></td>
+                                                <td class="constraint detail">fk_appointment_specialty</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>clinical specialty requested for this consultation; FK to module 1 specialty catalog; must match an expert(id_emp,id_spe) assignment for the veterinarian</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_inv">id_inv</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="appointment.id_inv references invoice.id_inv via fk_appointment_invoice"><a href='invoice.html'>invoice</a><span class='relatedKey'>.id_inv</span></td>
+                                                <td class="constraint detail">fk_appointment_invoice</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="sch_dat_app">sch_dat_app</span></td>
@@ -244,7 +288,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>scheduled start timestamp</p></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><span id="sta_dat_app">sta_dat_app</span></td>
@@ -286,7 +330,7 @@
                                     <td>2147483647</td>
                                     <td title=''></td>
                                     <td title=''></td>
-                                    <td>&#39;Scheduled&#39;::appointment_status</td>
+                                    <td>&#39;scheduled&#39;::appointment_status</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
@@ -299,8 +343,8 @@
                                 </tr>
                                 <tr>
                                     <td><span id="dia_app">dia_app</span></td>
-                                    <td>varchar</td>
-                                    <td>100</td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -368,34 +412,52 @@
                                     <td>id_app</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>idx_appointment_id_animal</td>
-                                    <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span></td>
-                                    <td>id_animal</td>
-                                </tr>
-                                <tr>
-                                    <td title='Indexed'>idx_appointment_id_cli</td>
-                                    <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span></td>
-                                    <td>id_cli</td>
-                                </tr>
-                                <tr>
-                                    <td title='Indexed'>idx_appointment_id_emp</td>
+                                    <td title='Indexed'>ex_appointment_vet_overlap</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>id_emp</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>idx_appointment_sch_dat_app</td>
+                                    <td title='Indexed'>ix_appointment_id_ani</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_ani</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>ix_appointment_id_cli</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_cli</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>ix_appointment_id_emp</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_emp</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>ix_appointment_operational_day</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>sch_dat_app</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>idx_appointment_status_for_jobs</td>
+                                    <td title='Indexed'>ix_appointment_status_for_jobs</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>sch_dat_app</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>ix_appointment_vet_schedule</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>id_emp + sch_dat_app</td>
+                                </tr>
+                                <tr>
+                                    <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> uq_appointment_invoice</td>
+                                    <td>Must be unique</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id_inv</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -426,7 +488,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>chk_app_time</td>
+                                    <td>ck_appointment_flow</td>
                                     <td>((sta_dat_app &lt; end_dat_app))</td>
                                 </tr>
                                 </tbody>
@@ -448,55 +510,116 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="753,5,941,152">
-<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,331,665,693">
-<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="17,169,172,375">
-<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="18,644,171,791">
-<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,392,184,627">
-<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="770,169,923,316">
-<area shape="rect" id="node7" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="709,333,984,451">
-<area shape="rect" id="node8" href="prescription.html" target="_top" title="prescription" alt="" coords="745,468,948,615">
-<area shape="rect" id="node9" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="727,632,967,779">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="780,857,968,975">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,487,665,908">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="14,5,175,211">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="18,509,171,656">
+<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,228,184,492">
+<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="18,837,171,984">
+<area shape="rect" id="node7" href="specialty.html" target="_top" title="specialty" alt="" coords="9,673,180,820">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="709,172,1039,377">
+<area shape="rect" id="node9" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="737,395,1011,512">
+<area shape="rect" id="node10" href="prescription.html" target="_top" title="prescription" alt="" coords="773,529,975,676">
+<area shape="rect" id="node11" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="754,693,994,840">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/appointment.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="821,5,985,93">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,528,640,763">
-<area shape="rect" id="node11" href="user_account.html" target="_top" title="user_account" alt="" coords="205,743,417,831">
-<area shape="rect" id="node3" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="1209,1317,1397,1464">
-<area shape="rect" id="node4" href="appointment.html" target="_top" title="appointment" alt="" coords="684,1203,1121,1565">
-<area shape="rect" id="node5" href="animal.html" target="_top" title="animal" alt="" coords="473,953,628,1159">
-<area shape="rect" id="node8" href="client.html" target="_top" title="client" alt="" coords="474,1176,627,1323">
-<area shape="rect" id="node6" href="breed.html" target="_top" title="breed" alt="" coords="241,1067,381,1155">
-<area shape="rect" id="node7" href="species.html" target="_top" title="species" alt="" coords="5,1031,161,1119">
-<area shape="rect" id="node9" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="738,1583,1067,1671">
-<area shape="rect" id="node10" href="assistant.html" target="_top" title="assistant" alt="" coords="817,252,989,340">
-<area shape="rect" id="node12" href="clock_in.html" target="_top" title="clock_in" alt="" coords="823,357,983,445">
-<area shape="rect" id="node13" href="concession.html" target="_top" title="concession" alt="" coords="807,851,998,939">
-<area shape="rect" id="node14" href="delivery.html" target="_top" title="delivery" alt="" coords="821,1061,984,1149">
-<area shape="rect" id="node15" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1170,873,1435,961">
-<area shape="rect" id="node16" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="1731,272,2007,360">
-<area shape="rect" id="node17" href="purchase.html" target="_top" title="purchase" alt="" coords="1499,531,1672,619">
-<area shape="rect" id="node19" href="invoice.html" target="_top" title="invoice" alt="" coords="1226,404,1379,551">
-<area shape="rect" id="node18" href="employee_return.html" target="_top" title="employee_return" alt="" coords="778,463,1027,551">
-<area shape="rect" id="node20" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="2072,767,2269,855">
-<area shape="rect" id="node21" href="product.html" target="_top" title="product" alt="" coords="1789,1281,1949,1369">
-<area shape="rect" id="node22" href="occupies.html" target="_top" title="occupies" alt="" coords="819,604,987,692">
-<area shape="rect" id="node23" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1165,1111,1440,1228">
-<area shape="rect" id="node24" href="ownership.html" target="_top" title="ownership" alt="" coords="810,956,995,1044">
-<area shape="rect" id="node25" href="prescription.html" target="_top" title="prescription" alt="" coords="1484,1319,1687,1465">
-<area shape="rect" id="node26" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="2051,1200,2291,1347">
-<area shape="rect" id="node27" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="2068,1364,2273,1452">
-<area shape="rect" id="node28" href="schedule.html" target="_top" title="schedule" alt="" coords="817,709,988,797">
-<area shape="rect" id="node29" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="801,111,1005,199">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="821,112,985,200">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,584,640,848">
+<area shape="rect" id="node13" href="user_account.html" target="_top" title="user_account" alt="" coords="205,1012,417,1100">
+<area shape="rect" id="node3" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="1236,1633,1424,1751">
+<area shape="rect" id="node4" href="appointment.html" target="_top" title="appointment" alt="" coords="684,1343,1121,1764">
+<area shape="rect" id="node5" href="animal.html" target="_top" title="animal" alt="" coords="470,952,631,1157">
+<area shape="rect" id="node8" href="client.html" target="_top" title="client" alt="" coords="482,1175,619,1263">
+<area shape="rect" id="node9" href="invoice.html" target="_top" title="invoice" alt="" coords="474,1641,627,1788">
+<area shape="rect" id="node10" href="specialty.html" target="_top" title="specialty" alt="" coords="465,1372,636,1519">
+<area shape="rect" id="node6" href="breed.html" target="_top" title="breed" alt="" coords="241,1117,381,1205">
+<area shape="rect" id="node7" href="species.html" target="_top" title="species" alt="" coords="5,1028,161,1116">
+<area shape="rect" id="node11" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1165,1229,1495,1317">
+<area shape="rect" id="node12" href="assistant.html" target="_top" title="assistant" alt="" coords="817,217,989,305">
+<area shape="rect" id="node14" href="clock_in.html" target="_top" title="clock_in" alt="" coords="823,323,983,411">
+<area shape="rect" id="node15" href="concession.html" target="_top" title="concession" alt="" coords="807,849,998,937">
+<area shape="rect" id="node16" href="delivery.html" target="_top" title="delivery" alt="" coords="821,955,984,1043">
+<area shape="rect" id="node17" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1197,781,1463,869">
+<area shape="rect" id="node18" href="expert.html" target="_top" title="expert" alt="" coords="1257,919,1403,1007">
+<area shape="rect" id="node19" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="801,744,1005,832">
+<area shape="rect" id="node20" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="804,1781,1001,1869">
+<area shape="rect" id="node21" href="product.html" target="_top" title="product" alt="" coords="471,1835,631,1923">
+<area shape="rect" id="node22" href="occupies.html" target="_top" title="occupies" alt="" coords="819,428,987,516">
+<area shape="rect" id="node23" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1193,1335,1467,1452">
+<area shape="rect" id="node24" href="ownership.html" target="_top" title="ownership" alt="" coords="810,1060,995,1148">
+<area shape="rect" id="node25" href="prescription.html" target="_top" title="prescription" alt="" coords="1229,1469,1431,1616">
+<area shape="rect" id="node26" href="purchase.html" target="_top" title="purchase" alt="" coords="816,533,989,621">
+<area shape="rect" id="node27" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1210,1768,1450,1915">
+<area shape="rect" id="node28" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1539,1684,1744,1772">
+<area shape="rect" id="node29" href="return.html" target="_top" title="return" alt="" coords="830,1165,975,1253">
+<area shape="rect" id="node30" href="schedule.html" target="_top" title="schedule" alt="" coords="817,639,988,727">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/appointment.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="780,857,968,975">
+<area shape="rect" id="node2" href="appointment.html" target="_top" title="appointment" alt="" coords="228,487,665,908">
+<area shape="rect" id="node3" href="animal.html" target="_top" title="animal" alt="" coords="14,5,175,211">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="18,509,171,656">
+<area shape="rect" id="node5" href="employee.html" target="_top" title="employee" alt="" coords="5,228,184,492">
+<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="18,837,171,984">
+<area shape="rect" id="node7" href="specialty.html" target="_top" title="specialty" alt="" coords="9,673,180,820">
+<area shape="rect" id="node8" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="709,172,1039,377">
+<area shape="rect" id="node9" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="737,395,1011,512">
+<area shape="rect" id="node10" href="prescription.html" target="_top" title="prescription" alt="" coords="773,529,975,676">
+<area shape="rect" id="node11" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="754,693,994,840">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/appointment.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="834,2183,998,2271">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="461,1616,640,1880">
+<area shape="rect" id="node13" href="user_account.html" target="_top" title="user_account" alt="" coords="205,1080,417,1168">
+<area shape="rect" id="node3" href="anamnesis.html" target="_top" title="anamnesis" alt="" coords="1273,717,1461,835">
+<area shape="rect" id="node4" href="appointment.html" target="_top" title="appointment" alt="" coords="697,791,1135,1212">
+<area shape="rect" id="node5" href="animal.html" target="_top" title="animal" alt="" coords="470,201,631,407">
+<area shape="rect" id="node8" href="client.html" target="_top" title="client" alt="" coords="482,515,619,603">
+<area shape="rect" id="node9" href="invoice.html" target="_top" title="invoice" alt="" coords="474,1168,627,1315">
+<area shape="rect" id="node10" href="specialty.html" target="_top" title="specialty" alt="" coords="465,911,636,1057">
+<area shape="rect" id="node6" href="breed.html" target="_top" title="breed" alt="" coords="241,215,381,303">
+<area shape="rect" id="node7" href="species.html" target="_top" title="species" alt="" coords="5,141,161,229">
+<area shape="rect" id="node11" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1203,555,1532,643">
+<area shape="rect" id="node12" href="assistant.html" target="_top" title="assistant" alt="" coords="830,2077,1002,2165">
+<area shape="rect" id="node14" href="clock_in.html" target="_top" title="clock_in" alt="" coords="836,1656,996,1744">
+<area shape="rect" id="node15" href="concession.html" target="_top" title="concession" alt="" coords="821,685,1011,773">
+<area shape="rect" id="node16" href="delivery.html" target="_top" title="delivery" alt="" coords="835,204,997,292">
+<area shape="rect" id="node17" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1235,1363,1500,1451">
+<area shape="rect" id="node18" href="expert.html" target="_top" title="expert" alt="" coords="1294,1744,1441,1832">
+<area shape="rect" id="node19" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="814,1867,1018,1955">
+<area shape="rect" id="node20" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="817,1407,1015,1495">
+<area shape="rect" id="node21" href="product.html" target="_top" title="product" alt="" coords="471,1440,631,1528">
+<area shape="rect" id="node22" href="occupies.html" target="_top" title="occupies" alt="" coords="832,1761,1000,1849">
+<area shape="rect" id="node23" href="overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1230,852,1505,969">
+<area shape="rect" id="node24" href="ownership.html" target="_top" title="ownership" alt="" coords="823,427,1009,515">
+<area shape="rect" id="node25" href="prescription.html" target="_top" title="prescription" alt="" coords="1266,991,1469,1137">
+<area shape="rect" id="node26" href="purchase.html" target="_top" title="purchase" alt="" coords="829,1265,1003,1353">
+<area shape="rect" id="node27" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1247,1184,1487,1331">
+<area shape="rect" id="node28" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1587,1271,1792,1359">
+<area shape="rect" id="node29" href="return.html" target="_top" title="return" alt="" coords="1295,1475,1440,1563">
+<area shape="rect" id="node30" href="schedule.html" target="_top" title="schedule" alt="" coords="831,1972,1001,2060">
+<area shape="rect" id="node31" href="vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="1192,353,1543,417">
+<area shape="rect" id="node32" href="vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="752,5,1080,69">
+<area shape="rect" id="node33" href="vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="763,604,1069,668">
+<area shape="rect" id="node34" href="vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="729,123,1103,187">
+<area shape="rect" id="node35" href="vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="684,309,1148,373">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/appointment.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

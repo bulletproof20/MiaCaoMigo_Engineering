@@ -1,5 +1,9 @@
 # Naming Philosophy
 
+!!! info "Implementation"
+    Authoritative usage examples live in `01_MiaCaoMigo_DataLayer/DataBase/`.  
+    Programming prefixes (`svc_`, `sp_`, `fn_`, `qa_`, `jpr_`, `trg_`) are defined in [SQL programming naming](02_SQL_Programming.md).
+
 ## Purpose
 
 This document defines the naming philosophy adopted for the MiaCaoMigo database system.

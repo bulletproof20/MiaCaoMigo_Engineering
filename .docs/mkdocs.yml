@@ -1,199 +1,436 @@
 site_name: MiaCaoMigo Engineering
 
+
+
 theme:
+
   name: material
 
+  palette:
+
+    - scheme: default
+
+      primary: indigo
+
+      accent: indigo
+
+      toggle:
+
+        icon: material/brightness-7
+
+        name: Switch to dark mode
+
+    - scheme: slate
+
+      primary: indigo
+
+      accent: indigo
+
+      toggle:
+
+        icon: material/brightness-4
+
+        name: Switch to light mode
+
+  features:
+
+    - navigation.tabs
+
+    - navigation.sections
+
+    - navigation.top
+
+    - navigation.indexes
+
+    - search.suggest
+
+    - search.highlight
+
+    - content.code.copy
+
+    - content.tabs.link
+
+
+
+plugins:
+
+  - search
+
+
+
+markdown_extensions:
+
+  - admonition
+
+  - attr_list
+
+  - md_in_html
+
+  - tables
+
+  - toc:
+
+      permalink: true
+
+  - pymdownx.details
+
+  - pymdownx.superfences:
+
+      custom_fences:
+
+        - name: mermaid
+
+          class: mermaid
+
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tabbed:
+
+      alternate_style: true
+
+  - pymdownx.emoji:
+
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+
+
+extra:
+
+  generator: false
+
+
+
 # =========================================================
+
 # Documentation Source Directory
-# =========================================================
-# Uses repository root as documentation source.
-#
-# Allows direct access to:
-# - markdown documentation
-# - engineering assets
-# - diagrams
-# - PDF documents
-# - SchemaSpy output
-# - architecture documentation
+
 # =========================================================
 
 docs_dir: ..
 
-# =========================================================
-# Navigation Structure
-# =========================================================
-# Navigation organization intentionally mirrors
-# the physical repository architecture in order to:
-#
-# - improve maintainability
-# - simplify onboarding
-# - increase traceability
-# - preserve engineering consistency
-# =========================================================
+
 
 nav:
 
+
+
   # =======================================================
+
   # Home
+
   # =======================================================
+
+
 
   - Home:
 
+
+
       - Overview: index.md
+
+
 
       - Home Index: indexes/home.md
 
+
+
   # =======================================================
+
   # 01 — Planning
+
   # =======================================================
+
+
 
   - Planning:
 
+
+
       - Sprints:
+
+
 
           - Sprint 1: 01_Planning/00_Sprints/Sprint_1/Sprint_01.md
 
+
+
           - Sprint 2: 01_Planning/00_Sprints/Sprint_2/Sprint_02.md
+
+
 
           - Sprint 3: 01_Planning/00_Sprints/Sprint_3/Sprint_03.md
 
+
+
           - Sprint 4: 01_Planning/00_Sprints/Sprint_4/Sprint_04.md
 
+
+
   # =======================================================
+
   # 02 — Requirements
+
   # =======================================================
+
+
 
   - Requirements:
 
+
+
       - Functional Requirements: 02_Requirements/00_Functional_Requirements.md
+
+
 
       - Non-Functional Requirements: 02_Requirements/01_Non_Functional_Requirements.md
 
+
+
       - User Requirements: 02_Requirements/02_User_Requirements.md
+
+
 
       - Business Requirements: 02_Requirements/03_Business_Requirements.md
 
+
+
       - Acceptance Criteria: 02_Requirements/04_Acceptance_Criteria.md
+
+
 
       - Constraints: 02_Requirements/05_Constraints.md
 
+
+
   # =======================================================
+
   # 03 — Diagrams
+
   # =======================================================
+
+
 
   - Diagrams:
 
+
+
       - ER Model:
+
+
 
           - ER Model Structure: 03_Diagrams/00_ER_Model/er_model.md
 
+
+
           - ER Model Attributes:
+
+
+
               - Module 1: 03_Diagrams/00_ER_Model/ER_V8/Atributos/01_Module1.md
+
+
+
               - Module 2: 03_Diagrams/00_ER_Model/ER_V8/Atributos/02_Module2.md
+
+
+
               - Module 3: 03_Diagrams/00_ER_Model/ER_V8/Atributos/03_Module3.md
+
+
+
               - Module 4: 03_Diagrams/00_ER_Model/ER_V8/Atributos/04_Module4.md
+
 
 
       - UML: 03_Diagrams/01_UML.md
 
+
+
   # =======================================================
+
   # 04 — Architecture
+
   # =======================================================
+
+
 
   - Architecture:
 
-      # ---------------------------------------------------
-      # System Architecture
-      # ---------------------------------------------------
+
+
+      - Architecture Index: 04_Architecture/README.md
+
+
 
       - System Architecture: 04_Architecture/00_System_Architecture.md
 
-      # ---------------------------------------------------
-      # Database Architecture
-      # ---------------------------------------------------
+
 
       - Database:
 
-          # =================================================
-          # Naming Conventions
-          # =================================================
 
-          - Naming Conventions:
 
-              - Naming Philosophy: 04_Architecture/01_Database/00_Naming_Conventions/00_Naming_Philosophy.md
+          - Database Hub: 04_Architecture/01_Database/README.md
 
-              - Schema Objects: 04_Architecture/01_Database/00_Naming_Conventions/01_Schema_Objects.md
 
-              - SQL Programming: 04_Architecture/01_Database/00_Naming_Conventions/02_SQL_Programming.md
 
-          # =================================================
-          # Schemas
-          # =================================================
+          - Schema Build Pipeline: 04_Architecture/01_Database/00_Schema_Build_Pipeline.md
+
+
+
+          - Governance:
+
+
+
+              - Overview: 04_Architecture/01_Database/00_Governance/README.md
+
+
+
+              - Naming Conventions:
+
+
+
+                  - Naming Philosophy: 04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy.md
+
+
+
+                  - Schema Objects: 04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects.md
+
+
+
+                  - SQL Programming: 04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming.md
+
+
+
+              - SQL Standards: 04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards.md
+
+
+
+              - Integrity Rules:
+
+
+
+                  - Integrity Strategy: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Strategy.md
+
+
+
+                  - Module 1:
+
+
+
+                      - Structural Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md
+
+
+
+                      - Automated Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Module1_Integrity/01_Automated_Integrity.md
+
+
+
+                      - Procedural Validation: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Module1_Integrity/03_Procedural_Validation.md
+
+
+
+                  - Module 2: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Module2_Integrity/00_Overview.md
+
+
+
+                  - Module 3: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Module3_Integrity/00_Overview.md
+
+
+
+                  - Module 4: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/04_Module4_Integrity/00_Overview.md
+
+
+
+              - Templates: 04_Architecture/01_Database/00_Governance/03_Templates/README.md
+
+
 
           - Schemas:
 
+
+
+              - Overview: 04_Architecture/01_Database/01_Schemas/README.md
+
+
+
               - Public Schema:
+
+
 
                   - Database Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database_Architecture.md
 
+
+
                   - Module 1: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1_Architecture.md
+
+
 
                   - Module 2: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2_Architecture.md
 
+
+
                   - Module 3: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md
+
+
 
                   - Module 4: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4_Architecture.md
 
-          # =================================================
-          # Integrity Rules
-          # =================================================
 
-          - Integrity Rules:
-
-              - Integrity Strategy: 04_Architecture/01_Database/02_Integrity_Rules/00_Integrity_Strategy.md
-
-              - Module 1:
-
-                  - Structural Integrity: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md
-
-                  - Automated Integrity: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/01_Automated_Integrity.md
-
-                  - Procedural Validation: 04_Architecture/01_Database/02_Integrity_Rules/01_Module1_Integrity/03_Procedural_Validation.md
-
-          # =================================================
-          # SQL Standards
-          # =================================================
-
-          - Schema build pipeline: 04_Architecture/01_Database/00_Schema_Build_Pipeline.md
-
-          - SQL Standards:  04_Architecture/01_Database/03_SQL_Standards/00_SQL_Standards.md
-
-          # =================================================
-          # Data Dictionary
-          # =================================================
 
           - Data Dictionary:
 
+
+
               - Overview: 04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md
 
-              - Module 1: 04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md
 
-          # =================================================
-          # SchemaSpy
-          # =================================================
+
+              - Module 1 — Users: 04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md
+
+
+
+              - Module 2 — Animals: 04_Architecture/01_Database/04_Data_Dictionary/02_Module2.md
+
+
+
+              - Module 3 — Commercial: 04_Architecture/01_Database/04_Data_Dictionary/03_Module3.md
+
+
+
+              - Module 4 — Appointments: 04_Architecture/01_Database/04_Data_Dictionary/04_Module4.md
+
+
 
           - SchemaSpy:
 
+
+
               - Interactive Documentation: 04_Architecture/01_Database/05_SchemaSpy/schemaspy.md
+
+
 
               - User Guide: 04_Architecture/01_Database/05_SchemaSpy/00_README.md
 
+
+
   # =======================================================
+
   # 05 — Documentation
+
   # =======================================================
+
+
 
   - Documentation:
 
+
+
       - Engineering: README.md
 
+
+
       - Academic Statements: 05_Docs/00_Statements/statements.md
+

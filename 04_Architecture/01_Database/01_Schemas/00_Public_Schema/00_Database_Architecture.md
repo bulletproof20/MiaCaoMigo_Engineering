@@ -1,225 +1,163 @@
- # Database Architecture
+# Database architecture (public schema)
+
+!!! info "Implementation source"
+    **DDL:** `01_MiaCaoMigo_DataLayer/DataBase/Schema/`  
+    **Governance:** [00_Governance](../../00_Governance/README.md) · **Pipeline:** [Schema build pipeline](../../00_Schema_Build_Pipeline.md)
 
 ## Purpose
 
-This document defines the architectural organization adopted for the MiaCaoMigo database system.
-
-The purpose of this architecture is to ensure:
-- modular organization;
-- structural consistency;
-- functional scalability;
-- maintainability of database logic;
-- controlled integration between system domains.
-
-The database architecture was designed to support modular organization while preserving functional integration across the entire system.
+Describes how the MiaCaoMigo database is **organized and loaded** today: four business modules in PostgreSQL `public`, bootstrap orchestration, Services public API, and host-side QA.
 
 ---
 
-# Architectural Philosophy
+## Architectural philosophy
 
-The MiaCaoMigo database system follows a modular architecture based on:
-- controlled relational integration;
-- structural consistency;
-- progressive scalability;
-- domain separation.
-
-Each module maintains:
-- its own business responsibility;
-- its own relational structures;
-- its own procedural logic;
-- its own operational domain.
-
-The architectural organization intentionally reduces excessive coupling between modules in order to facilitate:
-- maintainability;
-- future scalability;
-- modular evolution;
-- controlled relational dependency.
+| Principle | Implementation |
+|-----------|----------------|
+| Modular domains | Four folders under `Schema/`, one FK layer per module |
+| Database-centric integrity | Constraints, triggers, `sp_*` / `jpr_*`, then QA proofs |
+| Controlled cross-module coupling | FKs in dedicated phase; no circular `CREATE TABLE` |
+| Single public API surface | `svc_*` only in Services (not in Schema) |
+| Academic pragmatism | One physical schema (`public`); logical modules in folders |
 
 ---
 
-# Public Schema Strategy
+## Physical vs logical schema
 
-At the current development stage, all database objects are maintained within the default PostgreSQL `public` schema.
-
-This decision was adopted to:
-- simplify academic development;
-- simplify deployment processes;
-- reduce schema management complexity;
-- accelerate integration between modules;
-- facilitate collaborative development.
-
-Although all objects currently reside within the `public` schema, the system architecture was designed to support future logical separation through dedicated PostgreSQL schemas if required by future scalability or organizational needs.
+All objects currently live in PostgreSQL **`public`**. Logical separation is by **directory and loader order**, not by separate PG schemas. Future PG schema split is possible without changing the module naming convention.
 
 ---
 
-# Modular Organization
+## Modular organization
 
-The database system is divided into four primary functional modules:
+| Module | Domain | Schema folder | Primary consumers |
+|--------|--------|---------------|-------------------|
+| **1** | Users, RBAC, auth, attendance | `01_Module1_User_Management/` | All modules |
+| **2** | Animals, ownership, delivery, concession | `02_Module2_Animal_Management/` | M4, QA |
+| **3** | Products, stock, purchases, invoices, returns | `03_Module3_Commercial_Management/` | M4 (invoice link) |
+| **4** | Appointments, clinical notes, prescriptions | `04_Module4_Appointment_Management/` | Integrates M1–M3 |
 
-| Module | Responsibility |
-|---|---|
-| Module 1 | User and Access Management |
-| Module 2 | Animal Management |
-| Module 3 | Commercial Management |
-| Module 4 | Appointment Management |
-
-Each module is responsible for maintaining:
-- its own entities;
-- its own integrity rules;
-- its own procedural operations;
-- its own business logic.
+Detailed module docs: [Schemas index](../README.md).
 
 ---
 
-# Modular Dependency Strategy
+## Stack layers (beyond Schema)
 
-The current system implementation maintains controlled relational dependencies between modules through:
-- foreign keys;
-- procedural integrations;
-- operational relationships;
-- transactional dependencies.
+```mermaid
+flowchart TB
+    subgraph docker["Docker init (Bootstrap)"]
+        SC[Schema DDL]
+        CM[Comments]
+        SV[Services]
+        DS[DataSeed]
+    end
 
-This integration model preserves:
-- operational consistency;
-- relational integrity;
-- business continuity;
-- workflow coordination.
+    subgraph host["Host / CI"]
+        QA[QA ci.ps1]
+    end
 
-Although modules are currently interconnected, the architectural structure was intentionally designed to reduce excessive coupling and facilitate future modular separation if required by future scalability or organizational requirements.
+    APP[Application] --> SVC[svc_*]
+    SVC --> SP[sp_*]
+    SP --> FN[fn_* / vw_* / triggers]
 
----
+    docker --> APP
+    QA -.->|psql exec| docker
+```
 
-# Module Integration Strategy
-
-## Module 1 — User and Access Management
-
-Responsible for:
-- authentication;
-- authorization;
-- role-based access control;
-- employee management;
-- attendance management;
-- auditing and operational traceability.
-
-This module establishes the operational identity layer of the system.
-
----
-
-## Module 2 — Animal Management
-
-Responsible for:
-- animal registration;
-- animal records;
-- rescue tracking;
-- animal-related operational data.
-
-This module establishes the clinical and operational subject layer of the system.
+| Layer | Repository path | Role |
+|-------|-----------------|------|
+| **Bootstrap** | `DataBase/Bootstrap/` | Profiles, loader order |
+| **Schema** | `DataBase/Schema/` | Tables, integrity, views, M2–M4 `sp_*`, `jpr_*` |
+| **Comments** | `DataBase/Comments/` | Metadata |
+| **Services** | `DataBase/Services/` | M1 `sp_*`, all `svc_*` |
+| **DataSeed** | `DataBase/DataSeed/` | Master + Demo data |
+| **QA** | `DataBase/QA/` | Contracts, fixtures, 21+ integrity tests |
+| **Queries** | `DataBase/Queries/` | Manual reference (not init) |
 
 ---
 
-## Module 3 — Commercial Management
+## Module 1 vs Modules 2–4 (procedural split)
 
-Responsible for:
-- stock management;
-- commercial operations;
-- sales;
-- financial traceability;
-- inventory control.
+!!! note "Agreed architecture"
+    This split is **intentional** in the current codebase, not technical debt.
 
-This module establishes the commercial and financial layer of the system.
+| | Module 1 | Modules 2–4 |
+|---|----------|-------------|
+| Business `sp_*` | `Services/01_Module1/**` | `Schema/*/05_Procedures_Mod*.sql` |
+| Public `svc_*` | `Services/01_Module1/99_Public_API/` (4 files) | `Services/0N_ModuleN/99_Public_API.sql` |
+| Job procedures `jpr_*` | `Schema/.../05_Procedures_Mod1.sql` | Module 4 active; M2/M3 job files placeholder |
+| Triggers `trg_*` | Schema | Schema |
 
----
-
-## Module 4 — Appointment Management
-
-Responsible for:
-- appointment orchestration;
-- cross-module clinical operations;
-- integration between professionals, animals and commercial activities;
-- operational workflow coordination.
-
-This module acts as the primary functional integration layer of the system.
+Flow: **`svc_*` → `sp_*` → `fn_*` / `vw_*` / triggers** ([naming](../../00_Governance/00_Naming_Conventions/02_SQL_Programming.md)).
 
 ---
 
-# Relational Integration Philosophy
+## Cross-module relational integration
 
-Cross-module relationships are intentionally controlled to:
-- preserve modular consistency;
-- reduce excessive coupling;
-- simplify maintenance;
-- improve scalability.
+Dependencies are enforced in **`01_ForeignKeys_ModX.sql`** (after all `00_Tables_*`).
 
-Modules may reference entities from other modules when required for:
-- operational attribution;
-- clinical relationships;
-- commercial traceability;
-- workflow integration;
-- auditing processes.
+```mermaid
+erDiagram
+    user_account ||--o{ employee : ""
+    user_account ||--o| client : ""
+    client ||--o{ ownership : ""
+    animal ||--o{ ownership : ""
+    employee ||--o{ ownership : ""
+    client ||--o{ appointment : ""
+    animal ||--o{ appointment : ""
+    employee ||--o{ appointment : ""
+    invoice ||--o| appointment : ""
+    product ||--o{ invoice_line : ""
+```
 
----
+**Examples**
 
-# Referential Integrity Strategy
+- M2 `ownership` → M1 `client`, `employee`; → M2 `animal`
+- M3 `invoice` / `purchase` → M1 `client`, `employee`; → M3 `product`
+- M4 `appointment` → M1 `client`, `employee`; M2 `animal`; M3 `invoice` (optional link)
 
-The system adopts a centralized relational integrity strategy through:
-- foreign keys;
-- exclusion constraints;
-- procedural validation;
-- triggers;
-- transactional operations;
-- relational consistency enforcement.
-
-Integrity validation is distributed between:
-- structural schema constraints;
-- procedural database logic.
-
-This approach ensures:
-- operational consistency;
-- transactional reliability;
-- controlled relational behavior.
+Module 3 uses `fk_purchase_client` / `fk_purchase_employee` to avoid global FK name clashes with M4.
 
 ---
 
-# Procedural Architecture
+## Integrity enforcement model
 
-The database system adopts a procedural SQL architecture where significant portions of business logic are maintained directly within the database layer.
-
-This includes:
-- functions;
-- procedures;
-- triggers;
-- scheduled jobs;
-- integrity validations;
-- operational workflows.
-
-This strategy centralizes:
-- validation logic;
-- operational rules;
-- relational consistency;
-- transactional control.
+| Mechanism | Where documented |
+|-----------|------------------|
+| PK, FK, UNIQUE, CHECK | [M1 structural](../../00_Governance/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md), module overviews |
+| GiST EXCLUDE | `ex_schedule_overlap` (M1), `ex_ownership_overlap` (M2), `ex_appointment_vet_overlap` (M4) |
+| Triggers `trg_*` | Per-module architecture pages |
+| pg_cron → `jpr_*` | M1 + M4 `06_Jobs_*.sql` |
+| QA `PASS:` / `FAIL:` | [Integrity strategy](../../00_Governance/02_Integrity_Rules/00_Integrity_Strategy.md) |
 
 ---
 
-# Scalability Considerations
+## Bootstrap and profiles
 
-The current architecture was designed to support:
-- future schema separation;
-- additional modules;
-- progressive feature expansion;
-- increased operational complexity;
-- scalable relational integration.
+| Entry | Profile | Schema impact |
+|-------|---------|---------------|
+| `Bootstrap/init.sql` | `init_demo` | Full DDL + Master + Demo |
+| `entrypoints/init_qa_entry.sql` | `init_qa` | Full DDL + Master only |
 
-The modular organization allows future architectural evolution without requiring complete structural redesign.
+Load sequence: [Schema build pipeline](../../00_Schema_Build_Pipeline.md).  
+**QA does not modify Schema files at runtime** — it executes test SQL against an initialized database.
 
 ---
 
-# Final Notes
+## Scalability notes (realistic)
 
-The MiaCaoMigo database architecture prioritizes:
-- modular organization;
-- controlled integration;
-- structural consistency;
-- relational maintainability;
-- operational scalability.
+The current design supports:
 
-The adopted architecture balances academic simplicity with scalable architectural principles, enabling both practical development efficiency and future system evolution.
+- New integrity tests under `QA/01_Integrity/`
+- New `svc_*` without exposing internal `sp_*`
+- Additional modules following the same `0N_*_ModX.sql` pattern
+
+Avoid documenting features not present in DataLayer (e.g. separate PG schemas, ETL loader `04_Data_Migration` — **not in repo**).
+
+---
+
+## Related links
+
+- [Schemas documentation index](../README.md)
+- DataLayer `DataBase/Services/README.md` — public API and M1 workflows
+- [ER model](../../../03_Diagrams/00_ER_Model/er_model.md)

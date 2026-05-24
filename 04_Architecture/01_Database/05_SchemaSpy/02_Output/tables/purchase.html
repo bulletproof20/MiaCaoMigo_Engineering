@@ -131,23 +131,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="employee_purchase.id_pur references purchase.id_pur via fk_emp_pur_purchase"><a href='employee_purchase.html'>employee_purchase</a><span class='relatedKey'>.id_pur</span></td>
-                                                <td class="constraint detail">fk_emp_pur_purchase</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="product.id_pur references purchase.id_pur via fk_purchase_product"><a href='product.html'>product</a><span class='relatedKey'>.id_pur</span></td>
-                                                <td class="constraint detail">fk_purchase_product</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
-                                            </tr>
-                                            <tr>
                                                 <td title="purchase_line.id_pur references purchase.id_pur via fk_purchase_line_purchase"><a href='purchase_line.html'>purchase_line</a><span class='relatedKey'>.id_pur</span></td>
                                                 <td class="constraint detail">fk_purchase_line_purchase</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="purchase_product.id_pur references purchase.id_pur via fk_pur_pro_purchase"><a href='purchase_product.html'>purchase_product</a><span class='relatedKey'>.id_pur</span></td>
-                                                <td class="constraint detail">fk_pur_pro_purchase</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
@@ -162,9 +147,9 @@
                                     <td><span id="pur_dat_pur">pur_dat_pur</span></td>
                                     <td>timestamp</td>
                                     <td>29,6</td>
-                                    <td title='nullable'>√</td>
                                     <td title=''></td>
-                                    <td>null</td>
+                                    <td title=''></td>
+                                    <td>CURRENT_TIMESTAMP</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
@@ -228,11 +213,11 @@
                                 </tr>
                                 <tr>
                                     <td><span id="sta_pur">sta_pur</span></td>
-                                    <td>varchar</td>
-                                    <td>50</td>
+                                    <td>purchase_status</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
-                                    <td>null</td>
+                                    <td>&#39;pending&#39;::purchase_status</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
@@ -241,7 +226,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>workflow state (pending, received, cancelled)</p></td>
+                                    <td><p>workflow state using centralized purchase_status enum (nullable until confirmed)</p></td>
                                 </tr>
                                 <tr>
                                     <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_inv">id_inv</span></td>
@@ -257,13 +242,13 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="purchase.id_inv references invoice.id_inv via fk_invoice"><a href='invoice.html'>invoice</a><span class='relatedKey'>.id_inv</span></td>
-                                                <td class="constraint detail">fk_invoice</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="purchase.id_inv&#39;s name implies that it&#39;s a child of invoice.id_inv, but it doesn&#39;t reference that column."><a href='invoice.html'>invoice</a><span class='relatedKey'>.id_inv</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
-                                    <td><p>linked invoice when billed</p></td>
+                                    <td><p>linked invoice when billed (nullable; no FK)</p></td>
                                 </tr>
                                 <tr>
                                     <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_cli">id_cli</span></td>
@@ -279,13 +264,13 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="purchase.id_cli references client.id_cli via fk_purchase_client"><a href='client.html'>client</a><span class='relatedKey'>.id_cli</span></td>
-                                                <td class="constraint detail">fk_purchase_client</td>
-                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                                <td title="purchase.id_cli&#39;s name implies that it&#39;s a child of client.id_cli, but it doesn&#39;t reference that column."><a href='client.html'>client</a><span class='relatedKey'>.id_cli</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
-                                    <td><p>optional client reference</p></td>
+                                    <td><p>client for retail purchases (nullable; no FK)</p></td>
                                 </tr>
                                 <tr>
                                     <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_emp">id_emp</span></td>
@@ -351,38 +336,6 @@
                     </div>
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <i class="fa fa-sitemap"></i>
-                            <h3 class="box-title">Check Constraints</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <table
-                                    id="check_table"
-                                    class="table table-bordered table-striped dataTable"
-                                    role="grid"
-                                    data-paging="true"
-                                    data-page-length="10"
-                                    data-length-change="false">
-                                <thead align='left'>
-                                <tr>
-                                    <th>Constraint Name</th>
-                                    <th>Constraint</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>chk_sta_pur</td>
-                                    <td>((((sta_pur)::text &#61; ANY ((ARRAY[&#39;pending&#39;::character varying, &#39;received&#39;::character varying, &#39;cancelled&#39;::character varying])::text[])) OR (sta_pur IS NULL)))</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
                             <i class="fa fa-code-fork"></i>
                             <h3 id="Relationships" class="box-title">Relationships</h3>
                             <div class="box-tools pull-right">
@@ -396,53 +349,78 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="584,5,860,128">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="5,407,184,641">
-<area shape="rect" id="node3" href="purchase.html" target="_top" title="purchase" alt="" coords="228,103,540,436">
-<area shape="rect" id="node5" href="client.html" target="_top" title="client" alt="" coords="18,243,171,389">
-<area shape="rect" id="node6" href="invoice.html" target="_top" title="invoice" alt="" coords="18,79,171,225">
-<area shape="rect" id="node4" href="product.html" target="_top" title="product" alt="" coords="640,181,804,416">
-<area shape="rect" id="node7" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="924,340,1141,545">
-<area shape="rect" id="node8" href="purchase_product.html" target="_top" title="purchase_product" alt="" coords="904,129,1161,276">
+<area shape="rect" id="node1" href="purchase.html" target="_top" title="purchase" alt="" coords="228,32,639,365">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="5,269,184,533">
+<area shape="rect" id="node3" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="683,5,900,211">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/purchase.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="567,432,731,520">
-<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,612,440,700">
-<area shape="rect" id="node7" href="user_account.html" target="_top" title="user_account" alt="" coords="5,447,217,535">
-<area shape="rect" id="node3" href="appointment.html" target="_top" title="appointment" alt="" coords="544,185,753,273">
-<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="274,251,427,397">
-<area shape="rect" id="node5" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="484,80,813,168">
-<area shape="rect" id="node6" href="assistant.html" target="_top" title="assistant" alt="" coords="563,1067,735,1155">
-<area shape="rect" id="node8" href="clock_in.html" target="_top" title="clock_in" alt="" coords="569,1172,729,1260">
-<area shape="rect" id="node9" href="concession.html" target="_top" title="concession" alt="" coords="553,1277,744,1365">
-<area shape="rect" id="node10" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="516,609,781,697">
-<area shape="rect" id="node11" href="employee_purchase.html" target="_top" title="employee_purchase" alt="" coords="1411,539,1687,627">
-<area shape="rect" id="node12" href="purchase.html" target="_top" title="purchase" alt="" coords="1055,223,1367,556">
-<area shape="rect" id="node15" href="invoice.html" target="_top" title="invoice" alt="" coords="857,127,1011,273">
-<area shape="rect" id="node13" href="employee_return.html" target="_top" title="employee_return" alt="" coords="1731,767,1980,855">
-<area shape="rect" id="node14" href="return.html" target="_top" title="return" alt="" coords="1476,397,1621,485">
-<area shape="rect" id="node16" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="1112,117,1309,205">
-<area shape="rect" id="node17" href="product.html" target="_top" title="product" alt="" coords="1775,221,1935,309">
-<area shape="rect" id="node20" href="family.html" target="_top" title="family" alt="" coords="1477,115,1621,203">
-<area shape="rect" id="node21" href="stock.html" target="_top" title="stock" alt="" coords="1481,292,1617,380">
-<area shape="rect" id="node18" href="occupies.html" target="_top" title="occupies" alt="" coords="565,715,733,803">
-<area shape="rect" id="node19" href="ownership.html" target="_top" title="ownership" alt="" coords="556,327,741,415">
-<area shape="rect" id="node22" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="2044,428,2261,516">
-<area shape="rect" id="node23" href="purchase_product.html" target="_top" title="purchase_product" alt="" coords="2024,111,2281,199">
-<area shape="rect" id="node24" href="rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="2033,5,2273,93">
-<area shape="rect" id="node25" href="rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="2050,217,2255,305">
-<area shape="rect" id="node26" href="return_product.html" target="_top" title="return_product" alt="" coords="2038,323,2267,411">
-<area shape="rect" id="node27" href="schedule.html" target="_top" title="schedule" alt="" coords="563,820,734,908">
-<area shape="rect" id="node28" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="547,925,751,1013">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="607,5,771,93">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,529,440,793">
+<area shape="rect" id="node8" href="user_account.html" target="_top" title="user_account" alt="" coords="5,561,217,649">
+<area shape="rect" id="node3" href="appointment.html" target="_top" title="appointment" alt="" coords="585,111,794,199">
+<area shape="rect" id="node4" href="assistant.html" target="_top" title="assistant" alt="" coords="603,216,775,304">
+<area shape="rect" id="node5" href="clock_in.html" target="_top" title="clock_in" alt="" coords="609,321,769,409">
+<area shape="rect" id="node6" href="concession.html" target="_top" title="concession" alt="" coords="594,427,785,515">
+<area shape="rect" id="node7" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="557,532,822,620">
+<area shape="rect" id="node9" href="occupies.html" target="_top" title="occupies" alt="" coords="605,637,773,725">
+<area shape="rect" id="node10" href="ownership.html" target="_top" title="ownership" alt="" coords="597,743,782,831">
+<area shape="rect" id="node11" href="purchase.html" target="_top" title="purchase" alt="" coords="484,848,895,1181">
+<area shape="rect" id="node12" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="939,916,1156,1121">
+<area shape="rect" id="node13" href="product.html" target="_top" title="product" alt="" coords="609,1199,769,1287">
+<area shape="rect" id="node14" href="return.html" target="_top" title="return" alt="" coords="975,1233,1120,1321">
+<area shape="rect" id="node15" href="schedule.html" target="_top" title="schedule" alt="" coords="604,1340,775,1428">
+<area shape="rect" id="node16" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="587,1445,791,1533">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/purchase.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="purchase.html" target="_top" title="purchase" alt="" coords="228,32,639,365">
+<area shape="rect" id="node2" href="client.html" target="_top" title="client" alt="" coords="18,240,171,387">
+<area shape="rect" id="node3" href="employee.html" target="_top" title="employee" alt="" coords="5,404,184,668">
+<area shape="rect" id="node4" href="invoice.html" target="_top" title="invoice" alt="" coords="18,76,171,223">
+<area shape="rect" id="node5" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="683,5,900,211">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/purchase.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="absence.html" target="_top" title="absence" alt="" coords="634,111,798,199">
+<area shape="rect" id="node2" href="employee.html" target="_top" title="employee" alt="" coords="261,583,440,847">
+<area shape="rect" id="node8" href="user_account.html" target="_top" title="user_account" alt="" coords="5,879,217,967">
+<area shape="rect" id="node3" href="appointment.html" target="_top" title="appointment" alt="" coords="611,1025,821,1113">
+<area shape="rect" id="node4" href="client.html" target="_top" title="client" alt="" coords="274,1109,427,1256">
+<area shape="rect" id="node5" href="invoice.html" target="_top" title="invoice" alt="" coords="274,1548,427,1695">
+<area shape="rect" id="node6" href="appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1003,1064,1332,1152">
+<area shape="rect" id="node7" href="assistant.html" target="_top" title="assistant" alt="" coords="630,216,802,304">
+<area shape="rect" id="node9" href="clock_in.html" target="_top" title="clock_in" alt="" coords="636,321,796,409">
+<area shape="rect" id="node10" href="concession.html" target="_top" title="concession" alt="" coords="621,427,811,515">
+<area shape="rect" id="node11" href="delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="583,532,849,620">
+<area shape="rect" id="node12" href="invoice_line.html" target="_top" title="invoice_line" alt="" coords="617,1797,815,1885">
+<area shape="rect" id="node13" href="product.html" target="_top" title="product" alt="" coords="271,1889,431,1977">
+<area shape="rect" id="node14" href="occupies.html" target="_top" title="occupies" alt="" coords="632,637,800,725">
+<area shape="rect" id="node15" href="ownership.html" target="_top" title="ownership" alt="" coords="623,848,809,936">
+<area shape="rect" id="node16" href="purchase.html" target="_top" title="purchase" alt="" coords="511,1203,921,1536">
+<area shape="rect" id="node17" href="purchase_line.html" target="_top" title="purchase_line" alt="" coords="1059,1840,1276,2045">
+<area shape="rect" id="node18" href="stock.html" target="_top" title="stock" alt="" coords="648,1975,784,2063">
+<area shape="rect" id="node19" href="return.html" target="_top" title="return" alt="" coords="1095,1467,1240,1555">
+<area shape="rect" id="node20" href="schedule.html" target="_top" title="schedule" alt="" coords="631,743,801,831">
+<area shape="rect" id="node21" href="veterinarian.html" target="_top" title="veterinarian" alt="" coords="614,5,818,93">
+<area shape="rect" id="node22" href="vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="992,900,1343,964">
+<area shape="rect" id="node23" href="vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="552,1635,880,1699">
+<area shape="rect" id="node24" href="vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="563,1716,869,1780">
+<area shape="rect" id="node25" href="vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="484,1553,948,1617">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/purchase.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>
