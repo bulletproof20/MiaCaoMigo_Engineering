@@ -1,0 +1,7 @@
+-- =========================================================
+-- {{DOMAIN_TITLE}}
+-- BUSINESS WORKFLOW: {{WORKFLOW_NAME}}
+-- =========================================================
+-- [optional] PURPOSE / DEPENDENCIES / LOADED BY — use sql_file_header_services.tpl
+--             when the file needs full Module 1-style metadata.
+-- =========================================================
