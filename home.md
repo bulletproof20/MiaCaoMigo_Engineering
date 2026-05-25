@@ -1,14 +1,14 @@
-<div align="center" style="margin-top: 40px; margin-bottom: 50px;">
+<div align="center" style="margin-top: 90px; margin-bottom: 70px;">
 
 <img
-    src="00_Assets/00_Branding/00_logos/Logo_partialBack.png"
-    width="340"
+    src="/00_Assets/00_Branding/00_logos/Logo_partialBack.png"
+    width="420"
     alt="MiaCaoMigo Logo"
 />
 
-<div style="margin-top: 24px;">
+<div style="margin-top: 28px;">
 
-<span style="font-size: 2rem; font-weight: 700; color: #1e293b;">
+<span style="font-size: 2.1rem; font-weight: 700; color: #1e293b;">
 MiaCaoMigo Engineering
 </span>
 
@@ -48,6 +48,8 @@ This platform centralizes the different documentation layers developed during th
 
 The documentation is organized progressively, allowing both high-level conceptual understanding and deeper technical exploration.
 
+**Layer model:** [DOCUMENTATION_LAYERS.md](DOCUMENTATION_LAYERS.md) — what belongs in Planning, Diagrams, Architecture, and User Stories.
+
 ---
 
 ## Explore the portal
@@ -58,13 +60,13 @@ The documentation is organized progressively, allowing both high-level conceptua
 
     Project evolution, sprint documentation, operational narratives and ecosystem context.
 
-    [:octicons-arrow-right-24: Open planning](01_Planning/00_Sprints/Sprint_1/Sprint_01.md)
+    [:octicons-arrow-right-24: Open planning](01_Planning/README.md)
 
 -   **Requirements**
 
     Functional, operational and technical requirements of the platform.
 
-    [:octicons-arrow-right-24: Open requirements](02_Requirements/00_Functional_Requirements.md)
+    [:octicons-arrow-right-24: Open requirements](02_Requirements/README.md)
 
 -   **Diagrams & Modeling**
 
@@ -98,7 +100,7 @@ The documentation is organized progressively, allowing both high-level conceptua
 
 | Area | Status | Purpose |
 |---|---|---|
-| Engineering | Active | Documentation, architecture and governance |
+| Engineering | In development | Documentation, architecture and governance |
 | DataLayer | Implemented | Database structure and data services |
 | Application | In development | Application layer and integrations |
 
@@ -108,25 +110,51 @@ The documentation is organized progressively, allowing both high-level conceptua
 
 For a progressive exploration of the project documentation:
 
-1. Planning and project context  
-2. Functional and operational requirements  
-3. Modeling and ecosystem diagrams  
-4. System architecture and organization  
-5. Database engineering and technical standards  
+1. [Documentation layers](DOCUMENTATION_LAYERS.md) and [Planning](01_Planning/README.md) — ecosystem and sprints  
+2. [Ecosystem simulation](01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM.md) and [Requirements](02_Requirements/README.md) (incl. [RF matrix](02_Requirements/Sprint2/01_RF_Traceability_Matrix.md))  
+3. [ER model](03_Diagrams/00_ER_Model/er_model.md) — conceptual structure and attribute semantics  
+4. [System architecture](04_Architecture/00_System_Architecture.md)  
+5. [Database engineering](04_Architecture/01_Database/README.md) — implementation and governance  
+
+---
+
+## Authors
+
+<div class="grid cards" markdown>
+
+-   **Ivo Sá**  
+    22604
+
+-   **Gonçalo Rego**  
+    22603
+
+-   **Tiago Mendes**  
+    31595
+
+-   **João Marques**  
+    31067
+
+-   **Isabel Carvalho**  
+    33234
+
+-   **João Navarro**  
+    28028
+
+</div>
 
 ---
 
 <div align="center" style="margin-top: 80px; opacity: 0.92;">
 
 <img
-    src="00_Assets/00_Branding/00_logos/ipca_est.png"
+    src="/00_Assets/00_Branding/00_logos/ipca_est.png"
     width="80"
     style="margin-right: 18px;"
     alt="IPCA EST"
 />
 
 <img
-    src="00_Assets/00_Branding/00_logos/ipca.jpg"
+    src="/00_Assets/00_Branding/00_logos/ipca.jpg"
     width="80"
     alt="IPCA"
 />

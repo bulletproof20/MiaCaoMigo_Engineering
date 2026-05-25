@@ -1,28 +1,28 @@
 ﻿# Sprint 1
 
-<div align="center">
-
 ## Online Presentation
+
+<div align="center">
 
 <a href="https://sistema-de-informacao-ve-ubbsym7.gamma.site/" target="_blank">
 
 <img
-    src="QR-WebPage.png"
+    src="./QR-WebPage.png"
     width="320"
     alt="Sprint 1 QR Code"
 />
 
 </a>
 
-### [Open Online Presentation](https://sistema-de-informacao-ve-ubbsym7.gamma.site/)
-
 </div>
+
+### [Open Online Presentation](https://sistema-de-informacao-ve-ubbsym7.gamma.site/)
 
 ---
 
 ## Supporting Documents
 
-- [Product Vision (PDF)](Sprint%2001_VisaoProduto.pdf)
+- [Product Vision (PDF)](./Sprint%2001_VisaoProduto.pdf)
 
 ---
 

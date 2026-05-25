@@ -124,6 +124,12 @@ Details: [M1 integrity governance](../../00_Governance/02_Integrity_Rules/01_Mod
 
 ---
 
+## Requirements coverage (Sprint 2)
+
+**43 RF** for user management — status and evidence: [M1 RF matrix](../../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md#module-1--user-management-43-rf). Summary: majority **IMP**; gaps include password history (**INC**), temporal RBAC (**INC**), GDPR (**NAO**), absence 72h cancel (**NAO**).
+
+---
+
 ## Related
 
 - [Database architecture](00_Database_Architecture.md)

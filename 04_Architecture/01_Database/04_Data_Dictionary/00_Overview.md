@@ -10,11 +10,16 @@ Semantic reference for **tables and columns** in the MiaCaoMigo PostgreSQL model
 !!! info "Related documentation"
     | Topic | Location |
     |-------|----------|
+    | **Conceptual attribute semantics** (not duplicate) | [ER V10 Atributos](../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md) |
+    | Documentation layers | [DOCUMENTATION_LAYERS.md](../../../DOCUMENTATION_LAYERS.md) |
+    | Sprint 2 RF implementation status | [RF traceability matrix](../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) |
     | Layering, `svc_*`, QA | [Governance](../00_Governance/README.md) |
     | Module architecture | [Schemas](../01_Schemas/README.md) |
     | `COMMENT ON` text | DataLayer `DataBase/Comments/Schema/` |
     | ER diagrams | [ER model](../../../03_Diagrams/00_ER_Model/er_model.md) |
     | Triggers, jobs, `sp_*` | [Schema architecture](../01_Schemas/00_Public_Schema/00_Database_Architecture.md) |
+
+When DataLayer column comments change, update the matching **Atributos** module page and this dictionary for the same module.
 
 ---
 

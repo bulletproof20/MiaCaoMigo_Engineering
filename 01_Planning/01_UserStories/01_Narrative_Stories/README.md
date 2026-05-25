@@ -1,7 +1,7 @@
 # Narrative Stories — MiaCaoMigo Braga (May–June 2026)
 
 Human-readable narratives drawn from the same launch simulation as [02_Operational_Scenarios](../02_Operational_Scenarios/).  
-Master context: [00_ECOSYSTEM.md](../00_ECOSYSTEM.md) · Chronology: [TIMELINE_LAUNCH_2026.md](../02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026.md).
+Master context: [00_ECOSYSTEM.md](../02_Operational_Scenarios/00_ECOSYSTEM.md) · Chronology: [TIMELINE_LAUNCH_2026.md](../02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026.md).
 
 ---
 

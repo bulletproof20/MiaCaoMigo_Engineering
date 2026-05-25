@@ -187,6 +187,12 @@ Legacy `04_Stress/00_Setup/` — **not** used by `ci.ps1`.
 
 ---
 
+## Requirements coverage (Sprint 2)
+
+**30 RF** for commercial management — [M3 RF matrix](../../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md#module-3--commercial-management-30-rf). Summary: stock/invoicing triggers **IMP**; payments entity **INC**; reporting **NAO**; returns without `svc_return` (**PAR**).
+
+---
+
 ## Related
 
 - [Database architecture](00_Database_Architecture.md)

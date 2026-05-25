@@ -58,12 +58,50 @@ This portal centralizes conceptual, operational and technical documentation prod
 
 ## Authors
 
-- Ivo Sá — 22604  
-- Gonçalo Rego — 22603  
-- Tiago Mendes — 31595  
-- João Marques — 31067  
-- Isabel Carvalho — 33234  
-- João Navarro — 28028  
+<div class="grid cards" markdown>
+
+-   **Ivo Sá**  
+    22604
+
+    **Contributions**
+    - Database Engineering
+    - API & Frontend
+    - Engineering Documentation
+
+-   **João Marques**  
+    31067
+
+    **Contributions**
+    - Database Engineering
+    - API & Frontend
+    - Engineering Documentation
+
+-   **João Navarro**  
+    28028
+
+    **Contributions**
+    - Database Engineering
+
+-   **Gonçalo Rego**  
+    22603
+
+    **Contributions**
+    - API & Frontend
+
+-   **Isabel Carvalho**  
+    33234
+
+    **Contributions**
+    - Engineering Documentation
+
+-   **Tiago Mendes**  
+    31595
+
+    **Contributions**
+    - Operational Context
+    - Ecosystem Support
+
+</div>
 
 ---
 
@@ -71,14 +109,14 @@ This portal centralizes conceptual, operational and technical documentation prod
 
 <img
     src="00_Assets/00_Branding/00_logos/ipca_est.png"
-    width="85"
+    width="260"
     style="margin-right: 20px;"
     alt="IPCA EST"
 />
 
 <img
     src="00_Assets/00_Branding/00_logos/ipca.jpg"
-    width="85"
+    width="120"
     alt="IPCA"
 />
 

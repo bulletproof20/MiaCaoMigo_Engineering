@@ -43,7 +43,8 @@ flowchart TB
 | [`README.md`](README.md) | README do repositório |
 | [`STRUCTURE.md`](STRUCTURE.md) | Este mapa estrutural |
 | [`.gitignore`](.gitignore) | Exclusões Git |
-| [`indexes/home.md`](indexes/home.md) | Índice compacto |
+| [`home.md`](home.md) | Portal overview (MkDocs) |
+| [`DOCUMENTATION_LAYERS.md`](DOCUMENTATION_LAYERS.md) | Modelo de camadas documentais |
 
 ---
 
@@ -93,35 +94,56 @@ flowchart TB
 
 ```
 01_Planning/
+├── README.md
 ├── 00_Sprints/
 │   ├── Sprint_1/          Sprint_01.md, PDFs, docx, QR
 │   ├── Sprint_2/          Sprint_02.md, APS/, Modelo_ER/, BPMN (.vpp)
 │   ├── Sprint_3/          Sprint_03.md
 │   └── Sprint_4/          Sprint_04.md
 └── 01_UserStories/
-    ├── 00_ECOSYSTEM.md
     ├── README.md
-    ├── 01_Chronology/     TIMELINE_LAUNCH_2026.md
-    ├── 02_People/
-    │   ├── Customers/     CLI_*.md
-    │   └── Employees/     EMP_*.md
-    ├── 03_Animals/        ANI_*.md
-    ├── 04_External/       EXT_*.md
-    └── 05_Operations/     OPS_*.md
+    ├── 01_Narrative_Stories/     Human-readable cast narratives
+    │   ├── README.md
+    │   ├── Customers/   CLI_*.md
+    │   ├── Employees/   EMP_*.md
+    │   ├── Animals/     ANI_*.md
+    │   └── External_Entities/  EXT_*.md
+    └── 02_Operational_Scenarios/   DemoData / QA validation
+        ├── 00_ECOSYSTEM.md
+        ├── README.md
+        ├── 01_Chronology/   TIMELINE_LAUNCH_2026.md
+        ├── 02_People/       Customers/, Employees/ (+ README indexes)
+        ├── 03_Animals/      ANI_*.md + README.md
+        ├── 04_External/     EXT_*.md + README.md
+        └── 05_Operations/   OPS_*.md
 ```
 
 ---
 
 ## `02_Requirements/` — requisitos
 
-| Ficheiro |
-|----------|
-| `00_Functional_Requirements.md` |
-| `01_Non_Functional_Requirements.md` |
-| `02_User_Requirements.md` |
-| `03_Business_Requirements.md` |
-| `04_Acceptance_Criteria.md` |
-| `05_Constraints.md` |
+```
+02_Requirements/
+├── README.md
+├── 00_Traceability.md
+├── 00_Functional_Requirements.md      # índice por módulo
+├── 01_Non_Functional_Requirements.md
+├── 02_User_Requirements.md
+├── 03_Business_Requirements.md
+├── 04_Acceptance_Criteria.md
+├── 05_Constraints.md
+├── Sprint2/
+│   ├── 00_Authoritative_Source.md     # índice APS PDF
+│   └── 01_RF_Traceability_Matrix.md   # 109 RF × DataLayer
+└── _archive/
+    └── Generic_Templates_2026-05.md
+```
+
+| Entrada recomendada | Path |
+|---------------------|------|
+| Hub | [`02_Requirements/README.md`](02_Requirements/README.md) |
+| Matriz RF Sprint 2 | [`Sprint2/01_RF_Traceability_Matrix.md`](02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) |
+| PDF normativo | [`01_Planning/00_Sprints/Sprint_2/APS/Sprint_2.pdf`](01_Planning/00_Sprints/Sprint_2/APS/Sprint_2.pdf) |
 
 ---
 
@@ -158,7 +180,7 @@ flowchart TB
 04_Architecture/
 ├── README.md
 ├── 00_System_Architecture.md
-├── 02_Application/                    (vazia — app em desenvolvimento)
+├── 02_Application/                    README.md — app em desenvolvimento
 └── 01_Database/
     ├── README.md
     ├── 00_Schema_Build_Pipeline.md
@@ -234,7 +256,7 @@ flowchart TB
 
 | Ficheiro | Função |
 |----------|--------|
-| [`home.md`](indexes/home.md) | Índice rápido (portal, database, ER V10, repos) |
+| [`home.md`](home.md) | Índice rápido (portal, database, ER V10, repos) |
 
 ---
 
@@ -245,7 +267,7 @@ flowchart TB
 | Markdown | Toda a árvore (exc. SchemaSpy output) | ~79 ficheiros |
 | Templates SQL | `03_Templates/` | 38 `.tpl` |
 | Diagramas | `03_Diagrams/` | V0, V3, V8, V10 |
-| User stories | `01_Planning/01_UserStories/` | Narrativa demo/QA |
+| User stories | `01_Planning/01_UserStories/` | Narrative + Operational (ecosystem) |
 | Artefactos gerados | `05_SchemaSpy/02_Output/` | Regeneráveis; ignorar em revisões doc |
 | Binários | Sprints, ER PDF/PNG, statements | Entregas e figuras |
 

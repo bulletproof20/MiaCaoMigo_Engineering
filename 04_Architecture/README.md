@@ -37,7 +37,9 @@ Index for **system** and **database** architecture. Validated against **`01_MiaC
 | Asset | Note |
 |-------|------|
 | [ER model](../03_Diagrams/00_ER_Model/er_model.md) | May diverge from DDL — **DataLayer prevails** |
-| [UML](../03_Diagrams/01_UML.md) | Application views — incomplete repo |
+| [Application](02_Application/README.md) | Application layer — in development |
+| [Sprint 2 RF matrix](../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) | Functional coverage vs DataLayer (not duplicated here) |
+| UML (`03_Diagrams/01_UML/`) | Reserved — not yet published in this repo |
 
 ---
 

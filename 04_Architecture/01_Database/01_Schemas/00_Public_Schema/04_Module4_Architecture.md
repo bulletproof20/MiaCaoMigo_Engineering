@@ -158,6 +158,12 @@ Stress: `04_Stress/04_Module4/*` (booking + lifecycle load).
 
 ---
 
+## Requirements coverage (Sprint 2)
+
+**17 RF** for appointments — [M4 RF matrix](../../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md#module-4--appointment-management-17-rf). Summary: clinical tables and state machine **IMP**; public `svc_*` **read-only**; mandatory diagnosis and auto-invoice **NAO**.
+
+---
+
 ## Related
 
 - [Database architecture](00_Database_Architecture.md)

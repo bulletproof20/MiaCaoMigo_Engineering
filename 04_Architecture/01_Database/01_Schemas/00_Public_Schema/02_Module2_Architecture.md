@@ -130,6 +130,12 @@ Stress: `04_Stress/02_Module2/01_Concurrent_Adoption.sql`.
 
 ---
 
+## Requirements coverage (Sprint 2)
+
+**19 RF** for animal management — [M2 RF matrix](../../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md#module-2--animal-management-19-rf). Summary: core intake/ownership **IMP**; animal state history **INC**; auto-create client on delivery **NAO**; no `svc_register_animal`.
+
+---
+
 ## Related
 
 - [Database architecture](00_Database_Architecture.md)
