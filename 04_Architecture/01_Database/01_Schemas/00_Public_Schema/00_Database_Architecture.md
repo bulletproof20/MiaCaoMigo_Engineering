@@ -113,10 +113,10 @@ erDiagram
 **Examples**
 
 - M2 `ownership` → M1 `client`, `employee`; → M2 `animal`
-- M3 `invoice` / `purchase` → M1 `client`, `employee`; → M3 `product`
-- M4 `appointment` → M1 `client`, `employee`; M2 `animal`; M3 `invoice` (optional link)
+- M3 `purchase.id_emp`, `return` → M1 (physical FK); `purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin` → **soft** (procedural)
+- M4 `appointment` → M1, M2, M3 `invoice` (physical FK on `id_inv`)
 
-Module 3 uses `fk_purchase_client` / `fk_purchase_employee` to avoid global FK name clashes with M4.
+Module 3: only **`fk_purchase_employee`** is active on `purchase` (not `fk_purchase_client` / `fk_purchase_invoice`). See [M3 soft references](03_Module3_Architecture.md#soft-references-logical-not-physical-fk).
 
 ---
 

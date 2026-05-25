@@ -10,6 +10,9 @@ Automatically generated relational model (read-only output)
 
 SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: tables, columns, FKs, indexes, constraints, and relationship diagrams.
 
+!!! note "Implied relationships (Module 3)"
+    SchemaSpy may flag **implied** child links where the DDL uses **soft references** only (`purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin`). That is **expected** — see [M3 soft references](../01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk). Do not treat as a schema bug without reading DataLayer `01_ForeignKeys_Mod3.sql`.
+
 !!! success "Open interactive documentation"
     **[Open SchemaSpy — `02_Output/index.html`](02_Output/index.html)**
 

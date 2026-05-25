@@ -19,6 +19,8 @@ This repository contains the complete engineering foundation of the project, inc
 
 # Repository Structure
 
+Mapa detalhado (diretorias e ficheiros): **[STRUCTURE.md](STRUCTURE.md)**.
+
 ```text id="jlwm1bt"
 00_Assets/           → Branding, logos and shared assets
 01_Planning/         → Sprint planning and project organization
@@ -26,7 +28,7 @@ This repository contains the complete engineering foundation of the project, inc
 03_Diagrams/         → ER models, UML diagrams and workflows
 04_Architecture/     → System and database architecture
 05_Docs/             → Academic and technical documentation
-99_Indexes/          → Documentation navigation hubs
+indexes/             → Documentation navigation hubs (home.md)
 .docs/               → MkDocs, Docker and documentation tooling
 ```
 

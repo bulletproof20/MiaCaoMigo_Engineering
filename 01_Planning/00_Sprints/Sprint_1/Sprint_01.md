@@ -1,10 +1,29 @@
 ﻿# Sprint 1
 
-This page opens the documents that are in the same folder.
+<div align="center">
 
-- [Product Vision (DOCX)](Sprint%2001%20%E2%80%94%20Vis%C3%A3o%20do%20produto.docx)
+## Online Presentation
+
+<a href="https://sistema-de-informacao-ve-ubbsym7.gamma.site/" target="_blank">
+
+<img
+    src="QR-WebPage.png"
+    width="320"
+    alt="Sprint 1 QR Code"
+/>
+
+</a>
+
+### [Open Online Presentation](https://sistema-de-informacao-ve-ubbsym7.gamma.site/)
+
+</div>
+
+---
+
+## Supporting Documents
+
 - [Product Vision (PDF)](Sprint%2001_VisaoProduto.pdf)
-- [QR WebPage](QR-WebPage.png)
-- [Online Presentation](https://sistema-de-informacao-ve-ubbsym7.gamma.site/)
 
-> Open the files directly in this folder to view Sprint 1 content.
+---
+
+> Scan the QR code or open the online presentation link to access the Sprint 1 presentation.

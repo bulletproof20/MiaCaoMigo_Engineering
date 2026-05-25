@@ -61,14 +61,14 @@ Each `Schema/<ModuleName>/` folder:
 
 ---
 
-## Module 3 purchase FK names
+## Module 3 — physical vs soft references
 
-To avoid duplicate constraint names globally:
+**Physical FK** (in `01_ForeignKeys_Mod3.sql`): `fk_purchase_employee`, `fk_purchase_line_*`, `fk_invoice_line_*`, `fk_return_*`, `fk_stock_product`, `fk_product_family`.
 
-- `fk_purchase_client`
-- `fk_purchase_employee`
+**Soft references** (columns exist; constraints **explicitly dropped**): `purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin`.  
+Historical constraint names `fk_purchase_client`, `fk_purchase_invoice`, `fk_purchase_line_stock`, `fk_return_invoice_line` are removed in the FK file — **not active in DDL**.
 
-(Semantics unchanged; identifiers disambiguated from Module 4 `appointment` links.)
+Detail: [Module 3 architecture — soft references](01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk).
 
 ---
 

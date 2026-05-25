@@ -2,9 +2,20 @@
 
 ## Objective
 
-Formatting and file organization for **`01_MiaCaoMigo_DataLayer/DataBase/`**, as loaded by Bootstrap and exercised by QA.
+Formatting and file organization standards for:
 
-Complements:
+```text
+01_MiaCaoMigo_DataLayer/DataBase/
+```
+
+These conventions support:
+
+- Bootstrap execution
+- QA validation
+- Repository consistency
+- Maintainability across modules
+
+Related documentation:
 
 - [Naming conventions](../00_Naming_Conventions/02_SQL_Programming.md)
 - [Schema build pipeline](../../00_Schema_Build_Pipeline.md)
@@ -12,18 +23,31 @@ Complements:
 
 ---
 
-## 1. General formatting
+# 1. General Formatting
 
-### 1.1 Keywords and casing
+## 1.1 Keywords and casing
 
-- SQL keywords: **lowercase** (`create table`, not `CREATE TABLE`)
-- Identifiers: **lowercase** `snake_case`
-- 4-space indentation
-- Major clauses and columns on separate lines where readability benefits
+| Element | Standard |
+|---|---|
+| SQL keywords | lowercase |
+| Identifiers | lowercase `snake_case` |
+| Indentation | 4 spaces |
+| Clauses | separated when readability benefits |
 
-### 1.2 Section blocks
+Example:
 
-Use standardized comment banners. Two families are valid (see [Governance README](../README.md#header-families-both-valid)):
+```sql
+create table user_account (
+    id_use serial primary key,
+    nam_use varchar(100) not null
+);
+```
+
+---
+
+## 1.2 Section headers
+
+### Module header
 
 ```sql
 -- =========================================================
@@ -35,7 +59,7 @@ Use standardized comment banners. Two families are valid (see [Governance README
 -- =========================================================
 ```
 
-Per-object sections:
+### Object header
 
 ```sql
 -- =========================================================
@@ -45,142 +69,194 @@ Per-object sections:
 
 ---
 
-## 2. Repository layout (DataLayer)
+# 2. Repository Structure
 
 ```text
 DataBase/
-├── Bootstrap/          # init.sql, Profiles/, Loaders/, entrypoints/
-├── Schema/             # DDL per module (00_Core + 01..04_Module*)
-├── Comments/           # COMMENT ON (Schema + Services mirrors)
-├── Services/           # sp_*, svc_*, fn_* (application layer)
-├── DataSeed/           # 00_MasterData, 03_DemoData
-├── QA/                 # contracts, fixtures, 01_Integrity, 04_Stress, 05_Manual
-├── Queries/            # reference SELECTs (not loaded by init)
-└── (no SQL in repo root)
+├── Bootstrap/
+├── Schema/
+├── Comments/
+├── Services/
+├── DataSeed/
+├── QA/
+├── Queries/
+└── (no SQL in repository root)
 ```
 
+## Folder responsibilities
+
+| Folder | Purpose |
+|---|---|
+| `Bootstrap/` | Initialization and loaders |
+| `Schema/` | Core DDL and structural objects |
+| `Comments/` | `COMMENT ON` definitions |
+| `Services/` | Public and internal SQL APIs |
+| `DataSeed/` | Master and demo data |
+| `QA/` | Validation, fixtures and contracts |
+| `Queries/` | Reference-only queries |
+
 !!! note "Docker mounts"
-    `docker-compose.yml` mounts Bootstrap, Schema, Comments, Services, DataSeed under `/docker-entrypoint-initdb.d/`. Only **top-level** `init.sql` runs automatically; loaders `\i` the rest.
+    `docker-compose.yml` mounts initialization folders under `/docker-entrypoint-initdb.d/`.
+
+    Only the top-level `init.sql` executes automatically.
 
 ---
 
-## 3. Per-module Schema files
+# 3. Module File Order
 
-Each module folder (e.g. `Schema/01_Module1_User_Management/`) uses:
+Each module follows the same execution structure:
 
-| Order | File | Role |
-|------:|------|------|
-| 00 | `00_Tables_ModX.sql` | `CREATE TABLE`, PK, UNIQUE, CHECK — **no FK** |
-| 01 | `01_ForeignKeys_ModX.sql` | `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` |
-| 02 | `02_Functions_ModX.sql` | Functions (incl. trigger helpers) |
-| 03 | `03_Triggers_ModX.sql` | `trg_*` triggers |
-| 04 | `04_Indexes_ModX.sql` | Indexes + exclusion constraints |
-| 05 | `05_Procedures_ModX.sql` | `sp_*` domain / `jpr_*` technical |
-| 06 | `06_Jobs_ModX.sql` | `cron.schedule` → `call jpr_*()` |
-| 07 | `07_Views_ModX.sql` | `vw_*` read models (where present) |
+| Order | File | Responsibility |
+|---|---|---|
+| 00 | `00_Tables_ModX.sql` | Tables, PK, UNIQUE, CHECK |
+| 01 | `01_ForeignKeys_ModX.sql` | Foreign keys |
+| 02 | `02_Functions_ModX.sql` | Functions and trigger helpers |
+| 03 | `03_Triggers_ModX.sql` | Trigger definitions |
+| 04 | `04_Indexes_ModX.sql` | Indexes and exclusions |
+| 05 | `05_Procedures_ModX.sql` | Procedures |
+| 06 | `06_Jobs_ModX.sql` | Scheduled jobs |
+| 07 | `07_Views_ModX.sql` | Read models |
 
-`Schema/00_Core/`: `01_Types.sql`, `00_Data_Cleanup.sql` (TRUNCATE before MasterData reload).
+## Core schema
 
-**Queries** under `DataBase/Queries/` are reference-only unless explicitly wired into a profile.
-
----
-
-## 4. Bootstrap execution order (`init_core`)
-
-Loaded via `Bootstrap/Profiles/init_core.sql`:
-
-| Step | Loader | Content |
-|------|--------|---------|
-| 1 | `00_Extensions.sql` | pg_cron, btree_gist |
-| 2 | `Schema/00_Core/01_Types.sql` | ENUMs |
-| 3 | `01_Structure.sql` | All `00_Tables_Mod*` |
-| 4 | `02_ForeignKeys.sql` | All `01_ForeignKeys_Mod*` |
-| 5 | `03_Integrity.sql` | Functions → triggers → indexes → procedures → jobs → views |
-| 6 | `05_Comments.sql` | `Comments/Schema/` |
-| 7 | `06_Services.sql` | `Services/` (deterministic order) |
-| 8 | `08_Service_Comments.sql` | `Comments/Services/` |
-
-**Profiles** add data + sanity:
-
-| Loader | When |
-|--------|------|
-| `11_MasterData.sql` | `init_demo`, `init_qa` |
-| `12_DemoData.sql` | `init_demo` only |
-| `07_Sanity_Check.sql` | After data tiers |
-
-QA entry: `entrypoints/init_qa_entry.sql` mounted as `init.sql` in `docker-compose.qa.yml`.
+| File | Purpose |
+|---|---|
+| `01_Types.sql` | ENUM definitions |
+| `00_Data_Cleanup.sql` | Pre-seed cleanup |
 
 ---
 
-## 5. Constraints
+# 4. Bootstrap Execution Flow
 
-### Inside `00_Tables_ModX.sql`
+Profile:
 
-Order when applicable: primary key → unique → check.
+```text
+Bootstrap/Profiles/init_core.sql
+```
 
-### Foreign keys
-
-**Only** in `01_ForeignKeys_ModX.sql`, after all module tables exist.
-
----
-
-## 6. Services layer standards
-
-| Rule | Detail |
-|------|--------|
-| Public API | Only `svc_*` in `99_Public_API` |
-| M1 workflows | `sp_*` under `Services/01_Module1/` subfolders |
-| M2–M4 | Domain `sp_*` in Schema; thin `svc_*` in `99_Public_API.sql` |
-| Core helpers | `Services/00_Core/` — `fn_normalize_*` loaded first in `06_Services.sql` |
-
-See `DataBase/Services/README.md` in DataLayer for the delegation map.
+| Step | Loader | Description |
+|---|---|---|
+| 1 | `00_Extensions.sql` | Extensions |
+| 2 | `01_Types.sql` | ENUMs |
+| 3 | `01_Structure.sql` | Tables |
+| 4 | `02_ForeignKeys.sql` | Foreign keys |
+| 5 | `03_Integrity.sql` | Integrity layer |
+| 6 | `05_Comments.sql` | Schema comments |
+| 7 | `06_Services.sql` | Services |
+| 8 | `08_Service_Comments.sql` | Service comments |
 
 ---
 
-## 7. Comments layer
+# 5. Constraints
 
-- Loaded after DDL + Services objects exist
-- Mirror paths: `Comments/Schema/01_Module1/` ↔ `Schema/01_Module1_User_Management/`
-- Skipped at bootstrap: placeholders listed in `DataBase/Comments/README.md`
+## Table files
+
+Inside:
+
+```text
+00_Tables_ModX.sql
+```
+
+Constraint order:
+
+1. Primary key
+2. Unique
+3. Check
+
+## Foreign keys
+
+Foreign keys must exist only in:
+
+```text
+01_ForeignKeys_ModX.sql
+```
 
 ---
 
-## 8. QA standards (host execution)
+# 6. Services Layer
+
+| Rule | Standard |
+|---|---|
+| Public API | `svc_*` only |
+| Workflows | `sp_*` |
+| Core helpers | `fn_*` |
+| Technical jobs | `jpr_*` |
+
+Core helpers belong to:
+
+```text
+Services/00_Core/
+```
+
+---
+
+# 7. Comments Layer
+
+- Loaded after all objects exist
+- Mirrors schema structure
+- Maintains independent documentation responsibility
+
+Example:
+
+```text
+Comments/Schema/01_Module1/
+```
+
+mirrors:
+
+```text
+Schema/01_Module1_User_Management/
+```
+
+---
+
+# 8. QA Standards
 
 | Element | Convention |
-|---------|------------|
-| Orchestration | `QA/runners/ci.ps1` or `qa.sh` |
-| Assertions | `raise notice 'PASS:'` / `'FAIL:'` in `DO $$` blocks |
-| Contracts | `qa_*()` in `contracts/01_QA_Functions.sql` |
-| Fixtures | `fixtures/seed/m*.sql`, resets in `fixtures/reset/` |
-| Integrity | 21 scripts — `01_Integrity/**` (hard-coded in `stages/integrity.ps1`) |
+|---|---|
+| Assertions | `PASS:` / `FAIL:` |
+| Contracts | `qa_*()` |
+| Fixtures | `fixtures/seed/` |
+| Integrity scripts | `01_Integrity/` |
 
-QA SQL is **not** part of default Docker init.
-
----
-
-## 9. Query and manual scripts
-
-| Folder | Standard |
-|--------|----------|
-| `Queries/` | `QUERIES —` header; explicit columns; deprecation banner when `svc_*` replaces ad-hoc SQL |
-| `QA/05_Manual/` | `QUERIES —` or reference scenarios; run manually |
+QA execution is external to default Docker bootstrap.
 
 ---
 
-## 10. Loader scripts
+# 9. Queries and Manual Scripts
 
-Bootstrap loaders use:
+| Folder | Purpose |
+|---|---|
+| `Queries/` | Reference queries |
+| `QA/05_Manual/` | Manual execution scenarios |
 
-- `\set ON_ERROR_STOP on` in profiles / critical paths
-- `\echo` progress markers
-- Absolute paths: `/docker-entrypoint-initdb.d/...`
+Guidelines:
+
+- Explicit columns preferred
+- Avoid `select *`
+- Mark deprecated queries clearly
 
 ---
 
-## 11. Idempotency
+# 10. Loader Standards
 
-Prefer:
+Loaders should include:
+
+```sql
+\set ON_ERROR_STOP on
+```
+
+And:
+
+- progress `\echo`
+- absolute Docker paths
+- deterministic ordering
+
+---
+
+# 11. Idempotency
+
+Prefer defensive drops before recreation:
 
 ```sql
 drop trigger if exists trg_* on ...;
@@ -188,14 +264,21 @@ drop function if exists fn_*(...);
 drop procedure if exists sp_*(...);
 ```
 
-before `create or replace`, especially in Services and integrity layers.
+Especially for:
+
+- Services
+- Integrity layer
+- QA reload scenarios
 
 ---
 
-## 12. What not to do
+# 12. Anti-Patterns
 
 !!! warning
-    - Do not add FKs inside `00_Tables_*.sql`
-    - Do not call `svc_*` from triggers (keep triggers thin)
-    - Do not load `QA/` or `Queries/` from Bootstrap without an explicit profile decision
-    - Do not introduce new top-level loaders without updating `init_core` and this document
+
+    Avoid the following:
+
+    - Foreign keys inside `00_Tables_*.sql`
+    - Calling `svc_*` from triggers
+    - Loading `QA/` automatically in bootstrap
+    - Creating unmanaged top-level loaders

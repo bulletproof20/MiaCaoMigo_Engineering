@@ -1,72 +1,140 @@
-# Home index
+<div align="center" style="margin-top: 40px; margin-bottom: 50px;">
 
-<div style="text-align: center; padding-top: 20px; margin-bottom: 1.5rem;">
+<img
+    src="00_Assets/00_Branding/00_logos/Logo_partialBack.png"
+    width="340"
+    alt="MiaCaoMigo Logo"
+/>
 
-<img src="/00_Assets/00_Branding/00_logos/Logo_partialBack.png" width="360" />
+<div style="margin-top: 24px;">
+
+<span style="font-size: 2rem; font-weight: 700; color: #1e293b;">
+MiaCaoMigo Engineering
+</span>
 
 </div>
 
-Compact navigation index for the MiaCaoMigo Engineering MkDocs site. For the full portal experience, see **[Overview](../index.md)**.
+<div style="margin-top: 8px;">
+
+<span style="font-size: 1.08rem; color: #64748b;">
+Central Engineering & Architecture Portal
+</span>
+
+</div>
+
+<div style="max-width: 760px; margin: 28px auto 0 auto; line-height: 1.85; font-size: 1rem; color: #475569;">
+
+Central documentation platform dedicated to the planning, modeling, architecture and technical documentation of the MiaCaoMigo ecosystem.
+
+This portal aggregates conceptual, operational and engineering documentation produced throughout the academic project lifecycle.
+
+</div>
+
+</div>
 
 ---
 
-## Primary hubs
+## About the documentation
 
-| Hub | Link |
-|-----|------|
-| Portal home | [index.md](../index.md) |
-| Architecture | [04_Architecture/README.md](../04_Architecture/README.md) |
-| System architecture | [00_System_Architecture.md](../04_Architecture/00_System_Architecture.md) |
-| **Database hub** | [01_Database/README.md](../04_Architecture/01_Database/README.md) |
+This platform centralizes the different documentation layers developed during the MiaCaoMigo project, including:
 
----
+- project planning and sprint evolution;
+- functional and non-functional requirements;
+- operational and ecosystem narratives;
+- conceptual and structural modeling;
+- system and database architecture;
+- governance and engineering standards;
+- technical and academic deliverables.
 
-## Database engineering (recommended path)
-
-| Step | Document |
-|------|----------|
-| 1 | [Database hub](../04_Architecture/01_Database/README.md) |
-| 2 | [Schema build pipeline](../04_Architecture/01_Database/00_Schema_Build_Pipeline.md) |
-| 3 | [Governance](../04_Architecture/01_Database/00_Governance/README.md) |
-| 4 | [Public schema architecture](../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database_Architecture.md) |
-| 5 | [Data dictionary overview](../04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md) |
-| 6 | [SchemaSpy (interactive)](../04_Architecture/01_Database/05_SchemaSpy/schemaspy.md) |
-
-### Modules (architecture + dictionary)
-
-| Module | Architecture | Dictionary |
-|--------|--------------|------------|
-| M1 — Users | [01_Module1_Architecture.md](../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1_Architecture.md) | [01_Module1.md](../04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md) |
-| M2 — Animals | [02_Module2_Architecture.md](../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2_Architecture.md) | [02_Module2.md](../04_Architecture/01_Database/04_Data_Dictionary/02_Module2.md) |
-| M3 — Commercial | [03_Module3_Architecture.md](../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md) | [03_Module3.md](../04_Architecture/01_Database/04_Data_Dictionary/03_Module3.md) |
-| M4 — Appointments | [04_Module4_Architecture.md](../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4_Architecture.md) | [04_Module4.md](../04_Architecture/01_Database/04_Data_Dictionary/04_Module4.md) |
+The documentation is organized progressively, allowing both high-level conceptual understanding and deeper technical exploration.
 
 ---
 
-## Other sections
+## Explore the portal
 
-| Section | Entry |
-|---------|--------|
-| Planning / Sprints | [Sprint 1](../01_Planning/00_Sprints/Sprint_1/Sprint_01.md) |
-| Requirements | [Functional requirements](../02_Requirements/00_Functional_Requirements.md) |
-| ER model | [er_model.md](../03_Diagrams/00_ER_Model/er_model.md) |
-| UML | [01_UML.md](../03_Diagrams/01_UML.md) |
-| Academic | [statements.md](../05_Docs/00_Statements/statements.md) |
+<div class="grid cards" markdown>
+
+-   **Planning**
+
+    Project evolution, sprint documentation, operational narratives and ecosystem context.
+
+    [:octicons-arrow-right-24: Open planning](01_Planning/00_Sprints/Sprint_1/Sprint_01.md)
+
+-   **Requirements**
+
+    Functional, operational and technical requirements of the platform.
+
+    [:octicons-arrow-right-24: Open requirements](02_Requirements/00_Functional_Requirements.md)
+
+-   **Diagrams & Modeling**
+
+    ER models, conceptual structures and system representations.
+
+    [:octicons-arrow-right-24: Open diagrams](03_Diagrams/00_ER_Model/er_model.md)
+
+-   **Architecture**
+
+    System organization, technical structure and engineering documentation.
+
+    [:octicons-arrow-right-24: Open architecture](04_Architecture/README.md)
+
+-   **Database Engineering**
+
+    Governance, schemas, integrity rules and database engineering resources.
+
+    [:octicons-arrow-right-24: Open database engineering](04_Architecture/01_Database/README.md)
+
+-   **Documentation**
+
+    Academic deliverables, supporting materials and complementary resources.
+
+    [:octicons-arrow-right-24: Open documentation](05_Docs/00_Statements/statements.md)
+
+</div>
 
 ---
 
-## Implementation repository
+## Ecosystem overview
 
-| Item | Value |
-|------|--------|
-| Repo | `01_MiaCaoMigo_DataLayer` |
-| Root folder | `DataBase/` |
-| QA entry | `QA/runners/ci.ps1` · `qa.sh` |
+| Area | Status | Purpose |
+|---|---|---|
+| Engineering | Active | Documentation, architecture and governance |
+| DataLayer | Implemented | Database structure and data services |
+| Application | In development | Application layer and integrations |
 
 ---
 
-<div style="text-align:center; margin-top:2rem; opacity:0.85;">
+## Recommended navigation
 
-[Return to portal home](../index.md)
+For a progressive exploration of the project documentation:
+
+1. Planning and project context  
+2. Functional and operational requirements  
+3. Modeling and ecosystem diagrams  
+4. System architecture and organization  
+5. Database engineering and technical standards  
+
+---
+
+<div align="center" style="margin-top: 80px; opacity: 0.92;">
+
+<img
+    src="00_Assets/00_Branding/00_logos/ipca_est.png"
+    width="80"
+    style="margin-right: 18px;"
+    alt="IPCA EST"
+/>
+
+<img
+    src="00_Assets/00_Branding/00_logos/ipca.jpg"
+    width="80"
+    alt="IPCA"
+/>
+
+<div style="margin-top: 18px; color: #64748b; font-size: 0.92rem;">
+
+MiaCaoMigo · Engineering · Architecture · Documentation
+
+</div>
 
 </div>

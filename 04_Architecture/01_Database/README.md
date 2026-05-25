@@ -106,7 +106,7 @@ flowchart TB
 |--------|--------|:------:|-----------|
 | **M1** | Users, roles, attendance, email | 16 | [Module 1 architecture](01_Schemas/00_Public_Schema/01_Module1_Architecture.md) · [Dictionary](04_Data_Dictionary/01_Module1.md) |
 | **M2** | Animals & ownership | 8 | [Module 2](01_Schemas/00_Public_Schema/02_Module2_Architecture.md) · [Dictionary](04_Data_Dictionary/02_Module2.md) |
-| **M3** | Commercial (purchases, invoices) | 8 | [Module 3](01_Schemas/00_Public_Schema/03_Module3_Architecture.md) · [Dictionary](04_Data_Dictionary/03_Module3.md) |
+| **M3** | Commercial (purchases, invoices) | 8 | [Module 3](01_Schemas/00_Public_Schema/03_Module3_Architecture.md) · [Soft refs](01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk) · [Dictionary](04_Data_Dictionary/03_Module3.md) |
 | **M4** | Appointments & notifications | 7 | [Module 4](01_Schemas/00_Public_Schema/04_Module4_Architecture.md) · [Dictionary](04_Data_Dictionary/04_Module4.md) |
 
 **Cross-cutting:** [00_Database_Architecture.md](01_Schemas/00_Public_Schema/00_Database_Architecture.md) — `fn_*`, `vw_*`, `trg_*`, `jpr_*`, GiST exclusions, public API surface.
@@ -152,6 +152,21 @@ Contracts: `QA/contracts/` · Fixtures: `QA/fixtures/seed/` · Tests: `QA/01_Int
 | `05_SchemaSpy/` | Generator scripts + **read-only** `02_Output/` |
 
 Legacy empty folders (`02_Model*_Integrity`) may exist beside `02_Module*_Integrity` — use only the **`Module*`** paths linked from MkDocs.
+
+---
+
+## Module 3 — soft references (SchemaSpy)
+
+Four nullable columns are **logical references** without physical FK. SchemaSpy lists them as *implied* — that is **not** technical debt by default.
+
+| Column | Integrity layer |
+|--------|-----------------|
+| `purchase.id_cli` | Optional retail; supplier POs omit |
+| `purchase.id_inv` | Optional invoice mirror |
+| `purchase_line.id_sto` | Set by `sp_receive_purchase` |
+| `return.id_inv_lin` | Validated in `tfn_return_restock` when present |
+
+Full analysis: [M3 architecture — soft references](01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk).
 
 ---
 

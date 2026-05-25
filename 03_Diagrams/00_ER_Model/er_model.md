@@ -10,8 +10,22 @@ Due to the size and complexity of the model, the structural diagram was intentio
 
 The complete attribute documentation, including attribute names, physical naming conventions, and detailed descriptions, is available in the following documentation sections associated with each system module.
 
+## Structural Model (V10)
+
+[Open Structural ER Model](ER_V10/ER_V10.pdf)
+
+### Attributes (V10)
+
+| Module | Document |
+|--------|----------|
+| Module 1 — Users & access | [ER_V10/Atributos/01_Module1.md](ER_V10/Atributos/01_Module1.md) |
+| Module 2 — Animals | [ER_V10/Atributos/02_Module2.md](ER_V10/Atributos/02_Module2.md) |
+| Module 3 — Commercial | [ER_V10/Atributos/03_Module3.md](ER_V10/Atributos/03_Module3.md) |
+| Module 4 — Appointments | [ER_V10/Atributos/04_Module4.md](ER_V10/Atributos/04_Module4.md) |
+
+ Previous significative version: [ER_V8/Atributos/01_Module1.md](ER_V8/Atributos/01_Module1.md).
+
 ---
 
-## Structural Model
 
-[Open Structural ER Model](ER_V8/Struct_ER_Model.pdf)
+

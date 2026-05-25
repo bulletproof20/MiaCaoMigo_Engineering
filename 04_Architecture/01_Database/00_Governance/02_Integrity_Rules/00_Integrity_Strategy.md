@@ -67,6 +67,7 @@ flowchart TB
 - **FK phase**: all modules’ tables exist before any `01_ForeignKeys_ModX.sql` runs (see [Schema build pipeline](../../00_Schema_Build_Pipeline.md)).
 - **Exclusion constraints**: GiST-based (e.g. `ex_schedule_overlap` on schedule) — validated in QA `06_Schedule_Exclusion.sql`.
 - **Cross-module FKs**: concentrated in owning module FK files (e.g. Module 4 links to animal, client, employee, invoice).
+- **Optional references (Module 3):** four nullable columns use **soft references** — no physical FK; integrity via `sp_receive_purchase`, `tfn_return_restock`, and QA. SchemaSpy “implied” edges are expected. Detail: [M3 architecture](../../01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk).
 
 Module-level constraint inventories: [Module 1 structural](01_Module1_Integrity/00_Structural_Integrity.md).
 

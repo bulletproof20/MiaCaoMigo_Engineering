@@ -26,7 +26,7 @@ Official standards for **`01_MiaCaoMigo_DataLayer`**. These documents describe w
 |---------|-----------|----------|
 | **Naming** | [Philosophy](00_Naming_Conventions/00_Naming_Philosophy.md) · [Schema objects](00_Naming_Conventions/01_Schema_Objects.md) · [SQL programming](00_Naming_Conventions/02_SQL_Programming.md) | Tables, constraints, `fn_`/`sp_`/`svc_`/`qa_`/`jpr_`/`trg_` |
 | **SQL standards** | [SQL standards](01_SQL_Standards/00_SQL_Standards.md) | Formatting, module files, layer folders |
-| **Integrity** | [Strategy](02_Integrity_Rules/00_Integrity_Strategy.md) · [M1](02_Integrity_Rules/01_Module1_Integrity/) · [M2](02_Integrity_Rules/02_Module2_Integrity/00_Overview.md) · [M3](02_Integrity_Rules/03_Module3_Integrity/00_Overview.md) · [M4](02_Integrity_Rules/04_Module4_Integrity/00_Overview.md) | DDL + triggers + QA contracts |
+| **Integrity** | [Strategy](02_Integrity_Rules/00_Integrity_Strategy.md) · [M1](02_Integrity_Rules/01_Module1_Integrity/) · [M2](02_Integrity_Rules/02_Module2_Integrity/00_Overview.md) · [M3](02_Integrity_Rules/03_Module3_Integrity/00_Overview.md) · [M4](02_Integrity_Rules/04_Module4_Integrity/00_Overview.md) | DDL + triggers + QA; M3 [soft refs](../01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk) |
 | **Templates** | [Templates index](03_Templates/README.md) | Copy-paste skeletons matching live code |
 
 ---

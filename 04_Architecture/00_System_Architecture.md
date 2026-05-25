@@ -95,20 +95,15 @@ flowchart LR
 
 # ApplicationLayer
 
-The ApplicationLayer is responsible for the operational and business side of the system.
+Repository: **`02_MiaCaoMigo_Application`** — **em desenvolvimento** (não documentar endpoints ou fluxos que ainda não existem).
 
-This layer contains:
+When integrated, the application layer is expected to:
 
-- backend API services;
-- frontend interfaces;
-- authentication workflows;
-- request validation;
-- business orchestration;
-- operational workflows;
-- user interaction management.
+- call **`svc_*`** entry points only (not raw `sp_*` / tables);
+- rely on DataLayer triggers and constraints for persistence rules;
+- avoid reimplementing Module 3 soft-reference rules in app code.
 
-The ApplicationLayer communicates directly with the DataLayer
-through controlled SQL procedures and database operations.
+This layer will cover backend APIs, frontend, authentication UX, and orchestration — scope to be documented as code lands in the Application repository.
 
 ---
 

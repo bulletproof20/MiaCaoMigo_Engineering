@@ -36,7 +36,7 @@ Semantic reference for **tables and columns** in the MiaCaoMigo PostgreSQL model
 | In scope | Out of scope (see other docs) |
 |----------|------------------------------|
 | Table/column names and meaning | `fn_*`, `sp_*`, `svc_*` signatures |
-| PK / FK / UQ / composite keys | Trigger bodies |
+| PK / FK / UQ / soft refs | Trigger bodies |
 | ENUM columns | pg_cron schedules |
 | Associative (bridge) tables | QA contract keys |
 | Cross-module FK targets | Bootstrap loader order |
@@ -50,7 +50,7 @@ Semantic reference for **tables and columns** in the MiaCaoMigo PostgreSQL model
 | **Attribute** | Physical column name |
 | **Name** | Human-readable label |
 | **Description** | Business semantics |
-| **Key** | `PK`, `FK`, `UQ`, `CPK` (composite PK), `ENUM` |
+| **Key** | `PK`, `FK`, **Soft** (logical ref, no DDL FK), `UQ`, `CPK`, `ENUM` |
 
 !!! note "Unique constraints"
     **UQ** marks single- or multi-column `UNIQUE` constraints (`AK` in legacy docs = alternate key = UQ).
@@ -84,6 +84,10 @@ Documented per module:
 | GiST `EXCLUDE` | `ex_schedule_overlap`, `ex_ownership_overlap`, `ex_appointment_vet_overlap` |
 | ENUM types | `sta_abs`, `sta_pur`, `sta_inv`, `status_app` |
 | Deferred FKs | All `01_ForeignKeys_ModX.sql` |
+| Soft references (M3) | `purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin` — [M3 doc](03_Module3.md) |
+
+!!! tip "SchemaSpy vs dictionary"
+    If SchemaSpy shows an **implied** FK that this dictionary marks **Soft**, the dictionary and DataLayer DDL prevail.
 
 ---
 

@@ -12,7 +12,8 @@ Commercial management: products, stock, purchases, sales, invoices, returns.
 ## Structural highlights
 
 - Stock-before-sale and invoice totals enforced via triggers / procedures
-- Purchase FK names: `fk_purchase_client`, `fk_purchase_employee` (disambiguated from Module 4 — see [Schema build pipeline](../../00_Schema_Build_Pipeline.md))
+- **Physical FK** on `purchase`: `fk_purchase_employee` only (`id_emp` NOT NULL → delete employee effectively blocked)
+- **Soft references:** `purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin` — no L1 FK; see [M3 architecture](../../../01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk)
 - Views: `07_Views_Mod3.sql` (`vw_*` for API reads)
 
 ---
