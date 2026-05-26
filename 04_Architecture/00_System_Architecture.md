@@ -1,46 +1,24 @@
-<div style="text-align: center; margin-top: 40px; margin-bottom: 50px;">
+# System Architecture Overview
 
-<h1 style="margin-bottom: 10px;">
-System Architecture
-</h1>
+## Overview
 
-<h3 style="
-    margin-top: 0;
-    color: #6b7280;
-    font-weight: normal;
-">
-MiaCaoMigo Architectural Structure & Engineering Organization
-</h3>
+The MiaCaoMigo ecosystem adopts a layered architectural approach focused on separation of responsibilities, modular organization, integrity enforcement, and maintainable system evolution.
 
-<p style="
-    max-width: 900px;
-    margin: 30px auto 0 auto;
-    line-height: 1.8;
-    font-size: 1.05rem;
-">
+The architecture is organized into isolated operational layers responsible for:
 
-The MiaCaoMigo ecosystem follows a layered architectural approach
-focused on separation of responsibilities, modularity,
-maintainability and engineering scalability.
+- persistence and relational integrity;
+- application orchestration;
+- engineering governance and documentation;
+- controlled service communication;
+- modular scalability.
 
-</p>
+The system prioritizes:
 
-</div>
-
----
-
-# Architectural Overview
-
-The system architecture is organized into two primary operational layers
-supported by an independent engineering and documentation environment.
-
-The architecture is designed to ensure:
-
-- modular development;
-- deployment isolation;
-- maintainable system evolution;
-- centralized engineering governance;
-- separation between persistence and business orchestration.
+- deterministic execution;
+- centralized integrity enforcement;
+- modular maintainability;
+- controlled validation boundaries;
+- long-term architectural consistency.
 
 ---
 
@@ -48,119 +26,121 @@ The architecture is designed to ensure:
 
 | Layer | Responsibility |
 |---|---|
-| DataLayer | Database architecture, integrity enforcement, persistence and SQL operations |
-| ApplicationLayer | Backend services, frontend application, business workflows and user interaction |
-| DataEngineering | Technical documentation, architecture governance, planning and engineering artifacts |
+| DataLayer | Database architecture, persistence, integrity enforcement, and SQL operations |
+| ApplicationLayer | Backend services, frontend application, API orchestration, and user interaction |
+| EngineeringLayer | Documentation, governance, planning, standards, and engineering resources |
+
+---
+
+# Layer Interaction
+
+The ApplicationLayer communicates with the DataLayer exclusively through controlled database service workflows.
+
+```text
+Frontend
+    ↓
+ApplicationLayer
+    ↓
+svc_*
+    ↓
+DataLayer
+```
+
+The EngineeringLayer provides centralized governance, documentation, and architectural visibility for the entire ecosystem.
+
+```text
+EngineeringLayer
+        ↓
+Documents and governs
+        ↓
+DataLayer + ApplicationLayer
+```
 
 ---
 
 # DataLayer
 
-The DataLayer is responsible for all persistence and database-oriented operations.
+The DataLayer represents the central persistence and integrity authority of the system.
 
-This layer contains:
+This layer is responsible for:
 
-- relational database schemas;
+- relational structure definition;
 - integrity enforcement;
-- SQL procedures;
-- triggers;
-- indexes;
-- scheduled jobs;
-- reusable queries;
-- metadata structures;
-- database standards.
+- procedural workflows;
+- scheduled database operations;
+- transactional validation;
+- persistence management;
+- relational metadata.
 
-The database engine is implemented using PostgreSQL.
+The DataLayer is implemented using PostgreSQL and organized into modular repository layers including:
 
-Implementation repository: **`01_MiaCaoMigo_DataLayer`** (`DataBase/`).
+- Bootstrap;
+- Schema;
+- Comments;
+- Services;
+- DataSeed;
+- QA;
+- SchemaSpy.
 
-| Concern | Engineering documentation |
-|---------|---------------------------|
-| Database hub (start here) | [01_Database/README.md](01_Database/README.md) |
-| Bootstrap & loaders | [00_Schema_Build_Pipeline.md](01_Database/00_Schema_Build_Pipeline.md) |
-| Governance & QA contracts | [00_Governance/README.md](01_Database/00_Governance/README.md) |
-| Interactive ERD | [05_SchemaSpy/schemaspy.md](01_Database/05_SchemaSpy/schemaspy.md) |
+Implementation repository:
 
-```mermaid
-flowchart LR
-    DL[DataLayer repo]
-    ENG[Engineering docs]
-    APP[ApplicationLayer]
-
-    APP -->|svc_*| DL
-    ENG -.->|describes| DL
+```text
+01_MiaCaoMigo_DataLayer
 ```
 
 ---
 
 # ApplicationLayer
 
-Repository: **`02_MiaCaoMigo_Application`** — **em desenvolvimento** (não documentar endpoints ou fluxos que ainda não existem).
+The ApplicationLayer is responsible for application orchestration and user interaction workflows.
 
-When integrated, the application layer is expected to:
+This layer includes:
 
-- call **`svc_*`** entry points only (not raw `sp_*` / tables);
-- rely on DataLayer triggers and constraints for persistence rules;
-- avoid reimplementing Module 3 soft-reference rules in app code.
+- backend APIs;
+- frontend services;
+- authentication interfaces;
+- request orchestration;
+- operational interaction flows;
+- response serialization.
 
-This layer will cover backend APIs, frontend, authentication UX, and orchestration — scope to be documented as code lands in the Application repository.
+The ApplicationLayer consumes the DataLayer exclusively through controlled `svc_*` entry points.
+
+Implementation repository:
+
+```text
+02_MiaCaoMigo_Application
+```
 
 ---
 
-# DataEngineering
+# EngineeringLayer
 
-The DataEngineering environment centralizes all engineering,
-documentation and architectural governance resources associated
-with the MiaCaoMigo ecosystem.
+The EngineeringLayer centralizes all engineering, governance, planning, and architectural documentation resources associated with the MiaCaoMigo ecosystem.
 
-This environment contains:
+This layer contains:
 
 - technical documentation;
-- planning artifacts;
-- sprint organization;
-- engineering decisions;
 - architecture specifications;
+- governance standards;
 - integrity documentation;
 - diagrams;
-- standards;
-- SchemaSpy documentation;
-- academic statements;
+- planning artifacts;
+- engineering decisions;
 - development support resources.
 
-This layer acts as the centralized engineering knowledge base
-for the entire project.
+The EngineeringLayer acts as the centralized engineering knowledge base for the entire system.
 
 ---
 
-# Layer Communication
+# Containerization Strategy
 
-The ApplicationLayer communicates with the DataLayer
-through controlled and validated operations.
+The MiaCaoMigo ecosystem adopts a containerized architecture through Docker-based environment isolation.
 
-This communication includes:
-
-- authentication requests;
-- operational queries;
-- attendance workflows;
-- scheduling operations;
-- user management;
-- validation procedures;
-- integrity-controlled transactions.
-
-The DataEngineering environment supports all layers by providing
-centralized technical visibility and engineering traceability.
-
----
-
-# Containerized Architecture
-
-Docker is used to isolate the system into independent runtime environments.
-
-The architecture currently uses dedicated containers for:
+The architecture currently uses isolated runtime environments for:
 
 - DataLayer services;
 - ApplicationLayer services;
-- documentation and engineering tooling.
+- engineering and documentation tooling.
 
 This approach improves:
 
@@ -170,68 +150,26 @@ This approach improves:
 - maintainability;
 - environment portability.
 
----
-
-# DataLayer Container
-
-The DataLayer container is responsible for:
-
-- PostgreSQL execution;
-- database initialization;
-- persistence management;
-- extension support;
-- scheduled database operations.
-
-Supported PostgreSQL extensions include:
-
-- pg_cron;
-- btree_gist.
+The current architecture was designed to remain compatible with future orchestration and scalability improvements, including potential Kubernetes-based infrastructure orchestration.
 
 ---
 
-# ApplicationLayer Container
+# Architectural Principles
 
-The ApplicationLayer container is responsible for:
-
-- backend runtime execution;
-- frontend services;
-- API orchestration;
-- Node.js dependencies;
-- authentication services;
-- operational workflows.
-
----
-
-# Engineering Philosophy
-
-The MiaCaoMigo architecture follows a strict
-separation-of-responsibilities philosophy.
-
-Core principles include:
+The adopted architecture intentionally prioritizes:
 
 - integrity-first database design;
-- isolated persistence logic;
+- centralized validation enforcement;
 - modular application orchestration;
-- centralized documentation governance;
+- isolated repository responsibilities;
 - maintainable architectural evolution;
-- metadata-driven engineering.
-
-This architectural approach promotes:
-
-- consistency;
-- scalability;
-- maintainability;
-- controlled evolution;
-- engineering transparency.
+- deterministic execution;
+- governance-driven engineering.
 
 ---
 
-<div style="text-align: center; margin-top: 70px; opacity: 0.8;">
+# Final Statement
 
-<h3>MiaCaoMigo Engineering</h3>
+The MiaCaoMigo ecosystem was designed as a modular, integrity-oriented, and governance-driven architecture.
 
-<p>
-Architecture • Engineering • Documentation • Governance
-</p>
-
-</div>
+Each architectural layer preserves isolated responsibilities while remaining integrated through controlled operational boundaries and deterministic service communication.
