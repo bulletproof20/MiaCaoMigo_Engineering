@@ -1,187 +1,199 @@
-# Database architecture hub
+# Database Architecture Overview
 
-<div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
-  <span style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">PostgreSQL</span>
-  <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">As-implemented</span>
-  <span style="background:#7c3aed;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">01_MiaCaoMigo_DataLayer</span>
-</div>
+## Overview
 
-Single entry point for **database engineering** documentation. Describes the live MiaCaoMigo DataLayer — not speculative designs.
+This directory defines the architectural organization of the **MiaCaoMigo** database system.
 
-!!! info "Source of truth"
-    Runnable artefacts: repository **`01_MiaCaoMigo_DataLayer`**, folder **`DataBase/`**.
-    This Engineering tree documents, governs, and visualizes that implementation.
+The database architecture is organized through isolated repository layers responsible for:
 
----
+- bootstrap orchestration;
+- schema definition;
+- procedural services;
+- integrity enforcement;
+- QA validation;
+- generated documentation;
+- repository governance.
 
-## Quick navigation
+The architecture prioritizes:
 
-<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:1rem 0 2rem 0;">
+- deterministic execution;
+- modular organization;
+- repository readability;
+- maintainability across all modules;
+- controlled validation boundaries;
+- long-term scalability.
 
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>Build & bootstrap</strong><br/>
-<a href="00_Schema_Build_Pipeline.md">Schema build pipeline</a><br/>
-<small>Loaders, profiles, FK phase</small>
-</div>
-
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>Governance</strong><br/>
-<a href="00_Governance/README.md">Standards & integrity</a><br/>
-<small>Naming, SQL, templates, QA contracts</small>
-</div>
-
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>Modules</strong><br/>
-<a href="01_Schemas/README.md">Schemas overview</a><br/>
-<a href="01_Schemas/00_Public_Schema/00_Database_Architecture.md">Public schema</a>
-</div>
-
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>Data dictionary</strong><br/>
-<a href="04_Data_Dictionary/00_Overview.md">Overview</a> · M1–M4 tables<br/>
-<small>Columns, FKs, ENUMs, GiST</small>
-</div>
-
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>SchemaSpy</strong><br/>
-<a href="05_SchemaSpy/schemaspy.md">Interactive ERD</a><br/>
-<small>Generated HTML — read-only</small>
-</div>
-
-<div style="border:1px solid #e5e7eb; border-radius:10px; padding:14px;">
-<strong>System context</strong><br/>
-<a href="../00_System_Architecture.md">System architecture</a><br/>
-<a href="../README.md">Architecture index</a>
-</div>
-
-</div>
+> All architectural standards defined within this structure are mandatory for all database modules and contributors.
 
 ---
 
-## Implementation map (`DataBase/`)
+# Repository Architecture
 
-| Layer | Path | Docker init | Role |
-|-------|------|:-----------:|------|
-| **Bootstrap** | `Bootstrap/` | Yes | `init_core`, profiles `init_demo` / `init_qa`, loaders |
-| **Schema** | `Schema/` | Yes | DDL: types, tables, constraints, triggers, views, procedures |
-| **Comments** | `Comments/` | Yes | `COMMENT ON` for schema and services |
-| **Services** | `Services/` | Yes | `svc_*` workflows; M1 also hosts `sp_*` |
-| **DataSeed** | `DataSeed/` | Yes (profile) | Master data + demo narrative |
-| **QA** | `QA/` | No | `ci.ps1` / `qa.sh` → integrity + stress |
-| **Queries** | `Queries/` | No | Reference SQL only |
+The database repository is organized into isolated operational layers.
 
-```mermaid
-flowchart TB
-    subgraph boot["Bootstrap"]
-        IC[init_core]
-        ID[init_demo]
-        IQ[init_qa]
-    end
-
-    subgraph layers["Loader order — simplified"]
-        S[Schema 00_Core → 04_Module*]
-        CM[Comments]
-        SV[Services]
-        DS[DataSeed]
-    end
-
-    subgraph split["Procedural split"]
-        M1["M1: sp_* + svc_* in Services"]
-        M234["M2–M4: sp_* in Schema · svc_* in 99_Public_API"]
-    end
-
-    IC --> ID
-    IC --> IQ
-    ID --> layers
-    IQ --> layers
-    S --> split
-    SV --> split
+```text
+01_Database/
+├── 00_Governance/
+├── 01_Schemas/
+├── 03_Templates/
+├── 05_SchemaSpy/
 ```
 
 ---
 
-## Modular model (M1–M4)
+# Operational Architecture
 
-| Module | Domain | Tables | Deep dive |
-|--------|--------|:------:|-----------|
-| **M1** | Users, roles, attendance, email | 16 | [Module 1 architecture](01_Schemas/00_Public_Schema/01_Module1_Architecture.md) · [Dictionary](04_Data_Dictionary/01_Module1.md) |
-| **M2** | Animals & ownership | 8 | [Module 2](01_Schemas/00_Public_Schema/02_Module2_Architecture.md) · [Dictionary](04_Data_Dictionary/02_Module2.md) |
-| **M3** | Commercial (purchases, invoices) | 8 | [Module 3](01_Schemas/00_Public_Schema/03_Module3_Architecture.md) · [Soft refs](01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk) · [Dictionary](04_Data_Dictionary/03_Module3.md) |
-| **M4** | Appointments & notifications | 7 | [Module 4](01_Schemas/00_Public_Schema/04_Module4_Architecture.md) · [Dictionary](04_Data_Dictionary/04_Module4.md) |
+```mermaid
+flowchart TB
+    GOV["Governance"]
+    TMP["Templates"]
+    BOOT["Bootstrap"]
+    SCH["Schema"]
+    COM["Comments"]
+    SRV["Services"]
+    DATA["DataSeed"]
+    QA["QA"]
+    DOC["SchemaSpy"]
 
-**Cross-cutting:** [00_Database_Architecture.md](01_Schemas/00_Public_Schema/00_Database_Architecture.md) — `fn_*`, `vw_*`, `trg_*`, `jpr_*`, GiST exclusions, public API surface.
-
----
-
-## Programming model (as implemented)
-
-| Prefix | Typical location | Consumed by |
-|--------|------------------|-------------|
-| `fn_*` | Schema / Services helpers | Procedures, triggers, `svc_*` |
-| `sp_*` | M1 Services; M2–M4 Schema | `svc_*`, QA, jobs |
-| `svc_*` | `Services/…` and `99_Public_API` | Application layer |
-| `qa_*()` | `QA/contracts/` | Integrity tests |
-| `jpr_*` | Schema job procedures | pg_cron (M4 active; M2/M3 files skipped) |
-| `trg_*` / `vw_*` | Schema | Integrity, read models |
-
-Details: [SQL programming naming](00_Governance/00_Naming_Conventions/02_SQL_Programming.md).
+    GOV --> TMP
+    TMP --> SCH
+    BOOT --> SCH
+    SCH --> COM
+    SCH --> SRV
+    SRV --> DATA
+    SRV -. validated by .-> QA
+    SCH --> DOC
+```
 
 ---
 
-## QA & CI (host-side)
+# Repository Layers
 
-| Entry | Stages |
-|-------|--------|
-| `QA/runners/ci.ps1` (Windows) | bootstrap → fixtures → integrity → stress |
-| `QA/runners/qa.sh` (Unix) | same pipeline |
-
-Contracts: `QA/contracts/` · Fixtures: `QA/fixtures/seed/` · Tests: `QA/01_Integrity/` (21 tests).
-
-!!! note "Not loaded at Docker init"
-    QA runs against an already bootstrapped database — typically profile **`init_qa`**.
-
----
-
-## Documentation sections in this folder
-
-| Folder | Contents |
-|--------|----------|
-| `00_Governance/` | Naming, SQL standards, integrity strategy, templates |
-| `01_Schemas/` | Module architecture aligned to `Schema/` tree |
-| `04_Data_Dictionary/` | Table/column semantic reference |
-| `05_SchemaSpy/` | Generator scripts + **read-only** `02_Output/` |
-
-Legacy empty folders (`02_Model*_Integrity`) may exist beside `02_Module*_Integrity` — use only the **`Module*`** paths linked from MkDocs.
+| Layer | Responsibility |
+|---|---|
+| Governance | Standards, integrity architecture, naming, SQL conventions |
+| Templates | SQL authoring and structural readability patterns |
+| Bootstrap | Database initialization and loader orchestration |
+| Schema | Declarative relational structure and integrity |
+| Comments | Repository documentation through `COMMENT ON` |
+| Services | Procedural workflows and public APIs |
+| DataSeed | Master and demonstration data |
+| QA | Integrity and regression validation |
+| SchemaSpy | Generated relational documentation |
 
 ---
 
-## Module 3 — soft references (SchemaSpy)
+# Modular Architecture
 
-Four nullable columns are **logical references** without physical FK. SchemaSpy lists them as *implied* — that is **not** technical debt by default.
+The database is organized into four isolated functional modules.
 
-| Column | Integrity layer |
-|--------|-----------------|
-| `purchase.id_cli` | Optional retail; supplier POs omit |
-| `purchase.id_inv` | Optional invoice mirror |
-| `purchase_line.id_sto` | Set by `sp_receive_purchase` |
-| `return.id_inv_lin` | Validated in `tfn_return_restock` when present |
+| Module | Responsibility |
+|---|---|
+| Module 1 | Users, authentication, employee management, attendance |
+| Module 2 | Animals, ownership, veterinary domain |
+| Module 3 | Commercial operations and inventory workflows |
+| Module 4 | Appointments, schedules, notifications |
 
-Full analysis: [M3 architecture — soft references](01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk).
+All modules must preserve:
 
----
+- identical repository organization;
+- identical naming philosophy;
+- identical integrity architecture;
+- identical SQL standards;
+- identical governance principles.
 
-## Suggested reading order
-
-1. [Schema build pipeline](00_Schema_Build_Pipeline.md)
-2. [Governance overview](00_Governance/README.md)
-3. [Database architecture (public schema)](01_Schemas/00_Public_Schema/00_Database_Architecture.md)
-4. Module pages M1 → M4 (schemas + dictionary)
-5. [SchemaSpy interactive docs](05_SchemaSpy/schemaspy.md)
+There are no module-specific architectural exceptions.
 
 ---
 
-<div style="text-align:center; margin-top:2rem; opacity:0.85;">
+# Integrity Architecture
 
-Database hub — aligned with <code>01_MiaCaoMigo_DataLayer</code>
+The system enforces integrity through a layered validation architecture.
 
-</div>
+```text
+Structural Integrity
+    ↓
+Automated Integrity
+    ↓
+Procedural Validation
+    ↓
+QA Verification
+```
+
+Integrity rules should be enforced at the lowest deterministic layer capable of guaranteeing consistency.
+
+---
+
+# Procedural Architecture
+
+The procedural layer follows a controlled workflow architecture.
+
+```text
+Application
+    ↓
+svc_*
+    ↓
+sp_*
+    ↓
+fn_*
+    ↓
+vw_*
+```
+
+The database remains the primary authority for integrity enforcement and workflow validation.
+
+---
+
+# Generated Documentation
+
+The repository includes automatically generated relational documentation through SchemaSpy.
+
+SchemaSpy provides:
+
+- relational diagrams;
+- table exploration;
+- constraints;
+- indexes;
+- procedural metadata;
+- repository comments.
+
+Generated documentation is considered read-only and must not replace the DataLayer source of truth.
+
+---
+
+# Governance Architecture
+
+Repository standards and conventions are centralized within the governance layer.
+
+The governance architecture defines:
+
+- naming conventions;
+- SQL standards;
+- integrity architecture;
+- repository organization;
+- authoring templates;
+- validation boundaries.
+
+All repository implementations must preserve the standards defined by the governance structure.
+
+---
+
+# Design Principles
+
+The adopted database architecture intentionally prioritizes:
+
+- deterministic execution;
+- modular organization;
+- repository readability;
+- maintainability across all modules;
+- architectural consistency;
+- procedural clarity;
+- long-term scalability.
+
+---
+
+# Final Statement
+
+The MiaCaoMigo database architecture is designed as a modular, deterministic, and governance-driven DataLayer.
+
+All repository layers, workflows, integrity mechanisms, and documentation structures must preserve the architectural standards defined within this repository.

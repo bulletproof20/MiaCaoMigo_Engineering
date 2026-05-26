@@ -1,75 +1,131 @@
 # SQL Standards
 
-## Objective
+## Overview
 
-Formatting and file organization standards for:
+This document defines the official SQL development standards adopted within the **MiaCaoMigo** database system.
 
-```text
-01_MiaCaoMigo_DataLayer/DataBase/
-```
+These standards establish a consistent approach for:
 
-These conventions support:
+- repository organization;
+- SQL formatting;
+- module execution order;
+- bootstrap orchestration;
+- integrity management;
+- QA validation;
+- maintainability across all modules.
 
-- Bootstrap execution
-- QA validation
-- Repository consistency
-- Maintainability across modules
+The objective is to ensure:
 
-Related documentation:
+- architectural consistency;
+- predictable execution flow;
+- repository readability;
+- deterministic database builds;
+- long-term maintainability.
 
-- [Naming conventions](../00_Naming_Conventions/02_SQL_Programming.md)
-- [Schema build pipeline](../../00_Schema_Build_Pipeline.md)
-- [Templates](../03_Templates/README.md)
+> These standards are mandatory for all database modules and contributors.
 
 ---
 
-# 1. General Formatting
+# Related Documentation
 
-## 1.1 Keywords and casing
+| Document | Responsibility |
+|---|---|
+| Naming Conventions | Procedural naming philosophy |
+| Schema Objects Naming | Structural object naming |
+| Schema Build Pipeline | Bootstrap execution architecture |
+| Integrity Architecture | Integrity layering and validation boundaries |
+
+---
+
+# Global Architectural Consistency
+
+All modules must preserve the same structural and execution philosophy.
+
+Modules 1, 2, 3, and 4 must maintain:
+
+- identical execution ordering;
+- identical repository organization;
+- identical formatting standards;
+- identical loader architecture;
+- identical naming philosophy;
+- identical integrity layering strategy.
+
+There are no module-specific structural exceptions.
+
+---
+
+# General Formatting Standards
+
+## SQL Formatting Rules
 
 | Element | Standard |
 |---|---|
-| SQL keywords | lowercase |
+| SQL Keywords | lowercase |
 | Identifiers | lowercase `snake_case` |
 | Indentation | 4 spaces |
 | Clauses | separated when readability benefits |
 
-Example:
-
-```sql
-create table user_account (
-    id_use serial primary key,
-    nam_use varchar(100) not null
-);
-```
-
 ---
 
-## 1.2 Section headers
+## Section Header Standards
 
-### Module header
-
-```sql
--- =========================================================
--- MODULE 1 — USER MANAGEMENT
--- =========================================================
--- FILE: Schema/01_Module1_User_Management/00_Tables_Mod1.sql
--- PURPOSE: ...
--- LOADED BY: Bootstrap/Loaders/01_Structure.sql
--- =========================================================
-```
-
-### Object header
+### Module Header Structure
 
 ```sql
 -- =========================================================
--- 1. user_account
+-- MODULE <module_number> — <module_name>
+-- =========================================================
+-- FILE: <file_path>
+-- PURPOSE: <context>
+-- LOADED BY: <loader_path>
 -- =========================================================
 ```
 
 ---
 
-# 2. Repository Structure
+### Object Header Structure
+
+```sql
+-- =========================================================
+-- <object_number>. <object_name>
+-- =========================================================
+```
+
+---
+
+# Template Standardization
+
+All SQL files, comments, procedural sections, loaders, and repository structures must follow the official SQL template standards adopted by the MiaCaoMigo database system.
+
+Templates are responsible for preserving:
+
+- repository readability;
+- structural consistency;
+- deterministic section organization;
+- standardized documentation headers;
+- maintainable SQL formatting;
+- visual consistency across all modules.
+
+Template standards define the canonical formatting and readability structure for:
+
+- schema files;
+- procedural workflows;
+- triggers;
+- services;
+- bootstrap loaders;
+- comments;
+- QA validation scripts.
+
+All contributors must preserve the same template philosophy and readability standards across the entire repository.
+
+> Official template repository location:  
+> `<template_repository_path>`
+
+---
+
+# Repository Structure
+
+## Root Structure
 
 ```text
 DataBase/
@@ -83,28 +139,35 @@ DataBase/
 └── (no SQL in repository root)
 ```
 
-## Folder responsibilities
+---
 
-| Folder | Purpose |
+## Folder Responsibilities
+
+| Folder | Responsibility |
 |---|---|
-| `Bootstrap/` | Initialization and loaders |
+| `Bootstrap/` | Initialization and execution loaders |
 | `Schema/` | Core DDL and structural objects |
-| `Comments/` | `COMMENT ON` definitions |
+| `Comments/` | `COMMENT ON` documentation |
 | `Services/` | Public and internal SQL APIs |
-| `DataSeed/` | Master and demo data |
-| `QA/` | Validation, fixtures and contracts |
+| `DataSeed/` | Master and demonstration data |
+| `QA/` | Validation, fixtures, and contracts |
 | `Queries/` | Reference-only queries |
-
-!!! note "Docker mounts"
-    `docker-compose.yml` mounts initialization folders under `/docker-entrypoint-initdb.d/`.
-
-    Only the top-level `init.sql` executes automatically.
 
 ---
 
-# 3. Module File Order
+## Docker Initialization Rule
 
-Each module follows the same execution structure:
+Docker initialization folders must:
+
+- mount under `/docker-entrypoint-initdb.d/`;
+- preserve deterministic execution ordering;
+- expose only the top-level initialization entry point.
+
+---
+
+# Module File Structure
+
+Each module must preserve the same execution order.
 
 | Order | File | Responsibility |
 |---|---|---|
@@ -117,39 +180,45 @@ Each module follows the same execution structure:
 | 06 | `06_Jobs_ModX.sql` | Scheduled jobs |
 | 07 | `07_Views_ModX.sql` | Read models |
 
-## Core schema
+---
 
-| File | Purpose |
+# Core Schema Structure
+
+| File | Responsibility |
 |---|---|
 | `01_Types.sql` | ENUM definitions |
 | `00_Data_Cleanup.sql` | Pre-seed cleanup |
 
 ---
 
-# 4. Bootstrap Execution Flow
+# Bootstrap Execution Flow
 
-Profile:
+## Initialization Profile
 
 ```text
 Bootstrap/Profiles/init_core.sql
 ```
 
-| Step | Loader | Description |
+---
+
+## Execution Order
+
+| Step | Loader | Responsibility |
 |---|---|---|
 | 1 | `00_Extensions.sql` | Extensions |
-| 2 | `01_Types.sql` | ENUMs |
-| 3 | `01_Structure.sql` | Tables |
-| 4 | `02_ForeignKeys.sql` | Foreign keys |
+| 2 | `01_Types.sql` | ENUM definitions |
+| 3 | `01_Structure.sql` | Structural objects |
+| 4 | `02_ForeignKeys.sql` | Relational dependencies |
 | 5 | `03_Integrity.sql` | Integrity layer |
-| 6 | `05_Comments.sql` | Schema comments |
-| 7 | `06_Services.sql` | Services |
-| 8 | `08_Service_Comments.sql` | Service comments |
+| 6 | `05_Comments.sql` | Schema documentation |
+| 7 | `06_Services.sql` | Services layer |
+| 8 | `08_Service_Comments.sql` | Service documentation |
 
 ---
 
-# 5. Constraints
+# Constraint Standards
 
-## Table files
+## Table Constraint Order
 
 Inside:
 
@@ -157,15 +226,17 @@ Inside:
 00_Tables_ModX.sql
 ```
 
-Constraint order:
+constraints must follow this order:
 
 1. Primary key
 2. Unique
 3. Check
 
-## Foreign keys
+---
 
-Foreign keys must exist only in:
+## Foreign Key Isolation Rule
+
+Foreign keys must exist exclusively inside:
 
 ```text
 01_ForeignKeys_ModX.sql
@@ -173,16 +244,22 @@ Foreign keys must exist only in:
 
 ---
 
-# 6. Services Layer
+# Services Layer Standards
 
-| Rule | Standard |
+## Architectural Rules
+
+| Layer | Prefix |
 |---|---|
-| Public API | `svc_*` only |
-| Workflows | `sp_*` |
-| Core helpers | `fn_*` |
-| Technical jobs | `jpr_*` |
+| Public API | `svc_*` |
+| Business Workflows | `sp_*` |
+| Internal Helpers | `fn_*` |
+| Technical Jobs | `jpr_*` |
 
-Core helpers belong to:
+---
+
+## Core Helpers Structure
+
+Core reusable helper logic must remain inside:
 
 ```text
 Services/00_Core/
@@ -190,95 +267,173 @@ Services/00_Core/
 
 ---
 
-# 7. Comments Layer
+# Comments Layer Standards
 
-- Loaded after all objects exist
-- Mirrors schema structure
-- Maintains independent documentation responsibility
+## Responsibilities
 
-Example:
+The comments layer must:
+
+- load only after all objects exist;
+- mirror schema structure;
+- preserve isolated documentation responsibility.
+
+---
+
+## Structural Mirroring Rule
 
 ```text
-Comments/Schema/01_Module1/
+Comments/Schema/<module_context>/
 ```
 
-mirrors:
+must mirror:
 
 ```text
-Schema/01_Module1_User_Management/
+Schema/<module_context>/
 ```
 
 ---
 
-# 8. QA Standards
+# QA Standards
+
+## QA Naming Rules
 
 | Element | Convention |
 |---|---|
 | Assertions | `PASS:` / `FAIL:` |
 | Contracts | `qa_*()` |
 | Fixtures | `fixtures/seed/` |
-| Integrity scripts | `01_Integrity/` |
-
-QA execution is external to default Docker bootstrap.
+| Integrity Scripts | `01_Integrity/` |
 
 ---
 
-# 9. Queries and Manual Scripts
+## QA Isolation Rule
 
-| Folder | Purpose |
+QA execution must remain external to the default Docker bootstrap process.
+
+---
+
+# Queries and Manual Scripts
+
+## Repository Responsibilities
+
+| Folder | Responsibility |
 |---|---|
 | `Queries/` | Reference queries |
 | `QA/05_Manual/` | Manual execution scenarios |
 
-Guidelines:
+---
 
-- Explicit columns preferred
-- Avoid `select *`
-- Mark deprecated queries clearly
+## Query Standards
+
+Queries should:
+
+- prefer explicit column selection;
+- avoid `select *`;
+- clearly identify deprecated logic.
 
 ---
 
-# 10. Loader Standards
+# Loader Standards
 
-Loaders should include:
+## Loader Requirements
+
+All loaders must include:
 
 ```sql
 \set ON_ERROR_STOP on
 ```
 
-And:
+---
 
-- progress `\echo`
-- absolute Docker paths
-- deterministic ordering
+## Loader Responsibilities
+
+Loaders must preserve:
+
+- progress visibility through `\echo`;
+- absolute Docker paths;
+- deterministic execution ordering.
 
 ---
 
-# 11. Idempotency
+# Idempotency Standards
 
-Prefer defensive drops before recreation:
+## Defensive Recreation Strategy
+
+Database objects should prefer defensive drops before recreation.
+
+---
+
+## Structure
 
 ```sql
-drop trigger if exists trg_* on ...;
-drop function if exists fn_*(...);
-drop procedure if exists sp_*(...);
+drop trigger if exists trg_<context> on <table>;
+
+drop function if exists fn_<context>(...);
+
+drop procedure if exists sp_<context>(...);
 ```
-
-Especially for:
-
-- Services
-- Integrity layer
-- QA reload scenarios
 
 ---
 
-# 12. Anti-Patterns
+## Recommended Usage
 
-!!! warning
+Defensive recreation is especially recommended for:
 
-    Avoid the following:
+- services;
+- integrity layers;
+- QA reload scenarios.
 
-    - Foreign keys inside `00_Tables_*.sql`
-    - Calling `svc_*` from triggers
-    - Loading `QA/` automatically in bootstrap
-    - Creating unmanaged top-level loaders
+---
+
+# Anti-Patterns
+
+The following practices are prohibited:
+
+- foreign keys inside `00_Tables_*.sql`;
+- calling `svc_*` objects from triggers;
+- automatically loading `QA/` during bootstrap;
+- unmanaged top-level loaders;
+- inconsistent execution ordering;
+- module-specific structural exceptions.
+
+---
+
+# Dictionary Standardization
+
+All repository structures, prefixes, execution layers, and architectural patterns must be formally documented within the system dictionary and architecture documentation.
+
+The documentation is responsible for defining:
+
+- structural responsibilities;
+- execution ordering;
+- naming standards;
+- layer isolation rules;
+- repository organization principles.
+
+---
+
+# Design Principles
+
+The adopted standards intentionally prioritize:
+
+- architectural consistency;
+- deterministic execution;
+- repository readability;
+- maintainability across all modules;
+- relational integrity;
+- procedural clarity;
+- long-term scalability.
+
+---
+
+# Final Statement
+
+Consistency across the entire SQL architecture is considered a core system requirement.
+
+All standards defined in this documentation must be preserved across:
+
+- all modules;
+- all services;
+- all integrity layers;
+- all bootstrap processes;
+- all future system extensions.

@@ -1,168 +1,340 @@
 # SQL Programming Naming Conventions
 
+## Overview
+
+This document defines the official naming conventions adopted for procedural SQL development within the **MiaCaoMigo** database system.
+
+The convention standardizes the naming of:
+
+- functions;
+- procedures;
+- triggers;
+- scheduled jobs;
+- public APIs;
+- QA contracts;
+- procedural variables and records.
+
+The primary goals are:
+
+- semantic consistency;
+- procedural readability;
+- architectural predictability;
+- maintainability across all modules;
+- standardized SQL programming practices.
+
+> These conventions are mandatory for all database modules and contributors.
+
+---
+
+# Global Architectural Consistency
+
+All modules must follow the exact same procedural naming philosophy and architectural organization.
+
+There are no module-specific naming exceptions.
+
+Modules 1, 2, 3, and 4 must preserve:
+
+- identical prefix semantics;
+- identical structural organization;
+- identical procedural classification rules;
+- identical API exposure philosophy;
+- identical naming consistency standards.
+
+---
+
+# Prefix Architecture Overview
+
+| Prefix | Layer | Application Callable |
+|---|---|---|
+| `svc_*` | Public API | Yes |
+| `sp_*` | Business workflow | No |
+| `fn_*` | Internal helper / utility | No |
+| `jpr_*` | Scheduled job procedure | No |
+| `trg_*` | Trigger | No |
+| `qa_*` | QA contract lookup | No |
+| `vw_*` | Read model (view) | No |
+
+---
+
+# Services Layer
+
+Business-facing operations must be exposed through the `svc_*` public API layer.
+
+Internal workflows must remain encapsulated through:
+
+- `sp_*` business workflows;
+- `fn_*` internal helper functions;
+- `vw_*` read models;
+- controlled relational operations.
+
+---
+
+# Schema Responsibilities
+
+Schema modules are responsible for maintaining:
+
+- procedural definitions;
+- triggers;
+- scheduled jobs;
+- read models;
+- integrity rules;
+- relational consistency.
+
+All modules must preserve the same structural organization philosophy across the entire system.
+
+---
+
+# Functions (`fn_*`)
+
 ## Purpose
 
-Naming rules for procedural SQL in MiaCaoMigo: functions, procedures, triggers, scheduled jobs, the public API, and QA contracts.
-
-Aligned with **`01_MiaCaoMigo_DataLayer/DataBase/Services/`** and **`DataBase/Schema/`**.
+Functions represent reusable internal logic and helper operations.
 
 ---
 
-## Prefix overview
+## Naming Rules
 
-| Prefix | Layer | Callable by application? | Typical location |
-|--------|-------|--------------------------|------------------|
-| **`svc_*`** | Public API | **Yes** — only official entry points | `Services/*/99_Public_API*` |
-| **`sp_*`** | Business workflow | No | M1: `Services/01_Module1/**`; M2–M4: `Schema/*/05_Procedures_*` |
-| **`fn_*`** | Internal / trigger helper | No | `Services/00_Core`, `Services/01_Module1`, `Schema/*/02_Functions_*` |
-| **`jpr_*`** | Job procedure (pg_cron target) | No | `Schema/*/05_Procedures_*` (technical maintenance) |
-| **`trg_*`** | Trigger | No | `Schema/*/03_Triggers_*` |
-| **`qa_*`** | QA contract lookup | No (tests/fixtures only) | `QA/contracts/01_QA_Functions.sql` |
-| **`vw_*`** | Read model (view) | No — via `svc_*` / `sp_*` | `Schema/*/07_Views_*` |
+Functions must:
 
-!!! note "Module 1 split"
-    Module 1 **business** `sp_*` live in **Services**. Schema `05_Procedures_Mod1.sql` holds **`jpr_*`** job procedures and DROP guards for legacy `sp_*` that moved to Services.
+- use the `fn_` prefix;
+- use lowercase `snake_case`;
+- describe the operation being performed;
+- avoid caller-oriented naming.
 
 ---
 
-## Functions (`fn_*`)
+## Structure
 
-**Rules**
-
-- Prefix `fn_`
-- Lowercase `snake_case`
-- Describe operation, not caller (`fn_normalize_email`, not `fn_login_user`)
-
-**Examples (implemented)**
-
-| Function | Role |
-|----------|------|
-| `fn_normalize_email` | Core identity normalization |
-| `fn_pick_*` | Ranked selection helpers (M1 query helpers) |
-| `fn_*` in Schema | Trigger support functions |
+```text
+fn_<operation_context>
+```
 
 ---
 
-## Procedures and workflow functions (`sp_*`)
+# Procedures and Workflow Functions (`sp_*`)
 
-**Rules**
+## Purpose
 
-- Prefix `sp_`
-- Represent a business or domain workflow
-- Module 1: prefer **function** returning rows/status where login-style; **procedure** for multi-step writes
-
-**Examples (Module 1 — Services)**
-
-| Object | Kind |
-|--------|------|
-| `sp_auth_login` | function |
-| `sp_auth_logout` | function |
-| `sp_create_client` | procedure |
-| `sp_create_employee` | procedure |
-| `sp_clock_toggle` | procedure |
-| `sp_promote_to_veterinarian` | function |
-
-**Examples (Module 4 — Schema)**
-
-| Object | Role |
-|--------|------|
-| `sp_create_appointment` | Domain scheduling workflow (integrity tests call directly) |
+Procedures and workflow functions represent business-domain operations.
 
 ---
 
-## Job procedures (`jpr_*`)
+## Naming Rules
 
-Scheduled maintenance invoked by **pg_cron** uses the **`jpr_`** prefix (job procedure), not `job_`.
+Objects must:
 
-| Procedure | Cron name (string) | Schedule |
-|-----------|-------------------|----------|
-| `jpr_auto_close_clock_in_midnight` | `auto_close_clockin_midnight` | `0 0 * * *` |
-| `jpr_auto_cancel_expired_absences` | `auto_cancel_expired_absences` | `5 0 * * *` |
-
-!!! info "Cron schedule identifier"
-    The first argument to `cron.schedule()` is a **human-readable job name** (snake_case string). It is not prefixed with `job_`.
-
-Modules 2 and 3: `06_Jobs_Mod2.sql` / `06_Jobs_Mod3.sql` are **placeholders** (skipped at bootstrap). Module 4 may define additional `jpr_*` / cron entries.
+- use the `sp_` prefix;
+- represent a business workflow;
+- remain semantically descriptive.
 
 ---
 
-## Public API (`svc_*`)
+## Structure
 
-**Rules**
-
-- Only `svc_*` objects are the **application-facing contract**
-- Implemented in Services; delegate to `sp_*`, `vw_*`, or controlled DML
-- Modules 2–4: single `99_Public_API.sql` per module
-
-**Examples**
-
-| API | Delegates to |
-|-----|----------------|
-| `svc_auth_login` | `sp_auth_login` |
-| `svc_create_client` | `sp_create_client` |
-| `svc_get_animal_history` | custom read SQL |
+```text
+sp_<workflow_context>
+```
 
 ---
 
-## Triggers (`trg_*`)
+## Workflow Strategy
 
-**Rules**
-
-- Prefix `trg_`
-- Name reflects guard or action (`trg_block_clock_in_insert`, `trg_create_default_setup`)
-
-**Module 1 triggers (implemented)**
-
-| Trigger | Purpose |
-|---------|---------|
-| `trg_block_clock_in_insert` | Clock-in rules |
-| `trg_block_employee_inactivation` | Lifecycle guard |
-| `trg_block_assistant_disjunction` | Role disjunction |
-| `trg_block_veterinarian_disjunction` | Role disjunction |
-| `trg_block_absence_overlap_by_user` | Absence overlap |
-| `trg_create_default_setup` | Default user setup |
+| Object Type | Recommended Usage |
+|---|---|
+| Function | Operations returning rows, status, or computed data |
+| Procedure | Multi-step transactional write workflows |
 
 ---
 
-## QA contracts (`qa_*`)
+# Job Procedures (`jpr_*`)
 
-**Rules**
+## Purpose
 
-- Functions in `QA/contracts/01_QA_Functions.sql`
-- Return stable IDs for fixture keys documented in `QA/contracts/00_ENTITIES.md`
-- Loaded by `runners/stages/fixtures.ps1` before integrity tests
-
-**Examples**
-
-| Function | Semantic entity |
-|----------|-----------------|
-| `qa_client_active_id()` | `QA_CLIENT_ACTIVE` |
-| `qa_vet_primary_id()` | `QA_VET_PRIMARY` |
-| `qa_registrar_emp_id()` | `QA_REGISTRAR` |
+Scheduled maintenance operations executed through **pg_cron**.
 
 ---
 
-## Parameters, variables, records
+## Naming Rules
 
-| Kind | Prefix | Example |
-|------|--------|---------|
-| Parameter | `p_` | `p_email`, `p_id_emp` |
-| Local variable | `v_` | `v_id_usr` |
-| Record | `r_` | `r_usr` (when used) |
+Job procedures must:
 
----
-
-## Legacy / abandoned patterns
-
-!!! warning "Do not use in new code"
-    | Pattern | Status |
-    |---------|--------|
-    | `job_*` as procedure prefix | **Not used** — use `jpr_*` for cron targets |
-    | `fn_login_user` / `fn_logout_user` | **Replaced** by `sp_auth_login` / `sp_auth_logout` + `svc_*` |
-    | Business `sp_*` only in Schema (M1) | **Moved** to Services |
+- use the `jpr_` prefix;
+- represent automated maintenance tasks;
+- remain operationally descriptive.
 
 ---
 
-## Dictionary
+## Structure
 
-Semantic abbreviations (`ema_usr`, `id_emp`, …) are defined in the [Data Dictionary](../../04_Data_Dictionary/00_Overview.md) and column comments under `DataBase/Comments/`.
+```text
+jpr_<job_context>
+```
+
+---
+
+## Cron Naming Rule
+
+The first argument of `cron.schedule()` must:
+
+- remain human-readable;
+- use plain `snake_case`;
+- avoid object prefixes.
+
+---
+
+# Public API (`svc_*`)
+
+## Purpose
+
+`svc_*` objects define the official application-facing contract.
+
+Applications must only communicate with the database through this layer.
+
+---
+
+## Naming Rules
+
+Public API objects must:
+
+- use the `svc_` prefix;
+- remain application-oriented;
+- avoid exposing internal implementation details.
+
+---
+
+## Structure
+
+```text
+svc_<service_context>
+```
+
+---
+
+# Triggers (`trg_*`)
+
+## Purpose
+
+Triggers enforce automated integrity rules and lifecycle protections.
+
+---
+
+## Naming Rules
+
+Triggers must:
+
+- use the `trg_` prefix;
+- clearly describe the guarded action or behavior;
+- remain semantically explicit.
+
+---
+
+## Structure
+
+```text
+trg_<trigger_context>
+```
+
+---
+
+# QA Contracts (`qa_*`)
+
+## Purpose
+
+QA contract functions provide stable identifiers for fixtures and integrity testing.
+
+---
+
+## Naming Rules
+
+QA contracts must:
+
+- use the `qa_` prefix;
+- identify semantic fixture entities;
+- preserve deterministic testing references.
+
+---
+
+## Structure
+
+```text
+qa_<fixture_context>
+```
+
+---
+
+# Views (`vw_*`)
+
+## Purpose
+
+Views represent read models and reporting abstractions.
+
+---
+
+## Naming Rules
+
+Views must:
+
+- use the `vw_` prefix;
+- represent a read-model context;
+- remain semantically descriptive.
+
+---
+
+## Structure
+
+```text
+vw_<read_model_context>
+```
+
+---
+
+# Parameters, Variables and Records
+
+## Naming Standards
+
+| Element Type | Prefix | Structure |
+|---|---|---|
+| Parameter | `p_` | `p_<context>` |
+| Local Variable | `v_` | `v_<context>` |
+| Record | `r_` | `r_<context>` |
+
+---
+
+# Dictionary Standardization
+
+All semantic abbreviations, prefixes, and naming structures must be formally documented within the system dictionary.
+
+The dictionary is responsible for defining:
+
+- semantic meanings;
+- approved abbreviations;
+- contextual identifiers;
+- structural naming references.
+
+---
+
+# Design Principles
+
+The adopted convention prioritizes:
+
+- semantic compactness;
+- procedural readability;
+- architectural consistency;
+- relational clarity;
+- maintainability across all modules;
+- long-term scalability.
+
+---
+
+# Final Statement
+
+Consistency across procedural SQL is considered a core architectural requirement.
+
+A predictable naming architecture improves:
+
+- debugging;
+- onboarding;
+- development speed;
+- code review quality;
+- module interoperability;
+- long-term system sustainability.
