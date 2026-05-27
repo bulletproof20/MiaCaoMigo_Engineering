@@ -81,16 +81,20 @@ When the application server is running, the website repository exposes:
 
 | Endpoint | Purpose |
 |----------|---------|
-| `/docs/` | Documentation hub |
+| `/docs/` | Documentation hub (HTML, website) |
 | `/api-docs/` | Swagger UI |
 | `/api-docs.json` | OpenAPI JSON specification |
 | `/jsdoc/` | Generated JSDoc reference |
+
+The same content is indexed in this Engineering portal under [Website documentation hub](04_Generated_Docs/README.md) (equivalent to `Docs/index.html`).
 
 Static documentation can be regenerated in the website repository with:
 
 ```sh
 npm run docs:build
 ```
+
+See [Update Docs](04_Generated_Docs/Update_Docs.md).
 
 ---
 

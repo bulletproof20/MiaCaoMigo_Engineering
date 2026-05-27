@@ -20,6 +20,7 @@ This section adapts the website documentation into the Engineering portal withou
 | [Website flows](01_Website_Flows.md) | Authentication, client, appointment and staff/admin flows |
 | [Runtime setup](02_Runtime_Setup.md) | Local/Docker execution model and Application-to-DataLayer connection |
 | [Implementation evidence](03_Implementation_Evidence.md) | Defense-oriented mapping between implemented website features and RF/RNF evidence |
+| [**Website documentation hub**](04_Generated_Docs/README.md) | Hub equivalente ao `Docs/index.html` do website (Backend, Frontend, Swagger, JSDoc, atualização) |
 
 ---
 

@@ -158,6 +158,15 @@ nav:
           - Website Flows: 04_Architecture/02_Application/01_Website_Flows.md
           - Runtime Setup: 04_Architecture/02_Application/02_Runtime_Setup.md
           - Implementation Evidence: 04_Architecture/02_Application/03_Implementation_Evidence.md
+          - Website Documentation:
+              - Hub: 04_Architecture/02_Application/04_Generated_Docs/README.md
+              - Backend: 04_Architecture/02_Application/04_Generated_Docs/Backend.md
+              - Frontend: 04_Architecture/02_Application/04_Generated_Docs/Frontend.md
+              - Frontend Flow: 04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow.md
+              - Swagger: 04_Architecture/02_Application/04_Generated_Docs/Swagger.md
+              - OpenAPI: 04_Architecture/02_Application/04_Generated_Docs/OpenAPI.md
+              - Code Reference: 04_Architecture/02_Application/04_Generated_Docs/Code_Reference.md
+              - Update Docs: 04_Architecture/02_Application/04_Generated_Docs/Update_Docs.md
 
       - Database Engineering:
 

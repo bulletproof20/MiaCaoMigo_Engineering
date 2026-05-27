@@ -185,7 +185,16 @@ flowchart TB
 │   ├── 00_Application_Overview.md
 │   ├── 01_Website_Flows.md
 │   ├── 02_Runtime_Setup.md
-│   └── 03_Implementation_Evidence.md
+│   ├── 03_Implementation_Evidence.md
+│   └── 04_Generated_Docs/             hub Docs/index.html (MkDocs)
+│       ├── README.md
+│       ├── Backend.md
+│       ├── Frontend.md
+│       ├── Frontend_Flow.md
+│       ├── Swagger.md
+│       ├── OpenAPI.md
+│       ├── Code_Reference.md
+│       └── Update_Docs.md
 └── 01_Database/
     ├── README.md
     ├── 00_Schema_Build_Pipeline.md
