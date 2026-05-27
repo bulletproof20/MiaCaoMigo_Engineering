@@ -70,7 +70,7 @@ nav:
   - Home:
       - Cover: index.md
       - Overview: home.md
-      - Documentation layers: DOCUMENTATION_LAYERS.md
+      - Repository Structure (maintainers): STRUCTURE.md
 
   # =========================================================
   # Planning
@@ -111,16 +111,13 @@ nav:
   # =========================================================
 
   - Requirements:
-      - About Requirements: 02_Requirements/README.md
-      - Traceability Overview: 02_Requirements/00_Traceability.md
-      - Sprint 2 — APS Source: 02_Requirements/Sprint2/00_Authoritative_Source.md
-      - Sprint 2 — RF Matrix: 02_Requirements/Sprint2/01_RF_Traceability_Matrix.md
       - Functional Requirements: 02_Requirements/00_Functional_Requirements.md
       - Non-Functional Requirements: 02_Requirements/01_Non_Functional_Requirements.md
-      - User Requirements: 02_Requirements/02_User_Requirements.md
-      - Business Requirements: 02_Requirements/03_Business_Requirements.md
+      - Business Rules: 02_Requirements/02_Business_Rules.md
+      - Business Processes: 02_Requirements/03_Business_Processes.md
       - Acceptance Criteria: 02_Requirements/04_Acceptance_Criteria.md
-      - Constraints: 02_Requirements/05_Constraints.md
+      - Implementation Matrix: 02_Requirements/06_Implementacion_Matrix.md
+      - Constraints: 02_Requirements/07_Constraints.md
 
   # =========================================================
   # Diagrams & Modeling
@@ -154,14 +151,11 @@ nav:
 
       - Database Engineering:
 
-          - Database Hub: 04_Architecture/01_Database/README.md
-
-          - Schema Build Pipeline:
-              - Overview: 04_Architecture/01_Database/00_Schema_Build_Pipeline.md
+          - Database Hub: 04_Architecture/01_Database/Architeture_Overview.md
 
           - Governance:
 
-              - Overview: 04_Architecture/01_Database/00_Governance/README.md
+              - Overview: 04_Architecture/01_Database/00_Governance/Overview.md
 
               - Naming Conventions:
                   - Naming Philosophy: 04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy.md
@@ -172,36 +166,28 @@ nav:
                   - Overview: 04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards.md
 
               - Integrity Rules:
-                  - Integrity Strategy: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Strategy.md
-                  - Module 1: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Module1_Integrity/00_Structural_Integrity.md
-                  - Module 2: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Module2_Integrity/00_Overview.md
-                  - Module 3: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Module3_Integrity/00_Overview.md
-                  - Module 4: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/04_Module4_Integrity/00_Overview.md
+                  - Integrity Architecture: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architeture.md
+                  - Structural Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity.md
+                  - Automated Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity.md
+                  - Procedural Validation: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation.md
 
               - Templates:
-                  - Overview: 04_Architecture/01_Database/00_Governance/03_Templates/README.md
+                  - SQL Authoring Templates: 04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates.md.md
 
           - Schemas:
 
-              - Overview: 04_Architecture/01_Database/01_Schemas/README.md
+              - Overview: 04_Architecture/01_Database/01_Schemas/00_Overview.md
 
               - Public Schema:
-                  - Database Architecture: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database_Architecture.md
-                  - Module 1: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1_Architecture.md
-                  - Module 2: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2_Architecture.md
-                  - Module 3: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md
-                  - Module 4: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4_Architecture.md
-
-          - Data Dictionary (implementation):
-              - Overview: 04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md
-              - Module 1 — Users: 04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md
-              - Module 2 — Animals: 04_Architecture/01_Database/04_Data_Dictionary/02_Module2.md
-              - Module 3 — Commercial: 04_Architecture/01_Database/04_Data_Dictionary/03_Module3.md
-              - Module 4 — Appointments: 04_Architecture/01_Database/04_Data_Dictionary/04_Module4.md
+                  - Database: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database.md
+                  - Module 1: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1.md
+                  - Module 2: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2.md
+                  - Module 3: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3.md
+                  - Module 4: 04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4.md
 
           - SchemaSpy:
-              - Interactive Documentation: 04_Architecture/01_Database/05_SchemaSpy/schemaspy.md
-              - User Guide: 04_Architecture/01_Database/05_SchemaSpy/00_README.md
+              - Overview: 04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview.md
+              - User Guide: 04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide.md
 
   # =========================================================
   # Documentation
