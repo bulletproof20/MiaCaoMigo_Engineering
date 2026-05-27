@@ -98,8 +98,9 @@ This portal centralizes conceptual, operational and technical documentation prod
     31595
 
     **Contributions**
-    - Operational Context
-    - Ecosystem Support
+    - Database Engineering
+    - API & Frontend
+    - Engineering Documentation
 
 </div>
 

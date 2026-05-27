@@ -5,6 +5,9 @@ docs_dir: ..
 theme:
   name: material
 
+  logo: 00_Assets/00_Branding/00_logos/Logo_partialBack.png
+  favicon: 00_Assets/00_Branding/01_icons/Logo_pBack.ico 
+
   palette:
     - scheme: default
       primary: indigo
@@ -30,6 +33,9 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search
