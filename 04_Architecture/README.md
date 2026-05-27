@@ -5,7 +5,7 @@
   <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">DataLayer-aligned</span>
 </div>
 
-Index for **system** and **database** architecture. Validated against **`01_MiaCaoMigo_DataLayer`**.
+Index for **system**, **application** and **database** architecture. Validated against the sibling repositories **`MiaCaoMigo_`** and **`MiaCaoMigo_DataLayer`**.
 
 ---
 
@@ -13,7 +13,8 @@ Index for **system** and **database** architecture. Validated against **`01_MiaC
 
 | Document | Scope |
 |----------|--------|
-| [System architecture](00_System_Architecture.md) | DataLayer · Application (in dev) · Engineering |
+| [System architecture](00_System_Architecture.md) | DataLayer · Application · Engineering |
+| [Application hub](02_Application/README.md) | Website architecture, flows, runtime setup and implementation evidence |
 | [Database hub](01_Database/README.md) | PostgreSQL, M1–M4, QA, SchemaSpy link |
 
 ---
@@ -37,7 +38,7 @@ Index for **system** and **database** architecture. Validated against **`01_MiaC
 | Asset | Note |
 |-------|------|
 | [ER model](../03_Diagrams/00_ER_Model/er_model.md) | May diverge from DDL — **DataLayer prevails** |
-| [Application](02_Application/README.md) | Application layer — in development |
+| [Application](02_Application/README.md) | Frontend/API layer implemented in `MiaCaoMigo_` |
 | [Sprint 2 RF matrix](../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) | Functional coverage vs DataLayer (not duplicated here) |
 | UML (`03_Diagrams/01_UML/`) | Reserved — not yet published in this repo |
 

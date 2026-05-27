@@ -113,7 +113,7 @@ For a progressive exploration of the project documentation:
 1. [Documentation layers](DOCUMENTATION_LAYERS.md) and [Planning](01_Planning/README.md) — ecosystem and sprints  
 2. [Ecosystem simulation](01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM.md) and [Requirements](02_Requirements/README.md) (incl. [RF matrix](02_Requirements/Sprint2/01_RF_Traceability_Matrix.md))  
 3. [ER model](03_Diagrams/00_ER_Model/er_model.md) — conceptual structure and attribute semantics  
-4. [System architecture](04_Architecture/00_System_Architecture.md)  
+4. [System architecture](04_Architecture/00_System_Architecture.md) and [Application architecture](04_Architecture/02_Application/README.md)  
 5. [Database engineering](04_Architecture/01_Database/README.md) — implementation and governance  
 
 ---

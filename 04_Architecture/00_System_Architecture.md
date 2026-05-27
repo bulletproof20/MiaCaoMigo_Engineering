@@ -34,14 +34,14 @@ The system prioritizes:
 
 # Layer Interaction
 
-The ApplicationLayer communicates with the DataLayer exclusively through controlled database service workflows.
+The ApplicationLayer communicates with the DataLayer through the backend API models and controlled database workflows.
 
 ```text
 Frontend
     ↓
 ApplicationLayer
     ↓
-svc_*
+Backend Models / SQL services
     ↓
 DataLayer
 ```
@@ -85,7 +85,7 @@ The DataLayer is implemented using PostgreSQL and organized into modular reposit
 Implementation repository:
 
 ```text
-01_MiaCaoMigo_DataLayer
+MiaCaoMigo_DataLayer
 ```
 
 ---
@@ -103,12 +103,12 @@ This layer includes:
 - operational interaction flows;
 - response serialization.
 
-The ApplicationLayer consumes the DataLayer exclusively through controlled `svc_*` entry points.
+The ApplicationLayer consumes the DataLayer through the Node/Express API, backend models and PostgreSQL service/query boundaries.
 
 Implementation repository:
 
 ```text
-02_MiaCaoMigo_Application
+MiaCaoMigo_
 ```
 
 ---

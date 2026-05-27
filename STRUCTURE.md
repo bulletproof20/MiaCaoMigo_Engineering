@@ -1,7 +1,7 @@
-# Estrutura do repositório — `00_MiaCaoMigo_Engineering`
+# Estrutura do repositório — `MiaCaoMigo_Engineering`
 
 Mapa de diretorias e ficheiros do portal documental MiaCaoMigo Engineering.  
-**Implementação executável:** repositório irmão [`01_MiaCaoMigo_DataLayer`](../01_MiaCaoMigo_DataLayer).
+**Implementação executável:** repositórios irmãos `MiaCaoMigo_` (ApplicationLayer) e `MiaCaoMigo_DataLayer` (DataLayer).
 
 | Métrica | Valor |
 |---------|-------|
@@ -15,7 +15,7 @@ Mapa de diretorias e ficheiros do portal documental MiaCaoMigo Engineering.
 
 ```mermaid
 flowchart TB
-    ROOT["00_MiaCaoMigo_Engineering"]
+    ROOT["MiaCaoMigo_Engineering"]
     ROOT --> DOCS[".docs — MkDocs"]
     ROOT --> ASSETS["00_Assets"]
     ROOT --> PLAN["01_Planning"]
@@ -26,7 +26,7 @@ flowchart TB
     ROOT --> IDX["indexes"]
     ROOT --> HOME["index.md · README.md"]
     ARCH --> DB["01_Database"]
-    ARCH --> APP["02_Application — vazio"]
+    ARCH --> APP["02_Application — website/API"]
     DB --> GOV["00_Governance"]
     DB --> SCH["01_Schemas"]
     DB --> DD["04_Data_Dictionary"]
@@ -180,7 +180,12 @@ flowchart TB
 04_Architecture/
 ├── README.md
 ├── 00_System_Architecture.md
-├── 02_Application/                    README.md — app em desenvolvimento
+├── 02_Application/                    website/API architecture, flows and setup
+│   ├── README.md
+│   ├── 00_Application_Overview.md
+│   ├── 01_Website_Flows.md
+│   ├── 02_Runtime_Setup.md
+│   └── 03_Implementation_Evidence.md
 └── 01_Database/
     ├── README.md
     ├── 00_Schema_Build_Pipeline.md
@@ -289,9 +294,9 @@ A sidebar em [`.docs/mkdocs.yml`](.docs/mkdocs.yml) espelha a estrutura de pasta
 
 | Repositório | Papel |
 |-------------|--------|
-| **`01_MiaCaoMigo_DataLayer`** | Source of truth — SQL, bootstrap, QA |
-| **`02_MiaCaoMigo_Application`** | Em desenvolvimento — consome `svc_*` |
-| **`00_MiaCaoMigo_Engineering`** | Este portal |
+| **`MiaCaoMigo_DataLayer`** | Source of truth — SQL, bootstrap, QA |
+| **`MiaCaoMigo_`** | ApplicationLayer — frontend, API and runtime integration |
+| **`MiaCaoMigo_Engineering`** | Este portal |
 
 ---
 

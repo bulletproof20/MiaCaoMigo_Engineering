@@ -1,103 +1,59 @@
 # Application architecture
 
-
-
 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;">
-
-  <span style="background:#64748b;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">In development</span>
-
+  <span style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">ApplicationLayer</span>
+  <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Website-aligned</span>
+  <span style="background:#64748b;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Defense support</span>
 </div>
 
+The MiaCaoMigo **ApplicationLayer** is implemented in the sibling website repository **`MiaCaoMigo_`**. It contains the browser frontend, the Node/Express API, the OpenAPI/JSDoc documentation tooling, and the runtime integration with the PostgreSQL DataLayer.
 
-
-The MiaCaoMigo **application layer** is implemented in the sibling repository **`02_MiaCaoMigo_Application`** (when available). This folder is reserved for application-facing architecture documentation in the Engineering portal.
-
-
+This section adapts the website documentation into the Engineering portal without duplicating the canonical requirements matrices. It is intended for architectural reading and defense preparation.
 
 ---
 
+## Entry points
 
-
-## Scope (planned)
-
-
-
-| Topic | Note |
-
-|-------|------|
-
-| Layering | UI, API orchestration, consumption of DataLayer `svc_*` / services |
-
-| Integration | Authentication, appointments, commercial flows aligned with M1–M4 |
-
-| Diagrams | UML and application views — see [03_Diagrams](../../03_Diagrams/) when published |
-
-
+| Document | Scope |
+|----------|-------|
+| [Application overview](00_Application_Overview.md) | Repository scope, technology stack, modules and runtime boundaries |
+| [Website flows](01_Website_Flows.md) | Authentication, client, appointment and staff/admin flows |
+| [Runtime setup](02_Runtime_Setup.md) | Local/Docker execution model and Application-to-DataLayer connection |
+| [Implementation evidence](03_Implementation_Evidence.md) | Defense-oriented mapping between implemented website features and RF/RNF evidence |
 
 ---
 
+## Repository role
 
-
-## Sprint 2 RF delegated to API (not DataLayer)
-
-
-
-From [RF traceability matrix](../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) — implement or specify here before claiming acceptance:
-
-
-
-| Area | RF / topic |
-
-|------|------------|
-
-| **Authentication** | RF_12 change password; RF_13 hash algorithm; RF_14 password history (schema **INC**) |
-
-| **GDPR** | RF_42 erasure/anonymization; RF_43 legal retention workflow |
-
-| **Profile** | RF_09 personal data updates (no `svc_*` today) |
-
-| **Absence** | RF_31 cancel within 72h; RF_38 permission exceptions |
-
-| **M2** | RF_05 auto-create client on delivery |
-
-| **M3** | RF_01 product admin UI; RF_28 history filters; RF_29–30 reports |
-
-| **M4** | All appointment **writes** (no `svc_*` — call `sp_*` or add API wrappers); RF_07 mandatory diagnosis; RF_17 auto-invoice on complete |
-
-| **Infrastructure** | PDF NFR: HTTPS, uptime, latency |
-
-
+| Repository | Responsibility |
+|------------|----------------|
+| `MiaCaoMigo_Engineering` | Engineering documentation, planning, architecture, requirements and defense support |
+| `MiaCaoMigo_` | ApplicationLayer: frontend, backend API, Swagger/JSDoc and runtime orchestration |
+| `MiaCaoMigo_DataLayer` | PostgreSQL schema, services, seed data, QA and database governance |
 
 ---
 
+## Application scope
 
-
-## Where to read today
-
-
-
-| Need | Document |
-
-|------|----------|
-
-| System context | [00_System_Architecture.md](../00_System_Architecture.md) |
-
-| Persistence & services | [01_Database/README.md](../01_Database/README.md) |
-
-| RF implementation grid | [02_Requirements/Sprint2/01_RF_Traceability_Matrix.md](../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) |
-
-| Ecosystem / demo behaviour | [Ecosystem](../../01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM.md) |
-
-
-
-Do not document API endpoints or UI modules here until they exist in the Application repository.
-
-
+| Area | Current scope |
+|------|---------------|
+| UI | Static HTML/CSS/JavaScript pages under `FrontEnd/` |
+| API | Express server, modular routes, middlewares, controllers and models under `Backend/` |
+| Authentication | JWT login/logout/session flow with staff/client separation |
+| Animals | Client animal reads and staff-controlled association/update/removal |
+| Appointments | Client booking, availability, cancel/reschedule and staff lifecycle operations |
+| Documentation | Swagger UI, OpenAPI JSON, JSDoc and generated static docs |
 
 ---
 
+## Relationship with requirements
 
+Normative requirements remain in [02_Requirements](../../02_Requirements/). This Application section only records implementation and presentation evidence for defense:
+
+- functional requirements: [00_Functional_Requirements.md](../../02_Requirements/00_Functional_Requirements.md);
+- non-functional requirements: [01_Non_Functional_Requirements.md](../../02_Requirements/01_Non_Functional_Requirements.md);
+- implementation status: [06_Implementacion_Matrix.md](../../02_Requirements/06_Implementacion_Matrix.md).
+
+---
 
 [← Architecture hub](../README.md)
-
-

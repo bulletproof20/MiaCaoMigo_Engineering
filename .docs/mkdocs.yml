@@ -154,6 +154,10 @@ nav:
 
       - Application:
           - Overview: 04_Architecture/02_Application/README.md
+          - Application Overview: 04_Architecture/02_Application/00_Application_Overview.md
+          - Website Flows: 04_Architecture/02_Application/01_Website_Flows.md
+          - Runtime Setup: 04_Architecture/02_Application/02_Runtime_Setup.md
+          - Implementation Evidence: 04_Architecture/02_Application/03_Implementation_Evidence.md
 
       - Database Engineering:
 
