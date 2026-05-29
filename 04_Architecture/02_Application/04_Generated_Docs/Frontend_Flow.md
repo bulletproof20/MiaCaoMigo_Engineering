@@ -1,39 +1,39 @@
-# Fluxo do frontend MiaCaoMigo
+# MiaCaoMigo Frontend Flow
 
-Fonte no website: `MiaCaoMigo_/Docs/Frontend_Flow.md`
+Source in the website repository: `MiaCaoMigo_/Docs/Frontend_Flow.md`
 
-Diagrama e passos de navegação reais entre páginas e chamadas à API. Para narrativa orientada a defesa, ver também [Website flows](../01_Website_Flows.md).
-
----
-
-## Visão geral
-
-O frontend divide-se em:
-
-- páginas públicas para visitantes;
-- páginas de cliente autenticado;
-- páginas administrativas para staff.
+Real navigation diagram and API call flow between frontend pages and backend endpoints. For the defense-oriented narrative, see also [Website flows](../01_Website_Flows.md).
 
 ---
 
-## Diagrama de navegação
+## Overview
+
+The frontend is split into:
+
+- public pages for visitors;
+- authenticated client pages;
+- administrative staff pages.
+
+---
+
+## Navigation Diagram
 
 ```mermaid
 flowchart TD
-  visitor["Visitante"] --> home["Home: FrontEnd/index.html"]
+  visitor["Visitor"] --> home["Home: FrontEnd/index.html"]
   home --> login["Login: UserView/Mod1/login.html"]
-  home --> publicPages["Páginas públicas: serviços, loja, sobre, contacto"]
-  home --> register["Criar conta: UserView/Mod1/criar_conta.html"]
+  home --> publicPages["Public pages: services, shop, about, contact"]
+  home --> register["Create account: UserView/Mod1/criar_conta.html"]
 
   register -->|"POST /api/users/auth/register"| authApi["Auth API"]
   login -->|"POST /api/users/auth/login"| authApi
   authApi -->|"JWT + user"| miaAuth["MiaAuth: localStorage"]
 
-  miaAuth -->|"cliente"| clientHub["Área cliente: Mod1/area_cliente.html"]
+  miaAuth -->|"client"| clientHub["Client area: Mod1/area_cliente.html"]
   miaAuth -->|"staff"| staffHub["Staff: AdminPanel/MainDashboard.html"]
 
-  clientHub --> animals["Meus Animais: Mod2/animais.html"]
-  clientHub --> appointments["Minhas Consultas: Mod4/consultas.html"]
+  clientHub --> animals["My Animals: Mod2/animais.html"]
+  clientHub --> appointments["My Appointments: Mod4/consultas.html"]
 
   animals -->|"GET /api/animals/species"| animalsApi["Animals API"]
   animals -->|"GET /api/animals/breeds"| animalsApi
@@ -51,59 +51,59 @@ flowchart TD
 
 ---
 
-## Páginas públicas
+## Public Pages
 
-| Página | Descrição |
-|--------|-----------|
+| Page | Description |
+|------|-------------|
 | `FrontEnd/index.html` | Landing page |
-| `UserView/Geral/servicos.html` | Serviços |
-| `UserView/Geral/sobre_nos.html` | Sobre a clínica |
-| `UserView/Geral/formulário_contacto.html` | Contacto |
-| `UserView/Mod3/loja.html` | Loja online |
+| `UserView/Geral/servicos.html` | Services |
+| `UserView/Geral/sobre_nos.html` | About the clinic |
+| `UserView/Geral/formulário_contacto.html` | Contact |
+| `UserView/Mod3/loja.html` | Online shop |
 | `UserView/Mod1/login.html` | Login |
-| `UserView/Mod1/criar_conta.html` | Registo de cliente |
+| `UserView/Mod1/criar_conta.html` | Client registration |
 
 ---
 
-## Autenticação e sessão
+## Authentication And Session
 
-- `login.js` → `POST /api/users/auth/login`
-- `authSession.js` → `window.MiaAuth`, `jwtToken` + `miaUser` em `localStorage`
-- `clientDashboard.js` → `GET /api/users/auth/me` na área cliente
-- `staffDashboard.js` → exige `staff === true` e `data-require` por permissões
-- Logout → `POST /api/users/auth/logout` quando existe token
-
----
-
-## Fluxo do cliente
-
-| Página | Script | Função |
-|--------|--------|--------|
-| `Mod1/area_cliente.html` | `geral/clientDashboard.js` | Hub e validação de sessão |
-| `Mod2/animais.html` | `Mod2/clientAnimais.js` | Lista, adiciona e remove animais |
-| `Mod4/consultas.html` | `Mod4/clientConsultas.js` | Lista e marca consultas |
+- `login.js` -> `POST /api/users/auth/login`
+- `authSession.js` -> `window.MiaAuth`, `jwtToken` + `miaUser` in `localStorage`
+- `clientDashboard.js` -> `GET /api/users/auth/me` in the client area
+- `staffDashboard.js` -> requires `staff === true` and checks `data-require` permissions
+- Logout -> `POST /api/users/auth/logout` when a token exists
 
 ---
 
-## Fluxo staff
+## Client Flow
 
-| Página | Script | Função |
-|--------|--------|--------|
-| `AdminPanel/MainDashboard.html` | `staffDashboard.js`, `AdminSidebar.js` | Dashboard com permissões |
-| `AdminPanel/AdicionarFuncionario.html` | `staffDashboard.js` | Formulário staff |
-| `AdminPanel/AdicionarConsulta.html` | `staffDashboard.js` | Consultas staff |
+| Page | Script | Purpose |
+|------|--------|---------|
+| `Mod1/area_cliente.html` | `geral/clientDashboard.js` | Client hub and session validation |
+| `Mod2/animais.html` | `Mod2/clientAnimais.js` | Lists, adds, and removes animals |
+| `Mod4/consultas.html` | `Mod4/clientConsultas.js` | Lists and books appointments |
 
 ---
 
-## Documentação relacionada
+## Staff Flow
 
-| Recurso | URL / página |
-|---------|----------------|
-| API interativa | [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) |
+| Page | Script | Purpose |
+|------|--------|---------|
+| `AdminPanel/MainDashboard.html` | `staffDashboard.js`, `AdminSidebar.js` | Permission-aware staff dashboard |
+| `AdminPanel/AdicionarFuncionario.html` | `staffDashboard.js` | Staff form page |
+| `AdminPanel/AdicionarConsulta.html` | `staffDashboard.js` | Staff appointments page |
+
+---
+
+## Related Documentation
+
+| Resource | URL / page |
+|----------|------------|
+| Interactive API | [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) |
 | JSDoc | [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) |
-| Frontend (páginas e scripts) | [Frontend](Frontend.md) |
-| Backend (rotas) | [Backend](Backend.md) |
+| Frontend pages and scripts | [Frontend](Frontend.md) |
+| Backend routes | [Backend](Backend.md) |
 
 ---
 
-[← Hub documentação](README.md)
+[<- Documentation hub](README.md)

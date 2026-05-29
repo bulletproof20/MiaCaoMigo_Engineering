@@ -1,44 +1,44 @@
-# Backend — documentação da aplicação
+# Backend Documentation
 
-Fonte no website: `MiaCaoMigo_/Docs/Backend/README.md`
+Source in the website repository: `MiaCaoMigo_/Docs/Backend/README.md`
 
-Esta página resume como o backend Express expõe a aplicação, a API e a documentação servida em runtime.
-
----
-
-## Rotas em runtime
-
-| URL | Origem | Descrição |
-|-----|--------|-----------|
-| `/` | `FrontEnd/` | Site estático |
-| `/api/users` | `Backend/routes/Mod1_Users` | Autenticação e sessão |
-| `/api/animals` | `Backend/routes/Mod2_Animals` | Espécies, raças e animais |
-| `/api/appointments` | `Backend/routes/Mod4_Appointments` | Consultas, veterinários, especialidades e disponibilidade |
-| `/docs/` | `Docs/` | Hub HTML da documentação (website) |
-| `/api-docs/` | `swagger-ui-express` | Swagger UI interativo |
-| `/api-docs.json` | `swagger-jsdoc` | OpenAPI JSON em runtime |
-| `/jsdoc/` | `Docs/site/CodeReference/` | Referência JSDoc |
-| `/db-test` | `Backend/server.js` | Teste de ligação à BD |
+This page summarizes how the Express backend exposes the application, the API, and the documentation routes at runtime.
 
 ---
 
-## Ficheiros principais
+## Runtime Routes
 
-| Ficheiro | Função |
-|----------|--------|
-| `Backend/server.js` | Express, middlewares, rotas e documentação servida |
-| `Backend/swaggerConfig.js` | OpenAPI e schemas globais |
-| `Backend/swagger.js` | Export do documento OpenAPI gerado |
-| `Backend/config/db.js` | Pool PostgreSQL |
-| `Backend/middlewares/authMiddleware.js` | JWT, staff, permissões, secretaria |
-| `scripts_docs/generate-swagger.js` | Gera `Docs/Swagger/openapi.json` |
-| `scripts_docs/generate-jsdoc.js` | Gera `Docs/site/CodeReference/` |
-| `scripts_docs/build-docs.js` | HTML dos Markdown e Redoc |
-| `jsdoc.json` | Âmbito da referência JSDoc |
+| URL | Source | Description |
+|-----|--------|-------------|
+| `/` | `FrontEnd/` | Static website |
+| `/api/users` | `Backend/routes/Mod1_Users` | Authentication and session management |
+| `/api/animals` | `Backend/routes/Mod2_Animals` | Species, breeds, and animal data |
+| `/api/appointments` | `Backend/routes/Mod4_Appointments` | Appointments, veterinarians, specialties, and availability |
+| `/docs/` | `Docs/` | Website HTML documentation hub |
+| `/api-docs/` | `swagger-ui-express` | Interactive Swagger UI |
+| `/api-docs.json` | `swagger-jsdoc` | Runtime OpenAPI JSON |
+| `/jsdoc/` | `Docs/site/CodeReference/` | JSDoc reference |
+| `/db-test` | `Backend/server.js` | Technical route for testing database connectivity |
 
 ---
 
-## Camadas do pedido
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `Backend/server.js` | Express setup, middlewares, routes, and served documentation |
+| `Backend/swaggerConfig.js` | OpenAPI configuration and global schemas |
+| `Backend/swagger.js` | Exported generated OpenAPI document |
+| `Backend/config/db.js` | PostgreSQL connection pool |
+| `Backend/middlewares/authMiddleware.js` | JWT, staff, permission, and clinic secretary guards |
+| `scripts_docs/generate-swagger.js` | Generates `Docs/Swagger/openapi.json` |
+| `scripts_docs/generate-jsdoc.js` | Generates `Docs/site/CodeReference/` |
+| `scripts_docs/build-docs.js` | Generates Markdown HTML pages and Redoc |
+| `jsdoc.json` | Defines the JSDoc reference scope |
+
+---
+
+## Request Layers
 
 ```text
 HTTP request
@@ -50,47 +50,47 @@ HTTP request
   -> PostgreSQL (MiaCaoMigo_DataLayer)
 ```
 
-Ver também [Website flows](../01_Website_Flows.md) para o fluxo completo com frontend.
+See also [Website flows](../01_Website_Flows.md) for the full frontend/backend flow.
 
 ---
 
 ## OpenAPI
 
-A fonte de verdade da API está nos comentários `@swagger` das rotas montadas e em `Backend/swaggerConfig.js`.
+The API source of truth is the `@swagger` comments in mounted route files and the schemas defined in `Backend/swaggerConfig.js`.
 
-Rotas incluídas no OpenAPI (montadas em `server.js`):
+Routes included in the current OpenAPI contract:
 
 - `Backend/routes/Mod1_Users/authRoutes.js`
 - `Backend/routes/Mod2_Animals/animais.js`
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
 
-Módulos stub (ex.: Mod3 comercial, prescrições não montadas) não entram no contrato para evitar tags sem endpoints reais.
+Stub modules, such as partial Mod3 billing or unmounted prescription routes, are excluded from the contract to avoid publishing tags without real endpoints.
 
-Detalhe: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
+Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
 
 ---
 
 ## JSDoc
 
-Comentários JSDoc em:
+JSDoc comments are read from:
 
 - `Backend/**/*.js`
 - `FrontEnd/Js/**/*.js`
 
-Saída: `Docs/site/CodeReference/`, servida em `http://localhost:3000/jsdoc/`.
+Output: `Docs/site/CodeReference/`, served at `http://localhost:3000/jsdoc/`.
 
-Detalhe: [Code Reference](Code_Reference.md)
-
----
-
-## Manutenção
-
-1. Atualizar `@swagger` se mudares endpoints, payloads ou respostas.
-2. Atualizar JSDoc se mudares módulos ou contratos públicos.
-3. No repositório **`MiaCaoMigo_`**, correr `npm run docs:build`.
-
-Não editar manualmente `Docs/Swagger/openapi.json` nem `Docs/site/**`.
+Details: [Code Reference](Code_Reference.md)
 
 ---
 
-[← Hub documentação](README.md)
+## Maintenance
+
+1. Update `@swagger` comments when endpoints, payloads, or responses change.
+2. Update JSDoc when modules or public contracts change.
+3. In the **`MiaCaoMigo_`** repository, run `npm run docs:build`.
+
+Do not manually edit `Docs/Swagger/openapi.json` or `Docs/site/**`.
+
+---
+
+[<- Documentation hub](README.md)

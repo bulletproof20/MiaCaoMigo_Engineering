@@ -1,55 +1,55 @@
-# Especificação OpenAPI
+# OpenAPI Specification
 
-Fonte no website: hub `Docs/index.html` (card **Especificação**) e `Docs/Swagger/`
+Source in the website repository: `Docs/index.html` hub ("Specification" card) and `Docs/Swagger/`
 
-A especificação OpenAPI descreve o contrato REST exposto pelo backend. Pode ser consultada de três formas: JSON em runtime, Swagger UI e HTML Redoc gerado.
-
----
-
-## Contrato JSON
-
-| Origem | Caminho / URL |
-|--------|----------------|
-| Runtime (servidor ligado) | [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json) |
-| Ficheiro gerado no website | `MiaCaoMigo_/Docs/Swagger/openapi.json` |
-
-O JSON em `Docs/Swagger/openapi.json` é produzido por `npm run docs:generate` ou `npm run docs:build`. É a mesma base que alimenta o Swagger UI.
+The OpenAPI specification describes the REST contract exposed by the backend. It can be inspected as runtime JSON, through Swagger UI, or as generated Redoc HTML.
 
 ---
 
-## Visualização HTML (Redoc)
+## JSON Contract
 
-No repositório **`MiaCaoMigo_`**, após regenerar documentação:
+| Source | Path / URL |
+|--------|------------|
+| Runtime server | [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json) |
+| Generated website file | `MiaCaoMigo_/Docs/Swagger/openapi.json` |
+
+The JSON file at `Docs/Swagger/openapi.json` is produced by `npm run docs:generate` or `npm run docs:build`. It is the same contract consumed by Swagger UI.
+
+---
+
+## HTML View (Redoc)
+
+In the **`MiaCaoMigo_`** repository, after regenerating documentation:
 
 ```text
 Docs/site/Swagger/openapi.html
 ```
 
-Abrir no browser (com ou sem servidor):
+Open it in the browser:
 
-- Via servidor: `http://localhost:3000/docs/` → hub → ligação para a especificação no site gerado
-- Ficheiro local: abrir `Docs/site/Swagger/openapi.html` no browser
+- via server: `http://localhost:3000/docs/` -> hub -> generated specification link
+- local file: open `Docs/site/Swagger/openapi.html` directly
 
-Este HTML corresponde ao card **Especificação** da página inicial `Docs/index.html`.
+This HTML corresponds to the **Specification** card in the website `Docs/index.html` page.
 
 ---
 
-## Swagger UI (exploração interativa)
+## Swagger UI (Interactive Exploration)
 
-Para testar endpoints e ver schemas de forma interativa, usar **Swagger UI** (card separado no hub website):
+To test endpoints and inspect schemas interactively, use **Swagger UI**:
 
 [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)
 
-Guia completo: [Swagger](Swagger.md)
+Full guide: [Swagger](Swagger.md)
 
 ---
 
-## Manutenção do contrato
+## Contract Maintenance
 
-1. Alterar rotas ou schemas nas fontes (`@swagger`, `swaggerConfig.js`).
-2. No repositório **`MiaCaoMigo_`**: `npm run docs:build`.
-3. Validar em Swagger UI e, se necessário, comparar com `openapi.json` gerado.
+1. Change routes or schemas in the source files (`@swagger`, `swaggerConfig.js`).
+2. In the **`MiaCaoMigo_`** repository, run `npm run docs:build`.
+3. Validate in Swagger UI and, if needed, compare against the generated `openapi.json`.
 
 ---
 
-[← Hub documentação](README.md)
+[<- Documentation hub](README.md)

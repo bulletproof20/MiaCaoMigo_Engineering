@@ -1,96 +1,96 @@
-# Frontend — documentação da aplicação
+# Frontend Documentation
 
-Fonte no website: `MiaCaoMigo_/Docs/Frontend/README.md`
+Source in the website repository: `MiaCaoMigo_/Docs/Frontend/README.md`
 
-Descrição do frontend atual do MiaCaoMigo. A interface visível está em português; comentários técnicos e JSDoc no código estão em inglês.
-
----
-
-## Estrutura
-
-| Área | Caminho | Função |
-|------|---------|--------|
-| Página pública | `FrontEnd/index.html` | Landing: serviços, loja, sobre, contacto, login |
-| Área cliente | `FrontEnd/Pages/UserView/` | Login, registo, painel, animais, consultas |
-| Área staff | `FrontEnd/Pages/AdminPanel/` | Dashboard e páginas administrativas |
-| Partilhado | `FrontEnd/Pages/Geral/` | Sidebars e páginas gerais |
-| Scripts | `FrontEnd/Js/` | Sessão, dashboards, animais, consultas, UI pública |
-| CSS | `FrontEnd/CSS/` | Estilos por área |
+This page describes the current MiaCaoMigo frontend. User-facing UI text is in Portuguese; technical comments and JSDoc comments in code are in English.
 
 ---
 
-## Fluxo de login
+## Structure
 
-1. Visitante abre `FrontEnd/index.html`.
-2. Navega para `FrontEnd/Pages/UserView/Mod1/login.html`.
-3. `FrontEnd/Js/Mod1/login.js` chama `POST /api/users/auth/login`.
-4. `FrontEnd/Js/geral/authSession.js` guarda JWT e utilizador em `localStorage`.
-5. Redirecionamento:
-   - Cliente → `FrontEnd/Pages/UserView/Mod1/area_cliente.html`
-   - Staff → `FrontEnd/Pages/AdminPanel/MainDashboard.html`
-
-Diagrama completo: [Frontend Flow](Frontend_Flow.md)
+| Area | Path | Purpose |
+|------|------|---------|
+| Public page | `FrontEnd/index.html` | Landing page with services, shop, about, contact, and login navigation |
+| Client area | `FrontEnd/Pages/UserView/` | Login, registration, client dashboard, animals, and appointments |
+| Staff area | `FrontEnd/Pages/AdminPanel/` | Staff dashboard and administrative pages |
+| Shared pages | `FrontEnd/Pages/Geral/` | Sidebars and shared general pages |
+| Scripts | `FrontEnd/Js/` | Session, dashboards, animals, appointments, and public UI behavior |
+| CSS | `FrontEnd/CSS/` | Area-specific styles |
 
 ---
 
-## Páginas principais
+## Login Flow
 
-| Página | Função |
-|--------|--------|
+1. Visitor opens `FrontEnd/index.html`.
+2. Visitor navigates to `FrontEnd/Pages/UserView/Mod1/login.html`.
+3. `FrontEnd/Js/Mod1/login.js` calls `POST /api/users/auth/login`.
+4. `FrontEnd/Js/geral/authSession.js` stores the JWT and user snapshot in `localStorage`.
+5. Redirect:
+   - Client -> `FrontEnd/Pages/UserView/Mod1/area_cliente.html`
+   - Staff -> `FrontEnd/Pages/AdminPanel/MainDashboard.html`
+
+Full diagram: [Frontend Flow](Frontend_Flow.md)
+
+---
+
+## Main Pages
+
+| Page | Purpose |
+|------|---------|
 | `UserView/Mod1/login.html` | Login |
-| `UserView/Mod1/criar_conta.html` | Registo de cliente |
-| `UserView/Mod1/area_cliente.html` | Hub do cliente |
-| `UserView/Mod2/animais.html` | Animais da conta |
-| `UserView/Mod4/consultas.html` | Consultas e marcação |
-| `UserView/Geral/servicos.html` | Serviços (público) |
-| `UserView/Geral/sobre_nos.html` | Sobre (público) |
-| `UserView/Geral/formulário_contacto.html` | Contacto (público) |
-| `UserView/Mod3/loja.html` | Loja |
-| `AdminPanel/MainDashboard.html` | Dashboard staff |
-| `AdminPanel/AdicionarFuncionario.html` | Gestão de funcionários (staff) |
-| `AdminPanel/AdicionarConsulta.html` | Consultas (staff) |
+| `UserView/Mod1/criar_conta.html` | Client registration |
+| `UserView/Mod1/area_cliente.html` | Client hub |
+| `UserView/Mod2/animais.html` | Account animals |
+| `UserView/Mod4/consultas.html` | Appointments and appointment booking |
+| `UserView/Geral/servicos.html` | Public services page |
+| `UserView/Geral/sobre_nos.html` | Public about page |
+| `UserView/Geral/formulário_contacto.html` | Public contact page |
+| `UserView/Mod3/loja.html` | Shop |
+| `AdminPanel/MainDashboard.html` | Staff dashboard |
+| `AdminPanel/AdicionarFuncionario.html` | Staff employee management |
+| `AdminPanel/AdicionarConsulta.html` | Staff appointments page |
 
 ---
 
-## Scripts principais
+## Main Scripts
 
-| Script | Função |
-|--------|--------|
-| `geral/authSession.js` | `window.MiaAuth`, token, utilizador, logout, nav pública |
-| `Mod1/login.js` | Login e redirecionamento por perfil |
+| Script | Purpose |
+|--------|---------|
+| `geral/authSession.js` | `window.MiaAuth`, token, user, logout, and public nav behavior |
+| `Mod1/login.js` | Login and profile-based redirect |
 | `Mod1/criarConta.js` | `POST /api/users/auth/register` |
-| `geral/clientDashboard.js` | Validação de sessão com `GET /api/users/auth/me` |
-| `Mod2/clientAnimais.js` | Espécies, raças e animais do cliente |
-| `Mod4/clientConsultas.js` | Consultas, disponibilidade e marcação |
-| `geral/ClientSideBar.js` | Sidebar cliente e logout |
-| `geral/AdminSidebar.js` | Sidebar staff |
-| `geral/staffDashboard.js` | Proteção staff e `data-require` por permissões |
-| `geral/cookies.js` | Consentimento de cookies |
-| `geral/scroll.js` | Carrossel da landing |
+| `geral/clientDashboard.js` | Session validation with `GET /api/users/auth/me` |
+| `Mod2/clientAnimais.js` | Species, breeds, and client animals |
+| `Mod4/clientConsultas.js` | Appointments, availability, and booking |
+| `geral/ClientSideBar.js` | Client sidebar and logout |
+| `geral/AdminSidebar.js` | Staff sidebar |
+| `geral/staffDashboard.js` | Staff page guard and `data-require` permission behavior |
+| `geral/cookies.js` | Cookie consent state |
+| `geral/scroll.js` | Landing page carousel |
 
 ---
 
-## APIs consumidas pelo frontend
+## APIs Consumed By The Frontend
 
-| Área | Endpoints principais |
-|------|----------------------|
+| Area | Main endpoints |
+|------|----------------|
 | Auth | `POST .../login`, `POST .../register`, `GET .../me`, `POST .../logout` |
-| Animais | `GET .../species`, `GET .../breeds`, `GET .../me`, `POST /api/animals`, `DELETE .../:id` |
-| Consultas | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments` |
+| Animals | `GET .../species`, `GET .../breeds`, `GET .../me`, `POST /api/animals`, `DELETE .../:id` |
+| Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments` |
 
-Prefixo base: `/api/users/auth`, `/api/animals`, `/api/appointments`.
+Base prefixes: `/api/users/auth`, `/api/animals`, `/api/appointments`.
 
-Contrato completo: [Swagger](Swagger.md) · runtime em `http://localhost:3000/api-docs/`
-
----
-
-## Referência gerada
-
-Após `npm run docs:build` no repositório **`MiaCaoMigo_`**:
-
-- Com servidor: [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/)
-- Estático no website: `Docs/site/CodeReference/index.html`
+Full contract: [Swagger](Swagger.md) · runtime at `http://localhost:3000/api-docs/`
 
 ---
 
-[← Hub documentação](README.md)
+## Generated Reference
+
+After running `npm run docs:build` in the **`MiaCaoMigo_`** repository:
+
+- With server: [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/)
+- Static website file: `Docs/site/CodeReference/index.html`
+
+---
+
+[<- Documentation hub](README.md)

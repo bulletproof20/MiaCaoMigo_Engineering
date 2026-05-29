@@ -1,82 +1,82 @@
-# Atualizar documentação da aplicação
+# Update Application Documentation
 
-Fonte no website: `MiaCaoMigo_/Docs/README.md` (secção Commands)
+Source in the website repository: `MiaCaoMigo_/Docs/README.md` ("Commands" section)
 
-Todos os comandos abaixo correm no repositório **`MiaCaoMigo_`**, na raiz do projeto (onde está o `package.json` com os scripts `docs:*`).
+All commands below run in the **`MiaCaoMigo_`** repository root, where `package.json` defines the `docs:*` scripts.
 
 ---
 
-## Comando recomendado
+## Recommended Command
 
 ```sh
 cd MiaCaoMigo_
 npm run docs:build
 ```
 
-Regenera:
+This regenerates:
 
 - `Docs/Swagger/openapi.json` (OpenAPI)
 - `Docs/site/CodeReference/` (JSDoc HTML)
-- HTML a partir dos Markdown em `Docs/**/*.md` (inclui Backend, Frontend, Frontend_Flow, Swagger README)
+- HTML from Markdown files in `Docs/**/*.md`, including Backend, Frontend, Frontend_Flow, and Swagger README
 - `Docs/site/Swagger/openapi.html` (Redoc)
 
-Equivalente ao card **Atualizar Docs** do hub `Docs/index.html`.
+This corresponds to the **Update Docs** card in the website `Docs/index.html` hub.
 
 ---
 
-## Comandos parciais
+## Partial Commands
 
-| Comando | Quando usar |
+| Command | When to use |
 |---------|-------------|
-| `npm run docs:generate` | Alteraste apenas `@swagger` ou `swaggerConfig.js` |
-| `npm run docs:code` | Alteraste apenas comentários JSDoc |
-| `npm run docs:build` | Qualquer alteração em documentação ou antes de entregar/commit |
+| `npm run docs:generate` | Only `@swagger` comments or `swaggerConfig.js` changed |
+| `npm run docs:code` | Only JSDoc comments changed |
+| `npm run docs:build` | Any documentation changed, or before delivery/commit |
 
 ---
 
-## O que não editar manualmente
+## What Not To Edit Manually
 
 - `Docs/Swagger/openapi.json`
-- `Docs/site/**` (HTML gerado)
+- `Docs/site/**` (generated HTML)
 
-Editar as fontes:
+Edit the source files instead:
 
-| Tipo | Onde |
-|------|------|
+| Type | Where |
+|------|-------|
 | API | `Backend/routes/**`, `Backend/swaggerConfig.js` |
-| Código | JSDoc em `Backend/` e `FrontEnd/Js/` |
-| Guias | `Docs/**/*.md` |
+| Code | JSDoc in `Backend/` and `FrontEnd/Js/` |
+| Guides | `Docs/**/*.md` |
 
-Depois de alterar fontes no website, atualizar as páginas espelhadas neste hub Engineering (`04_Generated_Docs/`) se o conteúdo narrativo mudou.
+After changing website documentation sources, update the mirrored pages in this Engineering hub (`04_Generated_Docs/`) if the narrative content changed.
 
 ---
 
-## Verificar após gerar
+## Verify After Generation
 
-1. `npm start`
-2. Abrir [http://localhost:3000/docs/](http://localhost:3000/docs/) — hub HTML do website
-3. Abrir [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) — Swagger UI
-4. Abrir [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) — JSDoc
+1. Run `npm start`.
+2. Open [http://localhost:3000/docs/](http://localhost:3000/docs/) - website HTML hub.
+3. Open [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) - Swagger UI.
+4. Open [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) - JSDoc.
 
-No portal Engineering (MkDocs):
+In the Engineering portal (MkDocs):
 
 ```sh
 cd MiaCaoMigo_Engineering
 docker compose -f .docs/docker-compose.yml up
 ```
 
-Navegar em **Architecture → Application → Website Documentation**.
+Navigate to **Architecture -> Application -> Website Documentation**.
 
 ---
 
-## Sincronização Engineering ↔ Website
+## Engineering / Website Synchronization
 
-| Conteúdo | Repositório canónico para edição técnica | Cópia/adaptação Engineering |
-|----------|------------------------------------------|-----------------------------|
-| Markdown guias | `MiaCaoMigo_/Docs/*.md` | `04_Architecture/02_Application/04_Generated_Docs/*.md` |
-| OpenAPI / JSDoc gerados | `MiaCaoMigo_/Docs/site/**` | Consultar via URLs runtime ou ficheiros no website |
-| Hub visual com cards | `MiaCaoMigo_/Docs/index.html` | [README.md](README.md) (MkDocs cards) |
+| Content | Canonical repository for technical editing | Engineering copy/adaptation |
+|---------|-------------------------------------------|-----------------------------|
+| Markdown guides | `MiaCaoMigo_/Docs/*.md` | `04_Architecture/02_Application/04_Generated_Docs/*.md` |
+| Generated OpenAPI / JSDoc | `MiaCaoMigo_/Docs/site/**` | Reference through runtime URLs or website files |
+| Visual card hub | `MiaCaoMigo_/Docs/index.html` | [README.md](README.md) (MkDocs cards) |
 
 ---
 
-[← Hub documentação](README.md)
+[<- Documentation hub](README.md)

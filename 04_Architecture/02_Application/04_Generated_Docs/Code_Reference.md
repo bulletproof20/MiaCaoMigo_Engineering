@@ -1,32 +1,32 @@
-# Referência de código (JSDoc)
+# Code Reference (JSDoc)
 
-Fonte no website: `MiaCaoMigo_/Docs/CODE_REFERENCE.md`
+Source in the website repository: `MiaCaoMigo_/Docs/CODE_REFERENCE.md`
 
-Referência HTML gerada a partir de comentários JSDoc no backend e no frontend do repositório **`MiaCaoMigo_`**.
-
----
-
-## Âmbito
-
-| Área | Caminhos |
-|------|----------|
-| Backend | `Backend/**/*.js` — Express, rotas, controllers, models, middleware, config |
-| Frontend | `FrontEnd/Js/**/*.js` — sessão, login, dashboards, animais, consultas, sidebars |
-
-Configuração: `jsdoc.json`  
-Geração: `scripts_docs/generate-jsdoc.js`
+HTML reference generated from JSDoc comments in the backend and frontend code of the **`MiaCaoMigo_`** repository.
 
 ---
 
-## Onde ver
+## Scope
 
-Com `npm start` em **`MiaCaoMigo_`**:
+| Area | Paths |
+|------|-------|
+| Backend | `Backend/**/*.js`: Express, routes, controllers, models, middleware, config |
+| Frontend | `FrontEnd/Js/**/*.js`: session, login, dashboards, animals, appointments, sidebars |
 
-| URL | Descrição |
-|-----|-----------|
-| [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) | Referência servida pelo Express (card **Code Reference** do hub website) |
+Configuration: `jsdoc.json`  
+Generation script: `scripts_docs/generate-jsdoc.js`
 
-Sem servidor (após `npm run docs:build`):
+---
+
+## Where To View It
+
+With `npm start` running in **`MiaCaoMigo_`**:
+
+| URL | Description |
+|-----|-------------|
+| [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) | Reference served by Express, equivalent to the website hub "Code Reference" card |
+
+Without the server, after running `npm run docs:build`:
 
 ```text
 MiaCaoMigo_/Docs/site/CodeReference/index.html
@@ -34,33 +34,33 @@ MiaCaoMigo_/Docs/site/CodeReference/index.html
 
 ---
 
-## Como atualizar
+## How To Update
 
-Executar no repositório **`MiaCaoMigo_`**:
+Run in the **`MiaCaoMigo_`** repository:
 
-| Comando | Resultado |
-|---------|-----------|
-| `npm run docs:code` | Só regenera `Docs/site/CodeReference/` |
-| `npm run docs:build` | OpenAPI + JSDoc + Markdown→HTML + Redoc |
-
----
-
-## Regras de comentários
-
-- Comentários técnicos no código: **inglês**
-- Texto visível na UI: **português**
-- Preferir `@module`, `@param`, `@returns` em funções exportadas e helpers relevantes
-- Documentar guards de autenticação, fetch à API e comportamento não óbvio
+| Command | Result |
+|---------|--------|
+| `npm run docs:code` | Regenerates only `Docs/site/CodeReference/` |
+| `npm run docs:build` | Regenerates OpenAPI, JSDoc, Markdown-to-HTML pages, and Redoc |
 
 ---
 
-## Relação com Swagger
+## Comment Rules
 
-| Ferramenta | Documenta | URL típica |
-|------------|-----------|------------|
-| Swagger / OpenAPI | Endpoints REST, payloads, respostas | `/api-docs/` |
-| JSDoc | Estrutura e funções do código | `/jsdoc/` |
+- Technical code comments: **English**
+- User-facing UI text: **Portuguese**
+- Prefer useful JSDoc tags such as `@module`, `@param`, and `@returns`
+- Document authentication guards, API fetch helpers, and non-obvious behavior
 
 ---
 
-[← Hub documentação](README.md)
+## Relationship With Swagger
+
+| Tool | Documents | Typical URL |
+|------|-----------|-------------|
+| Swagger / OpenAPI | REST endpoints, payloads, responses | `/api-docs/` |
+| JSDoc | Code structure and functions | `/jsdoc/` |
+
+---
+
+[<- Documentation hub](README.md)
