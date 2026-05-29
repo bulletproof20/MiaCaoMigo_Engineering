@@ -27,10 +27,14 @@ flowchart TD
 
   register -->|"POST /api/users/auth/register"| authApi["Auth API"]
   login -->|"POST /api/users/auth/login"| authApi
-  authApi -->|"JWT + user"| miaAuth["MiaAuth: localStorage"]
+  authApi -->|"JWT + user + theme"| miaAuth["MiaAuth: localStorage + data-theme"]
 
   miaAuth -->|"client"| clientHub["Client area: Mod1/area_cliente.html"]
   miaAuth -->|"staff"| staffHub["Staff: AdminPanel/MainDashboard.html"]
+
+  clientHub --> themeSelect["Theme selector: ClientSideBar"]
+  themeSelect -->|"GET /api/users/auth/setup"| authApi
+  themeSelect -->|"PUT /api/users/auth/setup/theme"| authApi
 
   clientHub --> animals["My Animals: Mod2/animais.html"]
   clientHub --> appointments["My Appointments: Mod4/consultas.html"]
@@ -68,8 +72,9 @@ flowchart TD
 ## Authentication And Session
 
 - `login.js` -> `POST /api/users/auth/login`
-- `authSession.js` -> `window.MiaAuth`, `jwtToken` + `miaUser` in `localStorage`
+- `authSession.js` -> `window.MiaAuth`, `jwtToken` + `miaUser` in `localStorage`, and `data-theme` on the document
 - `clientDashboard.js` -> `GET /api/users/auth/me` in the client area
+- Client setup -> `GET /api/users/auth/setup` and `PUT /api/users/auth/setup/theme`
 - `staffDashboard.js` -> requires `staff === true` and checks `data-require` permissions
 - Logout -> `POST /api/users/auth/logout` when a token exists
 
@@ -80,6 +85,7 @@ flowchart TD
 | Page | Script | Purpose |
 |------|--------|---------|
 | `Mod1/area_cliente.html` | `geral/clientDashboard.js` | Client hub and session validation |
+| Client sidebar partial | `geral/ClientSideBar.js` | Loads client navigation and persists light/dark theme preference |
 | `Mod2/animais.html` | `Mod2/clientAnimais.js` | Lists, adds, and removes animals |
 | `Mod4/consultas.html` | `Mod4/clientConsultas.js` | Lists and books appointments |
 

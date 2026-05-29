@@ -68,7 +68,7 @@ The ApplicationLayer is responsible for request orchestration and user interacti
 
 | Module | API prefix | Scope |
 |--------|------------|-------|
-| Mod1 - Users | `/api/users` | Authentication, client registration, session state and staff permissions |
+| Mod1 - Users | `/api/users` | Authentication, client registration, session state, staff permissions and user setup preferences |
 | Mod2 - Animals | `/api/animals` | Species, breeds, client animals and staff-controlled animal operations |
 | Mod3 - Commercial | Reserved/partial | Commercial integration exists structurally but is not fully exposed in the website API |
 | Mod4 - Appointments | `/api/appointments` | Booking, availability, history, cancel/reschedule and appointment lifecycle |

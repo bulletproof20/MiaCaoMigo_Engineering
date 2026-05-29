@@ -23,6 +23,7 @@ Normative sources:
 | APP-EV-M1-01 | RF_M1_01 | `POST /api/users/auth/register`, `FrontEnd/Pages/UserView/Mod1/criar_conta.html`, `FrontEnd/Js/Mod1/criarConta.js` | Client account registration exposed through UI and API |
 | APP-EV-M1-02 | RF_M1_05, RF_M1_06, RF_M1_08 | `POST /api/users/auth/login`, `POST /api/users/auth/logout`, `GET /api/users/auth/me` | Login, active session handling, logout and current session endpoint |
 | APP-EV-M1-03 | RF_M1_16, RF_M1_17 | `Backend/middlewares/authMiddleware.js`, JWT permissions, `staffDashboard.js` | Staff permissions carried in JWT and used by API/UI |
+| APP-EV-M1-04 | RF_M1_39, RF_M1_41 | `GET /api/users/auth/setup`, `PUT /api/users/auth/setup/theme`, `setup.the_set`, `ClientSideBar.html`, `authSession.js` | Client light/dark theme is read from and persisted to the database without keeping preference history |
 | APP-EV-M2-01 | RF_M2_02 | `GET /api/animals/species`, `GET /api/animals/breeds` | Species and breed catalogs exposed to the application |
 | APP-EV-M2-02 | RF_M2_10, RF_M2_11 | `GET /api/animals/me`, `GET /api/animals/client/:clientId` | Client animal ownership is readable through authenticated endpoints |
 | APP-EV-M2-03 | RF_M2_01, RF_M2_10, RF_M2_19 | `POST /api/animals`, `POST /api/animals/associate`, `PUT /api/animals/:id`, `DELETE /api/animals/:id` | Animal operations restricted to clinic secretary/admin flows |
@@ -51,7 +52,7 @@ Normative sources:
 
 | Area | Status in website repository |
 |------|------------------------------|
-| Mod1 authentication | Implemented for login, register, logout and session read |
+| Mod1 authentication/setup | Implemented for login, register, logout, session read and client theme preference persistence |
 | Mod2 animals | Implemented for catalogs, client animal reads and staff-controlled operations |
 | Mod3 commercial | Structurally present, limited application exposure |
 | Mod4 appointments | Implemented for booking, availability, client management and staff lifecycle |

@@ -85,9 +85,9 @@ Rastreabilidade técnica entre requisitos (`RF`, `RN`, `RNF`, `PN`) e camadas de
 | RF_M1_36 | RF | DB | Sem DELETE exposto | PAR | — |
 | RF_M1_37 | RF | DB | Triggers disponibilidade / M4 block | PAR | Schema M1/M4 |
 | RF_M1_38 | RF | DB+API | Triggers + excepções permissão | PAR | API para excepções |
-| RF_M1_39 | RF | DB | `setup` | IMP | Schema M1 |
+| RF_M1_39 | RF | DB+API+UI | `setup.the_set` + `/api/users/auth/setup*` + client sidebar selector | IMP | Schema M1 + ApplicationLayer Mod1 auth/setup |
 | RF_M1_40 | RF | DB | `setup` por `id_usr` | IMP | Idem |
-| RF_M1_41 | RF | DB | `setup` sem histórico | IMP | Idem |
+| RF_M1_41 | RF | DB+API | `setup` sem histórico; update direto do valor atual | IMP | Schema M1 + `PUT /api/users/auth/setup/theme` |
 | RF_M1_42 | RF | API | RGPD erase/export | NAO | — |
 | RF_M1_43 | RF | DB+API | Inactivação + FK | PAR | RF_M1_42 NAO |
 | PN_M1_01 | PN | INT | Contas utilizador | IMP | Agrega RF_M1_01–04 |
