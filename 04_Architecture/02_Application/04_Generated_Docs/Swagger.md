@@ -1,8 +1,8 @@
 # Swagger API Documentation
 
-Source in the website repository: `MiaCaoMigo_/Docs/Swagger/README.md`
+Source in the website repository: `@swagger` route comments and `Backend/swaggerConfig.js`.
 
-The MiaCaoMigo OpenAPI specification is generated from source code comments and published both at runtime and as static files in the website repository.
+The MiaCaoMigo OpenAPI specification is generated from source code comments and published at runtime through Swagger UI.
 
 ---
 
@@ -10,9 +10,7 @@ The MiaCaoMigo OpenAPI specification is generated from source code comments and 
 
 | Artifact | Location (`MiaCaoMigo_`) | Description |
 |----------|--------------------------|-------------|
-| Swagger guide | `Docs/Swagger/README.md` | Explains how OpenAPI is produced |
 | JSON contract | `Docs/Swagger/openapi.json` | Automatically generated; do not edit manually |
-| Redoc HTML | `Docs/site/Swagger/openapi.html` | Generated after `npm run docs:build` |
 
 ---
 
@@ -38,19 +36,18 @@ With `npm start` running in **`MiaCaoMigo_`**:
 
 | URL | Content |
 |-----|---------|
-| [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) | **Swagger UI**: interactive API documentation, equivalent to the website hub "Swagger UI" card |
+| [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) | **Swagger UI**: interactive API documentation |
 | [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json) | Runtime OpenAPI JSON |
 
 ---
 
-## Static View
+## Static JSON
 
-After running `npm run docs:build` in the website repository:
+After running `npm run docs:generate` in the website repository:
 
 | Path | Content |
 |------|---------|
 | `Docs/Swagger/openapi.json` | Generated JSON |
-| `Docs/site/Swagger/openapi.html` | Redoc visualization, equivalent to the website hub "Specification" card |
 
 Specification details: [OpenAPI](OpenAPI.md)
 
@@ -61,7 +58,6 @@ Specification details: [OpenAPI](OpenAPI.md)
 | Command (in `MiaCaoMigo_`) | When to use |
 |----------------------------|-------------|
 | `npm run docs:generate` | Only Swagger/OpenAPI changed |
-| `npm run docs:build` | Any documentation changed; recommended default |
 
 Do not manually edit `Docs/Swagger/openapi.json`.
 

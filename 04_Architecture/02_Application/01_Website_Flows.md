@@ -5,7 +5,7 @@
   <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Defense support</span>
 </div>
 
-This document summarizes the main website flows implemented in `MiaCaoMigo_`. It is written for presentation and defense usage; source-level endpoint details remain in Swagger/JSDoc.
+This document summarizes the main website flows implemented in `MiaCaoMigo_`. It is written for presentation and defense usage; source-level endpoint details remain in Swagger/OpenAPI.
 
 ---
 
@@ -106,6 +106,37 @@ sequenceDiagram
 
 ---
 
+## Public adoptions flow
+
+Visitors can browse animals available for adoption without logging in. Adoption is registered immediately for authenticated clients (no pending-request table in the current schema).
+
+```mermaid
+flowchart TD
+  homeSection["FrontEnd/index.html#adocoes"] --> publicPage["FrontEnd/Pages/UserView/Geral/adocoes.html"]
+  publicPage --> listApi["GET /api/animals/adoptions"]
+  listApi --> availableView["vw_internal_animals_available"]
+  availableView --> cards["Cards with Interno animals"]
+
+  cards --> adoptClick["Client clicks Pedir adoção"]
+  adoptClick --> authCheck{"JWT + client (not staff)?"}
+  authCheck -->|"No"| loginPage["Redirect to login"]
+  authCheck -->|"Yes"| adoptApi["POST /api/animals/:id/adopt"]
+  adoptApi --> ownershipProc["sp_assign_ownership"]
+  ownershipProc --> adopted["ownership created + animal Adotado"]
+  adopted --> refreshList["Refresh public list"]
+```
+
+| Step | Page/API | Behaviour |
+|------|----------|-----------|
+| Discover | `index.html#adocoes` | Header link scrolls to the landing-page adoption section, matching services/about navigation |
+| Browse | `adocoes.html` + `adocoes.js` | Public list from `GET /api/animals/adoptions`; `photo_path` reserved for future static assets |
+| Authenticate | `login.html` | Unauthenticated adopt action redirects with return URL to adoptions page |
+| Adopt | `POST /api/animals/:id/adopt` | Client-only; calls `sp_assign_ownership` with platform registrar employee; staff receives `403` |
+
+DataLayer sources (unchanged schema): `vw_internal_animals_available`, `sp_assign_ownership`.
+
+---
+
 ## Client flow
 
 The authenticated client area supports self-service viewing and appointment management.
@@ -153,20 +184,33 @@ Open appointments page
 
 Staff users enter through the same authentication flow but are separated by institutional email and JWT permissions.
 
+The staff area follows a hybrid model:
+
+- **Self-service (`Minha Área`)**: every staff member sees their own agenda, schedule, clock-ins and absences through `/api/users/staff/me/*`.
+- **Global operations (RBAC)**: management sections appear only when the JWT includes the matching permission (`manage_appointments`, `manage_employees`, `manage_animals`, etc.).
+
 | Area | Page/script | Behaviour |
 |------|-------------|-----------|
-| Admin dashboard | `FrontEnd/Pages/AdminPanel/MainDashboard.html` | Central staff entry point |
-| Dashboard permissions | `FrontEnd/Js/geral/staffDashboard.js` | Shows/hides sections according to JWT permissions |
-| Employee operations | `FrontEnd/Pages/AdminPanel/AdicionarFuncionario.html` | Staff-facing employee management entry |
-| Appointment operations | `FrontEnd/Pages/AdminPanel/AdicionarConsulta.html` | Staff-facing appointment entry |
+| Staff home | `FrontEnd/Pages/AdminPanel/MainDashboard.html` + `staffDashboardHome.js` | Personal widgets loaded from `GET /api/users/staff/me/agenda` |
+| Full personal agenda | `FrontEnd/Pages/AdminPanel/AreaFuncionario.html` + `staffArea.js` | Detailed tables for appointments, schedule, attendance and absences |
+| Permission shell | `FrontEnd/Js/geral/staffDashboard.js` | Shows/hides `[data-require]` sections according to JWT permissions |
+| Global appointments | `FrontEnd/Pages/AdminPanel/AdicionarConsulta.html` | Staff appointment operations (`manage_appointments`) |
+| Employee onboarding | `FrontEnd/Pages/AdminPanel/AdicionarFuncionario.html` | HR entry (`manage_employees`) |
 
 Authorization rules:
 
 | Operation | Guard |
 |-----------|-------|
 | Staff-only reads | `requireStaff` |
+| Personal agenda | `requireAuth` + `requireStaff` on `/api/users/staff/me/*` |
 | Appointment lifecycle | `requirePermission('manage_appointments')` |
+| Employee directory | `manage_employees` in UI (`data-require`) |
 | Animal association/removal | `requireClinicSecretary` |
+
+Role-aware UI notes:
+
+- Veterinarians focus on appointments where `appointment.id_emp` matches their employee row.
+- Assistants see the same self-service area but global clinical management depends on RBAC profiles, not a fixed “assigned veterinarian” relationship in the database.
 
 ---
 

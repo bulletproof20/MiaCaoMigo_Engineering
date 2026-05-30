@@ -6,7 +6,7 @@
   <span style="background:#64748b;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Defense support</span>
 </div>
 
-The MiaCaoMigo **ApplicationLayer** is implemented in the sibling website repository **`MiaCaoMigo_`**. It contains the browser frontend, the Node/Express API, the OpenAPI/JSDoc documentation tooling, and the runtime integration with the PostgreSQL DataLayer.
+The MiaCaoMigo **ApplicationLayer** is implemented in the sibling website repository **`MiaCaoMigo_`**. It contains the browser frontend, the Node/Express API, the OpenAPI/Swagger documentation tooling, and the runtime integration with the PostgreSQL DataLayer.
 
 This section adapts the website documentation into the Engineering portal without duplicating the canonical requirements matrices. It is intended for architectural reading and defense preparation.
 
@@ -20,7 +20,7 @@ This section adapts the website documentation into the Engineering portal withou
 | [Website flows](01_Website_Flows.md) | Authentication, client, appointment and staff/admin flows |
 | [Runtime setup](02_Runtime_Setup.md) | Local/Docker execution model and Application-to-DataLayer connection |
 | [Implementation evidence](03_Implementation_Evidence.md) | Defense-oriented mapping between implemented website features and RF/RNF evidence |
-| [**Website documentation hub**](04_Generated_Docs/README.md) | Hub equivalente ao `Docs/index.html` do website (Backend, Frontend, Swagger, JSDoc, atualização) |
+| [**Application documentation hub**](04_Generated_Docs/README.md) | Backend, Frontend, Swagger/OpenAPI and update guidance |
 
 ---
 
@@ -29,7 +29,7 @@ This section adapts the website documentation into the Engineering portal withou
 | Repository | Responsibility |
 |------------|----------------|
 | `MiaCaoMigo_Engineering` | Engineering documentation, planning, architecture, requirements and defense support |
-| `MiaCaoMigo_` | ApplicationLayer: frontend, backend API, Swagger/JSDoc and runtime orchestration |
+| `MiaCaoMigo_` | ApplicationLayer: frontend, backend API, Swagger and runtime orchestration |
 | `MiaCaoMigo_DataLayer` | PostgreSQL schema, services, seed data, QA and database governance |
 
 ---
@@ -41,9 +41,21 @@ This section adapts the website documentation into the Engineering portal withou
 | UI | Static HTML/CSS/JavaScript pages under `FrontEnd/` |
 | API | Express server, modular routes, middlewares, controllers and models under `Backend/` |
 | Authentication | JWT login/logout/session flow with staff/client separation |
+| Staff area | Hybrid dashboard: personal `Minha Área` + RBAC global sections |
 | Animals | Client animal reads and staff-controlled association/update/removal |
 | Appointments | Client booking, availability, cancel/reschedule and staff lifecycle operations |
-| Documentation | Swagger UI, OpenAPI JSON, JSDoc and generated static docs |
+| Documentation | Swagger UI, OpenAPI JSON and generated static docs |
+
+### Staff RBAC mapping (UI)
+
+| UI section | Permission | API / page |
+|------------|------------|------------|
+| Minha Área (all staff) | `staff === true` | `GET /api/users/staff/me/agenda` |
+| Gestão de consultas | `manage_appointments` | `AdicionarConsulta.html`, `/api/appointments` |
+| Quadro de funcionários | `manage_employees` | `MainDashboard.html#funcionarios` |
+| Animais / pacientes | `manage_animals` | `MainDashboard.html#animais`, staff animal routes |
+| Área comercial | `manage_commercial` | Reserved (Mod3) |
+| Relatórios | `view_reports` | Reserved |
 
 ---
 

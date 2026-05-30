@@ -1,8 +1,6 @@
 # Backend Documentation
 
-Source in the website repository: `MiaCaoMigo_/Docs/Backend/README.md`
-
-This page summarizes how the Express backend exposes the application, the API, and the documentation routes at runtime.
+This page summarizes how the Express backend exposes the application and the API documentation routes at runtime.
 
 ---
 
@@ -11,13 +9,11 @@ This page summarizes how the Express backend exposes the application, the API, a
 | URL | Source | Description |
 |-----|--------|-------------|
 | `/` | `FrontEnd/` | Static website |
-| `/api/users` | `Backend/routes/Mod1_Users` | Authentication and session management |
+| `/api/users` | `Backend/routes/Mod1_Users` | Authentication, session management, user setup and staff self-service |
 | `/api/animals` | `Backend/routes/Mod2_Animals` | Species, breeds, and animal data |
 | `/api/appointments` | `Backend/routes/Mod4_Appointments` | Appointments, veterinarians, specialties, and availability |
-| `/docs/` | `Docs/` | Website HTML documentation hub |
 | `/api-docs/` | `swagger-ui-express` | Interactive Swagger UI |
 | `/api-docs.json` | `swagger-jsdoc` | Runtime OpenAPI JSON |
-| `/jsdoc/` | `Docs/site/CodeReference/` | JSDoc reference |
 | `/db-test` | `Backend/server.js` | Technical route for testing database connectivity |
 
 ---
@@ -32,25 +28,99 @@ This page summarizes how the Express backend exposes the application, the API, a
 | `Backend/config/db.js` | PostgreSQL connection pool |
 | `Backend/middlewares/authMiddleware.js` | JWT, staff, permission, and clinic secretary guards |
 | `scripts_docs/generate-swagger.js` | Generates `Docs/Swagger/openapi.json` |
-| `scripts_docs/generate-jsdoc.js` | Generates `Docs/site/CodeReference/` |
-| `scripts_docs/build-docs.js` | Generates Markdown HTML pages and Redoc |
-| `jsdoc.json` | Defines the JSDoc reference scope |
 
 ---
 
 ## Request Layers
 
-```text
-HTTP request
-  -> server.js (middlewares)
-  -> routes (Mod1 / Mod2 / Mod4)
-  -> middlewares (auth, staff, permissions)
-  -> controllers
-  -> models
-  -> PostgreSQL (MiaCaoMigo_DataLayer)
+```mermaid
+flowchart TD
+  request["HTTP request"] --> server["server.js"]
+  server --> routes["Routes: Mod1 / Mod2 / Mod4"]
+  routes --> guards["Middlewares: auth / staff / permissions"]
+  guards --> controllers["Controllers"]
+  controllers --> models["Models"]
+  models --> database["PostgreSQL DataLayer"]
 ```
 
 See also [Website flows](../01_Website_Flows.md) for the full frontend/backend flow.
+
+---
+
+## Auth Setup And Theme
+
+User visual preferences are persisted in the `setup` table and exposed through authenticated Mod1 auth routes.
+
+```mermaid
+sequenceDiagram
+  participant Browser as Browser
+  participant Routes as Auth Routes
+  participant Controller as Auth Controller
+  participant Model as Auth Model
+  participant DB as PostgreSQL
+
+  Browser->>Routes: GET /api/users/auth/setup
+  Routes->>Controller: requireAuth + getSetup
+  Controller->>Model: getUserSetup(req.user.sub)
+  Model->>DB: SELECT the_set, lan_set FROM setup
+  DB-->>Model: setup row
+  Model-->>Controller: setup
+  Controller-->>Browser: setup response
+
+  Browser->>Routes: PUT /api/users/auth/setup/theme
+  Routes->>Controller: requireAuth + updateTheme
+  Controller->>Controller: Validate light/dark
+  Controller->>Model: updateUserTheme(req.user.sub, theme)
+  Model->>DB: UPDATE setup.the_set
+  DB-->>Model: updated setup
+  Controller-->>Browser: updated setup response
+```
+
+| Endpoint | Guard | Responsibility |
+|----------|-------|----------------|
+| `GET /api/users/auth/setup` | `requireAuth` | Read `setup.the_set` and `setup.lan_set` for the authenticated user |
+| `PUT /api/users/auth/setup/theme` | `requireAuth` | Update `setup.the_set` to `light` or `dark` |
+
+The user id comes from the JWT (`req.user.sub`); the browser never sends an arbitrary `id_usr` for these operations.
+
+---
+
+## Public Adoptions (Mod2)
+
+Animals in `Interno` status are listed from `vw_internal_animals_available`. Authenticated clients adopt through `sp_assign_ownership` (direct ownership, no pending-request table).
+
+| Endpoint | Guard | Responsibility |
+|----------|-------|----------------|
+| `GET /api/animals/adoptions` | Public | List available animals; `photo_path` reserved (`null` until assets exist) |
+| `POST /api/animals/:id/adopt` | `requireAuth` (clients only) | Direct adoption via `sp_assign_ownership`; staff receives `403` |
+
+---
+
+## Staff Self-Service
+
+Staff personal pages use `/api/users/staff/me/*` endpoints protected by `requireAuth` and `requireStaff`.
+
+```mermaid
+flowchart TD
+  staffPage["MainDashboard / AreaFuncionario"] --> staffRoutes["/api/users/staff/me/*"]
+  staffRoutes --> authGuard["requireAuth"]
+  authGuard --> staffGuard["requireStaff"]
+  staffGuard --> staffController["staffController"]
+  staffController --> staffModel["Models/Mod1_Users/staff.js"]
+  staffModel --> database["PostgreSQL"]
+
+  staffModel --> agenda["appointments + schedule + clock_ins + absences"]
+  agenda --> staffPage
+```
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /api/users/staff/me/agenda` | Full personal staff area payload |
+| `GET /api/users/staff/me/appointments` | Authenticated staff member appointments |
+| `GET /api/users/staff/me/schedule` | Weekly schedule |
+| `GET /api/users/staff/me/clock-ins` | Recent clock-in/out records |
+| `GET /api/users/staff/me/absences` | Recent or future absences |
+| `POST /api/users/staff/me/clock-toggle` | Toggle clock-in/out through `svc_clock_toggle` |
 
 ---
 
@@ -61,6 +131,7 @@ The API source of truth is the `@swagger` comments in mounted route files and th
 Routes included in the current OpenAPI contract:
 
 - `Backend/routes/Mod1_Users/authRoutes.js`
+- `Backend/routes/Mod1_Users/staffRoutes.js`
 - `Backend/routes/Mod2_Animals/animais.js`
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
 
@@ -70,26 +141,12 @@ Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
 
 ---
 
-## JSDoc
-
-JSDoc comments are read from:
-
-- `Backend/**/*.js`
-- `FrontEnd/Js/**/*.js`
-
-Output: `Docs/site/CodeReference/`, served at `http://localhost:3000/jsdoc/`.
-
-Details: [Code Reference](Code_Reference.md)
-
----
-
 ## Maintenance
 
 1. Update `@swagger` comments when endpoints, payloads, or responses change.
-2. Update JSDoc when modules or public contracts change.
-3. In the **`MiaCaoMigo_`** repository, run `npm run docs:build`.
+2. In the **`MiaCaoMigo_`** repository, run `npm run docs:generate`.
 
-Do not manually edit `Docs/Swagger/openapi.json` or `Docs/site/**`.
+Do not manually edit `Docs/Swagger/openapi.json`.
 
 ---
 

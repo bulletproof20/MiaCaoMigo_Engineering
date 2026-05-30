@@ -1,7 +1,5 @@
 # MiaCaoMigo Frontend Flow
 
-Source in the website repository: `MiaCaoMigo_/Docs/Frontend_Flow.md`
-
 Real navigation diagram and API call flow between frontend pages and backend endpoints. For the defense-oriented narrative, see also [Website flows](../01_Website_Flows.md).
 
 ---
@@ -22,7 +20,12 @@ The frontend is split into:
 flowchart TD
   visitor["Visitor"] --> home["Home: FrontEnd/index.html"]
   home --> login["Login: UserView/Mod1/login.html"]
-  home --> publicPages["Public pages: services, shop, about, contact"]
+  home --> publicPages["Public pages: services, adoptions, shop, about, contact"]
+  home --> adocoesSection["Adoptions section: index.html#adocoes"]
+  adocoesSection --> adocoes["Adoptions page: UserView/Geral/adocoes.html"]
+  adocoes -->|"GET /api/animals/adoptions"| animalsApi
+  adocoes -->|"Request adoption (client)"| login
+  login -->|"POST /api/animals/:id/adopt"| animalsApi
   home --> register["Create account: UserView/Mod1/criar_conta.html"]
 
   register -->|"POST /api/users/auth/register"| authApi["Auth API"]
@@ -49,6 +52,10 @@ flowchart TD
   appointments -->|"GET vets, specialties, availability"| appointmentsApi
   appointments -->|"POST /api/appointments"| appointmentsApi
 
+  staffHub --> staffHome["MainDashboard: Minha Área"]
+  staffHome -->|"GET /api/users/staff/me/agenda"| staffApi["Staff API"]
+  staffHub --> staffAgenda["AreaFuncionario: agenda completa"]
+  staffAgenda -->|"GET /api/users/staff/me/agenda"| staffApi
   staffHub --> staffPages["Staff pages: AdicionarFuncionario, AdicionarConsulta"]
   staffHub -->|"data-require permissions"| staffGuard["staffDashboard.js"]
 ```
@@ -60,6 +67,7 @@ flowchart TD
 | Page | Description |
 |------|-------------|
 | `FrontEnd/index.html` | Landing page |
+| `UserView/Geral/adocoes.html` | Animals available for adoption (`Interno`) |
 | `UserView/Geral/servicos.html` | Services |
 | `UserView/Geral/sobre_nos.html` | About the clinic |
 | `UserView/Geral/formulário_contacto.html` | Contact |
@@ -95,7 +103,8 @@ flowchart TD
 
 | Page | Script | Purpose |
 |------|--------|---------|
-| `AdminPanel/MainDashboard.html` | `staffDashboard.js`, `AdminSidebar.js` | Permission-aware staff dashboard |
+| `AdminPanel/MainDashboard.html` | `staffDashboard.js`, `staffDashboardHome.js`, `AdminSidebar.js` | Staff home with personal widgets + RBAC global shortcuts |
+| `AdminPanel/AreaFuncionario.html` | `staffArea.js`, `staffDashboard.js` | Full personal agenda (appointments, schedule, clock-ins, absences) |
 | `AdminPanel/AdicionarFuncionario.html` | `staffDashboard.js` | Staff form page |
 | `AdminPanel/AdicionarConsulta.html` | `staffDashboard.js` | Staff appointments page |
 
@@ -106,7 +115,6 @@ flowchart TD
 | Resource | URL / page |
 |----------|------------|
 | Interactive API | [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) |
-| JSDoc | [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) |
 | Frontend pages and scripts | [Frontend](Frontend.md) |
 | Backend routes | [Backend](Backend.md) |
 

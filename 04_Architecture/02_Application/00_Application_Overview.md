@@ -26,7 +26,7 @@ MiaCaoMigo_
 | Backend | Node.js, Express.js, CORS |
 | Authentication | JSON Web Tokens |
 | Database access | `pg` connection pool |
-| API docs | Swagger/OpenAPI, JSDoc |
+| API docs | Swagger/OpenAPI |
 | Runtime | Local Node.js or Docker |
 
 ---
@@ -49,15 +49,15 @@ MiaCaoMigo_
 
 ## Runtime boundary
 
-```text
-Browser
-  -> FrontEnd HTML/CSS/JS
-  -> Express server
-  -> Routes
-  -> Middlewares
-  -> Controllers
-  -> Models
-  -> PostgreSQL DataLayer
+```mermaid
+flowchart TD
+  browser["Browser"] --> frontend["FrontEnd HTML/CSS/JS"]
+  frontend --> express["Express server"]
+  express --> routes["Module routes"]
+  routes --> middlewares["Auth/permission middlewares"]
+  middlewares --> controllers["Controllers"]
+  controllers --> models["Models"]
+  models --> dataLayer["PostgreSQL DataLayer"]
 ```
 
 The ApplicationLayer is responsible for request orchestration and user interaction. The DataLayer remains the integrity authority for relational constraints, SQL services, triggers, jobs and persisted data.
@@ -81,17 +81,15 @@ When the application server is running, the website repository exposes:
 
 | Endpoint | Purpose |
 |----------|---------|
-| `/docs/` | Documentation hub (HTML, website) |
 | `/api-docs/` | Swagger UI |
 | `/api-docs.json` | OpenAPI JSON specification |
-| `/jsdoc/` | Generated JSDoc reference |
 
-The same content is indexed in this Engineering portal under [Website documentation hub](04_Generated_Docs/README.md) (equivalent to `Docs/index.html`).
+Application documentation is maintained in this Engineering portal under [Application documentation hub](04_Generated_Docs/README.md).
 
-Static documentation can be regenerated in the website repository with:
+The static OpenAPI JSON can be regenerated in the website repository with:
 
 ```sh
-npm run docs:build
+npm run docs:generate
 ```
 
 See [Update Docs](04_Generated_Docs/Update_Docs.md).

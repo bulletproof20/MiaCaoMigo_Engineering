@@ -14,7 +14,7 @@ Index for **system**, **application** and **database** architecture. Validated a
 | Document | Scope |
 |----------|--------|
 | [System architecture](00_System_Architecture.md) | DataLayer · Application · Engineering |
-| [Application hub](02_Application/README.md) | Website architecture, flows, runtime setup, implementation evidence and [website documentation hub](02_Application/04_Generated_Docs/README.md) |
+| [Application hub](02_Application/README.md) | Website architecture, flows, runtime setup, implementation evidence and [application documentation hub](02_Application/04_Generated_Docs/README.md) |
 | [Database hub](01_Database/README.md) | PostgreSQL, M1–M4, QA, SchemaSpy link |
 
 ---

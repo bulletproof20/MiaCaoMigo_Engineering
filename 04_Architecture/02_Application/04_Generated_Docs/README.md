@@ -1,13 +1,13 @@
 # MiaCaoMigo Documentation (ApplicationLayer)
 
 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;">
-  <span style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Website docs</span>
+  <span style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Application docs</span>
   <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">MkDocs hub</span>
 </div>
 
-This index gathers the technical documentation for the application repository (`MiaCaoMigo_`): Markdown guides, the Swagger/OpenAPI API documentation, and the generated JSDoc reference for backend and frontend code.
+This index gathers the technical documentation for the application repository (`MiaCaoMigo_`): architecture-oriented guides and the Swagger/OpenAPI API documentation.
 
-The **editable source** remains in the website repository. This Engineering hub mirrors the navigation from the website `Docs/index.html`, adapted to the MkDocs portal.
+This Engineering section is the editable source for application documentation. The website repository keeps only the runtime Swagger UI and the generated OpenAPI JSON artifact.
 
 ---
 
@@ -17,7 +17,7 @@ The **editable source** remains in the website repository. This Engineering hub 
 
 - **Backend**
 
-    Explains how Express mounts routes and serves Swagger UI, OpenAPI JSON, and the JSDoc route locally.
+    Explains how Express mounts routes and serves Swagger UI and OpenAPI JSON locally.
 
     [:octicons-arrow-right-24: Open backend docs](Backend.md)
 
@@ -41,19 +41,13 @@ The **editable source** remains in the website repository. This Engineering hub 
 
 - **OpenAPI Specification**
 
-    Explains where to find the JSON contract and the Redoc visualization.
+    Explains where to find the JSON contract and Swagger UI.
 
     [:octicons-arrow-right-24: Open OpenAPI guide](OpenAPI.md)
 
-- **Code Reference**
-
-    JSDoc reference generated from backend and frontend code comments.
-
-    [:octicons-arrow-right-24: Open code reference](Code_Reference.md)
-
 - **Update Documentation**
 
-    Commands for regenerating OpenAPI, JSDoc, and HTML from the website sources.
+    Commands for regenerating the OpenAPI contract from the website sources.
 
     [:octicons-arrow-right-24: Open update guide](Update_Docs.md)
 
@@ -67,10 +61,8 @@ With `npm start` running in the **`MiaCaoMigo_`** repository:
 
 | URL | Content |
 |-----|---------|
-| [http://localhost:3000/docs/](http://localhost:3000/docs/) | Original HTML documentation hub from the website repository |
 | [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) | Interactive Swagger UI |
 | [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json) | Runtime OpenAPI JSON |
-| [http://localhost:3000/jsdoc/](http://localhost:3000/jsdoc/) | JSDoc reference served by the backend |
 
 ---
 
@@ -78,9 +70,8 @@ With `npm start` running in the **`MiaCaoMigo_`** repository:
 
 | Layer | Editable source (`MiaCaoMigo_`) | Generated output |
 |-------|---------------------------------|------------------|
-| REST API | `@swagger` in `Backend/routes/**` and `Backend/swaggerConfig.js` | Swagger UI, `Docs/Swagger/openapi.json`, Redoc HTML |
-| Code | JSDoc in `Backend/**/*.js` and `FrontEnd/Js/**/*.js` | `Docs/site/CodeReference/` and `/jsdoc/` |
-| Guides | Markdown in `Docs/**/*.md` | HTML in `Docs/site/**/*.html` |
+| REST API | `@swagger` in `Backend/routes/**` and `Backend/swaggerConfig.js` | Swagger UI and `Docs/Swagger/openapi.json` |
+| Guides | Engineering Markdown in this section | MkDocs portal pages |
 
 Technical code comments are written in **English**. User-facing UI text remains in **Portuguese**.
 

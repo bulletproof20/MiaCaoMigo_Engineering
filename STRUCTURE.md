@@ -186,14 +186,13 @@ flowchart TB
 │   ├── 01_Website_Flows.md
 │   ├── 02_Runtime_Setup.md
 │   ├── 03_Implementation_Evidence.md
-│   └── 04_Generated_Docs/             hub Docs/index.html (MkDocs)
+│   └── 04_Generated_Docs/             application documentation hub (MkDocs)
 │       ├── README.md
 │       ├── Backend.md
 │       ├── Frontend.md
 │       ├── Frontend_Flow.md
 │       ├── Swagger.md
 │       ├── OpenAPI.md
-│       ├── Code_Reference.md
 │       └── Update_Docs.md
 └── 01_Database/
     ├── README.md

@@ -165,7 +165,6 @@ nav:
               - Frontend Flow: 04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow.md
               - Swagger: 04_Architecture/02_Application/04_Generated_Docs/Swagger.md
               - OpenAPI: 04_Architecture/02_Application/04_Generated_Docs/OpenAPI.md
-              - Code Reference: 04_Architecture/02_Application/04_Generated_Docs/Code_Reference.md
               - Update Docs: 04_Architecture/02_Application/04_Generated_Docs/Update_Docs.md
 
       - Database Engineering:
