@@ -17,13 +17,13 @@ This Engineering section is the editable source for application documentation. T
 
 - **Backend**
 
-    Explains how Express mounts routes and serves Swagger UI and OpenAPI JSON locally.
+    Explains how Express mounts Mod1, Mod2 and Mod4 routes, including staff employee onboarding, and serves Swagger UI/OpenAPI JSON locally.
 
     [:octicons-arrow-right-24: Open backend docs](Backend.md)
 
 - **Frontend**
 
-    Describes the page flow, main forms, authentication behavior, and staff dashboard behavior.
+    Describes the current page flow, route map, main forms, authentication behavior, sidebars, client pages and staff dashboard behavior.
 
     [:octicons-arrow-right-24: Open frontend docs](Frontend.md)
 

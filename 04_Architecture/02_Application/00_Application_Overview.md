@@ -47,6 +47,21 @@ MiaCaoMigo_
 
 ---
 
+## Frontend navigation model
+
+The frontend uses a centralized route map instead of hardcoding every redirect in page scripts:
+
+| File | Responsibility |
+|------|----------------|
+| `FrontEnd/Js/geral/routes.js` | Current page constants, post-login redirects, guards and legacy path mapping |
+| `FrontEnd/Js/geral/Sidebar/SidebarMenuCatalog.js` | Menu catalog and profile-to-menu resolution |
+| `FrontEnd/Js/geral/Sidebar/ClientSidebar.js` | Client sidebar rendering |
+| `FrontEnd/Js/geral/Sidebar/EmployeeSidebar.js` | Staff sidebar rendering from JWT profiles |
+
+Legacy paths from the previous `UserView` and `AdminPanel` layout are mapped to the current `Pages/Mod*_...` structure for redirects/bookmarks, but new documentation should reference the current paths only.
+
+---
+
 ## Runtime boundary
 
 ```mermaid
@@ -68,9 +83,9 @@ The ApplicationLayer is responsible for request orchestration and user interacti
 
 | Module | API prefix | Scope |
 |--------|------------|-------|
-| Mod1 - Users | `/api/users` | Authentication, client registration, session state, staff permissions and user setup preferences |
+| Mod1 - Users | `/api/users` | Authentication, client registration, session state, staff permissions, user setup preferences, client lookup and employee onboarding |
 | Mod2 - Animals | `/api/animals` | Species, breeds, client animals and staff-controlled animal operations |
-| Mod3 - Commercial | Reserved/partial | Commercial integration exists structurally but is not fully exposed in the website API |
+| Mod3 - Commercial | Reserved/partial | Public shop page placeholder exists; commercial API exposure is not mounted in the current website contract |
 | Mod4 - Appointments | `/api/appointments` | Booking, availability, history, cancel/reschedule and appointment lifecycle |
 
 ---
@@ -85,6 +100,8 @@ When the application server is running, the website repository exposes:
 | `/api-docs.json` | OpenAPI JSON specification |
 
 Application documentation is maintained in this Engineering portal under [Application documentation hub](04_Generated_Docs/README.md).
+
+Current mounted Mod1 subroutes include `/api/users/auth`, `/api/users/clients`, `/api/users/staff` and `/api/users/employees`.
 
 The static OpenAPI JSON can be regenerated in the website repository with:
 

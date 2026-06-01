@@ -25,8 +25,16 @@ Routes documented in the current contract:
 | Module | Prefix | Route file |
 |--------|--------|------------|
 | Mod1 | `/api/users/auth/*` | `Backend/routes/Mod1_Users/authRoutes.js` |
+| Mod1 | `/api/users/clients/*` | `Backend/routes/Mod1_Users/clientRoutes.js` |
+| Mod1 | `/api/users/staff/*` | `Backend/routes/Mod1_Users/staffRoutes.js` |
+| Mod1 | `/api/users/employees/*` | `Backend/routes/Mod1_Users/employeeRoutes.js` |
 | Mod2 | `/api/animals/*` | `Backend/routes/Mod2_Animals/animais.js` |
 | Mod4 | `/api/appointments/*` | `Backend/routes/Mod4_Appointments/appointmentRoutes.js` |
+| Mod4 | `/api/appointments/prescriptions/*` | `Backend/routes/Mod4_Appointments/prescricoesRoutes.js` |
+
+The current Swagger contract includes `POST /api/users/employees`, which supports the staff employee onboarding page and requires the `manage_employees` permission.
+
+The appointment availability contract also documents the optional `excludeAppId` query parameter used when recalculating free slots during rescheduling.
 
 ---
 

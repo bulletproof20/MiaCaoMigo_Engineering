@@ -4,6 +4,7 @@ docs_dir: ..
 
 theme:
   name: material
+  custom_dir: overrides
 
   logo: 00_Assets/00_Branding/00_logos/Logo_partialBack.png
   favicon: 00_Assets/00_Branding/01_icons/Logo_pBack.ico 
@@ -33,9 +34,10 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - toc.integrate
 
 extra_css:
-  - stylesheets/extra.css
+  - Extras/extra.css
 
 plugins:
   - search
@@ -206,6 +208,18 @@ nav:
           - SchemaSpy:
               - Overview: 04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview.md
               - User Guide: 04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide.md
+
+  # =========================================================
+  # Performance
+  # =========================================================
+
+  - Performance:
+      - Overview: 06_Performance/README.md
+      - Strategy: 06_Performance/01_Performance_Strategy.md
+      - Frontend: 06_Performance/02_Frontend_Performance.md
+      - Backend API: 06_Performance/03_Backend_Performance.md
+      - Test Results: 06_Performance/04_Test_Results.md
+      - Recommendations: 06_Performance/05_Recommendations.md
 
   # =========================================================
   # Documentation

@@ -9,7 +9,7 @@ This page summarizes how the Express backend exposes the application and the API
 | URL | Source | Description |
 |-----|--------|-------------|
 | `/` | `FrontEnd/` | Static website |
-| `/api/users` | `Backend/routes/Mod1_Users` | Authentication, session management, user setup and staff self-service |
+| `/api/users` | `Backend/routes/Mod1_Users` | Authentication, session management, user setup, staff self-service, client lookup and employee onboarding |
 | `/api/animals` | `Backend/routes/Mod2_Animals` | Species, breeds, and animal data |
 | `/api/appointments` | `Backend/routes/Mod4_Appointments` | Appointments, veterinarians, specialties, and availability |
 | `/api-docs/` | `swagger-ui-express` | Interactive Swagger UI |
@@ -124,6 +124,30 @@ flowchart TD
 
 ---
 
+## Employee Onboarding
+
+The employee creation page posts to a mounted Mod1 route and is protected by staff RBAC.
+
+| Endpoint | Guard | Responsibility |
+|----------|-------|----------------|
+| `POST /api/users/employees` | `requireAuth` + `requireStaff` + `requirePermission('manage_employees')` | Create identity + employee through the DataLayer, attach a single RBAC profile and return the generated professional email |
+
+Current implementation detail: the frontend collects a `schedule` object, and the backend accepts it, but schedule persistence is not active in this phase.
+
+---
+
+## Appointment Availability And Rescheduling
+
+`GET /api/appointments/availability` returns 30-minute slots for a veterinarian/date pair. During rescheduling, the frontend may pass `excludeAppId` so the current appointment does not block its own original slot.
+
+| Query parameter | Required | Purpose |
+|-----------------|----------|---------|
+| `vetId` | Yes | Veterinarian employee ID |
+| `date` | Yes | Target date in `YYYY-MM-DD` format |
+| `excludeAppId` | No | Appointment ID to ignore while recalculating availability for reschedule |
+
+---
+
 ## OpenAPI
 
 The API source of truth is the `@swagger` comments in mounted route files and the schemas defined in `Backend/swaggerConfig.js`.
@@ -131,11 +155,16 @@ The API source of truth is the `@swagger` comments in mounted route files and th
 Routes included in the current OpenAPI contract:
 
 - `Backend/routes/Mod1_Users/authRoutes.js`
+- `Backend/routes/Mod1_Users/clientRoutes.js`
 - `Backend/routes/Mod1_Users/staffRoutes.js`
+- `Backend/routes/Mod1_Users/employeeRoutes.js`
 - `Backend/routes/Mod2_Animals/animais.js`
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
+- `Backend/routes/Mod4_Appointments/prescricoesRoutes.js`
 
-Stub modules, such as partial Mod3 billing or unmounted prescription routes, are excluded from the contract to avoid publishing tags without real endpoints.
+Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration). PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency.
+
+Stub modules, such as partial Mod3 billing routes, remain excluded from the contract when not mounted in `server.js`.
 
 Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
 

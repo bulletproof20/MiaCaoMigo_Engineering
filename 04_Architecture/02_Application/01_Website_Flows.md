@@ -54,13 +54,13 @@ sequenceDiagram
     FE-->>U: Redirect by profile
 ```
 
-1. The user opens a public page and navigates to `FrontEnd/Pages/UserView/Mod1/login.html`.
+1. The user opens a public page and navigates to `FrontEnd/Pages/Mod1_Users/Autenticacao/login.html`.
 2. `FrontEnd/Js/Mod1/login.js` submits email and password to `POST /api/users/auth/login`.
 3. `authController.login` validates credentials through the authentication model.
 4. A successful login returns a JWT, a user snapshot and the current theme from `setup.the_set`.
 5. `FrontEnd/Js/geral/authSession.js` stores `jwtToken` and `miaUser` in `localStorage` and applies the theme through `data-theme`.
-6. Staff users are redirected to `FrontEnd/Pages/AdminPanel/MainDashboard.html`.
-7. Client users are redirected to `FrontEnd/Pages/UserView/Mod1/area_cliente.html`.
+6. Staff users are redirected to `FrontEnd/Pages/Mod1_Users/Funcionarios/MainDashboard.html`.
+7. Client users are redirected to `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html`.
 8. Protected requests include `Authorization: Bearer <token>`.
 9. Logout calls `POST /api/users/auth/logout`, closes the database session and clears local storage.
 
@@ -106,13 +106,34 @@ sequenceDiagram
 
 ---
 
+## Route and sidebar flow
+
+`FrontEnd/Js/geral/routes.js` is the frontend navigation source. It defines current page paths, post-login redirects, staff/client guards and legacy path translation.
+
+```mermaid
+flowchart TD
+  auth["MiaAuth user snapshot"] --> routes["MiaRoutes"]
+  routes --> clientGuard["guardClientLocal"]
+  routes --> staffGuard["guardStaff"]
+  routes --> legacy["resolveLegacyPath"]
+
+  auth --> profiles["JWT profiles"]
+  profiles --> catalog["SidebarMenuCatalog"]
+  catalog --> clientSidebar["ClientSidebar"]
+  catalog --> employeeSidebar["EmployeeSidebar"]
+```
+
+The sidebar catalog resolves client links from a fixed client menu and staff links from profile names (`administrador`, `veterinario`, `assistente`, `gestor rh`, etc.). Reserved entries for commercial/reporting navigation are visible in the catalog but remain non-operational in the current website.
+
+---
+
 ## Public adoptions flow
 
 Visitors can browse animals available for adoption without logging in. Adoption is registered immediately for authenticated clients (no pending-request table in the current schema).
 
 ```mermaid
 flowchart TD
-  homeSection["FrontEnd/index.html#adocoes"] --> publicPage["FrontEnd/Pages/UserView/Geral/adocoes.html"]
+  homeSection["FrontEnd/index.html#adocoes"] --> publicPage["FrontEnd/Pages/Public/adocoes.html"]
   publicPage --> listApi["GET /api/animals/adoptions"]
   listApi --> availableView["vw_internal_animals_available"]
   availableView --> cards["Cards with Interno animals"]
@@ -143,10 +164,11 @@ The authenticated client area supports self-service viewing and appointment mana
 
 | Area | Page/script | Behaviour |
 |------|-------------|-----------|
-| Client entry | `FrontEnd/Pages/UserView/Mod1/area_cliente.html` | Reserved area entry point |
-| Theme preference | `FrontEnd/Pages/Geral/ClientSideBar.html` + `FrontEnd/Js/geral/ClientSideBar.js` | Lets the authenticated client choose light/dark theme |
-| Animals | `FrontEnd/Pages/UserView/Mod2/animais.html` + `FrontEnd/Js/Mod2/clientAnimais.js` | Lists animals linked to the authenticated client |
-| Appointments | `FrontEnd/Pages/UserView/Mod4/consultas.html` + `FrontEnd/Js/Mod4/clientConsultas.js` | Lists, books, cancels and reschedules client appointments |
+| Client entry | `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` | Reserved area entry point |
+| Theme preference | `FrontEnd/Js/geral/Sidebar/ClientSidebar.js` + `FrontEnd/Js/geral/authSession.js` | Lets the authenticated client choose light/dark theme |
+| Animals | `FrontEnd/Pages/Mod2_Animals/animais.html` + `FrontEnd/Js/Mod2/clientAnimais.js` | Lists animals linked to the authenticated client |
+| Add animal | `FrontEnd/Pages/Mod2_Animals/adicionar-animal.html` | Client/staff navigation target for animal registration flow |
+| Appointments | `FrontEnd/Pages/Mod4_Appointments/consultas.html` + `FrontEnd/Js/Mod4/clientConsultas.js` | Lists, books, cancels and reschedules client appointments |
 
 Access control rule:
 
@@ -168,7 +190,7 @@ Open appointments page
   -> refresh appointment list
 ```
 
-1. The client opens `FrontEnd/Pages/UserView/Mod4/consultas.html`.
+1. The client opens `FrontEnd/Pages/Mod4_Appointments/consultas.html`.
 2. The frontend loads animals with `GET /api/animals/me`.
 3. The frontend loads veterinarians with `GET /api/appointments/veterinarians`.
 4. The frontend loads specialties with `GET /api/appointments/specialties`.
@@ -191,11 +213,17 @@ The staff area follows a hybrid model:
 
 | Area | Page/script | Behaviour |
 |------|-------------|-----------|
-| Staff home | `FrontEnd/Pages/AdminPanel/MainDashboard.html` + `staffDashboardHome.js` | Personal widgets loaded from `GET /api/users/staff/me/agenda` |
-| Full personal agenda | `FrontEnd/Pages/AdminPanel/AreaFuncionario.html` + `staffArea.js` | Detailed tables for appointments, schedule, attendance and absences |
+| Staff home | `FrontEnd/Pages/Mod1_Users/Funcionarios/MainDashboard.html` + `staffDashboardHome.js` | Personal widgets loaded from `GET /api/users/staff/me/agenda` |
+| Full personal agenda | `FrontEnd/Pages/Mod1_Users/Funcionarios/AreaFuncionario.html` + `staffArea.js` | Intended detailed tables for appointments, schedule, attendance and absences; current HTML shell is empty in the website working tree |
 | Permission shell | `FrontEnd/Js/geral/staffDashboard.js` | Shows/hides `[data-require]` sections according to JWT permissions |
-| Global appointments | `FrontEnd/Pages/AdminPanel/AdicionarConsulta.html` | Staff appointment operations (`manage_appointments`) |
-| Employee onboarding | `FrontEnd/Pages/AdminPanel/AdicionarFuncionario.html` | HR entry (`manage_employees`) |
+| Team calendar | `FrontEnd/Pages/Mod1_Users/Funcionarios/CalendarioEquipa.html` | Staff team planning page |
+| Employee board | `FrontEnd/Pages/Mod1_Users/Funcionarios/QuadroFuncionario.html` | Staff directory/employee board entry |
+| Employee detail | `FrontEnd/Pages/Mod1_Users/Funcionarios/FuncionarioDetalhe.html` + `funcionarioDetalhe.js` | Employee detail page |
+| HR presentation views | `FrontEnd/Pages/Mod1_Users/Funcionarios/Views/*.html` | Static/prototype partials for personal information, attendance, absences, schedules, roles, team calendar and operational impact |
+| Global appointments | `FrontEnd/Pages/Mod4_Appointments/AdicionarConsulta.html` | Staff agenda: booking, check-in, start (`manage_appointments`) |
+| Clinical record | `FrontEnd/Pages/Mod4_Appointments/RegistoConsulta.html` | Veterinarian consultation record, prescription and close |
+| Staff animal registration | `FrontEnd/Pages/Mod2_Animals/RegistarAnimal.html` | Staff animal registration and ownership flows (`manage_animals`) |
+| Employee onboarding | `FrontEnd/Pages/Mod1_Users/Funcionarios/AdicionarFuncionario.html` + `AdicionarFuncionario.js` | HR entry; calls `POST /api/users/employees` with `manage_employees` |
 
 Authorization rules:
 
@@ -204,6 +232,7 @@ Authorization rules:
 | Staff-only reads | `requireStaff` |
 | Personal agenda | `requireAuth` + `requireStaff` on `/api/users/staff/me/*` |
 | Appointment lifecycle | `requirePermission('manage_appointments')` |
+| Employee onboarding | `requirePermission('manage_employees')` on `POST /api/users/employees` |
 | Employee directory | `manage_employees` in UI (`data-require`) |
 | Animal association/removal | `requireClinicSecretary` |
 
@@ -211,6 +240,55 @@ Role-aware UI notes:
 
 - Veterinarians focus on appointments where `appointment.id_emp` matches their employee row.
 - Assistants see the same self-service area but global clinical management depends on RBAC profiles, not a fixed “assigned veterinarian” relationship in the database.
+- The HR `Views/*.html` files are frontend presentation/prototype partials; the documented API-backed staff self-service data comes from `/api/users/staff/me/*`.
+- `staffArea.js` and `/api/users/staff/me/agenda` support the full personal agenda, but `AreaFuncionario.html` currently needs its page shell restored before the route can validate.
+
+---
+
+## Staff appointment management flow
+
+The staff agenda is implemented in `AdicionarConsulta.html` and `staffConsultas.js`. The clinical record page is `RegistoConsulta.html` with `registoConsulta.js`.
+
+| Action | Endpoint | Notes |
+|--------|----------|-------|
+| List appointments | `GET /api/appointments` | Staff-only route |
+| Load client animals | `GET /api/animals/client/:clientId` | Used when staff books on behalf of a client |
+| Load veterinarians/specialties | `GET /api/appointments/veterinarians`, `GET /api/appointments/specialties` | Form catalogs |
+| Load availability | `GET /api/appointments/availability?vetId=&date=&excludeAppId=` | `excludeAppId` is optional and used during rescheduling |
+| Create appointment | `POST /api/appointments` | Staff may pass `id_cli`/`id_usr` |
+| Waiting room check-in | `PATCH /api/appointments/:id_app/check-in` | Persists arrival via `appointment_notification` (`__WAITING_ROOM__`) without schema changes |
+| Start consultation | `PATCH /api/appointments/:id_app/start` | Assigned veterinarian only; validates previous slot (see below) |
+| Clinical workspace | `GET /api/appointments/prescriptions/consultation/:id_app` | Summary, history, prescription, vitals |
+| Save clinical record | `PUT /api/appointments/prescriptions/consultation/:id_app/clinical-record` | `anamnesis`, `overall_assessment`, diagnosis/comments on `appointment` |
+| Issue prescription | `POST /api/appointments/prescriptions/consultation/:id_app` | During `in_progress` |
+| Prescription PDF | `GET /api/appointments/prescriptions/:id_pre/pdf` | Generated on demand with `pdfkit` (not stored in DB) |
+| Close consultation | `PATCH /api/appointments/:id_app/close` | Sets `completed`; never auto-cancels delayed appointments |
+
+### Start rules (same veterinarian, 30-minute slots)
+
+```mermaid
+flowchart TD
+  startReq["PATCH start"] --> prev{"Previous slot exists?"}
+  prev -->|No| ok["Start allowed"]
+  prev -->|Yes| term{"Previous completed, cancelled or no_show?"}
+  term -->|Yes| ok
+  term -->|No| inprog{"Previous in_progress?"}
+  inprog -->|Yes| block1["Block: finish previous"]
+  inprog -->|No| late{"Previous scheduled and >15 min late?"}
+  late -->|Yes| wait{"Current client in waiting room?"}
+  wait -->|Yes| ok
+  wait -->|No| block2["Block: check-in or finish previous"]
+  late -->|No| block3["Block: finish previous first"]
+```
+
+Delayed appointments are never moved to `cancelled` automatically when the next slot begins; staff must explicitly close or manage the previous consultation.
+
+### Client prescriptions
+
+| Action | Endpoint | Notes |
+|--------|----------|-------|
+| List prescriptions | `GET /api/appointments/prescriptions/me` | Authenticated client |
+| Download PDF | `GET /api/appointments/prescriptions/:id_pre/pdf` | Own prescriptions only |
 
 ---
 

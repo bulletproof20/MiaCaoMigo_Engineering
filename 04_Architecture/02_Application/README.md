@@ -21,6 +21,7 @@ This section adapts the website documentation into the Engineering portal withou
 | [Runtime setup](02_Runtime_Setup.md) | Local/Docker execution model and Application-to-DataLayer connection |
 | [Implementation evidence](03_Implementation_Evidence.md) | Defense-oriented mapping between implemented website features and RF/RNF evidence |
 | [**Application documentation hub**](04_Generated_Docs/README.md) | Backend, Frontend, Swagger/OpenAPI and update guidance |
+| [Academic application report](05_Academic_Report.md) | Compact academic summary of implemented scope and defense positioning |
 
 ---
 
@@ -41,21 +42,27 @@ This section adapts the website documentation into the Engineering portal withou
 | UI | Static HTML/CSS/JavaScript pages under `FrontEnd/` |
 | API | Express server, modular routes, middlewares, controllers and models under `Backend/` |
 | Authentication | JWT login/logout/session flow with staff/client separation |
-| Staff area | Hybrid dashboard: personal `Minha Área` + RBAC global sections |
+| Staff area | Hybrid dashboard: personal `Minha Área` + RBAC global sections for employees, animals and appointments |
 | Animals | Client animal reads and staff-controlled association/update/removal |
 | Appointments | Client booking, availability, cancel/reschedule and staff lifecycle operations |
 | Documentation | Swagger UI, OpenAPI JSON and generated static docs |
+
+Navigation is centralized in `FrontEnd/Js/geral/routes.js`, while the role-aware sidebars are assembled from `SidebarMenuCatalog.js`, `ClientSidebar.js` and `EmployeeSidebar.js`.
 
 ### Staff RBAC mapping (UI)
 
 | UI section | Permission | API / page |
 |------------|------------|------------|
 | Minha Área (all staff) | `staff === true` | `GET /api/users/staff/me/agenda` |
+| Agenda Pessoal | `staff === true` | `AreaFuncionario.html`, `/api/users/staff/me/*` |
 | Gestão de consultas | `manage_appointments` | `AdicionarConsulta.html`, `/api/appointments` |
-| Quadro de funcionários | `manage_employees` | `MainDashboard.html#funcionarios` |
-| Animais / pacientes | `manage_animals` | `MainDashboard.html#animais`, staff animal routes |
+| Quadro de funcionários | `manage_employees` | `QuadroFuncionario.html` |
+| Registo de funcionários | `manage_employees` | `AdicionarFuncionario.html`, `POST /api/users/employees` |
+| Registo de animais | `manage_animals` | `RegistarAnimal.html`, staff animal routes |
 | Área comercial | `manage_commercial` | Reserved (Mod3) |
 | Relatórios | `view_reports` | Reserved |
+
+The sidebar catalog also exposes menu entries for commercial and reporting areas, but these entries remain reserved/disabled in the current website.
 
 ---
 

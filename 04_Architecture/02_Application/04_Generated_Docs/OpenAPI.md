@@ -17,6 +17,23 @@ The JSON file at `Docs/Swagger/openapi.json` is produced by `npm run docs:genera
 
 ---
 
+## Covered API Areas
+
+| Area | Main paths |
+|------|------------|
+| Authentication and setup | `/api/users/auth/*` |
+| Client lookup | `/api/users/clients` |
+| Staff self-service | `/api/users/staff/me/*` |
+| Employee onboarding | `/api/users/employees` |
+| Animals and adoptions | `/api/animals/*` |
+| Appointments | `/api/appointments/*` |
+
+Only mounted Express routes are published. Partial or unmounted modules are intentionally excluded from the generated contract.
+
+Appointment availability supports `vetId`, `date` and optional `excludeAppId` query parameters; the optional parameter is used by the staff/client reschedule flow to ignore the appointment currently being moved.
+
+---
+
 ## Swagger UI (Interactive Exploration)
 
 To test endpoints and inspect schemas interactively, use **Swagger UI**:

@@ -1,0 +1,71 @@
+.md-header__button.md-logo img {
+    width: 100px !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+:root {
+    --ipca-footer-height: 72px;
+}
+
+body {
+    padding-bottom: var(--ipca-footer-height);
+}
+
+.ipca-site-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    min-height: var(--ipca-footer-height);
+    background: var(--md-default-bg-color);
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ipca-site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 61rem;
+    min-height: var(--ipca-footer-height);
+    margin: 0 auto;
+    padding: 0.5rem 1.2rem;
+}
+
+.ipca-site-footer__text {
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+}
+
+.ipca-site-footer__logos {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.ipca-site-footer__logos img {
+    width: auto;
+    max-width: 150px;
+    height: 42px;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --ipca-footer-height: 96px;
+    }
+
+    .ipca-site-footer__inner {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+
+    .ipca-site-footer__logos img {
+        max-width: 120px;
+        height: 34px;
+    }
+}
