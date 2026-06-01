@@ -158,7 +158,7 @@ nav:
 
       - Application:
           - Overview: 04_Architecture/02_Application/README.md
-          - Academic report (redirect): 04_Architecture/02_Application/05_Academic_Report.md
+          - Application academic report: 05_Docs/01_Academic_Reports/Application_Report.md
           - Application Overview: 04_Architecture/02_Application/00_Application_Overview.md
           - Website Flows: 04_Architecture/02_Application/01_Website_Flows.md
           - Runtime Setup: 04_Architecture/02_Application/02_Runtime_Setup.md

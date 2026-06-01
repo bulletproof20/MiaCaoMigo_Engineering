@@ -1,10 +1,13 @@
 # Academic report (moved)
 
-The application academic report has been moved to the **Academic** section of the portal:
+!!! warning "This page is only a bookmark"
+    The full **Application academic report** (sections 1–16, diagrams, screenshots, JWT, limitations, etc.) lives under **Academic → Reports → Application Report** in the top navigation.
 
-**[Application_Report.md](../../05_Docs/01_Academic_Reports/Application_Report.md)**
+    **Open the report:** [Application_Report.md](../../05_Docs/01_Academic_Reports/Application_Report.md)
 
-Reason: separate technical documentation (`04_Architecture`) from academic deliverables and defence material (`05_Docs`).
+    Direct URL when running MkDocs locally: `http://localhost:8000/05_Docs/01_Academic_Reports/Application_Report/`
+
+The report was moved out of `04_Architecture` so technical architecture stays separate from academic deliverables (`05_Docs`).
 
 ---
 

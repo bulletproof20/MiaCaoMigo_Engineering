@@ -61,6 +61,8 @@ The application should be read through a small set of core flows rather than a s
 
 #### Authentication and routing flow
 
+<div style="display:flex; justify-content:center; width:100%;" markdown="1">
+
 ```mermaid
 flowchart TD
     public["Public website"] --> login["Login / register"]
@@ -77,9 +79,13 @@ flowchart TD
     middleware --> data["Controllers + models + PostgreSQL"]
 ```
 
+</div>
+
 This flow shows how the system moves from public access into authenticated areas. The JWT is the bridge between the browser session and protected API routes.
 
 #### Client appointment flow
+
+<div style="display:flex; justify-content:center; width:100%;" markdown="1">
 
 ```mermaid
 flowchart TD
@@ -95,9 +101,13 @@ flowchart TD
     refresh --> actions["Cancel / reschedule / view history"]
 ```
 
+</div>
+
 This is the main client self-service workflow. It proves that the website does not only display static data: it performs authenticated reads and writes through the API.
 
 #### Staff and RBAC flow
+
+<div style="display:flex; justify-content:center; width:100%;" markdown="1">
 
 ```mermaid
 flowchart TD
@@ -114,9 +124,13 @@ flowchart TD
     animalsOps --> clinicGuard["Backend requireClinicSecretary / staff guard"]
 ```
 
+</div>
+
 This flow is important for defence because it separates **what the UI shows** from **what the backend enforces**. The sidebar adapts to the user profile, but protected operations still require middleware validation.
 
 #### Public adoptions flow
+
+<div style="display:flex; justify-content:center; width:100%;" markdown="1">
 
 ```mermaid
 flowchart TD
@@ -130,9 +144,13 @@ flowchart TD
     ownership --> refreshList["Refresh public list"]
 ```
 
+</div>
+
 This flow demonstrates the link between public browsing and authenticated client action. It also connects the visual adoption page with Mod2 backend behaviour.
 
 #### API request flow
+
+<div style="display:flex; justify-content:center; width:100%;" markdown="1">
 
 ```mermaid
 flowchart LR
@@ -146,13 +164,83 @@ flowchart LR
     response --> browser
 ```
 
+</div>
+
 This cross-cutting flow applies to most API-backed features. It explains how frontend actions become validated backend operations and database queries.
 
 For a more detailed technical breakdown of these flows, including endpoint-level behaviour and staff/client operational variants, see the complementary architecture document: [Website Flow Specification](../../04_Architecture/02_Application/01_Website_Flows.md).
 
 ### 3.3 Visual evidence
 
-The collected screenshots illustrate the main application path: public entry, authentication, client area access, clinical features, internal area access, and validation of the API technical contract.
+The collected visual evidence is divided into two complementary groups. First, the module diagrams show the functional scope of each project module and how the modules connect. Second, the application screenshots demonstrate the implemented website screens and API documentation used during the defence.
+
+#### Module diagrams
+
+<div style="display:flex; justify-content:center; margin:1.5rem 0;">
+  <table>
+    <thead>
+      <tr>
+        <th>Figure</th>
+        <th>Module</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mod1 - Users</td>
+        <td>Authentication, profiles, clients, staff and permissions</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Mod2 - Animals</td>
+        <td>Animal catalogues, ownership, adoptions and internal animal operations</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Mod3 - Commercial</td>
+        <td>Commercial scope, stock, shop, purchases, billing and reports</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Mod4 - Appointments</td>
+        <td>Appointment booking, clinical lifecycle, prescriptions and notifications</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>All modules</td>
+        <td>Integrated view of the application modules and their relationships</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod1.png" alt="Module 1 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 1</strong> — Mod1 Users: authentication, clients, staff, profiles and permissions.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod2.png" alt="Module 2 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 2</strong> — Mod2 Animals: animal data, ownership and adoption-related flows.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod3.png" alt="Module 3 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 3</strong> — Mod3 Commercial: reserved commercial scope, stock, billing and reporting concepts.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod4.png" alt="Module 4 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 4</strong> — Mod4 Appointments: booking, clinical process, prescriptions and notifications.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaTotal.png" alt="All modules connected diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 5</strong> — Integrated view of all application modules.</figcaption>
+</figure>
+
+#### Application screenshots
 
 <div style="display:flex; justify-content:center; margin:1.5rem 0;">
   <table>
@@ -165,42 +253,47 @@ The collected screenshots illustrate the main application path: public entry, au
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
+        <td>6</td>
         <td>Home page</td>
         <td>Public entry and institutional presentation of the clinic</td>
       </tr>
       <tr>
-        <td>2</td>
+        <td>7</td>
         <td>Login</td>
         <td>Entry point for authentication and JWT issuance</td>
       </tr>
       <tr>
-        <td>3</td>
+        <td>8</td>
         <td>Client area</td>
         <td>Personal dashboard with client-account operations</td>
       </tr>
       <tr>
-        <td>4</td>
-        <td>Client appointments</td>
-        <td>Booking, listing, and appointment management</td>
+        <td>9</td>
+        <td>Client settings</td>
+        <td>Profile preferences and client account configuration</td>
       </tr>
       <tr>
-        <td>5</td>
+        <td>10</td>
+        <td>Client appointments</td>
+        <td>Booking, listing and appointment management</td>
+      </tr>
+      <tr>
+        <td>11</td>
         <td>Adoptions</td>
         <td>Public feature linked to the animals module</td>
       </tr>
       <tr>
-        <td>6</td>
+        <td>12</td>
         <td>Staff area</td>
         <td>Internal experience separated with profile-based menus</td>
       </tr>
       <tr>
-        <td>7</td>
+        <td>13</td>
         <td>Appointment management</td>
         <td>Internal clinical operations and appointment lifecycle</td>
       </tr>
       <tr>
-        <td>8</td>
+        <td>14</td>
         <td>Swagger UI</td>
         <td>Technical documentation and REST API contract</td>
       </tr>
@@ -210,42 +303,47 @@ The collected screenshots illustrate the main application path: public entry, au
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/index.png" alt="Application home page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 1</strong> — Public home page of the MiaCaoMigo application.</figcaption>
+  <figcaption><strong>Figure 6</strong> — Public home page of the MiaCaoMigo application.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/login.png" alt="Application login" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 2</strong> — Authentication screen used by clients and staff.</figcaption>
+  <figcaption><strong>Figure 7</strong> — Authentication screen used by clients and staff.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/areaClient.png" alt="Client area" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 3</strong> — Authenticated client dashboard.</figcaption>
+  <figcaption><strong>Figure 8</strong> — Authenticated client dashboard.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/definicoesClient.png" alt="Client settings" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 9</strong> — Client settings and account preferences.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/consultas.png" alt="Client appointments" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 4</strong> — Appointment management in the client area.</figcaption>
+  <figcaption><strong>Figure 10</strong> — Appointment management in the client area.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/adocoes.png" alt="Public adoptions page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 5</strong> — Public view of animals available for adoption.</figcaption>
+  <figcaption><strong>Figure 11</strong> — Public view of animals available for adoption.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/areaFuncionario.png" alt="Staff area" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 6</strong> — Internal staff area with contextual navigation.</figcaption>
+  <figcaption><strong>Figure 12</strong> — Internal staff area with contextual navigation.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/gestaoConsultas.png" alt="Appointment management" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 7</strong> — Internal interface for operational appointment management.</figcaption>
+  <figcaption><strong>Figure 13</strong> — Internal interface for operational appointment management.</figcaption>
 </figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/Swagger.png" alt="Swagger UI" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 8</strong> — Swagger UI documenting API endpoints. Interactive version: <a href="http://localhost:3000/api-docs/" target="_blank" rel="noopener">http://localhost:3000/api-docs/</a>.</figcaption>
+  <figcaption><strong>Figure 14</strong> — Swagger UI documenting API endpoints. Interactive version: <a href="http://localhost:3000/api-docs/" target="_blank" rel="noopener">http://localhost:3000/api-docs/</a>.</figcaption>
 </figure>
 
 ### 3.4 Authentication
