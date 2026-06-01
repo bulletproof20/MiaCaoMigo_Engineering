@@ -26,6 +26,7 @@ The JSON file at `Docs/Swagger/openapi.json` is produced by `npm run docs:genera
 | Staff self-service | `/api/users/staff/me/*` |
 | Employee onboarding | `/api/users/employees` |
 | Animals and adoptions | `/api/animals/*` |
+| Commercial | `/api/stock/*`, `/api/restock/*`, `/api/sales/*`, `/api/return/*`, `/api/invoices/*` |
 | Appointments | `/api/appointments/*` |
 | Appointment notifications | `/api/appointments/notifications/*` |
 
@@ -43,7 +44,7 @@ The current OpenAPI JSON covers the mounted backend routes used by the website, 
 |---------------|-----------------|-----------------|
 | `PUT /api/users/auth/heartbeat` | `FrontEnd/Js/geral/authSession.js` keeps database sessions alive while the user is active | Documented in Swagger/OpenAPI |
 
-Website areas that are still static/prototype are intentionally not part of OpenAPI. In particular, `FuncionarioDetalhe.html` has a mock note for future `GET /api/users/employees/:id`, and Mod3 commercial/billing routes are not mounted by `server.js`.
+Website areas that are still static/prototype are intentionally not part of OpenAPI. In particular, `FuncionarioDetalhe.html` has a mock note for future `GET /api/users/employees/:id`. The current Mod3 commercial routes are mounted through the commercial hub and therefore belong to the runtime contract.
 
 ---
 

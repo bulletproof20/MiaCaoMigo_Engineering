@@ -33,12 +33,12 @@ The website distinguishes public users, authenticated clients, and authenticated
 | User | Main access | Example actions |
 |------|-------------|-----------------|
 | Visitor | Public pages | Browse services, adoptions, public shop, contact and institutional information |
-| Client | Client area | View animals, book appointments, reschedule/cancel appointments, view notifications and prescriptions |
+| Client | Client area | View animals, book appointments, reschedule/cancel appointments, view notifications, prescriptions and own invoices |
 | Staff | Internal area | View personal agenda, attendance, absences, and operations according to permissions |
 | Administrator / HR | Staff area | Create employees, view staff board, access management views |
 | Veterinarian / clinical team | Clinical area | Manage appointments, view patients, record clinical lifecycle when authorised |
-| Assistant / reception | Front-desk operations | Register/associate animals and support booking |
-| Commercial manager | Reserved area | Menu entries for commercial area and reports, still under development |
+| Assistant / reception | Front-desk and commercial operations | Register/associate animals, support booking, issue invoices and handle commercial counter operations |
+| Commercial manager | Reserved / future profile | Profile exists in RBAC seed data, while the implemented commercial area is currently exposed to administrator and assistant profiles |
 
 The client/staff distinction uses the institutional domain `@miacaomigo.pt` and staff profiles associated in the database.
 
@@ -52,8 +52,8 @@ The client/staff distinction uses the institutional domain `@miacaomigo.pt` and 
 |--------|----------------|------------------------|
 | Mod1 - Users | Centrally implemented | Client registration, login, logout, JWT session, light/dark theme, client area, staff area, RBAC, employee creation |
 | Mod2 - Animals | Partially implemented / operational | Species/breed catalogues, client animal list, public adoptions, internal animal operations |
-| Mod3 - Commercial | Reserved / partial | Public shop as placeholder and disabled internal entries for commercial area/reports |
-| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling, notifications, prescriptions, appointment lifecycle |
+| Mod3 - Commercial | Partially implemented / operational | Staff commercial area for administrators and assistants, counter sales, invoice history/details, invoice PDF downloads, returns, stock/catalog operations, and client invoice visibility |
+| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling with past-date prevention, notifications, prescriptions, appointment lifecycle |
 
 ### 3.2 Main system flows
 
@@ -95,7 +95,7 @@ flowchart TD
     vets --> availability["GET /api/appointments/availability"]
     availability --> slot["Choose available slot"]
     slot --> create["POST /api/appointments"]
-    create --> validation["Validate ownership, schedule and conflicts"]
+    create --> validation["Validate ownership, current/future date, schedule and conflicts"]
     validation --> save["Persist appointment"]
     save --> refresh["Refresh appointment list"]
     refresh --> actions["Cancel / reschedule / view history"]
@@ -227,7 +227,7 @@ The collected visual evidence is divided into two complementary groups. First, t
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod3.png" alt="Module 3 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 3</strong> — Mod3 Commercial: reserved commercial scope, stock, billing and reporting concepts.</figcaption>
+  <figcaption><strong>Figure 3</strong> — Mod3 Commercial: implemented stock, counter sales, billing/PDF, returns and reporting concepts.</figcaption>
 </figure>
 
 <figure>
@@ -418,7 +418,8 @@ Example permissions:
 | `manage_employees` | Create employees and access HR management |
 | `manage_animals` | Look up active clients for animal association |
 | `manage_appointments` | Manage appointments, check-in, start and close |
-| `manage_commercial` | Reserved entry for commercial area |
+| `manage_sales` | Commercial sale/invoice capability; website access is further restricted to `administrador` and `assistente` profiles |
+| `manage_invoices` | Invoice lifecycle capability used by commercial workflows |
 | `view_reports` | Reserved entry for reports |
 
 Even when the frontend hides or disables menu entries, authorisation is enforced on the backend. Critical operations are not protected by the UI alone.
@@ -431,7 +432,7 @@ Security is implemented across several layers:
 |------|----------------|
 | Authentication | Server-signed JWT |
 | Session | Login/logout recorded in the database; open sessions closed on server startup |
-| Authorisation | Staff, permission middlewares, and clinic secretary validation |
+| Authorisation | Staff, permission/profile middlewares, commercial-area profile guard, and clinic secretary validation |
 | Passwords | SHA-256 hash before validation/persistence via database services |
 | SQL | Parameterised queries with `pg`, reducing SQL injection risk |
 | Configuration | Environment variables for database and JWT |
@@ -441,6 +442,7 @@ Key security points:
 
 - The token identifies the user but does not replace server-side permission checks.
 - Permissions come from the database and are carried in the JWT to guide frontend and backend.
+- The commercial area is guarded by staff profile: only `administrador` and `assistente` can access internal sales, invoices, stock, returns and counter workflows.
 - The backend rejects requests without a token, with an expired token, or with insufficient permissions.
 - The API uses JSON and REST routes organised by module.
 
@@ -470,6 +472,8 @@ The backend starts from `Backend/server.js`, serves static files from `FrontEnd/
 | `/api/users/staff/me` | Personal agenda, schedule, attendance, absences, clock toggle |
 | `/api/users/employees` | Employee creation with `manage_employees` permission |
 | `/api/animals` | Catalogues, client animals, adoptions, internal management |
+| `/api/stock`, `/api/sales`, `/api/return`, `/api/restock` | Internal commercial workflows reserved to administrator and assistant profiles |
+| `/api/invoices` | Staff invoice history/details and authenticated client invoice reads through `/api/invoices/me` |
 | `/api/appointments` | Bookings, availability, notifications, lifecycle, history |
 | `/api-docs` | API Swagger UI |
 | `/api-docs.json` | OpenAPI specification in JSON |
@@ -502,18 +506,24 @@ This shows that the application is not limited to the visual layer: there is a n
 
 ### 3.11 Performance and security validation
 
-The project also includes a dedicated performance documentation area under `06_Performance/`. This section is relevant for the academic defence because it connects the implemented website with non-functional requirements and measurable behaviour.
+The project includes a dedicated performance area under [`06_Performance/`](../../06_Performance/README.md). Measurements were taken in a local development environment (`http://localhost:3000`) using **Mozilla Firefox 151.0.2** (DevTools → Network/Console) and automated `curl` baselines. Evidence screenshots are stored in `00_Assets/01_Screenshots/Performance/`.
 
-Current performance evidence is classified as an **initial baseline**, not a final validation. The current records include:
+Current evidence is classified as an **initial baseline**, not final production validation. Summary:
 
-| Area | Current evidence | Status |
-|------|------------------|--------|
-| Database health endpoint | `GET /db-test` measured locally with very low response times | Green baseline |
-| Static frontend delivery | HTML pages served by Express with low transfer size and response time | Green baseline |
-| Adoption API | `GET /api/animals/adoptions` returns HTTP 500 due to an API/schema mismatch | Red baseline |
-| Firefox DevTools measurement | Planned for full browser-level validation (requests, transferred size, load time, console errors) | Pending |
+| Area | Evidence | Result |
+|------|----------|--------|
+| Database health | `GET /db-test` | **Green** — &lt; 5 ms (localhost) |
+| Adoption API | `GET /api/animals/adoptions` | **Green** — HTTP 200, &lt; 2 ms after query fix |
+| Login API | `POST /api/users/auth/login` | **Green** — &lt; 20 ms; 8/10 demo users &lt; 2 s (RNF_M1_01) |
+| Homepage (Firefox) | 16 requests, ~2,72 MB, ~165 ms finish | **Green** locally; **Yellow** asset weight |
+| Login page (Firefox) | 10 requests, ~210 kB, ~79 ms finish | **Green** |
+| Adoptions page (Firefox) | 16 requests, `GET /api/animals/adoptions` 200 | **Green** |
+| Client dashboard (Firefox) | 18 requests, authenticated `GET` APIs 200 | **Green** |
+| Login submit (Firefox) | `POST /api/users/auth/login` visible with Persist Log | **Green** |
 
-Performance testing is therefore addressed as an engineering process: the documentation defines the strategy, target metrics, test environment, known baseline results, and next validation steps. The final defence can mention that the current results are exploratory and should be repeated after stabilising the remaining API issues.
+**Conclusion (baseline):** In localhost, critical flows respond quickly and meet the measured non-functional targets (RNF_M1_01 login ≤ 2 s, RNF_M2_13 adoptions &lt; 1 s). The main improvement opportunity is the homepage hero asset `background_pagInicial.jpeg` (~2 MB, ~70% of transferred bytes). The file is actually **AVIF content with a `.jpeg` extension**; converting or resizing it would reduce load on slower networks.
+
+Full tables, methodology, and screenshots: [`04_Test_Results.md`](../../06_Performance/04_Test_Results.md). Recommendations: [`05_Recommendations.md`](../../06_Performance/05_Recommendations.md).
 
 Security testing has not yet been formalised as a complete test campaign. However, the system already includes security mechanisms that can be used as the basis for future tests:
 
@@ -570,7 +580,7 @@ The current state is suitable for academic demonstration, but important limitati
 | Limitation | Impact |
 |------------|--------|
 | Project time constraints | The available development time limited the depth of implementation, testing and polishing possible before delivery |
-| Mod3 commercial still reserved | Public shop and internal entries exist, but billing, stock, and reports are not fully integrated in the mounted API contract |
+| Mod3 commercial scope still partial | Stock, sales, returns, invoices and PDFs are mounted for administrator/assistant workflows, but public shop checkout, advanced reports and full commercial manager role separation remain future work |
 | Animal images | The current database model was not prepared to persist animal image metadata or file references, so animal visuals are limited to frontend/static placeholders |
 | Some HR views are presentation/prototype | They support the visual narrative but not all represent full API-backed workflows |
 | Token in `localStorage` | Simple for academic context; production would require XSS risk analysis and possibly `HttpOnly` cookies |
@@ -591,9 +601,10 @@ Future work should prioritise improvements that transform the current academic p
 | Improvement | Expected value |
 |-------------|----------------|
 | Animal image support | Add database fields or a media table for animal photo metadata, combined with a controlled upload/static asset strategy |
-| Complete Mod3 commercial workflows | Integrate stock, billing, purchases, invoices and reports into the mounted API and frontend |
+| Extend Mod3 commercial workflows | Add public shop checkout, advanced commercial reports and full commercial manager role separation on top of the current stock/sales/invoice/return implementation |
 | Formal security testing | Add repeatable tests for invalid tokens, missing permissions, protected endpoints, input validation and CORS configuration |
-| Final performance validation | Complete Firefox DevTools measurements and repeat API baselines after fixing unstable endpoints |
+| Homepage hero asset | Convert `background_pagInicial.jpeg` (AVIF mislabel) to optimised JPEG/WebP and update CSS reference |
+| Extended performance validation | Repeat Firefox baselines for Mod3 commercial and Mod4 when routes are stable |
 | Stronger password hashing | Replace SHA-256 with an adaptive hashing strategy such as bcrypt or argon2 in a production scenario |
 | Session storage hardening | Evaluate `HttpOnly` cookies or another safer token storage strategy for production deployment |
 | Automated test coverage | Add focused tests for authentication, RBAC, appointment booking, adoption and staff workflows |

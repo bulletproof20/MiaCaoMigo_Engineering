@@ -6,7 +6,7 @@ Documentação de **desempenho (performance)** do website e da API do projeto Mi
 **Requisitos de referência:** [Requisitos Não Funcionais](../02_Requirements/01_Non_Functional_Requirements.md) (tipo *Performance*).
 
 !!! info "Estado da secção"
-    A metodologia e os templates estão disponíveis. Os **resultados** são **baseline inicial** (testes exploratórios), não validação final — o website ainda está em desenvolvimento.
+    **Baseline inicial concluída** (2026-06-01): Firefox 151.0.2, páginas index/login/adoções/área cliente, APIs db-test/adoptions/login. Validação final de Mod3/Mod4 fica para quando as rotas estiverem estáveis.
 
 ---
 
@@ -30,10 +30,10 @@ Esta pasta documenta **como** é avaliado o desempenho, **o que** é testado, **
 | [01_Performance_Strategy.md](01_Performance_Strategy.md) | **Disponível** | Enquadramento, ferramentas, métricas, critérios e plano de trabalho |
 | [02_Frontend_Performance.md](02_Frontend_Performance.md) | **Baseline** | Páginas no scope, procedimento Firefox, template por página |
 | [03_Backend_Performance.md](03_Backend_Performance.md) | **Baseline** | Endpoints, payloads, ligação aos RNF |
-| [04_Test_Results.md](04_Test_Results.md) | **Baseline inicial** | Resultados medidos (parciais) |
-| [05_Recommendations.md](05_Recommendations.md) | **Em evolução** | Problemas observados e melhorias sugeridas |
+| [04_Test_Results.md](04_Test_Results.md) | **Baseline concluída** | Resultados + galeria de capturas |
+| [05_Recommendations.md](05_Recommendations.md) | **Actualizado** | Melhorias priorizadas (hero AVIF pendente) |
 
-**Começar por:** [01_Performance_Strategy.md](01_Performance_Strategy.md) → exercício §7 → registar em [04_Test_Results.md](04_Test_Results.md).
+**Começar por:** [01_Performance_Strategy.md](01_Performance_Strategy.md) → rever o exercício §7 já registado → continuar pela lista de [04_Test_Results.md](04_Test_Results.md#próximo-passo).
 
 ---
 
@@ -101,6 +101,6 @@ Ver [02_Runtime_Setup](../04_Architecture/02_Application/02_Runtime_Setup.md).
 
 ## Próximo passo
 
-1. Executar o [primeiro exercício Firefox](01_Performance_Strategy.md#7-primeiro-exercício-prático-firefox) na página inicial.
-2. Atualizar [04_Test_Results.md](04_Test_Results.md) com os valores observados.
-3. Repetir para as páginas marcadas como **Pronta para baseline** em [02_Frontend_Performance.md](02_Frontend_Performance.md).
+1. Baseline inicial **fechada** — ver [04_Test_Results.md](04_Test_Results.md) e [Application_Report.md §3.11](../05_Docs/01_Academic_Reports/Application_Report.md#311-performance-and-security-validation).
+2. Pendente técnico: converter `background_pagInicial.jpeg` (AVIF com extensão errada).
+3. Futuro: repetir medições quando Mod3/Mod4 estiverem estáveis.

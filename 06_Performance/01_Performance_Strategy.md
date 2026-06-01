@@ -86,9 +86,9 @@ Não é necessário testar todas as páginas. Deve ser selecionado um **conjunto
 | Prioridade | Página / fluxo | Repositório `MiaCaoMigo_` (exemplos) | Módulo |
 |------------|------------------|--------------------------------------|--------|
 | Alta | Página inicial | `FrontEnd/index.html` | Geral |
-| Alta | Login | `FrontEnd/Pages/UserView/Mod1/login.html` | M1 |
-| Alta | Área do cliente | `FrontEnd/Pages/UserView/Mod1/area_cliente.html` | M1 |
-| Média | Adoções / animais | `FrontEnd/Pages/UserView/Geral/adocoes.html` | M2 |
+| Alta | Login | `FrontEnd/Pages/Mod1_Users/Autenticacao/login.html` | M1 |
+| Alta | Área do cliente | `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` | M1 |
+| Média | Adoções / animais | `FrontEnd/Pages/Public/adocoes.html` | M2 |
 | Média | Área funcionário / consultas | `FrontEnd/Pages/AdminPanel/...` | M4 |
 | Baixa | Loja / serviços | páginas em `FrontEnd/Pages/...` | M3 |
 
@@ -244,25 +244,29 @@ Devem ser usados os valores já definidos no projeto quando aplicável:
 ### Fase 1 — Compreensão (esta documentação)
 
 - [x] Ler este documento
-- [ ] Executar o [primeiro exercício §7](#7-primeiro-exercício-prático-firefox)
-- [ ] Anotar 3 observações na página inicial
+- [x] Executar o [primeiro exercício §7](#7-primeiro-exercício-prático-firefox)
+- [x] Registar valores da página inicial em `04_Test_Results.md`
+- [x] Confirmar versão Firefox: 151.0.2
+- [ ] Confirmar estado da Consola (opcional; `indexConsoleResult.jpeg` mostra Rede)
+- [x] Corrigir e repetir `GET /api/animals/adoptions` (2026-06-01)
 
 ### Fase 2 — Frontend
 
-- [ ] Criar `02_Frontend_Performance.md` com lista final de páginas
-- [ ] Para cada página: tabela Rede + captura + erros na consola
-- [ ] Registar em `04_Test_Results.md`
+- [x] `02_Frontend_Performance.md` com lista de páginas baseline
+- [x] Páginas baseline: tabela Rede + capturas Firefox
+- [x] Registar em `04_Test_Results.md`
+- [ ] Opcional: print real da Consola da página inicial
 
 ### Fase 3 — Backend
 
-- [ ] Criar `03_Backend_Performance.md` com endpoints e payloads
-- [ ] Medir tempos (mín/média/máx) e ligar a RNF
-- [ ] Registar em `04_Test_Results.md`
+- [x] `03_Backend_Performance.md` com endpoints e payloads
+- [x] Medições mín/média/máx (db-test, adoptions, login 10×)
+- [x] Registar em `04_Test_Results.md`
 
 ### Fase 4 — Síntese
 
-- [ ] `05_Recommendations.md` — top 5 melhorias (ex.: comprimir imagens, reduzir pedidos, índices BD)
-- [ ] Parágrafo de conclusão para relatório APS
+- [x] `05_Recommendations.md` — melhorias priorizadas
+- [x] Parágrafo e tabela em `Application_Report.md` §3.11
 
 ---
 
@@ -314,6 +318,15 @@ No rodapé ou barra de resumo da Rede, devem ser registados os seguintes valores
 
 Este exercício conclui o primeiro ciclo de medição. O documento `02_Frontend_Performance.md` formalizará o mesmo processo para todas as páginas escolhidas.
 
+### Resultado actual do exercício
+
+O primeiro ciclo já tem evidência em Firefox para:
+
+- Página inicial: 16 pedidos, ~2,72 MB transferidos, tempo total ~165 ms.
+- `/db-test`: resposta HTTP 200 validada no browser.
+
+Os valores e prints estão registados em [04_Test_Results.md](04_Test_Results.md). A baseline inicial já inclui página inicial, login, adoções, área cliente, `db-test`, `adoptions` e login; a continuação natural passa por repetir medições quando Mod3/Mod4 estiverem estáveis ou por optimizar assets pesados identificados.
+
 ---
 
 ## 8. O que documentar em cada teste
@@ -356,4 +369,4 @@ O modelo seguinte deve ser usado posteriormente em `04_Test_Results.md`:
 | API isolada | Postman / curl | `03_Backend_Performance.md` |
 | Resultados e melhorias | Tabelas + capturas | `04_` e `05_` |
 
-**Próximo passo:** executar o [§7](#7-primeiro-exercício-prático-firefox) na página inicial e registar os valores obtidos (pedidos, transferido, tempo, erros na consola). Esses dados servirão de base para preparar `02_Frontend_Performance.md` de forma progressiva.
+**Próximo passo:** seguir a lista operacional em [04_Test_Results.md](04_Test_Results.md#próximo-passo): confirmar Consola/versão Firefox, corrigir `GET /api/animals/adoptions`, repetir a medição da API e avançar para login + adoções no Firefox.

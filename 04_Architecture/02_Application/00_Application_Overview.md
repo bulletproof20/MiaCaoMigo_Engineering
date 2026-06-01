@@ -85,8 +85,8 @@ The ApplicationLayer is responsible for request orchestration and user interacti
 |--------|------------|-------|
 | Mod1 - Users | `/api/users` | Authentication, client registration, session state, staff permissions, user setup preferences, client lookup and employee onboarding |
 | Mod2 - Animals | `/api/animals` | Species, breeds, client animals and staff-controlled animal operations |
-| Mod3 - Commercial | Reserved/partial | Public shop page placeholder exists; commercial API exposure is not mounted in the current website contract |
-| Mod4 - Appointments | `/api/appointments` | Booking, availability, history, cancel/reschedule and appointment lifecycle |
+| Mod3 - Commercial | `/api/stock`, `/api/sales`, `/api/invoices`, `/api/return`, `/api/restock` | Commercial area restricted to administrator/assistant profiles; clients read their own invoices and download on-demand invoice PDFs through `/api/invoices/me` |
+| Mod4 - Appointments | `/api/appointments` | Booking, availability, history, cancel/reschedule and appointment lifecycle; booking/rescheduling rejects dates earlier than the current day |
 
 ---
 

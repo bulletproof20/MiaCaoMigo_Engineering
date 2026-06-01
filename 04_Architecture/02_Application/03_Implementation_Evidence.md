@@ -31,8 +31,11 @@ Normative sources:
 | APP-EV-M2-02 | RF_M2_10, RF_M2_11 | `GET /api/animals/me`, `GET /api/animals/client/:clientId` | Client animal ownership is readable through authenticated endpoints |
 | APP-EV-M2-03 | RF_M2_01, RF_M2_10, RF_M2_19 | `POST /api/animals`, `POST /api/animals/associate`, `PUT /api/animals/:id`, `DELETE /api/animals/:id` | Animal operations restricted to clinic secretary/admin flows |
 | APP-EV-M2-04 | RF_M2 adoption workflow | `GET /api/animals/adoptions`, `POST /api/animals/:id/adopt`, `adocoes.html`, `adocoes.js`, `vw_internal_animals_available`, `sp_assign_ownership` | Public listing of `Interno` animals and direct client adoption without schema changes |
-| APP-EV-M4-01 | RF_M4_01, RF_M4_12 | `POST /api/appointments`, `FrontEnd/Pages/Mod4_Appointments/consultas.html`, `FrontEnd/Js/Mod4/clientConsultas.js` | Client appointment booking through UI and API |
-| APP-EV-M4-02 | RF_M4_11, RF_M4_14 | `GET /api/appointments/me`, `PATCH /api/appointments/:id_app/cancel`, `PATCH /api/appointments/:id_app/reschedule` | Client appointment history, cancellation and rescheduling |
+| APP-EV-M3-01 | RF_M3 commercial workflow | `AreaComercial.html`, `salesManagement.html`, `StockManagement.html`, `restock.html`, `returnManagement.html`, `POST /api/sales`, `/api/stock`, `/api/restock`, `/api/return`, `/api/invoices` | Commercial area is available only to `administrador` and `assistente` profiles; stock, restock, returns and counter sales are mounted and sales generate invoices linked to client purchases |
+| APP-EV-M3-02 | RF_M3 client billing visibility | `GET /api/invoices/me`, `GET /api/invoices/me/:id/details`, `area_cliente.html`, `clientDashboard.js` | Authenticated clients can view only their own invoices and invoice line items |
+| APP-EV-M3-03 | RF_M3 billing document export | `GET /api/invoices/me/:id/pdf`, `GET /api/invoices/:id/pdf`, `GET /api/sales/invoices/:id/pdf`, `Backend/services/invoicePdf.js` | Invoice PDFs are generated on demand when the user clicks PDF; the server renders the Mod3 invoice layout with clinic logo, article table, VAT and totals |
+| APP-EV-M4-01 | RF_M4_01, RF_M4_12 | `POST /api/appointments`, `FrontEnd/Pages/Mod4_Appointments/consultas.html`, `FrontEnd/Js/Mod4/clientConsultas.js` | Client appointment booking through UI and API; frontend and backend reject booking dates earlier than the current day |
+| APP-EV-M4-02 | RF_M4_11, RF_M4_14 | `GET /api/appointments/me`, `PATCH /api/appointments/:id_app/cancel`, `PATCH /api/appointments/:id_app/reschedule` | Client appointment history, cancellation and rescheduling, with past-date rescheduling blocked at UI/API level |
 | APP-EV-M4-03 | RF_M4_01, RF_M1_37 | `GET /api/appointments/veterinarians`, `GET /api/appointments/specialties`, `GET /api/appointments/availability` | Appointment form data and availability calculation exposed to frontend |
 | APP-EV-M4-04 | RF_M4_05, RF_M4_11 | `PATCH /api/appointments/:id_app/start`, `PATCH /api/appointments/:id_app/close` | Staff appointment lifecycle operations protected by permission checks |
 | APP-EV-M4-05 | RF_M4_05, RF_M4_13 | `PATCH /api/appointments/:id_app/check-in`, start validation in `appointmentModel.js`, `RegistoConsulta.html`, `registoConsulta.js` | Waiting room + previous-slot rules; dedicated clinical record page after start |
@@ -46,7 +49,7 @@ Normative sources:
 
 | Evidence ID | Related RNF | Website evidence | Implementation notes |
 |-------------|-------------|------------------|----------------------|
-| APP-NF-SEC-01 | RNF_M1_08, RNF_M4_05 | `requireAuth`, `requireStaff`, `requirePermission`, `requireClinicSecretary` | Access control enforced at API route level |
+| APP-NF-SEC-01 | RNF_M1_08, RNF_M3, RNF_M4_05 | `requireAuth`, `requireStaff`, `requirePermission`, `requireCommercialAreaAccess`, `requireClinicSecretary` | Access control enforced at API route level, including commercial profile restrictions |
 | APP-NF-SEC-02 | RNF_M1_02, SEC-T03 | JWT signing utilities and authentication model integration | Password/session logic is separated from frontend and controlled by API/DataLayer |
 | APP-NF-INT-01 | RNF_M1_07, RNF_M2_02, RNF_M4_02 | PostgreSQL error handling for `23503`, `23505`, `23514`, `23P01` | API maps database integrity errors into user-facing responses |
 | APP-NF-PER-01 | RNF_M1_04, RNF_M3_19 | `Backend/config/db.js` PostgreSQL pool | Database connections are pooled instead of opening per request |
@@ -62,8 +65,8 @@ Normative sources:
 |------|------------------------------|
 | Mod1 authentication/setup/staff | Implemented for login, register, logout, session read, client theme preference persistence, staff self-service API/widgets, role-aware sidebars, employee onboarding and HR presentation views; `AreaFuncionario.html` requires page-shell restoration |
 | Mod2 animals | Implemented for catalogs, client animal reads and staff-controlled operations |
-| Mod3 commercial | Public shop placeholder and sidebar entries exist; commercial API remains outside the mounted website contract |
-| Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, PDF export and lifecycle operations |
+| Mod3 commercial | Partially implemented for administrator/assistant commercial workflows: stock/catalog reads, counter sales, invoice history/details, invoice PDF download, returns, and client invoice visibility |
+| Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, PDF export and lifecycle operations; past-date booking/rescheduling is blocked |
 | Infrastructure NFR | Local/Docker setup documented; production HTTPS/availability policies remain operational concerns |
 
 ---

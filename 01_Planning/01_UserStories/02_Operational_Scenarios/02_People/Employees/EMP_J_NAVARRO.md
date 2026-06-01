@@ -7,8 +7,8 @@
 | Layer | Value |
 |---|---|
 | Base role | **assistente** |
-| Profile | **commercial_manager** |
-| Permissions | `manage_commercial`, `view_reports` |
+| Profile | **gestor comercial** (narrative/DataLayer profile) |
+| Website commercial access | Not granted by profile alone; the current ApplicationLayer restricts commercial screens to `administrador` and `assistente` profiles |
 
 ## Launch-week moments
 

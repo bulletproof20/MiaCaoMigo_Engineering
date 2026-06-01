@@ -25,11 +25,11 @@ Páginas no repositório `MiaCaoMigo_/FrontEnd/`. Estado indica se já faz senti
 
 | Prioridade | Página | Caminho (servido em `localhost:3000`) | Módulo | Estado baseline |
 |------------|--------|----------------------------------------|--------|-----------------|
-| Alta | Página inicial | `/index.html` | Geral | **Pronta** |
-| Alta | Login | `/Pages/UserView/Mod1/login.html` | M1 | **Pronta** |
-| Alta | Área do cliente | `/Pages/UserView/Mod1/area_cliente.html` | M1 | Parcial (requer sessão) |
-| Média | Adoções | `/Pages/UserView/Geral/adocoes.html` | M2 | **Pronta** (lista via API) |
-| Média | Dashboard staff | `/Pages/AdminPanel/MainDashboard.html` | M4 | Parcial (requer staff) |
+| Alta | Página inicial | `/` ou `/index.html` | Geral | **Medida** (Firefox) |
+| Alta | Login | `/Pages/Mod1_Users/Autenticacao/login.html` | M1 | **Medida** |
+| Alta | Área do cliente | `/Pages/Mod1_Users/Clientes/area_cliente.html` | M1 | **Medida** (sessão autenticada) |
+| Média | Adoções | `/Pages/Public/adocoes.html` | M2 | **Medida** (lista via API) |
+| Média | Dashboard staff | `/Pages/Mod1_Users/Funcionarios/MainDashboard.html` | M1/M4 | Parcial (requer staff) |
 | Baixa | Loja / serviços | várias em `FrontEnd/Pages/` | M3 | Adiar |
 
 **Baseline mínimo recomendado (agora):** inicial, login, adoções.
@@ -115,4 +115,4 @@ Copiar para [04_Test_Results.md](04_Test_Results.md) por cada página testada:
 
 ## Próximo passo
 
-Medir as três páginas **Pronta** e atualizar [04_Test_Results.md](04_Test_Results.md). Quando login e área cliente estiverem estáveis, repetir com sessão autenticada.
+Baseline inicial concluída — ver [04_Test_Results.md](04_Test_Results.md). Repetir medições para Mod3/Mod4 e área cliente staff quando estiverem estáveis.

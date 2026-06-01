@@ -70,15 +70,28 @@ curl -s -o /dev/null -w "%{http_code} %{time_total}\n" \
   http://localhost:3000/api/animals/adoptions
 ```
 
-Repetir 5–10 vezes e calcular estatísticas.
+Repetir 5–10 vezes e calcular estatísticas.:
+```bash
+# Cinco vezes — para ter mín/média/máx
+for i in 1 2 3 4 5; do
+  curl -s -o /dev/null -w "%{time_total}\n" \
+    http://localhost:3000/api/animals/adoptions
+done
+```
+
 
 ### Login (para rotas autenticadas)
 
 ```bash
 curl -s -X POST http://localhost:3000/api/users/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"CLIENTE@exemplo.pt","password":"..."}'
+  -d '{"email":"goncalo.rego.dev@gmail.com","password":"123456789"}'
 ```
+
+Credenciais demo (seed `DataSeed/03_DemoData`): password em texto **`123456789`** (o backend faz SHA-256 antes de comparar com a BD). Cliente: `goncalo.rego.dev@gmail.com`. Staff: `2@miacaomigo.pt` (Ivo).
+
+!!! note "Sessão única"
+    Logins repetidos sem logout podem devolver **HTTP 409** (sessão activa). Para 10 medições seguidas, fazer logout entre tentativas ou usar utilizadores distintos.
 
 Usar credenciais do seed QA/DataLayer. Guardar o `token` e:
 
@@ -147,4 +160,4 @@ Demonstração académica de “95%”: em 10 execuções, ≥ 9 dentro da meta.
 
 ## Próximo passo
 
-Completar medições em [04_Test_Results.md](04_Test_Results.md) para `/db-test` e `/api/animals/adoptions`, depois `POST .../auth/login` com utilizador de teste.
+Medições baseline registadas em [04_Test_Results.md](04_Test_Results.md) (`/db-test`, `/api/animals/adoptions`, login 10×). Expandir para rotas Mod3/Mod4 quando activas em `server.js`.

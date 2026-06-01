@@ -11,6 +11,11 @@ This page summarizes how the Express backend exposes the application and the API
 | `/` | `FrontEnd/` | Static website |
 | `/api/users` | `Backend/routes/Mod1_Users` | Authentication, session management, user setup, staff self-service, client lookup and employee onboarding |
 | `/api/animals` | `Backend/routes/Mod2_Animals` | Species, breeds, and animal data |
+| `/api/stock` | `Backend/routes/Mod3_Commercial/stockRoutes.js` | Staff commercial product catalog and stock reads/creation |
+| `/api/restock` | `Backend/routes/Mod3_Commercial/restockRoutes.js` | Staff purchase/restock registration |
+| `/api/sales` | `Backend/routes/Mod3_Commercial/salesRoutes.js` | Staff counter sales, invoice generation and invoice PDF by sale route |
+| `/api/return` | `Backend/routes/Mod3_Commercial/returnRoutes.js` | Staff return registration and listing |
+| `/api/invoices` | `Backend/routes/Mod3_Commercial/invoiceRoutes.js` | Staff invoice list/details/PDF and client `/me` invoice reads |
 | `/api/appointments` | `Backend/routes/Mod4_Appointments` | Appointments, veterinarians, specialties, and availability |
 | `/api-docs/` | `swagger-ui-express` | Interactive Swagger UI |
 | `/api-docs.json` | `swagger-jsdoc` | Runtime OpenAPI JSON |
@@ -36,7 +41,7 @@ This page summarizes how the Express backend exposes the application and the API
 ```mermaid
 flowchart TD
   request["HTTP request"] --> server["server.js"]
-  server --> routes["Routes: Mod1 / Mod2 / Mod4"]
+  server --> routes["Routes: Mod1 / Mod2 / Mod3 / Mod4"]
   routes --> guards["Middlewares: auth / staff / permissions"]
   guards --> controllers["Controllers"]
   controllers --> models["Models"]
@@ -96,6 +101,20 @@ Animals in `Interno` status are listed from `vw_internal_animals_available`. Aut
 |----------|-------|----------------|
 | `GET /api/animals/adoptions` | Public | List available animals; `photo_path` reserved (`null` until assets exist) |
 | `POST /api/animals/:id/adopt` | `requireAuth` (clients only) | Direct adoption via `sp_assign_ownership`; staff receives `403` |
+
+---
+
+## Commercial Workflows (Mod3)
+
+`Backend/routes/Mod3_Commercial/index.js` is mounted at `/api` and attaches commercial subroutes. Staff-only operations are protected by `requireAuth`, `requireStaff` and `requireCommercialAreaAccess`; client invoice reads use authenticated `/api/invoices/me*` endpoints.
+
+| Prefix | Guard | Responsibility |
+|--------|-------|----------------|
+| `/api/stock` | Commercial staff only | Catalog reads, product creation and stock/reorder queries |
+| `/api/restock` | Commercial staff only | Purchase/restock registration |
+| `/api/sales` | Commercial staff only | Counter sale registration and sales invoice PDF endpoints |
+| `/api/return` | Commercial staff only | Product return registration/listing |
+| `/api/invoices` | Mixed | Staff invoice list/details/PDF; clients only `/me`, `/me/:id/details`, `/me/:id/pdf` |
 
 ---
 
@@ -176,12 +195,17 @@ Routes included in the current OpenAPI contract:
 - `Backend/routes/Mod1_Users/staffRoutes.js`
 - `Backend/routes/Mod1_Users/employeeRoutes.js`
 - `Backend/routes/Mod2_Animals/animais.js`
+- `Backend/routes/Mod3_Commercial/stockRoutes.js`
+- `Backend/routes/Mod3_Commercial/restockRoutes.js`
+- `Backend/routes/Mod3_Commercial/salesRoutes.js`
+- `Backend/routes/Mod3_Commercial/returnRoutes.js`
+- `Backend/routes/Mod3_Commercial/invoiceRoutes.js`
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
 - `Backend/routes/Mod4_Appointments/prescricoesRoutes.js`
 
 Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration), while client notification endpoints read the same table and explicitly filter that internal marker. PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency.
 
-Stub modules, such as partial Mod3 billing routes, remain excluded from the contract when not mounted in `server.js`.
+Only mounted routes should be treated as part of the runtime contract. Earlier unmounted/stub routes remain out of scope, but the current Mod3 commercial hub is mounted through `Backend/routes/Mod3_Commercial/index.js`.
 
 Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
 

@@ -28,10 +28,10 @@ The academic application report consolidates the implemented ApplicationLayer ev
 |------|------------------|
 | Mod1 - Users | Public authentication, JWT session handling, client/staff separation, role-aware sidebars and employee management views |
 | Mod2 - Animals | Catalogs, client animal area, public adoptions and staff animal operations |
-| Mod3 - Commercial | Public shop placeholder and reserved commercial/reporting navigation entries |
+| Mod3 - Commercial | Internal commercial workflows for administrators and assistants: counter sales, invoices, stock, returns, plus client invoice visibility |
 | Mod4 - Appointments | Client booking, availability lookup, cancellation/rescheduling and staff lifecycle operations |
 
-It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/animals`, `/api/appointments`) and positions Swagger/OpenAPI as the published REST contract for the current website implementation.
+It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/animals`, `/api/stock`, `/api/sales`, `/api/invoices`, `/api/appointments`) and positions Swagger/OpenAPI as the published REST contract for the current website implementation.
 
 ---
 

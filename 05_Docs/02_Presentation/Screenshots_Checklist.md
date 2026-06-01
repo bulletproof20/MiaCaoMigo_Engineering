@@ -26,7 +26,7 @@ Animal catalogues, ownership, adoptions and internal animal operations.
 
 ### 3. Mod3 - Commercial
 
-Reserved commercial scope, stock, billing and reporting concepts.
+Implemented commercial scope: stock, counter sales, billing/PDF, returns and reporting concepts.
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/diagramaMod3.png" alt="Module 3 diagram" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />

@@ -99,6 +99,14 @@ The current frontend still maps old `UserView` and `AdminPanel` URLs for redirec
 | `Public/formulário_contacto.html` | Public contact page |
 | `Public/loja.html` | Shop placeholder |
 | `Public/recusa_cookies.html` | Cookie rejection page |
+| `AdminPanel/AreaComercial.html` | Commercial hub |
+| `AdminPanel/productCatalog.html` | Product catalog |
+| `AdminPanel/StockManagement.html` | Stock management |
+| `AdminPanel/restock.html` | Restock/purchase entry |
+| `AdminPanel/salesManagement.html` | Counter sales |
+| `AdminPanel/returnManagement.html` | Returns |
+| `AdminPanel/invoiceHistory.html` | Invoice history |
+| `AdminPanel/invoiceDetails.html` | Invoice details |
 | `Mod1_Users/Funcionarios/MainDashboard.html` | Staff dashboard with personal widgets and permission shortcuts |
 | `Mod1_Users/Funcionarios/AreaFuncionario.html` | Full personal staff agenda shell; current working-tree file is empty and needs restoration |
 | `Mod1_Users/Funcionarios/AdicionarFuncionario.html` | Staff employee onboarding |
@@ -169,13 +177,16 @@ Known current gap: `staffArea.js` implements the full agenda rendering flow, but
 | Adoptions | `GET /api/animals/adoptions` (public), `POST /api/animals/:id/adopt` (authenticated client) |
 | Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments`, `PATCH .../:id_app/cancel`, `PATCH .../:id_app/reschedule`, `PATCH .../:id_app/check-in`, `PATCH .../:id_app/start`, `PATCH .../:id_app/close`, `GET .../:id_app/clinical-record`, `GET .../notifications/me`, `PATCH .../notifications/:id_not/read`, `PATCH .../notifications/read-all` |
 | Prescriptions and consultation record | `GET .../prescriptions/me`, `GET .../prescriptions/:id_pre/pdf`, `GET .../prescriptions/products`, `GET .../prescriptions/consultation/:id_app`, `POST .../prescriptions/consultation/:id_app`, `POST .../prescriptions/consultation/:id_app/products`, `PUT .../prescriptions/consultation/:id_app/clinical-record` |
+| Commercial | `/api/stock/*`, `/api/restock/*`, `/api/sales/*`, `/api/return/*`, `GET /api/invoices/me`, `GET /api/invoices/me/:id/details`, `GET /api/invoices/me/:id/pdf`, `GET /api/invoices`, `GET /api/invoices/:id/details`, `GET /api/invoices/:id/pdf`, `GET /api/sales/invoices/:id/pdf` |
 
-Base prefixes: `/api/users/auth`, `/api/users/clients`, `/api/users/staff`, `/api/users/employees`, `/api/animals`, `/api/appointments`.
+Base prefixes: `/api/users/auth`, `/api/users/clients`, `/api/users/staff`, `/api/users/employees`, `/api/animals`, `/api/appointments`, `/api/stock`, `/api/restock`, `/api/sales`, `/api/return`, `/api/invoices`.
 
 Implementation notes:
 
 - `authSession.js` sends `PUT /api/users/auth/heartbeat` every 30 seconds; the backend implements it and Swagger/OpenAPI documents it.
+- Client and staff appointment forms set the date input minimum to the current day, and the API rejects past-date booking/rescheduling.
 - Staff appointment rescheduling passes optional `excludeAppId` to `GET /api/appointments/availability`.
+- Invoice PDFs are not pre-generated files; clicking PDF requests the API, which renders the current invoice layout with clinic logo, line-item table, VAT and totals.
 - Staff animal registration currently calls the local API base URL (`http://localhost:3000`) directly and contains a fallback to `/api/animals/breed`; the backend route is `/api/animals/breeds`.
 - `FuncionarioDetalhe.html` remains a static/prototype detail page until a future employee-detail API is implemented.
 

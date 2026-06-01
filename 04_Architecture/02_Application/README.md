@@ -44,7 +44,8 @@ This section adapts the website documentation into the Engineering portal withou
 | Authentication | JWT login/logout/session flow with staff/client separation |
 | Staff area | Hybrid dashboard: personal `Minha Área` + RBAC global sections for employees, animals and appointments |
 | Animals | Client animal reads and staff-controlled association/update/removal |
-| Appointments | Client booking, availability, cancel/reschedule and staff lifecycle operations |
+| Appointments | Client booking, availability, cancel/reschedule and staff lifecycle operations, with past-date booking/rescheduling blocked |
+| Commercial | Administrator/assistant counter sales, stock, invoice history, client invoice visibility and on-demand invoice PDF download |
 | Documentation | Swagger UI, OpenAPI JSON and generated static docs |
 
 Navigation is centralized in `FrontEnd/Js/geral/routes.js`, while the role-aware sidebars are assembled from `SidebarMenuCatalog.js`, `ClientSidebar.js` and `EmployeeSidebar.js`.
@@ -59,10 +60,10 @@ Navigation is centralized in `FrontEnd/Js/geral/routes.js`, while the role-aware
 | Quadro de funcionários | `manage_employees` | `QuadroFuncionario.html` |
 | Registo de funcionários | `manage_employees` | `AdicionarFuncionario.html`, `POST /api/users/employees` |
 | Registo de animais | `manage_animals` | `RegistarAnimal.html`, staff animal routes |
-| Área comercial | `manage_commercial` | Reserved (Mod3) |
+| Área comercial | `profile in (administrador, assistente)` | Mod3 counter sales, invoices, stock, returns and client invoice visibility |
 | Relatórios | `view_reports` | Reserved |
 
-The sidebar catalog also exposes menu entries for commercial and reporting areas, but these entries remain reserved/disabled in the current website.
+The sidebar catalog exposes the commercial area only to administrators and assistants. Commercial endpoints also enforce the same profile restriction on the backend; clients access only their own invoices through `/api/invoices/me` and download invoice PDFs generated on demand with the Mod3 invoice layout.
 
 ---
 
