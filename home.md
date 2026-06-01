@@ -92,6 +92,12 @@ The documentation is organized progressively, allowing both high-level conceptua
 
     [:octicons-arrow-right-24: Open documentation](05_Docs/README.md)
 
+-   **Production**
+
+    Docker production mode, startup steps, strengths vs gaps vs industry practice, and defense checklist.
+
+    [:octicons-arrow-right-24: Open production guide](07_Deployment/README_Production_Docker.md)
+
 </div>
 
 ---
@@ -115,6 +121,7 @@ For a progressive exploration of the project documentation:
 3. [ER model](03_Diagrams/00_ER_Model/er_model.md) — conceptual structure and attribute semantics  
 4. [System architecture](04_Architecture/00_System_Architecture.md) and [Application architecture](04_Architecture/02_Application/README.md)  
 5. [Database engineering](04_Architecture/01_Database/README.md) — implementation and governance  
+6. [Production guide](07_Deployment/README_Production_Docker.md) — Docker production mode and academic deployment checklist
 
 ---
 

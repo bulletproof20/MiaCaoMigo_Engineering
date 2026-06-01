@@ -14,6 +14,7 @@ The MiaCaoMigo Engineering portal separates documentation by **purpose**, not by
 | Architecture | `04_Architecture/` | Developers, defense | System view, application flows, database governance and schemas |
 | Academic deliverables | `05_Docs/` | Teachers, defense | Official statements, academic reports, presentation guides |
 | Performance | `06_Performance/` | APS / quality evidence | Strategy, measurements, recommendations |
+| Production | `07_Deployment/` | Teachers, defense, deployment operators | Docker production mode, startup steps, environment variables, operational checklist |
 
 ---
 
@@ -44,6 +45,17 @@ These views are **complementary**, not duplicates.
 | Defense-oriented narrative, 15 min presentation, screenshots checklist | `05_Docs/01_Academic_Reports/` and `05_Docs/02_Presentation/` |
 
 The application report under `05_Docs` is the canonical academic document; architecture pages link to it.
+
+### Academic vs production
+
+| Type | Location |
+|------|----------|
+| Defense narrative, reports and presentation support | `05_Docs/` |
+| Practical production startup guide and Docker deployment steps | `07_Deployment/` |
+
+The production guide is written for academic demonstration first: it explains how the system would be started in a production-like Docker setup without requiring a full public cloud deployment.
+
+It also documents **what is already production-aligned** (Docker prod compose, isolated DB, secrets via env, static docs, healthchecks) and **what would still be needed in industry** (HTTPS, reverse proxy, CI/CD, automated backups, centralized monitoring). See [Production guide](07_Deployment/README_Production_Docker.md#o-que-significa-pronto-para-produção).
 
 ---
 

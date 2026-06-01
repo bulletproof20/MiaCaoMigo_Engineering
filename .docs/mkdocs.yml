@@ -225,14 +225,7 @@ nav:
       - Recommendations: 06_Performance/05_Recommendations.md
 
   # =========================================================
-  # Deployment
-  # =========================================================
-
-  - Deployment:
-      - Production Docker: 07_Deployment/README_Production_Docker.md
-
-  # =========================================================
-  # Documentation
+  # Academic
   # =========================================================
 
   - Academic:
@@ -246,3 +239,10 @@ nav:
           - 15 min Structure: 05_Docs/02_Presentation/15min_Structure.md
           - Screenshots Checklist: 05_Docs/02_Presentation/Screenshots_Checklist.md
       - Repository Structure (maintainers): STRUCTURE.md
+
+  # =========================================================
+  # Production
+  # =========================================================
+
+  - Production:
+      - Docker Production Guide: 07_Deployment/README_Production_Docker.md
