@@ -604,7 +604,7 @@ Future work should prioritise improvements that transform the current academic p
 | Extend Mod3 commercial workflows | Add public shop checkout, advanced commercial reports and full commercial manager role separation on top of the current stock/sales/invoice/return implementation |
 | Formal security testing | Add repeatable tests for invalid tokens, missing permissions, protected endpoints, input validation and CORS configuration |
 | Homepage hero asset | Convert `background_pagInicial.jpeg` (AVIF mislabel) to optimised JPEG/WebP and update CSS reference |
-| Extended performance validation | Repeat Firefox baselines for Mod3 commercial and Mod4 when routes are stable |
+| Extended performance validation | Repeat Firefox baselines for Mod3 commercial pages and additional Mod4 staff flows |
 | Stronger password hashing | Replace SHA-256 with an adaptive hashing strategy such as bcrypt or argon2 in a production scenario |
 | Session storage hardening | Evaluate `HttpOnly` cookies or another safer token storage strategy for production deployment |
 | Automated test coverage | Add focused tests for authentication, RBAC, appointment booking, adoption and staff workflows |

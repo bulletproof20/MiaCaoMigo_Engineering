@@ -115,4 +115,4 @@ Copiar para [04_Test_Results.md](04_Test_Results.md) por cada página testada:
 
 ## Próximo passo
 
-Baseline inicial concluída — ver [04_Test_Results.md](04_Test_Results.md). Repetir medições para Mod3/Mod4 e área cliente staff quando estiverem estáveis.
+Baseline inicial concluída — ver [04_Test_Results.md](04_Test_Results.md). Repetir medições opcionais para páginas comerciais Mod3 (`Pages/AdminPanel/*`) e fluxos staff Mod4 adicionais.

@@ -6,7 +6,7 @@ Documentação de **desempenho (performance)** do website e da API do projeto Mi
 **Requisitos de referência:** [Requisitos Não Funcionais](../02_Requirements/01_Non_Functional_Requirements.md) (tipo *Performance*).
 
 !!! info "Estado da secção"
-    **Baseline inicial concluída** (2026-06-01): Firefox 151.0.2, páginas index/login/adoções/área cliente, APIs db-test/adoptions/login. Validação final de Mod3/Mod4 fica para quando as rotas estiverem estáveis.
+    **Baseline inicial concluída** (2026-06-01): Firefox 151.0.2, páginas index/login/adoções/área cliente, APIs db-test/adoptions/login. Medições adicionais em páginas Mod3 (`Pages/AdminPanel/`) e staff Mod4 são opcionais/futuras.
 
 ---
 
@@ -41,7 +41,7 @@ Esta pasta documenta **como** é avaliado o desempenho, **o que** é testado, **
 
 | Tipo | Quando usar | Estado atual |
 |------|-------------|--------------|
-| **Baseline inicial** | Website incompleto; medir o que já funciona | Em curso |
+| **Baseline inicial** | Website incompleto; medir o que já funciona | **Concluída** |
 | **Validação final** | Fluxos críticos fechados; comparar com RNF | Planeado |
 | **Regressão** | Após alterações relevantes (BD, API, assets) | Planeado |
 
@@ -75,7 +75,7 @@ flowchart LR
 |-----|--------|-------------|
 | RNF_M1_01 | Autenticação ≤ 2 s (95%) | `POST /api/users/auth/login` |
 | RNF_M2_13 | Consultas simples animais &lt; 1 s | `GET /api/animals/adoptions` |
-| RNF_M4_01 | Histórico clínico &lt; 3 s (95%) | Rotas Mod4 (quando estáveis) |
+| RNF_M4_01 | Histórico clínico &lt; 3 s (95%) | Rotas Mod4 staff/consulta adicionais |
 
 Lista completa: [01_Non_Functional_Requirements.md](../02_Requirements/01_Non_Functional_Requirements.md).
 
@@ -103,4 +103,4 @@ Ver [02_Runtime_Setup](../04_Architecture/02_Application/02_Runtime_Setup.md).
 
 1. Baseline inicial **fechada** — ver [04_Test_Results.md](04_Test_Results.md) e [Application_Report.md §3.11](../05_Docs/01_Academic_Reports/Application_Report.md#311-performance-and-security-validation).
 2. Pendente técnico: converter `background_pagInicial.jpeg` (AVIF com extensão errada).
-3. Futuro: repetir medições quando Mod3/Mod4 estiverem estáveis.
+3. Futuro: repetir medições em páginas comerciais Mod3 e fluxos staff Mod4 adicionais.

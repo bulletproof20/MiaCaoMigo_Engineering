@@ -46,11 +46,11 @@ Prefixos montados em `Backend/server.js`:
 | Listar animais (staff) | `GET /api/animals/` | RNF_M2_13 | Parcial (staff) |
 | Consultas | `GET /api/appointments/...` | RNF_M4_01 | Parcial (auth) |
 
-### Adiar (módulo incompleto ou instável)
+### Baseline adicional / opcional
 
 | Área | Notas |
 |------|-------|
-| Mod3 — faturação | Rotas comentadas em `server.js` |
+| Mod3 — comercial | Rotas montadas em `server.js` via `/api`; medir stock/sales/invoices/returns se houver tempo |
 | Carga concorrente (k6, ab) | Fase avançada |
 
 ---
@@ -122,7 +122,7 @@ curl -s -H "Authorization: Bearer TOKEN" \
 |-----|------|-------------------|
 | RNF_M1_01 | Autenticação ≤ 2 s | `POST /api/users/auth/login` |
 | RNF_M2_13 | Consultas simples &lt; 1 s | `GET /api/animals/adoptions` |
-| RNF_M3_19 | Consultas comerciais &lt; 1 s | (quando Mod3 activo) |
+| RNF_M3_19 | Consultas comerciais &lt; 1 s | `/api/stock`, `/api/invoices`, `/api/sales` |
 | RNF_M4_01 | Histórico &lt; 3 s | `GET /api/appointments/...` |
 
 Demonstração académica de “95%”: em 10 execuções, ≥ 9 dentro da meta.
@@ -160,4 +160,4 @@ Demonstração académica de “95%”: em 10 execuções, ≥ 9 dentro da meta.
 
 ## Próximo passo
 
-Medições baseline registadas em [04_Test_Results.md](04_Test_Results.md) (`/db-test`, `/api/animals/adoptions`, login 10×). Expandir para rotas Mod3/Mod4 quando activas em `server.js`.
+Medições baseline registadas em [04_Test_Results.md](04_Test_Results.md) (`/db-test`, `/api/animals/adoptions`, login 10×). Expandir, se necessário, para endpoints comerciais Mod3 e fluxos staff Mod4 adicionais.

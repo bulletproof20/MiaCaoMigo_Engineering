@@ -117,7 +117,7 @@ Registo de medições e evidências. **Tipo actual:** baseline inicial (2026-05-
 | Cumpre RNF_M2_13 | **Sim** (10/10 &lt; 1 s) |
 | Classificação | **Verde** |
 
-**Resposta exemplo:** 1 animal (`Quico`, estado `Interno`). Medição Firefox do XHR na página adoções — **pendente** (ver checklist abaixo).
+**Resposta exemplo:** 1 animal (`Quico`, estado `Interno`). Medição Firefox do XHR na página adoções concluída (ver secção [Frontend: Página adoções](#frontend-página-adoções-firefox)).
 
 ---
 
@@ -132,7 +132,7 @@ Medição apenas do **documento HTML** (não inclui CSS, JS, imagens nem chamada
 | Adoções | `/Pages/Public/adocoes.html` | 200 | ~4,8 KB | ~0,5 ms |
 | Swagger UI | `/api-docs/` | 200 | ~3,1 KB | ~0,9 ms |
 
-| Classificação | **Verde** (HTML leve); validação completa pendente no browser |
+| Classificação | **Verde** (HTML leve); validação completa no Firefox registada abaixo |
 
 ---
 
@@ -244,7 +244,7 @@ Medição apenas do **documento HTML** (não inclui CSS, JS, imagens nem chamada
 | Tempo total (Finish) | ~304 ms |
 | DOMContentLoaded | ~144 ms |
 | Load | ~152 ms |
-| APIs autenticadas visíveis | `me`, `pets`, `orders`, `setup` — **200** |
+| APIs autenticadas visíveis | `setup`, `me`, `SideBar.html` — **200** |
 | Recursos com erro | 0 visíveis |
 | Classificação | **Verde** |
 
@@ -325,7 +325,7 @@ Metodologia: 10 utilizadores demo distintos com password `123456789`; após cada
 
 | Data | Responsável | Notas |
 |------|-------------|-------|
-| 2026-05-30 | Baseline automática `curl` | BD OK; adoptions inicialmente 500; Firefox por completar |
+| 2026-05-30 | Baseline automática `curl` | BD OK; adoptions inicialmente 500; Firefox ainda por completar nessa sessão |
 | 2026-06-01 | Baseline manual Firefox | Página inicial e `/db-test` registados a partir dos prints DevTools |
 | 2026-06-01 | Correcção API + curl | Adoptions 200; login medido; servidor reiniciado |
 | 2026-06-01 | Firefox API adoptions | Print endpoint directo (~32 ms finish) |

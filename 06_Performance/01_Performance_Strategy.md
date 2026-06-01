@@ -89,7 +89,7 @@ Não é necessário testar todas as páginas. Deve ser selecionado um **conjunto
 | Alta | Login | `FrontEnd/Pages/Mod1_Users/Autenticacao/login.html` | M1 |
 | Alta | Área do cliente | `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` | M1 |
 | Média | Adoções / animais | `FrontEnd/Pages/Public/adocoes.html` | M2 |
-| Média | Área funcionário / consultas | `FrontEnd/Pages/AdminPanel/...` | M4 |
+| Média | Área funcionário / consultas | `FrontEnd/Pages/Mod1_Users/Funcionarios/MainDashboard.html`, `FrontEnd/Pages/Mod4_Appointments/AdicionarConsulta.html` | M1/M4 |
 | Baixa | Loja / serviços | páginas em `FrontEnd/Pages/...` | M3 |
 
 A lista final deve constar em `02_Frontend_Performance.md`.
@@ -325,7 +325,7 @@ O primeiro ciclo já tem evidência em Firefox para:
 - Página inicial: 16 pedidos, ~2,72 MB transferidos, tempo total ~165 ms.
 - `/db-test`: resposta HTTP 200 validada no browser.
 
-Os valores e prints estão registados em [04_Test_Results.md](04_Test_Results.md). A baseline inicial já inclui página inicial, login, adoções, área cliente, `db-test`, `adoptions` e login; a continuação natural passa por repetir medições quando Mod3/Mod4 estiverem estáveis ou por optimizar assets pesados identificados.
+Os valores e prints estão registados em [04_Test_Results.md](04_Test_Results.md). A baseline inicial já inclui página inicial, login, adoções, área cliente, `db-test`, `adoptions` e login; a continuação natural passa por medições adicionais em páginas Mod3/Mod4 ou por optimizar assets pesados identificados.
 
 ---
 

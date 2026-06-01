@@ -158,7 +158,7 @@ flowchart TD
   catalog --> employeeSidebar["EmployeeSidebar"]
 ```
 
-The sidebar catalog resolves client links from a fixed client menu and staff links from profile names (`administrador`, `veterinario`, `assistente`, `gestor rh`, etc.). Reserved entries for commercial/reporting navigation are visible in the catalog but remain non-operational in the current website.
+The sidebar catalog resolves client links from a fixed client menu and staff links from profile names (`administrador`, `veterinario`, `assistente`, `gestor rh`, etc.). The commercial area is operational for administrator/assistant profiles under `FrontEnd/Pages/AdminPanel/`; dedicated reports remain a reserved placeholder.
 
 ---
 
@@ -199,7 +199,7 @@ The authenticated client area supports self-service viewing and appointment mana
 
 | Area | Page/script | Behaviour |
 |------|-------------|-----------|
-| Client entry | `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` | Reserved area entry point |
+| Client entry | `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` | Authenticated client hub with notifications, invoices section and theme setup |
 | Theme preference | `FrontEnd/Js/geral/Sidebar/ClientSidebar.js` + `FrontEnd/Js/geral/authSession.js` | Lets the authenticated client choose light/dark theme |
 | Animals | `FrontEnd/Pages/Mod2_Animals/animais.html` + `FrontEnd/Js/Mod2/clientAnimais.js` | Lists animals linked to the authenticated client |
 | Add animal | `FrontEnd/Pages/Mod2_Animals/adicionar-animal.html` | Client/staff navigation target for animal registration flow |

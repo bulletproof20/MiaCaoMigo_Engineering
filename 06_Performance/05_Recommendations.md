@@ -77,7 +77,7 @@ Estas recomendações seguem boas práticas e a [estratégia §6 Fase 4](01_Perf
 ```mermaid
 flowchart TD
     baseline[Baseline Firefox + API concluída] --> hero[Optimizar hero AVIF/JPEG]
-    baseline --> mod34[Repetir Mod3/Mod4 quando estáveis]
+    baseline --> mod34[Medir páginas Mod3/Mod4 adicionais]
     hero --> validation[Validação final antes da entrega]
     mod34 --> validation
 ```

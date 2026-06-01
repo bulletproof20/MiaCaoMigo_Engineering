@@ -58,7 +58,7 @@ The frontend uses a centralized route map instead of hardcoding every redirect i
 | `FrontEnd/Js/geral/Sidebar/ClientSidebar.js` | Client sidebar rendering |
 | `FrontEnd/Js/geral/Sidebar/EmployeeSidebar.js` | Staff sidebar rendering from JWT profiles |
 
-Legacy paths from the previous `UserView` and `AdminPanel` layout are mapped to the current `Pages/Mod*_...` structure for redirects/bookmarks, but new documentation should reference the current paths only.
+Legacy paths from the previous `UserView` layout and older staff `AdminPanel` URLs are mapped to the current `Pages/Mod*_...` structure for redirects/bookmarks. Mod3 commercial pages remain canonical under `Pages/AdminPanel/`, so new documentation should use `Pages/Mod1_Users`, `Pages/Mod2_Animals`, `Pages/Mod4_Appointments`, `Pages/Public` and `Pages/AdminPanel` according to the module.
 
 ---
 

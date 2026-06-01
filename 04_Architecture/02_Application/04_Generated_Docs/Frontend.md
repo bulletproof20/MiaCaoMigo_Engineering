@@ -76,7 +76,7 @@ flowchart TD
 | `geral/Sidebar/ClientSidebar.js` | Client menu: main panel, appointments and animals |
 | `geral/Sidebar/EmployeeSidebar.js` | Staff menu resolved from JWT profile names |
 
-The current frontend still maps old `UserView` and `AdminPanel` URLs for redirect compatibility, but current pages live under `Pages/Mod1_Users`, `Pages/Mod2_Animals`, `Pages/Mod4_Appointments` and `Pages/Public`.
+The current frontend still maps old `UserView` URLs and older staff `AdminPanel` URLs for redirect compatibility. Current pages live under `Pages/Mod1_Users`, `Pages/Mod2_Animals`, `Pages/Mod4_Appointments`, `Pages/Public`, and the Mod3 commercial staff UI remains canonical under `Pages/AdminPanel/`.
 
 ---
 
