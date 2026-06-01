@@ -11,7 +11,7 @@ Automatically generated relational model (read-only output)
 SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: tables, columns, FKs, indexes, constraints, and relationship diagrams.
 
 !!! note "Implied relationships (Module 3)"
-    SchemaSpy may flag **implied** child links where the DDL uses **soft references** only (`purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin`). That is **expected** — see [M3 soft references](../01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk). Do not treat as a schema bug without reading DataLayer `01_ForeignKeys_Mod3.sql`.
+    SchemaSpy may flag **implied** child links where the DDL uses **soft references** only (`purchase.id_cli`, `purchase.id_inv`, `purchase_line.id_sto`, `return.id_inv_lin`). That is **expected** — see [Module 3 schema](../01_Schemas/00_Public_Schema/03_Module3.md). Do not treat as a schema bug without reading DataLayer `01_ForeignKeys_Mod3.sql`.
 
 !!! success "Open interactive documentation"
     **[Open SchemaSpy — `02_Output/index.html`](02_Output/index.html)**
@@ -19,8 +19,8 @@ SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: ta
     Opens the generated site in a new browser tab from this MkDocs page.
 
 !!! warning "Do not edit generated artefacts"
-    Files under `05_SchemaSpy/02_Output/` are **regenerated** by SchemaSpy scripts.
-    Change the database in **`01_MiaCaoMigo_DataLayer`**, then re-run the generator — see [User Guide](00_README.md).
+    Files under `03_SchemaSpy/02_Output/` are **regenerated** by SchemaSpy scripts.
+    Change the database in **`MiaCaoMigo_DataLayer`**, then re-run the generator — see [SchemaSpy overview](00_Overview.md).
 
 ---
 
@@ -39,7 +39,7 @@ SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: ta
 ## Output location
 
 ```text
-04_Architecture/01_Database/05_SchemaSpy/
+04_Architecture/01_Database/03_SchemaSpy/
 ├── 01_Scripts/          # generate_docs.ps1 · generate_docs.sh
 ├── 00_README.md         # regeneration guide
 ├── schemaspy.md         # this MkDocs entry (link above)
@@ -54,7 +54,7 @@ SchemaSpy produces an HTML exploration of the MiaCaoMigo **`public`** schema: ta
 | Topic | Link |
 |-------|------|
 | Database hub | [../README.md](../README.md) |
-| Data dictionary (semantic) | [../04_Data_Dictionary/00_Overview.md](../04_Data_Dictionary/00_Overview.md) |
+| Schema modules | [../../01_Schemas/00_Overview.md](../../01_Schemas/00_Overview.md) |
 | DDL source of truth | `01_MiaCaoMigo_DataLayer/DataBase/Schema/` |
 | ER model (conceptual) | [../../../03_Diagrams/00_ER_Model/er_model.md](../../../03_Diagrams/00_ER_Model/er_model.md) |
 

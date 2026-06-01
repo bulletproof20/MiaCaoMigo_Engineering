@@ -2,7 +2,7 @@
 
 Atributos de qualidade do sistema (`RNF_Mx_yy`), complementares aos [requisitos funcionais](00_Functional_Requirements.md).
 
-**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) · [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md) · [07_Constraints.md](07_Constraints.md)
+**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) · [06_Implementation_Matrix.md](06_Implementation_Matrix.md) · [07_Constraints.md](07_Constraints.md)
 
 **Contagens:** M1 — 11 · M2 — 14 · M3 — 20 · M4 — 14 · **Total: 59 RNF** (inclui repetições por módulo de temas transversais).
 

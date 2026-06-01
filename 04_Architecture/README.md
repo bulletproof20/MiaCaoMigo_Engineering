@@ -15,7 +15,7 @@ Index for **system**, **application** and **database** architecture. Validated a
 |----------|--------|
 | [System architecture](00_System_Architecture.md) | DataLayer · Application · Engineering |
 | [Application hub](02_Application/README.md) | Website architecture, flows, runtime setup, implementation evidence and [application documentation hub](02_Application/04_Generated_Docs/README.md) |
-| [Academic application report](02_Application/05_Academic_Report.md) | Compact defense-oriented report covering implemented website scope, API evidence and current limitations |
+| [Academic application report](../05_Docs/01_Academic_Reports/Application_Report.md) | Compact defense-oriented report (canonical copy under `05_Docs`) |
 | [Database hub](01_Database/README.md) | PostgreSQL, M1–M4, QA, SchemaSpy link |
 
 ---
@@ -39,13 +39,12 @@ It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/anima
 
 | Area | Link |
 |------|------|
-| Build pipeline | [00_Schema_Build_Pipeline.md](01_Database/00_Schema_Build_Pipeline.md) |
-| Governance | [00_Governance/README.md](01_Database/00_Governance/README.md) |
-| Schemas M1–M4 | [01_Schemas/README.md](01_Database/01_Schemas/README.md) |
-| Data dictionary | [04_Data_Dictionary/00_Overview.md](01_Database/04_Data_Dictionary/00_Overview.md) |
-| SchemaSpy (read-only output) | [schemaspy.md](01_Database/05_SchemaSpy/schemaspy.md) |
+| Database overview | [Architecture_Overview.md](01_Database/Architecture_Overview.md) |
+| Governance | [Overview.md](01_Database/00_Governance/Overview.md) |
+| Schemas M1–M4 | [Schemas overview](01_Database/01_Schemas/00_Overview.md) |
+| SchemaSpy (read-only output) | [SchemaSpy guide](01_Database/03_SchemaSpy/00_Guide/00_Overview.md) |
 
-**Module 3 soft references:** [architecture section](01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk) — SchemaSpy “implied” ≠ defect.
+**Module 3 soft references:** see [Module 3 schema](01_Database/01_Schemas/00_Public_Schema/03_Module3.md) — SchemaSpy “implied” relationships are not always physical FKs.
 
 ---
 
@@ -55,14 +54,14 @@ It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/anima
 |-------|------|
 | [ER model](../03_Diagrams/00_ER_Model/er_model.md) | May diverge from DDL — **DataLayer prevails** |
 | [Application](02_Application/README.md) | Frontend/API layer implemented in `MiaCaoMigo_` |
-| [Sprint 2 RF matrix](../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) | Functional coverage vs DataLayer (not duplicated here) |
+| [Implementation matrix](../02_Requirements/06_Implementation_Matrix.md) | Functional coverage and implementation status |
 | UML (`03_Diagrams/01_UML/`) | Reserved — not yet published in this repo |
 
 ---
 
 ## Protected paths (do not edit via doc tasks)
 
-- `01_Database/05_SchemaSpy/02_Output/` — generated HTML
+- `01_Database/03_SchemaSpy/02_Output/` — generated HTML (do not edit)
 - `.docs/` — MkDocs infrastructure
 
 ---

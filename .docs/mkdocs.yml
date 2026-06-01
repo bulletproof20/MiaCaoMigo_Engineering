@@ -78,6 +78,7 @@ nav:
   - Home:
       - Cover: index.md
       - Overview: home.md
+      - Documentation Layers: DOCUMENTATION_LAYERS.md
       - Repository Structure (maintainers): STRUCTURE.md
 
   # =========================================================
@@ -119,12 +120,13 @@ nav:
   # =========================================================
 
   - Requirements:
+      - Overview: 02_Requirements/README.md
       - Functional Requirements: 02_Requirements/00_Functional_Requirements.md
       - Non-Functional Requirements: 02_Requirements/01_Non_Functional_Requirements.md
       - Business Rules: 02_Requirements/02_Business_Rules.md
       - Business Processes: 02_Requirements/03_Business_Processes.md
       - Acceptance Criteria: 02_Requirements/04_Acceptance_Criteria.md
-      - Implementation Matrix: 02_Requirements/06_Implementacion_Matrix.md
+      - Implementation Matrix: 02_Requirements/06_Implementation_Matrix.md
       - Constraints: 02_Requirements/07_Constraints.md
 
   # =========================================================
@@ -156,11 +158,11 @@ nav:
 
       - Application:
           - Overview: 04_Architecture/02_Application/README.md
+          - Academic report (redirect): 04_Architecture/02_Application/05_Academic_Report.md
           - Application Overview: 04_Architecture/02_Application/00_Application_Overview.md
           - Website Flows: 04_Architecture/02_Application/01_Website_Flows.md
           - Runtime Setup: 04_Architecture/02_Application/02_Runtime_Setup.md
           - Implementation Evidence: 04_Architecture/02_Application/03_Implementation_Evidence.md
-          - Academic Application Report: 04_Architecture/02_Application/05_Academic_Report.md
           - Website Documentation:
               - Hub: 04_Architecture/02_Application/04_Generated_Docs/README.md
               - Backend: 04_Architecture/02_Application/04_Generated_Docs/Backend.md
@@ -172,7 +174,7 @@ nav:
 
       - Database Engineering:
 
-          - Database Hub: 04_Architecture/01_Database/Architeture_Overview.md
+          - Database Hub: 04_Architecture/01_Database/Architecture_Overview.md
 
           - Governance:
 
@@ -187,13 +189,13 @@ nav:
                   - Overview: 04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards.md
 
               - Integrity Rules:
-                  - Integrity Architecture: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architeture.md
+                  - Integrity Architecture: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture.md
                   - Structural Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity.md
                   - Automated Integrity: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity.md
                   - Procedural Validation: 04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation.md
 
               - Templates:
-                  - SQL Authoring Templates: 04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates.md.md
+                  - SQL Authoring Templates: 04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates.md
 
           - Schemas:
 
@@ -227,5 +229,13 @@ nav:
   # =========================================================
 
   - Academic:
+      - Documentation Hub: 05_Docs/README.md
       - Academic Statements: 05_Docs/00_Statements/statements.md
+      - Reports:
+          - Overview: 05_Docs/01_Academic_Reports/README.md
+          - Application Report: 05_Docs/01_Academic_Reports/Application_Report.md
+      - Presentation:
+          - Overview: 05_Docs/02_Presentation/README.md
+          - 15 min Structure: 05_Docs/02_Presentation/15min_Structure.md
+          - Screenshots Checklist: 05_Docs/02_Presentation/Screenshots_Checklist.md
       - Repository Structure (maintainers): STRUCTURE.md

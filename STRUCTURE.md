@@ -6,7 +6,7 @@ Mapa de diretorias e ficheiros do portal documental MiaCaoMigo Engineering.
 | Métrica | Valor |
 |---------|-------|
 | Ficheiros totais (aprox.) | ~747 |
-| Excl. `05_SchemaSpy/02_Output` | ~181 |
+| Excl. `03_SchemaSpy/02_Output` | ~181 |
 | Páginas Markdown (aprox.) | ~79 |
 
 ---
@@ -22,15 +22,16 @@ flowchart TB
     ROOT --> REQ["02_Requirements"]
     ROOT --> DIAG["03_Diagrams"]
     ROOT --> ARCH["04_Architecture"]
-    ROOT --> ACAD["05_Docs"]
-    ROOT --> IDX["indexes"]
+    ROOT --> ACAD["05_Docs — academic"]
+    ROOT --> PERF["06_Performance"]
     ROOT --> HOME["index.md · README.md"]
     ARCH --> DB["01_Database"]
     ARCH --> APP["02_Application — website/API"]
     DB --> GOV["00_Governance"]
     DB --> SCH["01_Schemas"]
-    DB --> DD["04_Data_Dictionary"]
-    DB --> SS["05_SchemaSpy"]
+    DB --> SS["03_SchemaSpy"]
+    ACAD --> REP["01_Academic_Reports"]
+    ACAD --> PRES["02_Presentation"]
 ```
 
 ---
@@ -125,24 +126,19 @@ flowchart TB
 ```
 02_Requirements/
 ├── README.md
-├── 00_Traceability.md
-├── 00_Functional_Requirements.md      # índice por módulo
+├── 00_Functional_Requirements.md
 ├── 01_Non_Functional_Requirements.md
-├── 02_User_Requirements.md
-├── 03_Business_Requirements.md
+├── 02_Business_Rules.md
+├── 03_Business_Processes.md
 ├── 04_Acceptance_Criteria.md
-├── 05_Constraints.md
-├── Sprint2/
-│   ├── 00_Authoritative_Source.md     # índice APS PDF
-│   └── 01_RF_Traceability_Matrix.md   # 109 RF × DataLayer
-└── _archive/
-    └── Generic_Templates_2026-05.md
+├── 06_Implementation_Matrix.md
+└── 07_Constraints.md
 ```
 
 | Entrada recomendada | Path |
 |---------------------|------|
 | Hub | [`02_Requirements/README.md`](02_Requirements/README.md) |
-| Matriz RF Sprint 2 | [`Sprint2/01_RF_Traceability_Matrix.md`](02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) |
+| Matriz de implementação | [`06_Implementation_Matrix.md`](02_Requirements/06_Implementation_Matrix.md) |
 | PDF normativo | [`01_Planning/00_Sprints/Sprint_2/APS/Sprint_2.pdf`](01_Planning/00_Sprints/Sprint_2/APS/Sprint_2.pdf) |
 
 ---
@@ -186,6 +182,7 @@ flowchart TB
 │   ├── 01_Website_Flows.md
 │   ├── 02_Runtime_Setup.md
 │   ├── 03_Implementation_Evidence.md
+│   ├── 05_Academic_Report.md          redirect → 05_Docs
 │   └── 04_Generated_Docs/             application documentation hub (MkDocs)
 │       ├── README.md
 │       ├── Backend.md
@@ -196,48 +193,19 @@ flowchart TB
 │       └── Update_Docs.md
 └── 01_Database/
     ├── README.md
-    ├── 00_Schema_Build_Pipeline.md
+    ├── Architecture_Overview.md
     ├── 00_Governance/
-    │   ├── README.md
-    │   ├── 00_Naming_Conventions/     3 × .md
-    │   ├── 01_SQL_Standards/          00_SQL_Standards.md
-    │   ├── 02_Integrity_Rules/
-    │   │   ├── 00_Integrity_Strategy.md
-    │   │   ├── 01_Module1_Integrity/  3 × .md
-    │   │   ├── 02_Module2_Integrity/  00_Overview.md
-    │   │   ├── 03_Module3_Integrity/  00_Overview.md
-    │   │   ├── 04_Module4_Integrity/  00_Overview.md
-    │   │   ├── 02_Model2_Integrity/   (vazia — legacy)
-    │   │   ├── 03_Model3_Integrity/   (vazia — legacy)
-    │   │   └── 04_Model4_Integrity/   (vazia — legacy)
-    │   └── 03_Templates/
-    │       ├── README.md
-    │       ├── 00_Meta/               5 × .tpl
-    │       ├── 01_Schema/             11 × .tpl
-    │       ├── 02_Services/           11 × .tpl
-    │       ├── 03_Comments/           1 × .tpl
-    │       ├── 04_Bootstrap/          3 × .tpl
-    │       ├── 05_DataSeed/           2 × .tpl
-    │       └── 06_QA/                 5 × .tpl
+    │   ├── Overview.md
+    │   ├── 00_Naming_Conventions/
+    │   ├── 01_SQL_Standards/
+    │   └── 02_Integrity_Rules/
+    ├── 02_Templates/                  .tpl + 00_SQL_Authoring_Templates.md
     ├── 01_Schemas/
-    │   ├── README.md
-    │   └── 00_Public_Schema/
-    │       ├── 00_Database_Architecture.md
-    │       └── 01–04_Module*_Architecture.md
-    ├── 04_Data_Dictionary/
     │   ├── 00_Overview.md
-    │   └── 01–04_Module*.md
-    └── 05_SchemaSpy/
-        ├── 00_README.md
-        ├── schemaspy.md
-        ├── 01_Scripts/
-        │   ├── generate_docs.ps1
-        │   └── generate_docs.sh
-        └── 02_Output/                 (~566 ficheiros — NÃO editar)
-            ├── index.html
-            ├── tables/*.html
-            ├── diagrams/
-            └── bower/
+    │   └── 00_Public_Schema/            00_Database.md · 01–04_Module*.md
+    └── 03_SchemaSpy/
+        ├── 00_Guide/
+        └── 02_Output/                   (~566 ficheiros — NÃO editar)
 ```
 
 ### Pontos de entrada — database
@@ -245,10 +213,9 @@ flowchart TB
 | Tema | Documento |
 |------|-----------|
 | Hub | [`01_Database/README.md`](04_Architecture/01_Database/README.md) |
-| Build / bootstrap | [`00_Schema_Build_Pipeline.md`](04_Architecture/01_Database/00_Schema_Build_Pipeline.md) |
-| Governação | [`00_Governance/README.md`](04_Architecture/01_Database/00_Governance/README.md) |
-| M3 soft references | [`03_Module3_Architecture.md#soft-references`](04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3_Architecture.md#soft-references-logical-not-physical-fk) |
-| SchemaSpy interativo | [`schemaspy.md`](04_Architecture/01_Database/05_SchemaSpy/schemaspy.md) → `02_Output/index.html` |
+| Visão geral | [`Architecture_Overview.md`](04_Architecture/01_Database/Architecture_Overview.md) |
+| Governação | [`00_Governance/Overview.md`](04_Architecture/01_Database/00_Governance/Overview.md) |
+| SchemaSpy | [`03_SchemaSpy/00_Guide/00_Overview.md`](04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview.md) → `02_Output/index.html` |
 
 ---
 
@@ -256,20 +223,35 @@ flowchart TB
 
 ```
 05_Docs/
-└── 00_Statements/
-    ├── statements.md
-    ├── 00_ProjectStatement_APS.pdf
-    ├── 01_ProjectStatement_PW.pdf
-    └── 02_ProjectStatement_PBD.pdf
+├── README.md
+├── 00_Statements/                     statements + PDFs APS/PW/PBD
+├── 01_Academic_Reports/
+│   ├── README.md
+│   └── Application_Report.md          relatório defesa aplicação (~15 min)
+└── 02_Presentation/
+    ├── README.md
+    ├── 15min_Structure.md
+    └── Screenshots_Checklist.md
 ```
+
+| Entrada recomendada | Path |
+|---------------------|------|
+| Hub académico | [`05_Docs/README.md`](05_Docs/README.md) |
+| Relatório aplicação | [`01_Academic_Reports/Application_Report.md`](05_Docs/01_Academic_Reports/Application_Report.md) |
 
 ---
 
-## `indexes/`
+## `06_Performance/` — desempenho (APS)
 
-| Ficheiro | Função |
-|----------|--------|
-| [`home.md`](home.md) | Índice rápido (portal, database, ER V10, repos) |
+```
+06_Performance/
+├── README.md
+├── 01_Performance_Strategy.md
+├── 02_Frontend_Performance.md
+├── 03_Backend_Performance.md
+├── 04_Test_Results.md
+└── 05_Recommendations.md
+```
 
 ---
 
@@ -278,10 +260,10 @@ flowchart TB
 | Tipo | Localização | Notas |
 |------|-------------|--------|
 | Markdown | Toda a árvore (exc. SchemaSpy output) | ~79 ficheiros |
-| Templates SQL | `03_Templates/` | 38 `.tpl` |
+| Templates SQL | `04_Architecture/01_Database/02_Templates/` | `.tpl` authoring patterns |
 | Diagramas | `03_Diagrams/` | V0, V3, V8, V10 |
 | User stories | `01_Planning/01_UserStories/` | Narrative + Operational (ecosystem) |
-| Artefactos gerados | `05_SchemaSpy/02_Output/` | Regeneráveis; ignorar em revisões doc |
+| Artefactos gerados | `03_SchemaSpy/02_Output/` | Regeneráveis; ignorar em revisões doc |
 | Binários | Sprints, ER PDF/PNG, statements | Entregas e figuras |
 
 ---
@@ -292,9 +274,9 @@ A sidebar em [`.docs/mkdocs.yml`](.docs/mkdocs.yml) espelha a estrutura de pasta
 
 | No disco | Na nav MkDocs |
 |----------|----------------|
-| `ER_V10/Atributos/` | Preferir links em `er_model.md` e `index.md` (nav ainda referencia ER_V8 em atributos) |
-| `STRUCTURE.md` | Não indexado por defeito — mapa de manutenção |
-| `05_SchemaSpy/02_Output/` | Acesso via `schemaspy.md` apenas |
+| `ER_V10/Atributos/` | Nav MkDocs lista módulos V10 |
+| Relatório académico | Canonical em `05_Docs/`; redirect em `04_Architecture/02_Application/05_Academic_Report.md` |
+| `03_SchemaSpy/02_Output/` | Acesso via guia SchemaSpy; não editar manualmente |
 
 ---
 

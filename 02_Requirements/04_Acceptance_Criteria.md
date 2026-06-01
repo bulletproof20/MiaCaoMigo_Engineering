@@ -4,7 +4,7 @@ Condições de validação dos [requisitos funcionais](00_Functional_Requirement
 
 **Contagens:** M1 — 43 · M2 — 19 · M3 — 30 · M4 — 17 · **Total: 109 AC** (paridade 1:1 com RF).
 
-**Relacionado:** [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md) · [07_Constraints.md](07_Constraints.md) · [02_Business_Rules.md](02_Business_Rules.md)
+**Relacionado:** [06_Implementation_Matrix.md](06_Implementation_Matrix.md) · [07_Constraints.md](07_Constraints.md) · [02_Business_Rules.md](02_Business_Rules.md)
 
 ---
 
@@ -1140,7 +1140,7 @@ Relação **1:1** entre `RF_Mx_yy` e `AC_RF_Mx_yy` salvo secção complementar p
 
 | Artefacto | Papel |
 |-----------|--------|
-| [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md) | Onde e como está implementado |
+| [06_Implementation_Matrix.md](06_Implementation_Matrix.md) | Onde e como está implementado |
 | [07_Constraints.md](07_Constraints.md) | Limites técnicos e legais globais |
 | Testes QA DataLayer | Evidência objectiva quando aplicável |
 

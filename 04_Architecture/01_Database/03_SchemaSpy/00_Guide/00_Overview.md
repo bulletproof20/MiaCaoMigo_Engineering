@@ -29,7 +29,7 @@ The generated output is intended for:
 # Folder Structure
 
 ```text
-05_SchemaSpy/
+03_SchemaSpy/
 ├── 01_Scripts/
 │    ├── generate_docs.ps1
 │    ├── generate_docs.sh

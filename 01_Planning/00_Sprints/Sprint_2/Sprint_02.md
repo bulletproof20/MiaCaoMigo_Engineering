@@ -18,8 +18,8 @@ If the PDF is not present in this clone, use the team academic deliverable packa
 
 | Document | Description |
 |----------|-------------|
-| [RF traceability matrix](../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) | 109 RF × DataLayer status (IMP / PAR / API / NAO / INC) |
-| [Authoritative source index](../../../02_Requirements/Sprint2/00_Authoritative_Source.md) | How the PDF relates to Engineering docs |
+| [Implementation matrix](../../../02_Requirements/06_Implementation_Matrix.md) | RF implementation status in the current portal |
+| [APS folder](APS/README.md) | Sprint 2 PDF and supporting artefacts |
 | [Requirements hub](../../../02_Requirements/README.md) | Summaries and acceptance |
 
 ---

@@ -13,7 +13,7 @@ Chronology: [TIMELINE_LAUNCH_2026.md](01_Chronology/TIMELINE_LAUNCH_2026.md).
 | Active window | **1 May – 15 June 2026** |
 | Timezone | **Europe/Lisbon** (cron and reminders) |
 | Executable seed | [`01_MiaCaoMigo_DataLayer`](../../../01_MiaCaoMigo_DataLayer) — Engineering defines *consistency*, DataLayer holds SQL |
-| Sprint 2 RF status | [RF traceability matrix](../../../02_Requirements/Sprint2/01_RF_Traceability_Matrix.md) — acceptance vs APS, not a substitute for OPS files below |
+| Sprint 2 RF status | [Implementation matrix](../../../02_Requirements/06_Implementation_Matrix.md) — not a substitute for OPS files below |
 
 ---
 
@@ -116,6 +116,6 @@ Summarized from [TIMELINE](01_Chronology/TIMELINE_LAUNCH_2026.md):
 |-------|----------|
 | Technical implementation | [04_Architecture/README.md](../../../04_Architecture/README.md) |
 | Conceptual ER attributes | [ER V10 Atributos](../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md) |
-| Physical data dictionary | [Data Dictionary](../../../04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md) |
+| Physical schema docs | [Database schemas](../../../04_Architecture/01_Database/01_Schemas/00_Overview.md) |
 
 Procedure and schema **detail** lives under Architecture and DataLayer — not duplicated here.

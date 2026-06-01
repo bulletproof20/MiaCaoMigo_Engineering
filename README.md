@@ -27,7 +27,8 @@ Mapa detalhado (diretorias e ficheiros): **[STRUCTURE.md](STRUCTURE.md)**.
 02_Requirements/     → Sprint 2 RF matrix, summaries, traceability
 03_Diagrams/         → ER models, UML diagrams and workflows
 04_Architecture/     → System, application and database architecture
-05_Docs/             → Academic and technical documentation
+05_Docs/             → Academic statements, reports and presentation guides
+06_Performance/      → Performance strategy, tests and recommendations
 home.md              → Portal overview (MkDocs)
 DOCUMENTATION_LAYERS.md → Layer model (conceptual vs technical)
 .docs/               → MkDocs, Docker and documentation tooling

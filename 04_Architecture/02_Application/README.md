@@ -21,7 +21,7 @@ This section adapts the website documentation into the Engineering portal withou
 | [Runtime setup](02_Runtime_Setup.md) | Local/Docker execution model and Application-to-DataLayer connection |
 | [Implementation evidence](03_Implementation_Evidence.md) | Defense-oriented mapping between implemented website features and RF/RNF evidence |
 | [**Application documentation hub**](04_Generated_Docs/README.md) | Backend, Frontend, Swagger/OpenAPI and update guidance |
-| [Academic application report](05_Academic_Report.md) | Compact academic summary of implemented scope and defense positioning |
+| [Academic application report](../../05_Docs/01_Academic_Reports/Application_Report.md) | Compact academic summary of implemented scope and defense positioning |
 
 ---
 
@@ -72,7 +72,7 @@ Normative requirements remain in [02_Requirements](../../02_Requirements/). This
 
 - functional requirements: [00_Functional_Requirements.md](../../02_Requirements/00_Functional_Requirements.md);
 - non-functional requirements: [01_Non_Functional_Requirements.md](../../02_Requirements/01_Non_Functional_Requirements.md);
-- implementation status: [06_Implementacion_Matrix.md](../../02_Requirements/06_Implementacion_Matrix.md).
+- implementation status: [06_Implementation_Matrix.md](../../02_Requirements/06_Implementation_Matrix.md).
 
 ---
 

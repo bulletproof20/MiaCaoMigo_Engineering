@@ -2,7 +2,7 @@
 
 Limites técnicos, legais e operacionais do ecossistema MiaCaoMigo. Complementa [RNF](01_Non_Functional_Requirements.md) (atributos de qualidade) sem substituir requisitos funcionais ou regras de negócio.
 
-**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) · [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md)
+**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) · [06_Implementation_Matrix.md](06_Implementation_Matrix.md)
 
 ---
 

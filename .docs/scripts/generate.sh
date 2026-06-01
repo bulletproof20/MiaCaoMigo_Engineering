@@ -27,7 +27,7 @@ DB_USER="postgres"
 DB_PASS="1234" 
 
 # This is the relative path from the repository root to the output folder.
-OUTPUT_DIR="./04_Architecture/01_Database/05_SchemaSpy/02_Output"
+OUTPUT_DIR="./04_Architecture/01_Database/03_SchemaSpy/02_Output"
 
 # --- Docker Execution ---
 echo "Starting SchemaSpy documentation generation..."

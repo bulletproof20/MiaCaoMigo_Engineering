@@ -221,4 +221,4 @@ Associação perfil–permissão.
 
 ## Relacionado
 
-- [Módulo 2](02_Module2.md) · [Índice](README.md) · [Dicionário M1](../../../04_Architecture/01_Database/04_Data_Dictionary/01_Module1.md)
+- [Módulo 2](02_Module2.md) · [Índice](README.md) · [Schema M1](../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1.md)

@@ -1,6 +1,6 @@
 # Processos de Negócio — Sistema de Gestão Veterinária
 
-Processos de negócio (`PN_Mx_yy`) que agrupam requisitos funcionais e regras. Artefactos relacionados: [RF](00_Functional_Requirements.md), [RN](02_Business_Rules.md), [RNF](01_Non_Functional_Requirements.md), [AC](04_Acceptance_Criteria.md), [Matriz](06_Implementacion_Matrix.md), [CST](07_Constraints.md).
+Processos de negócio (`PN_Mx_yy`) que agrupam requisitos funcionais e regras. Artefactos relacionados: [RF](00_Functional_Requirements.md), [RN](02_Business_Rules.md), [RNF](01_Non_Functional_Requirements.md), [AC](04_Acceptance_Criteria.md), [Matriz](06_Implementation_Matrix.md), [CST](07_Constraints.md).
 
 **Contagens:** M1 — 9 PN · M2 — 8 PN · M3 — 9 PN · M4 — 8 PN · **Total: 34 PN**.
 

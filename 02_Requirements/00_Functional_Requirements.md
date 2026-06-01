@@ -8,7 +8,7 @@ Especificação funcional modular (M1–M4) do ecossistema MiaCaoMigo. Artefacto
 | [02_Business_Rules.md](02_Business_Rules.md) | Regras de negócio (`RN_Mx_yy`) |
 | [03_Business_Processes.md](03_Business_Processes.md) | Processos de negócio (`PN_Mx_yy`) |
 | [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) | Critérios de aceitação (`AC_RF_Mx_yy`) |
-| [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md) | Matriz de implementação e estados |
+| [06_Implementation_Matrix.md](06_Implementation_Matrix.md) | Matriz de implementação e estados |
 | [07_Constraints.md](07_Constraints.md) | Restrições globais (`CST_xx`) |
 
 **Contagens:** M1 — 43 RF · M2 — 19 RF · M3 — 30 RF · M4 — 17 RF · **Total: 109 RF**.

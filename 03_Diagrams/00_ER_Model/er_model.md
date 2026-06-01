@@ -23,7 +23,7 @@ If the PDF is not checked in, use the module attribute documents and the DataLay
 | View | Location | Read for |
 |------|----------|----------|
 | **Conceptual semantics** | [ER_V10/Atributos/](ER_V10/Atributos/README.md) | Business meaning, domain justification, WHY attributes exist |
-| **Technical implementation** | [Data Dictionary](../../04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md) | Physical names, keys, constraints, DataLayer navigation |
+| **Technical implementation** | [Database schemas](../../04_Architecture/01_Database/01_Schemas/00_Overview.md) · [SchemaSpy](../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview.md) | Physical names, keys, constraints, DataLayer navigation |
 
 These are **not duplicates**. See [DOCUMENTATION_LAYERS.md](../../DOCUMENTATION_LAYERS.md).
 
@@ -37,6 +37,6 @@ These are **not duplicates**. See [DOCUMENTATION_LAYERS.md](../../DOCUMENTATION_
 | Module 4 — Appointments | [ER_V10/Atributos/04_Module4.md](ER_V10/Atributos/04_Module4.md) |
 
 !!! warning "Legacy ER V8"
-    [ER_V8/Atributos/](ER_V8/Atributos/) is **deprecated** (partial modules only). Use **ER V10** and the [Data Dictionary](../../04_Architecture/01_Database/04_Data_Dictionary/00_Overview.md) for current work.
+    [ER_V8/Atributos/](ER_V8/Atributos/) is **deprecated** (partial modules only). Use **ER V10** and the [database schemas](../../04_Architecture/01_Database/01_Schemas/00_Overview.md) for current work.
 
 ---

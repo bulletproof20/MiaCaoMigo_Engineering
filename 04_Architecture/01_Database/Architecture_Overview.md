@@ -35,8 +35,8 @@ The database repository is organized into isolated operational layers.
 01_Database/
 ├── 00_Governance/
 ├── 01_Schemas/
-├── 03_Templates/
-├── 05_SchemaSpy/
+├── 02_Templates/
+├── 03_SchemaSpy/
 ```
 
 ---

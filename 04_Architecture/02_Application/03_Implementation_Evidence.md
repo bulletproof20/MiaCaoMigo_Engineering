@@ -12,7 +12,7 @@ Normative sources:
 
 - [Functional requirements](../../02_Requirements/00_Functional_Requirements.md)
 - [Non-functional requirements](../../02_Requirements/01_Non_Functional_Requirements.md)
-- [Implementation matrix](../../02_Requirements/06_Implementacion_Matrix.md)
+- [Implementation matrix](../../02_Requirements/06_Implementation_Matrix.md)
 
 ---
 

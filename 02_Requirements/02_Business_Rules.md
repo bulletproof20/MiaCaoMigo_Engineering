@@ -2,7 +2,7 @@
 
 Regras de validação e políticas de domínio (`RN_Mx_yy`) alinhadas com [processos](03_Business_Processes.md) (`PN_Mx_yy`) e [requisitos funcionais](00_Functional_Requirements.md) (`RF_Mx_yy`).
 
-**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) (incl. `AC_RN_*` para RN sem RF) · [06_Implementacion_Matrix.md](06_Implementacion_Matrix.md) · [07_Constraints.md](07_Constraints.md)
+**Relacionado:** [04_Acceptance_Criteria.md](04_Acceptance_Criteria.md) (incl. `AC_RN_*` para RN sem RF) · [06_Implementation_Matrix.md](06_Implementation_Matrix.md) · [07_Constraints.md](07_Constraints.md)
 
 **Contagens:** M1 — 42 RN · M2 — 30 RN · M3 — 32 RN · M4 — 25 RN · **Total: 129 RN**.
 
