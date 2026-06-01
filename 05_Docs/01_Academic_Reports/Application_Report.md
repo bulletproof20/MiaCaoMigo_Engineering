@@ -24,11 +24,6 @@ The web application is organised into three main layers:
 
 The system is presented as a modular solution: users interact with web pages, the frontend communicates with the API through `fetch`, and the API delegates persistence and critical business rules to the database. This separation shows not only the visual interface, but also an application architecture with authentication, authorisation, data integration, and technical documentation.
 
-<figure>
-  <img src="/00_Assets/01_Screenshots/Application_Presentation/index.png" alt="Application home page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 1</strong> — Public home page of the MiaCaoMigo application.</figcaption>
-</figure>
-
 ---
 
 ## 2. Users
@@ -60,34 +55,163 @@ The client/staff distinction uses the institutional domain `@miacaomigo.pt` and 
 | Mod3 - Commercial | Reserved / partial | Public shop as placeholder and disabled internal entries for commercial area/reports |
 | Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling, notifications, prescriptions, appointment lifecycle |
 
-### 3.2 System flow
+### 3.2 Main system flows
 
-The main flow starts on public pages and moves into protected areas after authentication.
+The application should be read through a small set of core flows rather than a single linear path. These flows represent the most relevant behaviours for the defence: authentication, client self-service, staff/RBAC operations, public adoptions, and API request handling.
 
-1. The visitor opens the home page and browses public pages.
-2. The user creates a client account or logs in.
-3. The backend validates credentials in the database and returns a JWT.
-4. The frontend stores the token and user data in `localStorage`.
-5. Post-login navigation separates client and staff.
-6. The client accesses their area, animals, and appointments.
-7. Staff access the internal dashboard and see menus according to profiles/permissions.
-8. Each protected request sends `Authorization: Bearer <token>` to the API.
-9. The backend validates the JWT and applies permissions before executing models.
+#### Authentication and routing flow
+
+```mermaid
+flowchart TD
+    public["Public website"] --> login["Login / register"]
+    login --> apiLogin["POST /api/users/auth/login"]
+    apiLogin --> dbAuth["PostgreSQL authentication service"]
+    dbAuth --> jwt["JWT + user snapshot"]
+    jwt --> session["localStorage: jwtToken + miaUser"]
+    session --> decision{"User type"}
+    decision -->|"Client"| clientArea["Client area"]
+    decision -->|"Staff"| staffArea["Staff dashboard"]
+    clientArea --> bearer["Protected requests with Bearer token"]
+    staffArea --> bearer
+    bearer --> middleware["Express auth/RBAC middleware"]
+    middleware --> data["Controllers + models + PostgreSQL"]
+```
+
+This flow shows how the system moves from public access into authenticated areas. The JWT is the bridge between the browser session and protected API routes.
+
+#### Client appointment flow
+
+```mermaid
+flowchart TD
+    client["Authenticated client"] --> appointments["Open client appointments"]
+    appointments --> animals["Load own animals: GET /api/animals/me"]
+    appointments --> vets["Load veterinarians and specialties"]
+    vets --> availability["GET /api/appointments/availability"]
+    availability --> slot["Choose available slot"]
+    slot --> create["POST /api/appointments"]
+    create --> validation["Validate ownership, schedule and conflicts"]
+    validation --> save["Persist appointment"]
+    save --> refresh["Refresh appointment list"]
+    refresh --> actions["Cancel / reschedule / view history"]
+```
+
+This is the main client self-service workflow. It proves that the website does not only display static data: it performs authenticated reads and writes through the API.
+
+#### Staff and RBAC flow
+
+```mermaid
+flowchart TD
+    staffLogin["Staff login"] --> profiles["Load profiles + permissions"]
+    profiles --> dashboard["Staff dashboard"]
+    dashboard --> selfService["Personal area: agenda, schedule, attendance"]
+    dashboard --> rbac{"Permission available?"}
+    rbac -->|"manage_appointments"| appointmentsOps["Appointment management"]
+    rbac -->|"manage_employees"| employeesOps["Employee onboarding / staff board"]
+    rbac -->|"manage_animals"| animalsOps["Animal registration / association"]
+    rbac -->|"No permission"| hidden["Menu/action hidden or blocked"]
+    appointmentsOps --> apiGuard["Backend requirePermission"]
+    employeesOps --> apiGuard
+    animalsOps --> clinicGuard["Backend requireClinicSecretary / staff guard"]
+```
+
+This flow is important for defence because it separates **what the UI shows** from **what the backend enforces**. The sidebar adapts to the user profile, but protected operations still require middleware validation.
+
+#### Public adoptions flow
+
+```mermaid
+flowchart TD
+    visitor["Visitor opens adoptions page"] --> list["GET /api/animals/adoptions"]
+    list --> cards["Display animals available for adoption"]
+    cards --> adopt["Adoption action"]
+    adopt --> auth{"Authenticated client?"}
+    auth -->|"No"| redirect["Redirect to login"]
+    auth -->|"Yes"| adoptApi["POST /api/animals/:id/adopt"]
+    adoptApi --> ownership["Create ownership / update status"]
+    ownership --> refreshList["Refresh public list"]
+```
+
+This flow demonstrates the link between public browsing and authenticated client action. It also connects the visual adoption page with Mod2 backend behaviour.
+
+#### API request flow
+
+```mermaid
+flowchart LR
+    browser["Browser fetch request"] --> server["Backend/server.js"]
+    server --> route["Module route"]
+    route --> auth["Auth / permission middleware"]
+    auth --> controller["Controller"]
+    controller --> model["Model"]
+    model --> postgres["PostgreSQL"]
+    postgres --> response["JSON response"]
+    response --> browser
+```
+
+This cross-cutting flow applies to most API-backed features. It explains how frontend actions become validated backend operations and database queries.
+
+For a more detailed technical breakdown of these flows, including endpoint-level behaviour and staff/client operational variants, see the complementary architecture document: [Website Flow Specification](../../04_Architecture/02_Application/01_Website_Flows.md).
 
 ### 3.3 Visual evidence
 
 The collected screenshots illustrate the main application path: public entry, authentication, client area access, clinical features, internal area access, and validation of the API technical contract.
 
-| Figure | Screen | Relevance |
-|--------|--------|-----------|
-| 1 | Home page | Public entry and institutional presentation of the clinic |
-| 2 | Login | Entry point for authentication and JWT issuance |
-| 3 | Client area | Personal dashboard with client-account operations |
-| 4 | Client appointments | Booking, listing, and appointment management |
-| 5 | Adoptions | Public feature linked to the animals module |
-| 6 | Staff area | Internal experience separated with profile-based menus |
-| 7 | Appointment management | Internal clinical operations and appointment lifecycle |
-| 8 | Swagger UI | Technical documentation and REST API contract |
+<div style="display:flex; justify-content:center; margin:1.5rem 0;">
+  <table>
+    <thead>
+      <tr>
+        <th>Figure</th>
+        <th>Screen</th>
+        <th>Relevance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Home page</td>
+        <td>Public entry and institutional presentation of the clinic</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Login</td>
+        <td>Entry point for authentication and JWT issuance</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Client area</td>
+        <td>Personal dashboard with client-account operations</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Client appointments</td>
+        <td>Booking, listing, and appointment management</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Adoptions</td>
+        <td>Public feature linked to the animals module</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Staff area</td>
+        <td>Internal experience separated with profile-based menus</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Appointment management</td>
+        <td>Internal clinical operations and appointment lifecycle</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Swagger UI</td>
+        <td>Technical documentation and REST API contract</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/index.png" alt="Application home page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 1</strong> — Public home page of the MiaCaoMigo application.</figcaption>
+</figure>
 
 <figure>
   <img src="/00_Assets/01_Screenshots/Application_Presentation/login.png" alt="Application login" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
@@ -119,6 +243,11 @@ The collected screenshots illustrate the main application path: public entry, au
   <figcaption><strong>Figure 7</strong> — Internal interface for operational appointment management.</figcaption>
 </figure>
 
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/Swagger.png" alt="Swagger UI" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 8</strong> — Swagger UI documenting API endpoints. Interactive version: <a href="http://localhost:3000/api-docs/" target="_blank" rel="noopener">http://localhost:3000/api-docs/</a>.</figcaption>
+</figure>
+
 ### 3.4 Authentication
 
 Authentication uses **JWT (JSON Web Tokens)** via the `jsonwebtoken` package.
@@ -134,6 +263,44 @@ Implemented flow:
 7. The `requireAuth` middleware validates signature, issuer, and expiration.
 
 The JWT issuer is `miacaomigo-api` and lifetime is configurable via `JWT_EXPIRES_IN`, with a development default of `6h`.
+
+#### JWT internal structure
+
+In this project, the access token follows the standard JWT format:
+
+```text
+header.payload.signature
+```
+
+Each part has a specific role:
+
+| JWT part | Purpose in the project |
+|----------|------------------------|
+| Header | Identifies the token type and signing algorithm. With `jsonwebtoken`, the token is signed with an HMAC-based algorithm such as `HS256`. |
+| Payload | Contains the claims used by the application: `sub` (user id), `email`, `staff`, `permissions`, `profiles`, `iss`, `iat`, and `exp`. |
+| Signature | Proves that the token was issued by the backend and was not modified by the client. |
+
+The signature is produced on the server using the secret loaded from the backend environment:
+
+```text
+HMAC-SHA256(base64url(header) + "." + base64url(payload), JWT_SECRET)
+```
+
+The `JWT_SECRET` value is read from `Backend/.env` through `dotenv`. This secret must remain server-side only: the frontend receives the signed token but never receives the secret used to create or validate it. If the payload is changed in the browser, the signature no longer matches and `verifyAccessToken` rejects the request.
+
+The token also includes:
+
+| Claim | Meaning |
+|-------|---------|
+| `sub` | Authenticated user id |
+| `email` | User email |
+| `staff` | Boolean flag that separates staff from clients |
+| `permissions` | RBAC permissions loaded from the database |
+| `profiles` | Staff profiles loaded from the database |
+| `iss` | Issuer, fixed as `miacaomigo-api` |
+| `exp` | Expiration time, controlled by `JWT_EXPIRES_IN` |
+
+This design allows the API to identify the caller quickly while still enforcing authorisation on the server through middleware.
 
 ### 3.5 Permissions and access control
 
@@ -230,17 +397,40 @@ This avoids duplicating links on every page and keeps the menu aligned with the 
 
 The API includes Swagger/OpenAPI documentation at:
 
-- [`Interative Routes`](http://localhost:3000/api-docs/) for interactive visual browsing;
-- [`Interative Routs JSON`](http://localhost:3000/api-docs.json/) for the JSON contract.
+- [`Interactive routes`](http://localhost:3000/api-docs/) for interactive visual browsing;
+- [`OpenAPI JSON contract`](http://localhost:3000/api-docs.json) for the JSON contract.
 
 This shows that the application is not limited to the visual layer: there is a navigable technical contract with endpoints, schemas, expected responses, and protected routes.
 
-<figure>
-  <img src="/00_Assets/01_Screenshots/Application_Presentation/Swagger.png" alt="Swagger UI" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
-  <figcaption><strong>Figure 8</strong> — Swagger UI documenting API endpoints. Interactive version: <a href="http://localhost:3000/api-docs/" target="_blank" rel="noopener">http://localhost:3000/api-docs/</a>.</figcaption>
-</figure>
+### 3.11 Performance and security validation
 
-### 3.11 Technical strengths
+The project also includes a dedicated performance documentation area under `06_Performance/`. This section is relevant for the academic defence because it connects the implemented website with non-functional requirements and measurable behaviour.
+
+Current performance evidence is classified as an **initial baseline**, not a final validation. The current records include:
+
+| Area | Current evidence | Status |
+|------|------------------|--------|
+| Database health endpoint | `GET /db-test` measured locally with very low response times | Green baseline |
+| Static frontend delivery | HTML pages served by Express with low transfer size and response time | Green baseline |
+| Adoption API | `GET /api/animals/adoptions` returns HTTP 500 due to an API/schema mismatch | Red baseline |
+| Firefox DevTools measurement | Planned for full browser-level validation (requests, transferred size, load time, console errors) | Pending |
+
+Performance testing is therefore addressed as an engineering process: the documentation defines the strategy, target metrics, test environment, known baseline results, and next validation steps. The final defence can mention that the current results are exploratory and should be repeated after stabilising the remaining API issues.
+
+Security testing has not yet been formalised as a complete test campaign. However, the system already includes security mechanisms that can be used as the basis for future tests:
+
+| Security area | Possible validation |
+|---------------|---------------------|
+| Authentication | Attempt requests without token, with invalid token, and with expired token |
+| Authorisation | Test staff-only endpoints with client tokens and verify HTTP 403 responses |
+| RBAC | Test protected actions such as `manage_employees` or `manage_appointments` with users lacking those permissions |
+| JWT integrity | Modify token payload manually and confirm that signature validation rejects it |
+| Input/API robustness | Submit incomplete or invalid payloads and verify controlled error responses |
+| CORS and deployment hardening | Restrict accepted origins before production deployment |
+
+At this stage, security is implemented through JWT, middleware, RBAC, parameterised SQL queries, and environment-based configuration. A formal security test section can be added later if time allows, using the Swagger UI and browser/dev tools to demonstrate access control failures and expected API responses.
+
+### 3.12 Technical strengths
 
 Beyond visible interface features, the project includes technical elements that reinforce solution maturity:
 
@@ -250,6 +440,7 @@ Beyond visible interface features, the project includes technical elements that 
 | DataLayer alignment | Application respects database architecture |
 | RBAC | Structured permission management |
 | Swagger/OpenAPI | Documentation and testability |
+| Performance baseline | Initial measurements and improvement records under `06_Performance/` |
 | Docker | Reproducible execution |
 | Acknowledged limitations | Technical awareness and transparency |
 
@@ -280,7 +471,9 @@ The current state is suitable for academic demonstration, but important limitati
 
 | Limitation | Impact |
 |------------|--------|
+| Project time constraints | The available development time limited the depth of implementation, testing and polishing possible before delivery |
 | Mod3 commercial still reserved | Public shop and internal entries exist, but billing, stock, and reports are not fully integrated in the mounted API contract |
+| Animal images | The current database model was not prepared to persist animal image metadata or file references, so animal visuals are limited to frontend/static placeholders |
 | Some HR views are presentation/prototype | They support the visual narrative but not all represent full API-backed workflows |
 | Token in `localStorage` | Simple for academic context; production would require XSS risk analysis and possibly `HttpOnly` cookies |
 | Development JWT secret | Fallback if `JWT_SECRET` is unset; production should require an explicit secret |
@@ -293,7 +486,26 @@ These limitations do not invalidate the academic solution; they show critical aw
 
 ---
 
-## 6. Conclusion
+## 6. Future improvements
+
+Future work should prioritise improvements that transform the current academic prototype into a more complete and production-oriented platform:
+
+| Improvement | Expected value |
+|-------------|----------------|
+| Animal image support | Add database fields or a media table for animal photo metadata, combined with a controlled upload/static asset strategy |
+| Complete Mod3 commercial workflows | Integrate stock, billing, purchases, invoices and reports into the mounted API and frontend |
+| Formal security testing | Add repeatable tests for invalid tokens, missing permissions, protected endpoints, input validation and CORS configuration |
+| Final performance validation | Complete Firefox DevTools measurements and repeat API baselines after fixing unstable endpoints |
+| Stronger password hashing | Replace SHA-256 with an adaptive hashing strategy such as bcrypt or argon2 in a production scenario |
+| Session storage hardening | Evaluate `HttpOnly` cookies or another safer token storage strategy for production deployment |
+| Automated test coverage | Add focused tests for authentication, RBAC, appointment booking, adoption and staff workflows |
+| HR API completion | Replace remaining prototype/static HR views with fully API-backed employee detail and history endpoints |
+
+These improvements are natural continuations of the current architecture. They do not require changing the overall modular design, but they would strengthen reliability, security, maintainability and user experience.
+
+---
+
+## 7. Conclusion
 
 The MiaCaoMigo website demonstrates a modular web application integrated with a database, appropriate for the proposed academic context. The solution covers public pages, authentication, distinct client and staff areas, animal management, appointment booking and follow-up, access profiles, and API technical documentation.
 

@@ -9,17 +9,49 @@ This document summarizes the main website flows implemented in `MiaCaoMigo_`. It
 
 ---
 
+## Defense flow map
+
+The website is best presented through five main flows. Together, they show the transition from public access to authenticated client/staff operations and then to the API/DataLayer.
+
+```mermaid
+flowchart TD
+    public["1. Public website"] --> auth["2. Authentication"]
+    auth --> client["3. Client self-service"]
+    auth --> staff["4. Staff / RBAC operations"]
+    public --> adoptions["5. Public adoptions"]
+
+    client --> clientApi["Client API calls"]
+    staff --> staffApi["Staff protected API calls"]
+    adoptions --> animalsApi["Animals API"]
+
+    clientApi --> backend["Express API"]
+    staffApi --> backend
+    animalsApi --> backend
+    backend --> db["PostgreSQL DataLayer"]
+```
+
+| Flow | Why it matters in defense |
+|------|---------------------------|
+| Authentication | Demonstrates JWT session creation, user separation and route guards |
+| Client self-service | Demonstrates client appointments, animals, notifications and prescriptions |
+| Staff / RBAC | Demonstrates profile-aware UI and backend permission enforcement |
+| Public adoptions | Demonstrates public browsing connected to authenticated client action |
+| API/DataLayer request flow | Demonstrates that the website is backed by Express routes, models and PostgreSQL |
+
+---
+
 ## API request flow
 
-```text
-Client request
-  -> Backend/server.js
-  -> Module route
-  -> Auth/permission middleware
-  -> Controller
-  -> Model
-  -> PostgreSQL
-  -> JSON response
+```mermaid
+flowchart LR
+  browser["Client request"] --> server["Backend/server.js"]
+  server --> route["Module route"]
+  route --> middleware["Auth / permission middleware"]
+  middleware --> controller["Controller"]
+  controller --> model["Model"]
+  model --> postgres["PostgreSQL"]
+  postgres --> json["JSON response"]
+  json --> browser
 ```
 
 1. The browser sends an HTTP request, for example `POST /api/appointments`.
@@ -183,14 +215,21 @@ Client JWT -> only own client animals and appointments
 
 ## Appointment booking flow
 
-```text
-Open appointments page
-  -> load own animals
-  -> load veterinarians
-  -> load specialties
-  -> request availability
-  -> submit appointment
-  -> refresh appointment list
+```mermaid
+flowchart TD
+  open["Open appointments page"] --> animals["Load own animals"]
+  open --> vets["Load veterinarians"]
+  open --> specialties["Load specialties"]
+  animals --> choose["Choose animal, vet, specialty and date"]
+  vets --> choose
+  specialties --> choose
+  choose --> availability["Request availability"]
+  availability --> slot{"Available slot selected?"}
+  slot -->|"No"| choose
+  slot -->|"Yes"| submit["Submit appointment"]
+  submit --> validation["API validates ownership, vet, specialty and conflicts"]
+  validation --> persist["Persist appointment"]
+  persist --> refresh["Refresh appointment list"]
 ```
 
 1. The client opens `FrontEnd/Pages/Mod4_Appointments/consultas.html`.
