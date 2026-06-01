@@ -65,7 +65,7 @@ Normative sources:
 |------|------------------------------|
 | Mod1 authentication/setup/staff | Implemented for login, register, logout, session read, client theme preference persistence, staff self-service API/widgets, role-aware sidebars, employee onboarding and HR presentation views; `AreaFuncionario.html` requires page-shell restoration |
 | Mod2 animals | Implemented for catalogs, client animal reads and staff-controlled operations |
-| Mod3 commercial | Partially implemented for administrator/assistant commercial workflows: stock/catalog reads, counter sales, invoice history/details, invoice PDF download, returns, and client invoice visibility |
+| Mod3 commercial | Operational core implemented for administrator/assistant commercial workflows: stock/catalog reads, restock, counter sales, invoice history/details, invoice PDF download, returns, and client invoice visibility |
 | Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, invoice-style prescription PDF export and lifecycle operations; past-date booking/rescheduling is blocked |
 | Infrastructure NFR | Local/Docker setup documented; production HTTPS/availability policies remain operational concerns |
 

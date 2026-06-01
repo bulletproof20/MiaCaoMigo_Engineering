@@ -38,7 +38,7 @@ The website distinguishes public users, authenticated clients, and authenticated
 | Administrator / HR | Staff area | Create employees, view staff board, access management views |
 | Veterinarian / clinical team | Clinical area | Manage appointments, view patients, record clinical lifecycle when authorised |
 | Assistant / reception | Front-desk and commercial operations | Register/associate animals, support booking, issue invoices and handle commercial counter operations |
-| Commercial manager | Reserved / future profile | Profile exists in RBAC seed data, while the implemented commercial area is currently exposed to administrator and assistant profiles |
+| Commercial manager | RBAC seed profile / reserved website access | Profile exists in the DataLayer narrative, while the implemented website commercial area is intentionally exposed to administrator and assistant profiles |
 
 The client/staff distinction uses the institutional domain `@miacaomigo.pt` and staff profiles associated in the database.
 
@@ -52,8 +52,8 @@ The client/staff distinction uses the institutional domain `@miacaomigo.pt` and 
 |--------|----------------|------------------------|
 | Mod1 - Users | Centrally implemented | Client registration, login, logout, JWT session, light/dark theme, client area, staff area, RBAC, employee creation |
 | Mod2 - Animals | Partially implemented / operational | Species/breed catalogues, client animal list, public adoptions, internal animal operations |
-| Mod3 - Commercial | Partially implemented / operational | Staff commercial area for administrators and assistants, counter sales, invoice history/details, invoice PDF downloads, returns, stock/catalog operations, and client invoice visibility |
-| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling with past-date prevention, notifications, prescriptions, appointment lifecycle |
+| Mod3 - Commercial | Operational core implemented | Staff commercial area for administrators and assistants, counter sales, invoice history/details, invoice PDF downloads, returns, restock, stock/catalog operations, and client invoice visibility |
+| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling with past-date prevention, notifications, prescriptions with invoice-style PDF export, and appointment lifecycle |
 
 ### 3.2 Main system flows
 
@@ -565,7 +565,7 @@ Beyond visible interface features, the project includes technical elements that 
 | Configuration | `dotenv`, environment variables |
 | API / documentation | `swagger-jsdoc`, `swagger-ui-express`, OpenAPI |
 | API security | `cors`, Express middlewares |
-| PDF / documents | `pdfkit` for prescription/document generation |
+| PDF / documents | `pdfkit` for invoice and prescription PDF generation |
 | Containers | Docker and Docker Compose |
 | External integration | `@supabase/supabase-js`, included as a dependency prepared for future integration |
 
@@ -580,7 +580,7 @@ The current state is suitable for academic demonstration, but important limitati
 | Limitation | Impact |
 |------------|--------|
 | Project time constraints | The available development time limited the depth of implementation, testing and polishing possible before delivery |
-| Mod3 commercial scope still partial | Stock, sales, returns, invoices and PDFs are mounted for administrator/assistant workflows, but public shop checkout, advanced reports and full commercial manager role separation remain future work |
+| Commercial scope beyond clinic counter | The staff commercial core is implemented (stock, restock, sales, returns, invoices and PDFs), but public shop checkout, advanced BI/reporting, legal invoice sequencing and a dedicated commercial-manager website role remain future work |
 | Animal images | The current database model was not prepared to persist animal image metadata or file references, so animal visuals are limited to frontend/static placeholders |
 | Some HR views are presentation/prototype | They support the visual narrative but not all represent full API-backed workflows |
 | Token in `localStorage` | Simple for academic context; production would require XSS risk analysis and possibly `HttpOnly` cookies |
@@ -601,7 +601,7 @@ Future work should prioritise improvements that transform the current academic p
 | Improvement | Expected value |
 |-------------|----------------|
 | Animal image support | Add database fields or a media table for animal photo metadata, combined with a controlled upload/static asset strategy |
-| Extend Mod3 commercial workflows | Add public shop checkout, advanced commercial reports and full commercial manager role separation on top of the current stock/sales/invoice/return implementation |
+| Extend commercial workflows beyond the operational core | Add public shop checkout, advanced commercial reports, legal invoice sequencing/payment hardening and a dedicated commercial-manager website role on top of the current stock/restock/sales/invoice/return implementation |
 | Formal security testing | Add repeatable tests for invalid tokens, missing permissions, protected endpoints, input validation and CORS configuration |
 | Homepage hero asset | Convert `background_pagInicial.jpeg` (AVIF mislabel) to optimised JPEG/WebP and update CSS reference |
 | Extended performance validation | Repeat Firefox baselines for Mod3 commercial pages and additional Mod4 staff flows |
@@ -616,7 +616,7 @@ These improvements are natural continuations of the current architecture. They d
 
 ## 7. Conclusion
 
-The MiaCaoMigo website demonstrates a modular web application integrated with a database, appropriate for the proposed academic context. The solution covers public pages, authentication, distinct client and staff areas, animal management, appointment booking and follow-up, access profiles, and API technical documentation.
+The MiaCaoMigo website demonstrates a modular web application integrated with a database, appropriate for the proposed academic context. The solution covers public pages, authentication, distinct client and staff areas, animal management, appointment booking and follow-up, commercial counter operations, client invoice visibility, access profiles, and API technical documentation.
 
 The main strengths are separation between frontend, backend, and DataLayer; JWT with RBAC; centralised navigation; and Swagger/OpenAPI. A complete demonstration path is: visitor → login → client area → book appointment → staff area → protected operation → Swagger.
 

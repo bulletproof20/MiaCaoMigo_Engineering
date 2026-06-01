@@ -13,7 +13,7 @@ This plan structures the oral presentation of the MiaCaoMigo web application, co
 | 4–9 | Functionality | Flow: login → client area → appointments → staff area → protected operation; key screenshots |
 | 9–12 | Authentication and security | JWT structure (`header.payload.signature`), `JWT_SECRET`, `localStorage`, middlewares, database permissions, Swagger |
 | 12–14 | Performance and tools | Initial performance baseline, Firefox/API testing plan, Node, Express, PostgreSQL, Docker, MkDocs, Bootstrap |
-| 14–15 | Limitations, future improvements and conclusion | Time constraints, partial Mod3 scope, animal image support, HR prototypes, performance baseline, message of real integration |
+| 14–15 | Limitations, future improvements and conclusion | Time constraints, commercial work beyond the implemented counter/invoice core, animal image support, HR prototypes, performance baseline, message of real integration |
 
 ---
 

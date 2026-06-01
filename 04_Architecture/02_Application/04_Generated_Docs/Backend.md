@@ -221,7 +221,7 @@ Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
 | Session heartbeat | Implemented as `PUT /api/users/auth/heartbeat` and documented in Swagger/OpenAPI |
 | Employee detail | `FuncionarioDetalhe.html` still uses static/mock data; no mounted `GET /api/users/employees/:id` endpoint exists yet |
 | Staff animal breeds | Backend exposes `GET /api/animals/breeds`; `staffAnimais.js` contains a fallback call to `/api/animals/breed`, which is not mounted |
-| Mod3 commercial/billing | Frontend/sidebar entries may reserve navigation space, but no Mod3 route is mounted in `server.js` in the current runtime |
+| Mod3 commercial/billing | Mounted through `Backend/routes/Mod3_Commercial/index.js`; administrator/assistant staff can use stock, restock, counter sales, returns and invoice/PDF workflows, while clients only access their own invoice endpoints |
 
 ---
 
