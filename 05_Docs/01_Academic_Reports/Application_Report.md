@@ -230,8 +230,8 @@ This avoids duplicating links on every page and keeps the menu aligned with the 
 
 The API includes Swagger/OpenAPI documentation at:
 
-- [`http://localhost:3000/api-docs/`](http://localhost:3000/api-docs/) for interactive visual browsing;
-- `/api-docs.json` for the JSON contract.
+- [`Interative Routes`](http://localhost:3000/api-docs/) for interactive visual browsing;
+- [`Interative Routs JSON`](http://localhost:3000/api-docs.json/) for the JSON contract.
 
 This shows that the application is not limited to the visual layer: there is a navigable technical contract with endpoints, schemas, expected responses, and protected routes.
 
