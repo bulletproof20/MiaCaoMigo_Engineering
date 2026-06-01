@@ -225,6 +225,13 @@ nav:
       - Recommendations: 06_Performance/05_Recommendations.md
 
   # =========================================================
+  # Deployment
+  # =========================================================
+
+  - Deployment:
+      - Production Docker: 07_Deployment/README_Production_Docker.md
+
+  # =========================================================
   # Documentation
   # =========================================================
 

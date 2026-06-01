@@ -167,6 +167,14 @@ Rastreabilidade técnica entre requisitos (`RF`, `RN`, `RNF`, `PN`) e camadas de
 | PN_M3_09 | PN | INT | Análise comercial | PAR | RF_M3_29–30 |
 | RN_M3_22 | RN | DB | Sequência legal faturas | NAO | Sem sequenciador |
 
+### Evidência ApplicationLayer — Módulo 3
+
+| ID | Tipo | Camada | Implementação | Estado | Evidência |
+|----|------|--------|---------------|--------|-----------|
+| APP_M3_01 | APP | API+UI | Área comercial para administradores/assistentes, stock, restock, vendas, devoluções e histórico de faturas | IMP | `MiaCaoMigo_/Backend/routes/Mod3_Commercial/`, `FrontEnd/Pages/AdminPanel/AreaComercial.html` |
+| APP_M3_02 | APP | API+UI | Cliente consulta apenas as suas faturas e linhas | IMP | `GET /api/invoices/me`, `GET /api/invoices/me/:id/details`, `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` |
+| APP_M3_03 | APP | API | PDF de fatura gerado on-demand no clique, sem armazenamento binário, com layout Mod3 (logo, tabela, IVA e totais) | IMP | `GET /api/invoices/me/:id/pdf`, `GET /api/invoices/:id/pdf`, `GET /api/sales/invoices/:id/pdf`, `Backend/services/invoicePdf.js` |
+
 ---
 
 # Módulo 4 — Gestão de Consultas
@@ -195,6 +203,14 @@ Rastreabilidade técnica entre requisitos (`RF`, `RN`, `RNF`, `PN`) e camadas de
 | RN_M4_02 | RN | API+DB | Desconto 10.ª consulta | NAO | — |
 | RN_M4_04 | RN | DB | Diagnóstico obrigatório | NAO | RF_M4_07 |
 | RNF_M4_01 | RNF | DB+API | Histórico clínico performance | PAR | Views + `svc_*` read |
+
+### Evidência ApplicationLayer — Módulo 4
+
+| ID | Tipo | Camada | Implementação | Estado | Evidência |
+|----|------|--------|---------------|--------|-----------|
+| APP_M4_01 | APP | API+UI | Marcação e reagendamento de consultas por cliente/funcionário com bloqueio de datas anteriores ao dia atual | IMP | `POST /api/appointments`, `PATCH /api/appointments/:id_app/reschedule`, `clientConsultas.js`, `staffConsultas.js`, `appointmentModel.js` |
+| APP_M4_02 | APP | API+UI | Lookup de clientes para marcação por funcionário partilhado com fluxo de animais | IMP | `GET /api/users/clients`, `requireAnyPermission(['manage_animals', 'manage_appointments'])` |
+| APP_M4_03 | APP | API | PDF de prescrição gerado on-demand, sem armazenamento binário, com design visual alinhado ao PDF de faturas | IMP | `GET /api/appointments/prescriptions/:id_pre/pdf`, `Backend/services/prescriptionPdf.js` |
 
 ---
 

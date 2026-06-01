@@ -309,6 +309,7 @@ The staff agenda is implemented in `AdicionarConsulta.html` and `staffConsultas.
 | Action | Endpoint | Notes |
 |--------|----------|-------|
 | List appointments | `GET /api/appointments` | Staff-only route |
+| Load active clients | `GET /api/users/clients` | Available to staff with `manage_animals` or `manage_appointments`; used before booking on behalf of a client |
 | Load client animals | `GET /api/animals/client/:clientId` | Used when staff books on behalf of a client |
 | Load veterinarians/specialties | `GET /api/appointments/veterinarians`, `GET /api/appointments/specialties` | Form catalogs |
 | Load availability | `GET /api/appointments/availability?vetId=&date=&excludeAppId=` | `excludeAppId` is optional and used during rescheduling |
@@ -318,7 +319,7 @@ The staff agenda is implemented in `AdicionarConsulta.html` and `staffConsultas.
 | Clinical workspace | `GET /api/appointments/prescriptions/consultation/:id_app` | Summary, history, prescription, vitals |
 | Save clinical record | `PUT /api/appointments/prescriptions/consultation/:id_app/clinical-record` | `anamnesis`, `overall_assessment`, diagnosis/comments on `appointment` |
 | Issue prescription | `POST /api/appointments/prescriptions/consultation/:id_app` | During `in_progress` |
-| Prescription PDF | `GET /api/appointments/prescriptions/:id_pre/pdf` | Generated on demand with `pdfkit` (not stored in DB) |
+| Prescription PDF | `GET /api/appointments/prescriptions/:id_pre/pdf` | Generated on demand with `pdfkit` (not stored in DB), using the same visual language as invoice PDFs: clinic logo, document metadata box and structured tables |
 | Close consultation | `PATCH /api/appointments/:id_app/close` | Sets `completed`; never auto-cancels delayed appointments |
 
 ### Start rules (same veterinarian, 30-minute slots)

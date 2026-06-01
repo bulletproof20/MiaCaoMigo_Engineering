@@ -417,7 +417,7 @@ Example permissions:
 |------------|-----|
 | `manage_employees` | Create employees and access HR management |
 | `manage_animals` | Look up active clients for animal association |
-| `manage_appointments` | Manage appointments, check-in, start and close |
+| `manage_appointments` | Manage appointments, check-in, start and close; also authorises active-client lookup for booking on behalf of a client |
 | `manage_sales` | Commercial sale/invoice capability; website access is further restricted to `administrador` and `assistente` profiles |
 | `manage_invoices` | Invoice lifecycle capability used by commercial workflows |
 | `view_reports` | Reserved entry for reports |
@@ -468,13 +468,13 @@ The backend starts from `Backend/server.js`, serves static files from `FrontEnd/
 | Prefix | Responsibility |
 |--------|----------------|
 | `/api/users/auth` | Login, registration, logout, current session, preferences |
-| `/api/users/clients` | Client lookup/listing for authorised staff |
+| `/api/users/clients` | Client lookup/listing for authorised staff; shared by animal association and staff appointment booking |
 | `/api/users/staff/me` | Personal agenda, schedule, attendance, absences, clock toggle |
 | `/api/users/employees` | Employee creation with `manage_employees` permission |
 | `/api/animals` | Catalogues, client animals, adoptions, internal management |
 | `/api/stock`, `/api/sales`, `/api/return`, `/api/restock` | Internal commercial workflows reserved to administrator and assistant profiles |
-| `/api/invoices` | Staff invoice history/details and authenticated client invoice reads through `/api/invoices/me` |
-| `/api/appointments` | Bookings, availability, notifications, lifecycle, history |
+| `/api/invoices` | Staff invoice history/details/PDF and authenticated client invoice reads/downloads through `/api/invoices/me` |
+| `/api/appointments` | Bookings, availability, notifications, lifecycle, history and prescription PDFs with invoice-style layout |
 | `/api-docs` | API Swagger UI |
 | `/api-docs.json` | OpenAPI specification in JSON |
 

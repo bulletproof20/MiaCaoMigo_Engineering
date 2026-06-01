@@ -3,6 +3,8 @@ node_modules/
 
 # Ignorar ficheiros de variáveis de ambiente
 .env
+.env.*
+!.env.production.example
 
 # Ignorar configurações do VS Code
 .vscode/

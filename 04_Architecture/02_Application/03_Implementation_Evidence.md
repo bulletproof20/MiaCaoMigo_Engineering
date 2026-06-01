@@ -36,11 +36,11 @@ Normative sources:
 | APP-EV-M3-03 | RF_M3 billing document export | `GET /api/invoices/me/:id/pdf`, `GET /api/invoices/:id/pdf`, `GET /api/sales/invoices/:id/pdf`, `Backend/services/invoicePdf.js` | Invoice PDFs are generated on demand when the user clicks PDF; the server renders the Mod3 invoice layout with clinic logo, article table, VAT and totals |
 | APP-EV-M4-01 | RF_M4_01, RF_M4_12 | `POST /api/appointments`, `FrontEnd/Pages/Mod4_Appointments/consultas.html`, `FrontEnd/Js/Mod4/clientConsultas.js` | Client appointment booking through UI and API; frontend and backend reject booking dates earlier than the current day |
 | APP-EV-M4-02 | RF_M4_11, RF_M4_14 | `GET /api/appointments/me`, `PATCH /api/appointments/:id_app/cancel`, `PATCH /api/appointments/:id_app/reschedule` | Client appointment history, cancellation and rescheduling, with past-date rescheduling blocked at UI/API level |
-| APP-EV-M4-03 | RF_M4_01, RF_M1_37 | `GET /api/appointments/veterinarians`, `GET /api/appointments/specialties`, `GET /api/appointments/availability` | Appointment form data and availability calculation exposed to frontend |
+| APP-EV-M4-03 | RF_M4_01, RF_M1_37 | `GET /api/appointments/veterinarians`, `GET /api/appointments/specialties`, `GET /api/appointments/availability`, `GET /api/users/clients` | Appointment form data and availability calculation exposed to frontend; staff booking uses the client lookup route with either `manage_animals` or `manage_appointments` |
 | APP-EV-M4-04 | RF_M4_05, RF_M4_11 | `PATCH /api/appointments/:id_app/start`, `PATCH /api/appointments/:id_app/close` | Staff appointment lifecycle operations protected by permission checks |
 | APP-EV-M4-05 | RF_M4_05, RF_M4_13 | `PATCH /api/appointments/:id_app/check-in`, start validation in `appointmentModel.js`, `RegistoConsulta.html`, `registoConsulta.js` | Waiting room + previous-slot rules; dedicated clinical record page after start |
 | APP-EV-M4-06 | RF_M4_08, RF_M4_09 | `PUT .../clinical-record`, `anamnesis` / `overall_assessment`, `GET .../prescriptions/me` | Structured clinical data and client prescription list without DB schema changes |
-| APP-EV-M4-07 | RF_M4_08 | `GET /api/appointments/prescriptions/:id_pre/pdf`, `prescriptionPdf.js` | On-demand PDF for staff print and client download |
+| APP-EV-M4-07 | RF_M4_08 | `GET /api/appointments/prescriptions/:id_pre/pdf`, `prescriptionPdf.js` | On-demand PDF for staff print and client download; the rendered prescription now follows the same visual language as invoices, including clinic logo, document metadata box, clinical sections and medication table |
 | APP-EV-M4-08 | RF_M4 appointment communication | `GET /api/appointments/notifications/me`, `PATCH .../notifications/:id_not/read`, `area_cliente.html`, `clientDashboard.js`, `appointment_notification.rea_not` | Client notification feed for appointment reminders; internal waiting-room marker is filtered out |
 
 ---
@@ -66,7 +66,7 @@ Normative sources:
 | Mod1 authentication/setup/staff | Implemented for login, register, logout, session read, client theme preference persistence, staff self-service API/widgets, role-aware sidebars, employee onboarding and HR presentation views; `AreaFuncionario.html` requires page-shell restoration |
 | Mod2 animals | Implemented for catalogs, client animal reads and staff-controlled operations |
 | Mod3 commercial | Partially implemented for administrator/assistant commercial workflows: stock/catalog reads, counter sales, invoice history/details, invoice PDF download, returns, and client invoice visibility |
-| Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, PDF export and lifecycle operations; past-date booking/rescheduling is blocked |
+| Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, invoice-style prescription PDF export and lifecycle operations; past-date booking/rescheduling is blocked |
 | Infrastructure NFR | Local/Docker setup documented; production HTTPS/availability policies remain operational concerns |
 
 ---

@@ -1,0 +1,15 @@
+FROM python:3.12-alpine AS builder
+
+WORKDIR /docs
+
+COPY .docs/requirements.txt .docs/requirements.txt
+RUN pip install --no-cache-dir -r .docs/requirements.txt
+
+COPY . .
+RUN mkdocs build -f .docs/mkdocs.yml --site-dir /site
+
+FROM nginx:1.27-alpine
+
+COPY --from=builder /site /usr/share/nginx/html
+
+EXPOSE 80

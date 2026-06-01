@@ -43,6 +43,8 @@ The authentication contract also includes `PUT /api/users/auth/heartbeat`, used 
 
 The Mod3 contract includes staff stock/restock/sales/return workflows, client invoice reads and invoice PDF endpoints. Invoice PDFs are generated at request time by the Node backend, using `pdfkit` and the Mod3 invoice layout rather than storing binary PDF files in the database.
 
+The Mod4 prescription PDF endpoint follows the same on-demand pattern. Prescriptions are rendered from persisted clinical data using the invoice-style layout: clinic logo, document metadata panel, client/animal and veterinarian/consultation boxes, diagnosis/instructions sections, and a medication table.
+
 ---
 
 ## Coverage Audit
@@ -52,10 +54,10 @@ The Swagger contract was compared with the mounted Express routes and the websit
 | Status | Endpoint / Area | Notes |
 |--------|-----------------|-------|
 | Covered by Swagger | `PUT /api/users/auth/heartbeat` | Backend route exists in `authRoutes.js` and is called by `authSession.js` every 30 seconds to refresh the active session heartbeat. |
-| Covered by Swagger | Mod1 auth, setup/theme, client lookup, staff self-service and employee onboarding | These match the current website flows. |
+| Covered by Swagger | Mod1 auth, setup/theme, client lookup, staff self-service and employee onboarding | The client lookup route supports both animal association (`manage_animals`) and staff appointment booking (`manage_appointments`). |
 | Covered by Swagger | Mod2 animals/adoptions | Includes public adoptions, client animals, staff CRUD, ownership association and breed/species catalogs. |
 | Covered by Swagger | Mod3 commercial workflows | Includes stock/catalog, restock, sales, returns, client invoice list/details, staff invoice list/details, and on-demand invoice PDF generation for client/staff downloads. |
-| Covered by Swagger | Mod4 appointments, notifications, clinical record and prescriptions | Includes booking, rescheduling, waiting-room check-in, start/close consultation, clinical record persistence, prescription PDF and client downloads; appointment creation/rescheduling rejects dates earlier than the current day. |
+| Covered by Swagger | Mod4 appointments, notifications, clinical record and prescriptions | Includes booking, rescheduling, waiting-room check-in, start/close consultation, clinical record persistence, invoice-style prescription PDF and client downloads; appointment creation/rescheduling rejects dates earlier than the current day. |
 | Not a backend endpoint yet | `GET /api/users/employees/:id` | `FuncionarioDetalhe.html` currently uses static/mock content (`funcionarioDetalhe.js`) until this endpoint is implemented. |
 | Frontend fallback only | `GET /api/animals/breed?speciesId=...` | `staffAnimais.js` tries this only if `/api/animals/breeds` fails; the mounted/backend-documented route is `/api/animals/breeds`. |
 | Runtime access policy | Mod3 commercial area | Staff commercial routes are restricted to `administrador` and `assistente`; clients only reach `/api/invoices/me*` endpoints for their own invoices. |

@@ -116,6 +116,8 @@ Animals in `Interno` status are listed from `vw_internal_animals_available`. Aut
 | `/api/return` | Commercial staff only | Product return registration/listing |
 | `/api/invoices` | Mixed | Staff invoice list/details/PDF; clients only `/me`, `/me/:id/details`, `/me/:id/pdf` |
 
+Invoice PDFs are generated on demand with `pdfkit` and are not stored as binary data. The renderer uses the Mod3 invoice layout with clinic logo, document metadata panel, line-item table, VAT and totals.
+
 ---
 
 ## Staff Self-Service
@@ -146,12 +148,13 @@ flowchart TD
 
 ---
 
-## Employee Onboarding
+## Staff Lookup And Employee Onboarding
 
-The employee creation page posts to a mounted Mod1 route and is protected by staff RBAC.
+The staff appointment and animal-management pages share the active-client lookup route. Employee creation posts to a mounted Mod1 route and is protected by staff RBAC.
 
 | Endpoint | Guard | Responsibility |
 |----------|-------|----------------|
+| `GET /api/users/clients` | `requireAuth` + `requireStaff` + `requireAnyPermission(['manage_animals', 'manage_appointments'])` | Lookup active clients for animal association and staff appointment booking |
 | `POST /api/users/employees` | `requireAuth` + `requireStaff` + `requirePermission('manage_employees')` | Create identity + employee through the DataLayer, attach a single RBAC profile and return the generated professional email |
 
 Current implementation detail: the frontend collects a `schedule` object, and the backend accepts it, but schedule persistence is not active in this phase.
@@ -203,7 +206,7 @@ Routes included in the current OpenAPI contract:
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
 - `Backend/routes/Mod4_Appointments/prescricoesRoutes.js`
 
-Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration), while client notification endpoints read the same table and explicitly filter that internal marker. PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency.
+Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration), while client notification endpoints read the same table and explicitly filter that internal marker. Prescription PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency; it is generated on demand and rendered with the same invoice-style visual system used for Mod3 documents.
 
 Only mounted routes should be treated as part of the runtime contract. Earlier unmounted/stub routes remain out of scope, but the current Mod3 commercial hub is mounted through `Backend/routes/Mod3_Commercial/index.js`.
 

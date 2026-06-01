@@ -184,9 +184,11 @@ Base prefixes: `/api/users/auth`, `/api/users/clients`, `/api/users/staff`, `/ap
 Implementation notes:
 
 - `authSession.js` sends `PUT /api/users/auth/heartbeat` every 30 seconds; the backend implements it and Swagger/OpenAPI documents it.
+- `/api/users/clients` is shared by animal association and staff appointment booking, allowing staff with `manage_animals` or `manage_appointments`.
 - Client and staff appointment forms set the date input minimum to the current day, and the API rejects past-date booking/rescheduling.
 - Staff appointment rescheduling passes optional `excludeAppId` to `GET /api/appointments/availability`.
 - Invoice PDFs are not pre-generated files; clicking PDF requests the API, which renders the current invoice layout with clinic logo, line-item table, VAT and totals.
+- Prescription PDFs follow the same on-demand pattern and use the invoice-style visual design with clinic logo, metadata box, clinical sections and medication table.
 - Staff animal registration currently calls the local API base URL (`http://localhost:3000`) directly and contains a fallback to `/api/animals/breed`; the backend route is `/api/animals/breeds`.
 - `FuncionarioDetalhe.html` remains a static/prototype detail page until a future employee-detail API is implemented.
 
