@@ -9,7 +9,7 @@ Short guides for oral defense and live demos. Use together with the [Application
 | Document | Use |
 |----------|-----|
 | [15min_Structure.md](15min_Structure.md) | Suggested timing and section order for a ~15 minute presentation |
-| [Screenshots_Checklist.md](Screenshots_Checklist.md) | Which screens to capture and what to explain on each |
+| [Screenshots_Checklist.md](Screenshots_Checklist.md) | Index of collected screenshots and their role in the report |
 
 ---
 

@@ -80,8 +80,11 @@ sequenceDiagram
 |----------|-------|----------------|
 | `GET /api/users/auth/setup` | `requireAuth` | Read `setup.the_set` and `setup.lan_set` for the authenticated user |
 | `PUT /api/users/auth/setup/theme` | `requireAuth` | Update `setup.the_set` to `light` or `dark` |
+| `PUT /api/users/auth/heartbeat` | `requireAuth` | Refresh the active database session heartbeat while the authenticated browser session is alive |
 
 The user id comes from the JWT (`req.user.sub`); the browser never sends an arbitrary `id_usr` for these operations.
+
+Documentation note: `heartbeat` is implemented, used by the website, and included in the generated OpenAPI contract.
 
 ---
 
@@ -181,6 +184,17 @@ Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment
 Stub modules, such as partial Mod3 billing routes, remain excluded from the contract when not mounted in `server.js`.
 
 Details: [Swagger](Swagger.md) · [OpenAPI](OpenAPI.md)
+
+---
+
+## Backend / Website Alignment Notes
+
+| Website area | Backend status |
+|--------------|----------------|
+| Session heartbeat | Implemented as `PUT /api/users/auth/heartbeat` and documented in Swagger/OpenAPI |
+| Employee detail | `FuncionarioDetalhe.html` still uses static/mock data; no mounted `GET /api/users/employees/:id` endpoint exists yet |
+| Staff animal breeds | Backend exposes `GET /api/animals/breeds`; `staffAnimais.js` contains a fallback call to `/api/animals/breed`, which is not mounted |
+| Mod3 commercial/billing | Frontend/sidebar entries may reserve navigation space, but no Mod3 route is mounted in `server.js` in the current runtime |
 
 ---
 

@@ -62,7 +62,10 @@ sequenceDiagram
 6. Staff users are redirected to `FrontEnd/Pages/Mod1_Users/Funcionarios/MainDashboard.html`.
 7. Client users are redirected to `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html`.
 8. Protected requests include `Authorization: Bearer <token>`.
-9. Logout calls `POST /api/users/auth/logout`, closes the database session and clears local storage.
+9. While the browser session is active, `authSession.js` sends `PUT /api/users/auth/heartbeat` periodically so the backend can keep the database session fresh.
+10. Logout calls `POST /api/users/auth/logout`, closes the database session and clears local storage.
+
+Documentation status: the heartbeat route exists in the backend, is used by the website, and is present in the generated Swagger/OpenAPI contract.
 
 ---
 
@@ -255,6 +258,7 @@ Role-aware UI notes:
 - Veterinarians focus on appointments where `appointment.id_emp` matches their employee row.
 - Assistants see the same self-service area but global clinical management depends on RBAC profiles, not a fixed “assigned veterinarian” relationship in the database.
 - The HR `Views/*.html` files are frontend presentation/prototype partials; the documented API-backed staff self-service data comes from `/api/users/staff/me/*`.
+- `FuncionarioDetalhe.html` currently uses static/mock employee data; a future `GET /api/users/employees/:id` backend endpoint is referenced in code comments but is not implemented or mounted yet.
 - `staffArea.js` and `/api/users/staff/me/agenda` support the full personal agenda, but `AreaFuncionario.html` currently needs its page shell restored before the route can validate.
 
 ---

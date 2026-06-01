@@ -38,6 +38,8 @@ Edit the source files instead:
 
 After changing application behavior or routes, update the relevant Engineering pages and regenerate the OpenAPI artifact if endpoint contracts changed.
 
+Current audit note: `PUT /api/users/auth/heartbeat` exists in the backend, is used by the website, and is included in the generated OpenAPI artifact.
+
 ---
 
 ## Verify After Generation

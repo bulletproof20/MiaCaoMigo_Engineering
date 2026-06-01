@@ -1,276 +1,305 @@
-# Relatório Académico da Aplicação Web
+# Academic Web Application Report
 
 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;">
   <span style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">ApplicationLayer</span>
-  <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Apresentação 15 min</span>
-  <span style="background:#64748b;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Defesa académica</span>
+  <span style="background:#059669;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">15 min presentation</span>
+  <span style="background:#64748b;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.85rem;">Academic defense</span>
 </div>
 
-Este relatório resume a aplicação web implementada no repositório `MiaCaoMigo_`, com foco na apresentação académica de aproximadamente 15 minutos. A aplicação demonstra a integração entre frontend estático, API Node/Express e base de dados PostgreSQL, usando autenticação JWT, permissões por perfil e documentação Swagger/OpenAPI.
+This report presents the web application implemented in the `MiaCaoMigo_` repository, placing it within the MiaCaoMigo project’s documentation and technical ecosystem. The application demonstrates integration between a static frontend, a Node/Express API, and a PostgreSQL database, using JWT authentication, profile-based permissions, and Swagger/OpenAPI documentation.
 
 ---
 
-## 1. Contexto / Introdução
+## 1. Context / Introduction
 
-O sistema **MiaCaoMigo** representa uma plataforma de apoio à gestão de uma clínica veterinária. O objetivo principal é centralizar operações que, num contexto real, seriam distribuídas por atendimento, equipa clínica, gestão de animais, marcação de consultas e acompanhamento de clientes.
+The **MiaCaoMigo** system is a platform that supports the management of a veterinary clinic. Its main goal is to centralise operations that, in a real-world setting, would be spread across reception, clinical staff, animal management, appointment scheduling, and client follow-up.
 
-A aplicação web está organizada em três camadas principais:
+The web application is organised into three main layers:
 
-| Camada | Responsabilidade |
-|--------|------------------|
-| Frontend | Páginas HTML/CSS/JavaScript, navegação pública, áreas autenticadas de cliente e funcionário |
-| Backend | API REST em Node.js/Express, autenticação, autorização, validação de pedidos e ligação aos modelos |
-| DataLayer | PostgreSQL, funções de negócio, tabelas, perfis, permissões, sessões e regras de integridade |
-
-Na apresentação, o sistema deve ser introduzido como uma solução modular: o utilizador interage com páginas web, o frontend comunica com a API através de `fetch`, e a API delega persistência e regras críticas à base de dados.
-
-### Sugestão de tempo
-
-| Parte | Duração sugerida |
-|-------|------------------|
-| Contexto e utilizadores | 2 min |
-| Funcionalidades e fluxos | 5 min |
-| Autenticação, permissões e segurança | 3 min |
-| Ferramentas e arquitetura técnica | 2 min |
-| Limitações e conclusão | 3 min |
-
----
-
-## 2. Utilizadores
-
-O website distingue utilizadores públicos, clientes autenticados e funcionários autenticados. A separação é feita através do login, do tipo de conta e dos perfis/permissões carregados da base de dados.
-
-| Utilizador | Acesso principal | Exemplos de ações |
-|------------|------------------|-------------------|
-| Visitante | Páginas públicas | Consultar serviços, adoções, loja pública, contactos e informação institucional |
-| Cliente | Área de cliente | Ver animais, marcar consultas, reagendar/cancelar consultas, consultar notificações e prescrições |
-| Funcionário | Área interna | Ver agenda pessoal, presenças, ausências e operações conforme permissões |
-| Administrador / RH | Área de funcionários | Criar funcionários, consultar quadro de funcionários e aceder a vistas de gestão |
-| Veterinário / equipa clínica | Área clínica | Gerir consultas, consultar pacientes e registar ciclo de vida clínico quando autorizado |
-| Assistente / secretaria | Operações de atendimento | Registar/associar animais e apoiar marcações |
-| Gestor comercial | Área reservada | Entradas de menu para área comercial e relatórios, ainda em desenvolvimento |
-
-A distinção cliente/funcionário usa o domínio institucional `@miacaomigo.pt` e os perfis associados ao funcionário na base de dados.
-
----
-
-## 3. Funcionalidades
-
-### 3.1 Visão geral por módulo
-
-| Módulo | Estado no website | Funcionalidades demonstráveis |
-|--------|-------------------|-------------------------------|
-| Mod1 - Utilizadores | Implementado de forma central | Registo de cliente, login, logout, sessão JWT, tema claro/escuro, área de cliente, área de funcionário, RBAC e criação de funcionários |
-| Mod2 - Animais | Implementado parcialmente/operacional | Catálogos de espécies/raças, listagem de animais do cliente, adoções públicas e operações internas sobre animais |
-| Mod3 - Comercial | Reservado/parcial | Loja pública como placeholder e entradas internas desativadas para área comercial/relatórios |
-| Mod4 - Consultas | Implementado de forma relevante | Marcação, disponibilidade, listagem, cancelamento, reagendamento, notificações, prescrições e ciclo de vida de consultas |
-
-### 3.2 Fluxo do sistema
-
-O fluxo principal começa em páginas públicas e evolui para áreas protegidas após autenticação.
-
-1. O visitante acede à página inicial e navega pelas páginas públicas.
-2. O utilizador cria conta de cliente ou faz login.
-3. O backend valida as credenciais na base de dados e devolve um JWT.
-4. O frontend guarda o token e os dados do utilizador em `localStorage`.
-5. A navegação pós-login separa cliente e funcionário.
-6. O cliente acede à sua área, aos seus animais e às suas consultas.
-7. O funcionário acede ao dashboard interno e vê menus conforme perfis/permissões.
-8. Cada pedido protegido envia `Authorization: Bearer <token>` para a API.
-9. O backend valida o JWT e aplica permissões antes de executar os modelos.
-
-### 3.3 Prints do sistema e descrição
-
-Para a apresentação de 15 minutos, recomenda-se selecionar poucos prints, mas representativos. A explicação deve focar o objetivo funcional de cada ecrã e a ligação ao backend.
-
-| Print sugerido | Ecrã | O que explicar |
-|----------------|------|----------------|
-| 1 | Página inicial / páginas públicas | Entrada no sistema, navegação pública e separação entre visitante e utilizador autenticado |
-| 2 | Login | Credenciais enviadas para `/api/users/auth/login`, validação na BD e emissão de JWT |
-| 3 | Área de Cliente | Dashboard do cliente, atalhos para consultas, animais, notificações e adoções |
-| 4 | Minhas Consultas | Marcação, disponibilidade por veterinário/data, cancelamento, reagendamento e histórico |
-| 5 | Meus Animais / Adoções | Animais associados ao cliente e fluxo de interesse em adoção |
-| 6 | Área de Funcionário | Dashboard interno, agenda, presenças, ausências e operações disponíveis |
-| 7 | Quadro / Registo de Funcionários | Demonstração de gestão RH protegida por `manage_employees` |
-| 8 | Gestão de Consultas | Operações internas sobre o ciclo de vida clínico |
-| 9 | Swagger UI | Prova da documentação técnica da API e dos endpoints implementados |
-
-### 3.4 Autenticação
-
-A autenticação é feita com **JWT (JSON Web Tokens)** através da package `jsonwebtoken`.
-
-Fluxo implementado:
-
-1. O formulário de login chama `POST /api/users/auth/login`.
-2. O backend chama a função de autenticação na base de dados através do model `authModel`.
-3. A password é convertida para SHA-256 antes da validação na base de dados.
-4. Em caso de sucesso, o backend gera um JWT com `sub`, `email`, `staff`, `permissions` e `profiles`.
-5. O frontend guarda o token em `localStorage` com a chave `jwtToken`.
-6. Os pedidos protegidos usam o header `Authorization: Bearer <token>`.
-7. O middleware `requireAuth` valida assinatura, emissor e expiração do token.
-
-O JWT tem emissor `miacaomigo-api` e tempo de vida configurável por `JWT_EXPIRES_IN`, com valor de desenvolvimento de `6h`.
-
-### 3.5 Permissões e controlo de acesso
-
-O sistema combina controlo de acesso no frontend e no backend.
-
-| Local | Mecanismo |
-|-------|-----------|
-| Frontend | Guards locais, menus por perfil, redirecionamento de páginas cliente/staff |
-| JWT | Transporte de `staff`, `permissions` e `profiles` |
-| Backend | Middlewares `requireAuth`, `requireStaff`, `requirePermission` e `requireClinicSecretary` |
-| Base de dados | Perfis e permissões obtidos das tabelas de RBAC (`profile`, `permission`, relações de ocupação/permissão) |
-
-Exemplos de permissões:
-
-| Permissão | Uso |
-|-----------|-----|
-| `manage_employees` | Criar funcionários e aceder a gestão RH |
-| `manage_animals` | Consultar clientes ativos para associação de animais |
-| `manage_appointments` | Gerir consultas, check-in, início e encerramento |
-| `manage_commercial` | Entrada reservada para área comercial |
-| `view_reports` | Entrada reservada para relatórios |
-
-Mesmo que o frontend esconda ou desative entradas, a autorização relevante acontece no backend. Isto evita depender apenas da interface para proteger operações críticas.
-
-### 3.6 Segurança
-
-A segurança implementada assenta em várias camadas:
-
-| Área | Implementação |
-|------|---------------|
-| Autenticação | JWT assinado com segredo do servidor |
-| Sessão | Registo de login/logout na base de dados e encerramento de sessões abertas no arranque do servidor |
-| Autorização | Middlewares de staff, permissões e validação específica de secretaria clínica |
-| Passwords | Hash SHA-256 antes da validação/persistência via serviços da BD |
-| SQL | Queries parametrizadas com `pg`, reduzindo risco de SQL injection |
-| Configuração | Variáveis de ambiente para ligação à BD e JWT |
-| Documentação | Swagger/OpenAPI expõe contrato técnico e facilita testes controlados |
-
-Pontos importantes para explicar na defesa:
-
-- O token identifica o utilizador, mas não substitui as permissões verificadas no servidor.
-- As permissões vêm da base de dados e são transportadas no JWT para guiar frontend e backend.
-- O backend rejeita pedidos sem token, token expirado ou permissões insuficientes.
-- A API usa JSON e rotas REST organizadas por módulo.
-
-### 3.7 Usabilidade
-
-O website usa uma navegação simples por áreas:
-
-| Aspeto | Evidência |
-|--------|-----------|
-| Separação por contexto | Área pública, área cliente e área funcionário |
-| Sidebars | Menu do cliente e menu de funcionários gerados com base no perfil |
-| Feedback ao utilizador | Mensagens de carregamento, erro e sucesso em formulários e tabelas |
-| Consistência visual | CSS partilhado em dashboards, cards, tabelas e botões |
-| Tema | Preferência light/dark persistida no setup do utilizador |
-| Responsividade base | Meta viewport e layouts com grids/flex em várias páginas |
-
-A experiência é adequada para demonstração académica: o utilizador entende rapidamente onde está, que ações pode executar e que secções ainda estão em desenvolvimento.
-
-### 3.8 Integração com API e base de dados
-
-O backend é iniciado em `Backend/server.js`, serve os ficheiros estáticos do `FrontEnd/` e monta as principais rotas API:
-
-| Prefixo | Responsabilidade |
-|---------|------------------|
-| `/api/users/auth` | Login, registo, logout, sessão atual e preferências |
-| `/api/users/clients` | Pesquisa/listagem de clientes para staff autorizado |
-| `/api/users/staff/me` | Agenda pessoal, horário, assiduidade, ausências e clock toggle |
-| `/api/users/employees` | Criação de funcionários com permissão `manage_employees` |
-| `/api/animals` | Catálogos, animais do cliente, adoções e gestão interna |
-| `/api/appointments` | Marcações, disponibilidade, notificações, ciclo de vida e histórico |
-| `/api-docs` | Swagger UI da API |
-| `/api-docs.json` | Especificação OpenAPI em JSON |
-
-Os modelos usam `pg` e um pool PostgreSQL partilhado. Parte da lógica de negócio, como login, logout e criação de cliente, é delegada a funções da base de dados, alinhando a aplicação com o DataLayer.
-
-### 3.9 Arquitetura de navegação
-
-A navegação do frontend foi centralizada em `FrontEnd/Js/geral/routes.js`. Este ficheiro define rotas atuais, caminhos legados e funções de redirecionamento/guard.
-
-As sidebars são compostas por:
-
-| Ficheiro | Função |
-|----------|--------|
-| `SidebarMenuCatalog.js` | Catálogo central de itens e mapeamento perfil → menus |
-| `SidebarShell.js` | Estrutura comum da sidebar |
-| `ClientSidebar.js` | Menu do cliente |
-| `EmployeeSidebar.js` | Menu de funcionários |
-
-Esta abordagem evita duplicar links por página e permite que o menu reflita o perfil do utilizador autenticado.
-
-### 3.10 Documentação técnica
-
-A API inclui documentação Swagger/OpenAPI, disponível em:
-
-- `/api-docs/` para consulta visual;
-- `/api-docs.json` para contrato JSON.
-
-Isto é relevante para a defesa porque permite demonstrar que a aplicação não é apenas visual: existe um contrato técnico navegável, com endpoints, schemas, respostas esperadas e rotas protegidas.
-
-### 3.11 Tópicos adicionais recomendados para a apresentação
-
-Além dos tópicos pedidos, estes pontos ajudam a valorizar o trabalho:
-
-| Tópico | Porquê abordar |
+| Layer | Responsibility |
 |--------|----------------|
-| Separação por módulos | Mostra organização por áreas funcionais M1-M4 |
-| Alinhamento com DataLayer | Demonstra que a aplicação respeita a arquitetura da BD |
-| RBAC | Mostra maturidade na gestão de permissões |
-| Swagger/OpenAPI | Evidencia documentação e testabilidade |
-| Docker | Mostra preocupação com execução reprodutível |
-| Limitações assumidas | Demonstra consciência técnica e transparência |
+| Frontend | HTML/CSS/JavaScript pages, public navigation, authenticated client and staff areas |
+| Backend | REST API in Node.js/Express, authentication, authorisation, request validation, and model access |
+| DataLayer | PostgreSQL, business functions, tables, profiles, permissions, sessions, and integrity rules |
+
+The system is presented as a modular solution: users interact with web pages, the frontend communicates with the API through `fetch`, and the API delegates persistence and critical business rules to the database. This separation shows not only the visual interface, but also an application architecture with authentication, authorisation, data integration, and technical documentation.
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/index.png" alt="Application home page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 1</strong> — Public home page of the MiaCaoMigo application.</figcaption>
+</figure>
 
 ---
 
-## 4. Ferramentas, frameworks e packages
+## 2. Users
 
-| Categoria | Ferramentas / packages |
-|-----------|------------------------|
+The website distinguishes public users, authenticated clients, and authenticated staff. Separation is enforced through login, account type, and profiles/permissions loaded from the database.
+
+| User | Main access | Example actions |
+|------|-------------|-----------------|
+| Visitor | Public pages | Browse services, adoptions, public shop, contact and institutional information |
+| Client | Client area | View animals, book appointments, reschedule/cancel appointments, view notifications and prescriptions |
+| Staff | Internal area | View personal agenda, attendance, absences, and operations according to permissions |
+| Administrator / HR | Staff area | Create employees, view staff board, access management views |
+| Veterinarian / clinical team | Clinical area | Manage appointments, view patients, record clinical lifecycle when authorised |
+| Assistant / reception | Front-desk operations | Register/associate animals and support booking |
+| Commercial manager | Reserved area | Menu entries for commercial area and reports, still under development |
+
+The client/staff distinction uses the institutional domain `@miacaomigo.pt` and staff profiles associated in the database.
+
+---
+
+## 3. Functionality
+
+### 3.1 Overview by module
+
+| Module | Website status | Demonstrable features |
+|--------|----------------|------------------------|
+| Mod1 - Users | Centrally implemented | Client registration, login, logout, JWT session, light/dark theme, client area, staff area, RBAC, employee creation |
+| Mod2 - Animals | Partially implemented / operational | Species/breed catalogues, client animal list, public adoptions, internal animal operations |
+| Mod3 - Commercial | Reserved / partial | Public shop as placeholder and disabled internal entries for commercial area/reports |
+| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling, notifications, prescriptions, appointment lifecycle |
+
+### 3.2 System flow
+
+The main flow starts on public pages and moves into protected areas after authentication.
+
+1. The visitor opens the home page and browses public pages.
+2. The user creates a client account or logs in.
+3. The backend validates credentials in the database and returns a JWT.
+4. The frontend stores the token and user data in `localStorage`.
+5. Post-login navigation separates client and staff.
+6. The client accesses their area, animals, and appointments.
+7. Staff access the internal dashboard and see menus according to profiles/permissions.
+8. Each protected request sends `Authorization: Bearer <token>` to the API.
+9. The backend validates the JWT and applies permissions before executing models.
+
+### 3.3 Visual evidence
+
+The collected screenshots illustrate the main application path: public entry, authentication, client area access, clinical features, internal area access, and validation of the API technical contract.
+
+| Figure | Screen | Relevance |
+|--------|--------|-----------|
+| 1 | Home page | Public entry and institutional presentation of the clinic |
+| 2 | Login | Entry point for authentication and JWT issuance |
+| 3 | Client area | Personal dashboard with client-account operations |
+| 4 | Client appointments | Booking, listing, and appointment management |
+| 5 | Adoptions | Public feature linked to the animals module |
+| 6 | Staff area | Internal experience separated with profile-based menus |
+| 7 | Appointment management | Internal clinical operations and appointment lifecycle |
+| 8 | Swagger UI | Technical documentation and REST API contract |
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/login.png" alt="Application login" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 2</strong> — Authentication screen used by clients and staff.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/areaClient.png" alt="Client area" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 3</strong> — Authenticated client dashboard.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/consultas.png" alt="Client appointments" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 4</strong> — Appointment management in the client area.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/adocoes.png" alt="Public adoptions page" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 5</strong> — Public view of animals available for adoption.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/areaFuncionario.png" alt="Staff area" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 6</strong> — Internal staff area with contextual navigation.</figcaption>
+</figure>
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/gestaoConsultas.png" alt="Appointment management" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 7</strong> — Internal interface for operational appointment management.</figcaption>
+</figure>
+
+### 3.4 Authentication
+
+Authentication uses **JWT (JSON Web Tokens)** via the `jsonwebtoken` package.
+
+Implemented flow:
+
+1. The login form calls `POST /api/users/auth/login`.
+2. The backend invokes the database authentication function through the `authModel`.
+3. The password is converted to SHA-256 before validation in the database.
+4. On success, the backend issues a JWT with `sub`, `email`, `staff`, `permissions`, and `profiles`.
+5. The frontend stores the token in `localStorage` under the key `jwtToken`.
+6. Protected requests use the header `Authorization: Bearer <token>`.
+7. The `requireAuth` middleware validates signature, issuer, and expiration.
+
+The JWT issuer is `miacaomigo-api` and lifetime is configurable via `JWT_EXPIRES_IN`, with a development default of `6h`.
+
+### 3.5 Permissions and access control
+
+The system combines access control on the frontend and backend.
+
+| Layer | Mechanism |
+|-------|-----------|
+| Frontend | Local guards, profile-based menus, client/staff page redirects |
+| JWT | Carries `staff`, `permissions`, and `profiles` |
+| Backend | `requireAuth`, `requireStaff`, `requirePermission`, and `requireClinicSecretary` middlewares |
+| Database | Profiles and permissions from RBAC tables (`profile`, `permission`, occupation/permission relations) |
+
+Example permissions:
+
+| Permission | Use |
+|------------|-----|
+| `manage_employees` | Create employees and access HR management |
+| `manage_animals` | Look up active clients for animal association |
+| `manage_appointments` | Manage appointments, check-in, start and close |
+| `manage_commercial` | Reserved entry for commercial area |
+| `view_reports` | Reserved entry for reports |
+
+Even when the frontend hides or disables menu entries, authorisation is enforced on the backend. Critical operations are not protected by the UI alone.
+
+### 3.6 Security
+
+Security is implemented across several layers:
+
+| Area | Implementation |
+|------|----------------|
+| Authentication | Server-signed JWT |
+| Session | Login/logout recorded in the database; open sessions closed on server startup |
+| Authorisation | Staff, permission middlewares, and clinic secretary validation |
+| Passwords | SHA-256 hash before validation/persistence via database services |
+| SQL | Parameterised queries with `pg`, reducing SQL injection risk |
+| Configuration | Environment variables for database and JWT |
+| Documentation | Swagger/OpenAPI exposes the technical contract and supports controlled testing |
+
+Key security points:
+
+- The token identifies the user but does not replace server-side permission checks.
+- Permissions come from the database and are carried in the JWT to guide frontend and backend.
+- The backend rejects requests without a token, with an expired token, or with insufficient permissions.
+- The API uses JSON and REST routes organised by module.
+
+### 3.7 Usability
+
+The website uses straightforward area-based navigation:
+
+| Aspect | Evidence |
+|--------|----------|
+| Context separation | Public area, client area, and staff area |
+| Sidebars | Client and staff menus generated from profile |
+| User feedback | Loading, error, and success messages in forms and tables |
+| Visual consistency | Shared CSS across dashboards, cards, tables, and buttons |
+| Theme | Light/dark preference persisted in user setup |
+| Basic responsiveness | Viewport meta tag and grid/flex layouts on several pages |
+
+The experience is suitable for academic demonstration: users quickly understand where they are, which actions they can perform, and which sections remain under development.
+
+### 3.8 API and database integration
+
+The backend starts from `Backend/server.js`, serves static files from `FrontEnd/`, and mounts the main API routes:
+
+| Prefix | Responsibility |
+|--------|----------------|
+| `/api/users/auth` | Login, registration, logout, current session, preferences |
+| `/api/users/clients` | Client lookup/listing for authorised staff |
+| `/api/users/staff/me` | Personal agenda, schedule, attendance, absences, clock toggle |
+| `/api/users/employees` | Employee creation with `manage_employees` permission |
+| `/api/animals` | Catalogues, client animals, adoptions, internal management |
+| `/api/appointments` | Bookings, availability, notifications, lifecycle, history |
+| `/api-docs` | API Swagger UI |
+| `/api-docs.json` | OpenAPI specification in JSON |
+
+Models use `pg` and a shared PostgreSQL pool. Some business logic—login, logout, client creation—is delegated to database functions, aligning the application with the DataLayer.
+
+### 3.9 Navigation architecture
+
+Frontend navigation is centralised in `FrontEnd/Js/geral/routes.js`, which defines current routes, legacy paths, and redirect/guard helpers.
+
+Sidebars are built from:
+
+| File | Role |
+|------|------|
+| `SidebarMenuCatalog.js` | Central item catalogue and profile → menu mapping |
+| `SidebarShell.js` | Shared sidebar structure |
+| `ClientSidebar.js` | Client menu |
+| `EmployeeSidebar.js` | Staff menu |
+
+This avoids duplicating links on every page and keeps the menu aligned with the authenticated user’s profile.
+
+### 3.10 Technical documentation
+
+The API includes Swagger/OpenAPI documentation at:
+
+- [`http://localhost:3000/api-docs/`](http://localhost:3000/api-docs/) for interactive visual browsing;
+- `/api-docs.json` for the JSON contract.
+
+This shows that the application is not limited to the visual layer: there is a navigable technical contract with endpoints, schemas, expected responses, and protected routes.
+
+<figure>
+  <img src="/00_Assets/01_Screenshots/Application_Presentation/Swagger.png" alt="Swagger UI" style="width:100%; max-width:980px; border-radius:10px; border:1px solid #e5e7eb; box-shadow:0 6px 18px rgba(15,23,42,0.12);" />
+  <figcaption><strong>Figure 8</strong> — Swagger UI documenting API endpoints. Interactive version: <a href="http://localhost:3000/api-docs/" target="_blank" rel="noopener">http://localhost:3000/api-docs/</a>.</figcaption>
+</figure>
+
+### 3.11 Technical strengths
+
+Beyond visible interface features, the project includes technical elements that reinforce solution maturity:
+
+| Topic | Significance |
+|-------|--------------|
+| Modular separation | Organisation by functional areas M1–M4 |
+| DataLayer alignment | Application respects database architecture |
+| RBAC | Structured permission management |
+| Swagger/OpenAPI | Documentation and testability |
+| Docker | Reproducible execution |
+| Acknowledged limitations | Technical awareness and transparency |
+
+---
+
+## 4. Tools, frameworks, and packages
+
+| Category | Tools / packages |
+|----------|------------------|
 | Frontend | HTML5, CSS3, JavaScript, Font Awesome, Bootstrap |
 | Backend | Node.js, Express |
-| Base de dados | PostgreSQL, package `pg` |
-| Autenticação | `jsonwebtoken`, JWT Bearer |
-| Configuração | `dotenv`, variáveis de ambiente |
-| API/documentação | `swagger-jsdoc`, `swagger-ui-express`, OpenAPI |
-| Segurança/API | `cors`, middlewares Express |
-| PDF/documentos | `pdfkit` para geração de prescrições/documentos |
-| Containers | Docker e Docker Compose |
-| Integração externa | `@supabase/supabase-js`, presente como dependência preparada para integração |
+| Database | PostgreSQL, `pg` package |
+| Authentication | `jsonwebtoken`, JWT Bearer |
+| Configuration | `dotenv`, environment variables |
+| API / documentation | `swagger-jsdoc`, `swagger-ui-express`, OpenAPI |
+| API security | `cors`, Express middlewares |
+| PDF / documents | `pdfkit` for prescription/document generation |
+| Containers | Docker and Docker Compose |
+| External integration | `@supabase/supabase-js`, included as a dependency prepared for future integration |
 
-O `docker-compose.yml` da aplicação expõe o serviço em `http://localhost:3000`, executa `npm start` e liga a API ao PostgreSQL através de variáveis de ambiente.
-
----
-
-## 5. Limitações
-
-O estado atual é adequado para demonstração académica, mas existem limitações importantes:
-
-| Limitação | Impacto |
-|-----------|---------|
-| Mod3 comercial ainda reservado | A loja pública e as entradas internas existem, mas faturação, stock e relatórios não estão totalmente integrados no contrato montado |
-| Algumas vistas RH são de apresentação/protótipo | Suportam a narrativa visual, mas nem todas representam fluxos completos API-backed |
-| Token em `localStorage` | Simples para contexto académico, mas em produção exigiria análise de risco XSS e possível uso de cookies `HttpOnly` |
-| Segredo JWT de desenvolvimento | Existe fallback caso `JWT_SECRET` não esteja configurado; em produção deve ser obrigatório |
-| Password com SHA-256 simples | Funciona com o formato esperado pela BD, mas em produção seria preferível hash adaptativo como bcrypt/argon2 |
-| CORS aberto | Útil em desenvolvimento, mas deve ser restringido por origem em produção |
-| Validação frontend/backend variável | Há validações relevantes, mas podia haver uma camada mais uniforme de schemas de input |
-| Testes automatizados limitados | A validação é sobretudo por execução manual, Swagger e fluxo de demonstração |
-
-Estas limitações não invalidam a solução académica; pelo contrário, ajudam a demonstrar consciência crítica sobre a diferença entre protótipo funcional e sistema pronto para produção.
+The application `docker-compose.yml` exposes the service at `http://localhost:3000`, runs `npm start`, and connects the API to PostgreSQL through environment variables.
 
 ---
 
-## 6. Conclusão
+## 5. Limitations
 
-O website MiaCaoMigo demonstra uma aplicação web modular e integrada com base de dados, adequada ao contexto académico proposto. A solução cobre páginas públicas, autenticação, áreas distintas para cliente e funcionário, gestão de animais, marcação e acompanhamento de consultas, perfis de acesso e documentação técnica da API.
+The current state is suitable for academic demonstration, but important limitations remain:
 
-Os pontos mais fortes são a separação entre frontend/backend/DataLayer, a utilização de JWT com RBAC, a centralização da navegação e a existência de Swagger/OpenAPI. Para a apresentação, a melhor estratégia é mostrar um fluxo completo: visitante → login → área cliente → marcação de consulta → área funcionário → operação protegida → Swagger.
+| Limitation | Impact |
+|------------|--------|
+| Mod3 commercial still reserved | Public shop and internal entries exist, but billing, stock, and reports are not fully integrated in the mounted API contract |
+| Some HR views are presentation/prototype | They support the visual narrative but not all represent full API-backed workflows |
+| Token in `localStorage` | Simple for academic context; production would require XSS risk analysis and possibly `HttpOnly` cookies |
+| Development JWT secret | Fallback if `JWT_SECRET` is unset; production should require an explicit secret |
+| SHA-256 password hashing | Matches the database format, but production would prefer adaptive hashing (bcrypt/argon2) |
+| Open CORS | Useful in development; should be restricted by origin in production |
+| Variable frontend/backend validation | Relevant checks exist, but a more uniform input schema layer would help |
+| Limited automated tests | Validation relies mainly on manual runs, Swagger, and demonstration flows |
 
-A principal mensagem final deve ser que o projeto não é apenas um conjunto de páginas, mas uma aplicação organizada por módulos, com integração real entre interface, API, permissões e base de dados, mantendo limitações claras para evolução futura.
+These limitations do not invalidate the academic solution; they show critical awareness of the gap between a functional prototype and a production-ready system.
+
+---
+
+## 6. Conclusion
+
+The MiaCaoMigo website demonstrates a modular web application integrated with a database, appropriate for the proposed academic context. The solution covers public pages, authentication, distinct client and staff areas, animal management, appointment booking and follow-up, access profiles, and API technical documentation.
+
+The main strengths are separation between frontend, backend, and DataLayer; JWT with RBAC; centralised navigation; and Swagger/OpenAPI. A complete demonstration path is: visitor → login → client area → book appointment → staff area → protected operation → Swagger.
+
+The project’s final message is that the solution is not merely a set of static pages, but a modular application with real integration between interface, API, permissions, and database, while keeping clear limitations for future evolution.
 
 ---
 

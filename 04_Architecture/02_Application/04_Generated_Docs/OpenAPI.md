@@ -35,6 +35,18 @@ Appointment availability supports `vetId`, `date` and optional `excludeAppId` qu
 
 ---
 
+## Contract Status
+
+The current OpenAPI JSON covers the mounted backend routes used by the website, including the authentication heartbeat:
+
+| Backend route | Used by website | Contract status |
+|---------------|-----------------|-----------------|
+| `PUT /api/users/auth/heartbeat` | `FrontEnd/Js/geral/authSession.js` keeps database sessions alive while the user is active | Documented in Swagger/OpenAPI |
+
+Website areas that are still static/prototype are intentionally not part of OpenAPI. In particular, `FuncionarioDetalhe.html` has a mock note for future `GET /api/users/employees/:id`, and Mod3 commercial/billing routes are not mounted by `server.js`.
+
+---
+
 ## Swagger UI (Interactive Exploration)
 
 To test endpoints and inspect schemas interactively, use **Swagger UI**:

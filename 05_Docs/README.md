@@ -20,7 +20,7 @@ Technical architecture remains under [04_Architecture](../04_Architecture/README
 
 1. Read [Application_Report.md](01_Academic_Reports/Application_Report.md) end-to-end.
 2. Use [15min_Structure.md](02_Presentation/15min_Structure.md) as speaking outline.
-3. Capture screens following [Screenshots_Checklist.md](02_Presentation/Screenshots_Checklist.md).
+3. Review screenshots listed in [Screenshots_Checklist.md](02_Presentation/Screenshots_Checklist.md).
 4. Cross-check claims against [Implementation evidence](../04_Architecture/02_Application/03_Implementation_Evidence.md) and [Swagger](../04_Architecture/02_Application/04_Generated_Docs/Swagger.md).
 
 ---

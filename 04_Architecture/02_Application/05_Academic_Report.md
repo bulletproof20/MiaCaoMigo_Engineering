@@ -1,10 +1,10 @@
-# Relatório académico (movido)
+# Academic report (moved)
 
-O relatório académico da aplicação foi movido para a secção **Academic** do portal:
+The application academic report has been moved to the **Academic** section of the portal:
 
 **[Application_Report.md](../../05_Docs/01_Academic_Reports/Application_Report.md)**
 
-Motivo: separar documentação técnica (`04_Architecture`) de entregas e material de defesa (`05_Docs`).
+Reason: separate technical documentation (`04_Architecture`) from academic deliverables and defence material (`05_Docs`).
 
 ---
 

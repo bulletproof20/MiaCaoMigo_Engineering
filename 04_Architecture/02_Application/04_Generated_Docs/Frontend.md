@@ -161,17 +161,23 @@ Known current gap: `staffArea.js` implements the full agenda rendering flow, but
 
 | Area | Main endpoints |
 |------|----------------|
-| Auth | `POST .../login`, `POST .../register`, `GET .../me`, `GET .../setup`, `PUT .../setup/theme`, `POST .../logout` |
+| Auth | `POST .../login`, `POST .../register`, `GET .../me`, `GET .../setup`, `PUT .../setup/theme`, `PUT .../heartbeat`, `POST .../logout` |
 | Clients | `GET /api/users/clients` for staff lookup flows |
 | Staff | `GET .../staff/me/agenda`, `GET .../staff/me/appointments`, `GET .../staff/me/schedule`, `GET .../staff/me/clock-ins`, `GET .../staff/me/absences`, `POST .../staff/me/clock-toggle` |
 | Employees | `POST /api/users/employees` for HR onboarding with `manage_employees` |
 | Animals | `GET .../species`, `GET .../breeds`, `GET .../me`, `GET /api/animals`, `POST /api/animals`, `PUT .../:id`, `DELETE .../:id`, `POST .../associate` |
 | Adoptions | `GET /api/animals/adoptions` (public), `POST /api/animals/:id/adopt` (authenticated client) |
-| Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments`, `PATCH .../:id_app/cancel`, `PATCH .../:id_app/reschedule`, `PATCH .../:id_app/start`, `PATCH .../:id_app/close`, `GET .../notifications/me`, `PATCH .../notifications/:id_not/read`, `PATCH .../notifications/read-all` |
+| Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments`, `PATCH .../:id_app/cancel`, `PATCH .../:id_app/reschedule`, `PATCH .../:id_app/check-in`, `PATCH .../:id_app/start`, `PATCH .../:id_app/close`, `GET .../:id_app/clinical-record`, `GET .../notifications/me`, `PATCH .../notifications/:id_not/read`, `PATCH .../notifications/read-all` |
+| Prescriptions and consultation record | `GET .../prescriptions/me`, `GET .../prescriptions/:id_pre/pdf`, `GET .../prescriptions/products`, `GET .../prescriptions/consultation/:id_app`, `POST .../prescriptions/consultation/:id_app`, `POST .../prescriptions/consultation/:id_app/products`, `PUT .../prescriptions/consultation/:id_app/clinical-record` |
 
 Base prefixes: `/api/users/auth`, `/api/users/clients`, `/api/users/staff`, `/api/users/employees`, `/api/animals`, `/api/appointments`.
 
-Implementation note: staff appointment rescheduling passes optional `excludeAppId` to `GET /api/appointments/availability`; staff animal registration currently calls the local API base URL (`http://localhost:3000`) directly.
+Implementation notes:
+
+- `authSession.js` sends `PUT /api/users/auth/heartbeat` every 30 seconds; the backend implements it and Swagger/OpenAPI documents it.
+- Staff appointment rescheduling passes optional `excludeAppId` to `GET /api/appointments/availability`.
+- Staff animal registration currently calls the local API base URL (`http://localhost:3000`) directly and contains a fallback to `/api/animals/breed`; the backend route is `/api/animals/breeds`.
+- `FuncionarioDetalhe.html` remains a static/prototype detail page until a future employee-detail API is implemented.
 
 Full contract: [Swagger](Swagger.md) · runtime at `http://localhost:3000/api-docs/`
 
