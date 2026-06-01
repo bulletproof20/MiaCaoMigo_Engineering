@@ -202,6 +202,20 @@ Open appointments page
 
 ---
 
+## Client notification flow
+
+Client notifications are shown in `FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html` and loaded by `FrontEnd/Js/geral/clientDashboard.js`.
+
+| Action | Endpoint | Notes |
+|--------|----------|-------|
+| List notifications | `GET /api/appointments/notifications/me` | Returns reminder notifications and unread count for the authenticated client |
+| Mark one as read | `PATCH /api/appointments/notifications/:id_not/read` | Validates notification ownership before updating `rea_not` |
+| Mark all as read | `PATCH /api/appointments/notifications/read-all` | Bulk read action for the authenticated client |
+
+The DataLayer already generates next-day reminders through `jpr_generate_appointment_warnings()` and the `daily_appointment_warnings` pg_cron job. The ApplicationLayer excludes the internal waiting-room marker (`__WAITING_ROOM__`) from the client feed so operational check-in data is not displayed as a user notification.
+
+---
+
 ## Staff/admin flow
 
 Staff users enter through the same authentication flow but are separated by institutional email and JWT permissions.

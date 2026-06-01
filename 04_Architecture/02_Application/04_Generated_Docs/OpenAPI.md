@@ -27,10 +27,11 @@ The JSON file at `Docs/Swagger/openapi.json` is produced by `npm run docs:genera
 | Employee onboarding | `/api/users/employees` |
 | Animals and adoptions | `/api/animals/*` |
 | Appointments | `/api/appointments/*` |
+| Appointment notifications | `/api/appointments/notifications/*` |
 
 Only mounted Express routes are published. Partial or unmounted modules are intentionally excluded from the generated contract.
 
-Appointment availability supports `vetId`, `date` and optional `excludeAppId` query parameters; the optional parameter is used by the staff/client reschedule flow to ignore the appointment currently being moved.
+Appointment availability supports `vetId`, `date` and optional `excludeAppId` query parameters; the optional parameter is used by the staff/client reschedule flow to ignore the appointment currently being moved. Client notification endpoints expose the existing `appointment_notification` read/unread feed and exclude the internal `__WAITING_ROOM__` check-in marker.
 
 ---
 

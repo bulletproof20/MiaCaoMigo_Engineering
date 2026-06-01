@@ -36,6 +36,8 @@ The current Swagger contract includes `POST /api/users/employees`, which support
 
 The appointment availability contract also documents the optional `excludeAppId` query parameter used when recalculating free slots during rescheduling.
 
+Client notification endpoints are also documented under `/api/appointments/notifications/*`; they expose the existing `appointment_notification` read/unread workflow and filter out the internal waiting-room marker.
+
 ---
 
 ## Runtime View

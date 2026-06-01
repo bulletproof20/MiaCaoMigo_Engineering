@@ -86,7 +86,7 @@ The current frontend still maps old `UserView` and `AdminPanel` URLs for redirec
 |------|---------|
 | `Mod1_Users/Autenticacao/login.html` | Login |
 | `Mod1_Users/Autenticacao/criar_conta.html` | Client registration |
-| `Mod1_Users/Clientes/area_cliente.html` | Client hub |
+| `Mod1_Users/Clientes/area_cliente.html` | Client hub with notification feed and unread status |
 | `Mod1_Users/User/Defenitions.html` | User settings/preferences page |
 | `Mod2_Animals/animais.html` | Account animals |
 | `Mod2_Animals/adicionar-animal.html` | Add animal page |
@@ -116,7 +116,7 @@ The current frontend still maps old `UserView` and `AdminPanel` URLs for redirec
 | `geral/authSession.js` | `window.MiaAuth`, token, user, theme, logout, and public nav behavior |
 | `Mod1/login.js` | Login and profile-based redirect |
 | `Mod1/criarConta.js` | `POST /api/users/auth/register` |
-| `geral/clientDashboard.js` | Session validation with `GET /api/users/auth/me` |
+| `geral/clientDashboard.js` | Session validation with `GET /api/users/auth/me` and client notifications (`GET /api/appointments/notifications/me`) |
 | `Mod2/clientAnimais.js` | Species, breeds, and client animals |
 | `Mod2/adocoes.js` | Public adoptions list and `POST /api/animals/:id/adopt` |
 | `Mod4/clientConsultas.js` | Appointments, availability, and booking |
@@ -167,7 +167,7 @@ Known current gap: `staffArea.js` implements the full agenda rendering flow, but
 | Employees | `POST /api/users/employees` for HR onboarding with `manage_employees` |
 | Animals | `GET .../species`, `GET .../breeds`, `GET .../me`, `GET /api/animals`, `POST /api/animals`, `PUT .../:id`, `DELETE .../:id`, `POST .../associate` |
 | Adoptions | `GET /api/animals/adoptions` (public), `POST /api/animals/:id/adopt` (authenticated client) |
-| Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments`, `PATCH .../:id_app/cancel`, `PATCH .../:id_app/reschedule`, `PATCH .../:id_app/start`, `PATCH .../:id_app/close` |
+| Appointments | `GET .../me`, `GET .../veterinarians`, `GET .../specialties`, `GET .../availability`, `POST /api/appointments`, `PATCH .../:id_app/cancel`, `PATCH .../:id_app/reschedule`, `PATCH .../:id_app/start`, `PATCH .../:id_app/close`, `GET .../notifications/me`, `PATCH .../notifications/:id_not/read`, `PATCH .../notifications/read-all` |
 
 Base prefixes: `/api/users/auth`, `/api/users/clients`, `/api/users/staff`, `/api/users/employees`, `/api/animals`, `/api/appointments`.
 

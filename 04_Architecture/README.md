@@ -15,7 +15,23 @@ Index for **system**, **application** and **database** architecture. Validated a
 |----------|--------|
 | [System architecture](00_System_Architecture.md) | DataLayer · Application · Engineering |
 | [Application hub](02_Application/README.md) | Website architecture, flows, runtime setup, implementation evidence and [application documentation hub](02_Application/04_Generated_Docs/README.md) |
+| [Academic application report](02_Application/05_Academic_Report.md) | Compact defense-oriented report covering implemented website scope, API evidence and current limitations |
 | [Database hub](01_Database/README.md) | PostgreSQL, M1–M4, QA, SchemaSpy link |
+
+---
+
+## Academic report focus
+
+The academic application report consolidates the implemented ApplicationLayer evidence for defense reading:
+
+| Area | Evidence covered |
+|------|------------------|
+| Mod1 - Users | Public authentication, JWT session handling, client/staff separation, role-aware sidebars and employee management views |
+| Mod2 - Animals | Catalogs, client animal area, public adoptions and staff animal operations |
+| Mod3 - Commercial | Public shop placeholder and reserved commercial/reporting navigation entries |
+| Mod4 - Appointments | Client booking, availability lookup, cancellation/rescheduling and staff lifecycle operations |
+
+It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/animals`, `/api/appointments`) and positions Swagger/OpenAPI as the published REST contract for the current website implementation.
 
 ---
 

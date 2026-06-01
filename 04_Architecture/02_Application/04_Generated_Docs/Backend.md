@@ -148,6 +148,20 @@ Current implementation detail: the frontend collects a `schedule` object, and th
 
 ---
 
+## Client Notifications
+
+Appointment reminders use the existing DataLayer table `appointment_notification`, where `rea_not` stores read/unread state. The database procedure `jpr_generate_appointment_warnings()` and cron job `daily_appointment_warnings` generate next-day appointment reminders.
+
+| Endpoint | Guard | Responsibility |
+|----------|-------|----------------|
+| `GET /api/appointments/notifications/me` | `requireAuth` (client only) | List client notifications and unread count |
+| `PATCH /api/appointments/notifications/:id_not/read` | `requireAuth` (client only) | Mark one owned notification as read |
+| `PATCH /api/appointments/notifications/read-all` | `requireAuth` (client only) | Mark all owned notifications as read |
+
+The application filters out the operational waiting-room marker `__WAITING_ROOM__`, because that row is used internally by the check-in flow and is not a message for the client.
+
+---
+
 ## OpenAPI
 
 The API source of truth is the `@swagger` comments in mounted route files and the schemas defined in `Backend/swaggerConfig.js`.
@@ -162,7 +176,7 @@ Routes included in the current OpenAPI contract:
 - `Backend/routes/Mod4_Appointments/appointmentRoutes.js`
 - `Backend/routes/Mod4_Appointments/prescricoesRoutes.js`
 
-Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration). PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency.
+Clinical persistence uses existing Mod4 tables (`anamnesis`, `overall_assessment`, `prescription`, `rel_app_product`). Waiting-room check-in reuses `appointment_notification` with message `__WAITING_ROOM__` (no schema migration), while client notification endpoints read the same table and explicitly filter that internal marker. PDF export uses `Backend/services/prescriptionPdf.js` and the `pdfkit` dependency.
 
 Stub modules, such as partial Mod3 billing routes, remain excluded from the contract when not mounted in `server.js`.
 

@@ -38,6 +38,7 @@ Normative sources:
 | APP-EV-M4-05 | RF_M4_05, RF_M4_13 | `PATCH /api/appointments/:id_app/check-in`, start validation in `appointmentModel.js`, `RegistoConsulta.html`, `registoConsulta.js` | Waiting room + previous-slot rules; dedicated clinical record page after start |
 | APP-EV-M4-06 | RF_M4_08, RF_M4_09 | `PUT .../clinical-record`, `anamnesis` / `overall_assessment`, `GET .../prescriptions/me` | Structured clinical data and client prescription list without DB schema changes |
 | APP-EV-M4-07 | RF_M4_08 | `GET /api/appointments/prescriptions/:id_pre/pdf`, `prescriptionPdf.js` | On-demand PDF for staff print and client download |
+| APP-EV-M4-08 | RF_M4 appointment communication | `GET /api/appointments/notifications/me`, `PATCH .../notifications/:id_not/read`, `area_cliente.html`, `clientDashboard.js`, `appointment_notification.rea_not` | Client notification feed for appointment reminders; internal waiting-room marker is filtered out |
 
 ---
 
@@ -62,7 +63,7 @@ Normative sources:
 | Mod1 authentication/setup/staff | Implemented for login, register, logout, session read, client theme preference persistence, staff self-service API/widgets, role-aware sidebars, employee onboarding and HR presentation views; `AreaFuncionario.html` requires page-shell restoration |
 | Mod2 animals | Implemented for catalogs, client animal reads and staff-controlled operations |
 | Mod3 commercial | Public shop placeholder and sidebar entries exist; commercial API remains outside the mounted website contract |
-| Mod4 appointments | Implemented for booking, availability, client management, staff scheduling, clinical record, prescriptions, PDF export and lifecycle operations |
+| Mod4 appointments | Implemented for booking, availability, client management, reminders/notifications, staff scheduling, clinical record, prescriptions, PDF export and lifecycle operations |
 | Infrastructure NFR | Local/Docker setup documented; production HTTPS/availability policies remain operational concerns |
 
 ---

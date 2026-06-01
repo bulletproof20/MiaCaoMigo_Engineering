@@ -160,6 +160,7 @@ nav:
           - Website Flows: 04_Architecture/02_Application/01_Website_Flows.md
           - Runtime Setup: 04_Architecture/02_Application/02_Runtime_Setup.md
           - Implementation Evidence: 04_Architecture/02_Application/03_Implementation_Evidence.md
+          - Academic Application Report: 04_Architecture/02_Application/05_Academic_Report.md
           - Website Documentation:
               - Hub: 04_Architecture/02_Application/04_Generated_Docs/README.md
               - Backend: 04_Architecture/02_Application/04_Generated_Docs/Backend.md
