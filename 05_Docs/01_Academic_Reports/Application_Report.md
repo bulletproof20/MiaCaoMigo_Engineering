@@ -32,7 +32,7 @@ The website distinguishes public users, authenticated clients, and authenticated
 
 | User | Main access | Example actions |
 |------|-------------|-----------------|
-| Visitor | Public pages | Browse services, adoptions, public shop, contact and institutional information |
+| Visitor | Public pages | Browse services, public adoption listing, static online shop/contact pages, and institutional information |
 | Client | Client area | View animals, book appointments, reschedule/cancel appointments, view notifications, prescriptions and own invoices |
 | Staff | Internal area | View personal agenda, attendance, absences, and operations according to permissions |
 | Administrator / HR | Staff area | Create employees, view staff board, access management views |
@@ -51,13 +51,13 @@ The client/staff distinction uses the institutional domain `@miacaomigo.pt` and 
 | Module | Website status | Demonstrable features |
 |--------|----------------|------------------------|
 | Mod1 - Users | Centrally implemented | Client registration, login, logout, JWT session, light/dark theme, client area, staff area, RBAC, employee creation |
-| Mod2 - Animals | Partially implemented / operational | Species/breed catalogues, client animal list, public adoptions, internal animal operations |
+| Mod2 - Animals | Partially implemented / operational | Species/breed catalogues, client animal list, public adoption listing, backend adoption endpoint, internal animal operations |
 | Mod3 - Commercial | Operational core implemented | Staff commercial area for administrators and assistants, counter sales, invoice history/details, invoice PDF downloads, returns, restock, stock/catalog operations, and client invoice visibility |
-| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling with past-date prevention, notifications, prescriptions with invoice-style PDF export, and appointment lifecycle |
+| Mod4 - Appointments | Substantially implemented | Booking, availability, listing, cancellation, rescheduling with past-date prevention, notifications, prescriptions with invoice-style PDF export, and staff lifecycle actions |
 
 ### 3.2 Main system flows
 
-The application should be read through a small set of core flows rather than a single linear path. These flows represent the most relevant behaviours for the defence: authentication, client self-service, staff/RBAC operations, public adoptions, and API request handling.
+The application should be read through a small set of core flows rather than a single linear path. These flows represent the most relevant behaviours for the defence: authentication, client self-service, staff/RBAC operations, public adoption listing, and API request handling.
 
 #### Authentication and routing flow
 
@@ -115,20 +115,20 @@ flowchart TD
     profiles --> dashboard["Staff dashboard"]
     dashboard --> selfService["Personal area: agenda, schedule, attendance"]
     dashboard --> rbac{"Permission available?"}
-    rbac -->|"manage_appointments"| appointmentsOps["Appointment management"]
+    rbac -->|"manage_appointments"| appointmentsOps["Appointment lifecycle actions"]
     rbac -->|"manage_employees"| employeesOps["Employee onboarding / staff board"]
     rbac -->|"manage_animals"| animalsOps["Animal registration / association"]
     rbac -->|"No permission"| hidden["Menu/action hidden or blocked"]
-    appointmentsOps --> apiGuard["Backend requirePermission"]
+    appointmentsOps --> apiGuard["Backend requirePermission on lifecycle actions"]
     employeesOps --> apiGuard
     animalsOps --> clinicGuard["Backend requireClinicSecretary / staff guard"]
 ```
 
 </div>
 
-This flow is important for defence because it separates **what the UI shows** from **what the backend enforces**. The sidebar adapts to the user profile, but protected operations still require middleware validation.
+This flow is important for defence because it separates **what the UI shows** from **what the backend enforces**. The sidebar adapts to the user profile; sensitive actions still require middleware validation, while some staff reads/creation flows use staff authentication plus database validation rather than a dedicated permission guard on every endpoint.
 
-#### Public adoptions flow
+#### Public adoption listing and API contract
 
 <div style="display:flex; justify-content:center; width:100%;" markdown="1">
 
@@ -136,17 +136,16 @@ This flow is important for defence because it separates **what the UI shows** fr
 flowchart TD
     visitor["Visitor opens adoptions page"] --> list["GET /api/animals/adoptions"]
     list --> cards["Display animals available for adoption"]
-    cards --> adopt["Adoption action"]
-    adopt --> auth{"Authenticated client?"}
-    auth -->|"No"| redirect["Redirect to login"]
-    auth -->|"Yes"| adoptApi["POST /api/animals/:id/adopt"]
+    list --> fallback{"API unavailable?"}
+    fallback -->|"Yes"| mock["Render local fallback cards"]
+    fallback -->|"No"| apiCards["Render database-backed cards"]
+    client["Authenticated client or Swagger/API test"] --> adoptApi["POST /api/animals/:id/adopt"]
     adoptApi --> ownership["Create ownership / update status"]
-    ownership --> refreshList["Refresh public list"]
 ```
 
 </div>
 
-This flow demonstrates the link between public browsing and authenticated client action. It also connects the visual adoption page with Mod2 backend behaviour.
+This flow separates what is visible in the current website from what exists in the backend contract. The public page demonstrates database-backed adoption listing and includes a local fallback list for demonstration continuity. The authenticated adoption endpoint exists in the API, but the current visible frontend does not yet submit the adoption request through that endpoint; the client-area adoption card is a presentation flow with an alert-style confirmation.
 
 #### API request flow
 
@@ -409,7 +408,7 @@ The system combines access control on the frontend and backend.
 | Frontend | Local guards, profile-based menus, client/staff page redirects |
 | JWT | Carries `staff`, `permissions`, and `profiles` |
 | Backend | `requireAuth`, `requireStaff`, `requirePermission`, and `requireClinicSecretary` middlewares |
-| Database | Profiles and permissions from RBAC tables (`profile`, `permission`, occupation/permission relations) |
+| Database | Profiles and permissions from RBAC tables (`profile`, `permission`, `occupies`, `have`) |
 
 Example permissions:
 
@@ -417,12 +416,12 @@ Example permissions:
 |------------|-----|
 | `manage_employees` | Create employees and access HR management |
 | `manage_animals` | Look up active clients for animal association |
-| `manage_appointments` | Manage appointments, check-in, start and close; also authorises active-client lookup for booking on behalf of a client |
-| `manage_sales` | Commercial sale/invoice capability; website access is further restricted to `administrador` and `assistente` profiles |
-| `manage_invoices` | Invoice lifecycle capability used by commercial workflows |
+| `manage_appointments` | Authorises appointment lifecycle actions such as check-in, start, close, cancellation/rescheduling as staff, and active-client lookup for booking support |
+| `manage_sales` | Commercial capability present in the RBAC seed; implemented website commercial access is guarded by staff profile (`administrador` / `assistente`) |
+| `manage_invoices` | Invoice lifecycle capability present in the RBAC seed and used in the DataLayer narrative; website invoice workflows are reached through the commercial profile guard |
 | `view_reports` | Reserved entry for reports |
 
-Even when the frontend hides or disables menu entries, authorisation is enforced on the backend. Critical operations are not protected by the UI alone.
+Even when the frontend hides or disables menu entries, authorisation is enforced on the backend. Critical operations are not protected by the UI alone, although not every endpoint maps one-to-one to a single granular permission; some use staff/profile guards plus database integrity rules.
 
 ### 3.6 Security
 
@@ -443,7 +442,7 @@ Key security points:
 - The token identifies the user but does not replace server-side permission checks.
 - Permissions come from the database and are carried in the JWT to guide frontend and backend.
 - The commercial area is guarded by staff profile: only `administrador` and `assistente` can access internal sales, invoices, stock, returns and counter workflows.
-- The backend rejects requests without a token, with an expired token, or with insufficient permissions.
+- The backend rejects requests without a token, with an expired token, with insufficient permissions, or with a staff profile outside the guarded area.
 - The API uses JSON and REST routes organised by module.
 
 ### 3.7 Usability
@@ -471,14 +470,14 @@ The backend starts from `Backend/server.js`, serves static files from `FrontEnd/
 | `/api/users/clients` | Client lookup/listing for authorised staff; shared by animal association and staff appointment booking |
 | `/api/users/staff/me` | Personal agenda, schedule, attendance, absences, clock toggle |
 | `/api/users/employees` | Employee creation with `manage_employees` permission |
-| `/api/animals` | Catalogues, client animals, adoptions, internal management |
-| `/api/stock`, `/api/sales`, `/api/return`, `/api/restock` | Internal commercial workflows reserved to administrator and assistant profiles |
+| `/api/animals` | Catalogues, client animals, adoption listing/API endpoint, internal management |
+| `/api/stock`, `/api/sales`, `/api/return`, `/api/restock` | Internal commercial workflows guarded by administrator and assistant profiles |
 | `/api/invoices` | Staff invoice history/details/PDF and authenticated client invoice reads/downloads through `/api/invoices/me` |
 | `/api/appointments` | Bookings, availability, notifications, lifecycle, history and prescription PDFs with invoice-style layout |
 | `/api-docs` | API Swagger UI |
 | `/api-docs.json` | OpenAPI specification in JSON |
 
-Models use `pg` and a shared PostgreSQL pool. Some business logic—login, logout, client creation—is delegated to database functions, aligning the application with the DataLayer.
+Models use `pg` and a shared PostgreSQL pool. Some business logic—login, logout, client creation and several lifecycle operations—is delegated to database functions/procedures, aligning the application with the DataLayer. The alignment is pragmatic rather than uniform: some modules call `svc_*` or `sp_*` database routines, while others combine direct SQL, views, triggers and stored procedures.
 
 ### 3.9 Navigation architecture
 
@@ -558,7 +557,7 @@ Beyond visible interface features, the project includes technical elements that 
 
 | Category | Tools / packages |
 |----------|------------------|
-| Frontend | HTML5, CSS3, JavaScript, Font Awesome, Bootstrap |
+| Frontend | HTML5, CSS3, JavaScript, Font Awesome; Bootstrap is installed as a dependency but is not the main styling foundation |
 | Backend | Node.js, Express |
 | Database | PostgreSQL, `pg` package |
 | Authentication | `jsonwebtoken`, JWT Bearer |
@@ -580,9 +579,12 @@ The current state is suitable for academic demonstration, but important limitati
 | Limitation | Impact |
 |------------|--------|
 | Project time constraints | The available development time limited the depth of implementation, testing and polishing possible before delivery |
-| Commercial scope beyond clinic counter | The staff commercial core is implemented (stock, restock, sales, returns, invoices and PDFs), but public shop checkout, advanced BI/reporting, legal invoice sequencing and a dedicated commercial-manager website role remain future work |
+| Public adoption submission | The backend exposes an authenticated adoption endpoint, but the visible public/client UI currently demonstrates listing and interest confirmation rather than submitting the adoption request through the API |
+| Commercial scope beyond clinic counter | The staff commercial core is implemented (stock, restock, sales, returns, invoices and PDFs), but the public shop is still static, and checkout, advanced BI/reporting, legal invoice sequencing and a dedicated commercial-manager website role remain future work |
+| Contact/public forms | Some public pages support the institutional narrative but are not all backed by API workflows |
 | Animal images | The current database model was not prepared to persist animal image metadata or file references, so animal visuals are limited to frontend/static placeholders |
 | Some HR views are presentation/prototype | They support the visual narrative but not all represent full API-backed workflows |
+| API/DataLayer service consistency | The DataLayer exposes several `svc_*` and `sp_*` contracts, but the Node models do not use them uniformly across all modules |
 | Token in `localStorage` | Simple for academic context; production would require XSS risk analysis and possibly `HttpOnly` cookies |
 | Development JWT secret | Fallback if `JWT_SECRET` is unset; production should require an explicit secret |
 | SHA-256 password hashing | Matches the database format, but production would prefer adaptive hashing (bcrypt/argon2) |
@@ -600,8 +602,10 @@ Future work should prioritise improvements that transform the current academic p
 
 | Improvement | Expected value |
 |-------------|----------------|
+| Wire adoption submission in the frontend | Connect the public/client adoption UI to `POST /api/animals/:id/adopt`, replacing alert-only confirmation with an API-backed request |
 | Animal image support | Add database fields or a media table for animal photo metadata, combined with a controlled upload/static asset strategy |
-| Extend commercial workflows beyond the operational core | Add public shop checkout, advanced commercial reports, legal invoice sequencing/payment hardening and a dedicated commercial-manager website role on top of the current stock/restock/sales/invoice/return implementation |
+| Extend commercial workflows beyond the operational core | Add public shop catalogue/checkout, advanced commercial reports, legal invoice sequencing/payment hardening and a dedicated commercial-manager website role on top of the current stock/restock/sales/invoice/return implementation |
+| API/DataLayer contract alignment | Prefer the documented `svc_*`/`sp_*` interfaces consistently, especially around appointment creation and clinical lifecycle flows |
 | Formal security testing | Add repeatable tests for invalid tokens, missing permissions, protected endpoints, input validation and CORS configuration |
 | Homepage hero asset | Convert `background_pagInicial.jpeg` (AVIF mislabel) to optimised JPEG/WebP and update CSS reference |
 | Extended performance validation | Repeat Firefox baselines for Mod3 commercial pages and additional Mod4 staff flows |
@@ -609,6 +613,7 @@ Future work should prioritise improvements that transform the current academic p
 | Session storage hardening | Evaluate `HttpOnly` cookies or another safer token storage strategy for production deployment |
 | Automated test coverage | Add focused tests for authentication, RBAC, appointment booking, adoption and staff workflows |
 | HR API completion | Replace remaining prototype/static HR views with fully API-backed employee detail and history endpoints |
+| Route validation tooling | Restore or replace the missing frontend route validation script referenced by the application package scripts |
 
 These improvements are natural continuations of the current architecture. They do not require changing the overall modular design, but they would strengthen reliability, security, maintainability and user experience.
 
@@ -620,7 +625,7 @@ The MiaCaoMigo website demonstrates a modular web application integrated with a 
 
 The main strengths are separation between frontend, backend, and DataLayer; JWT with RBAC; centralised navigation; and Swagger/OpenAPI. A complete demonstration path is: visitor → login → client area → book appointment → staff area → protected operation → Swagger.
 
-The project’s final message is that the solution is not merely a set of static pages, but a modular application with real integration between interface, API, permissions, and database, while keeping clear limitations for future evolution.
+The project’s final message is that the solution is not merely a set of static pages, but a modular application with real integration between interface, API, permissions, and database. At the same time, the report keeps clear boundaries around what is fully wired in the UI, what is available through the API/DataLayer, and what remains future work.
 
 ---
 

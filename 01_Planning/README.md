@@ -20,7 +20,7 @@ Project planning artefacts and the **Braga launch ecosystem** simulation.
 | Understand the demo ecosystem | [Ecosystem overview](01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM.md) |
 | Read human-centered stories | [Narrative Stories](01_UserStories/01_Narrative_Stories/README.md) |
 | Validate DemoData / QA semantics | [Operational Scenarios](01_UserStories/02_Operational_Scenarios/README.md) |
-| Academic sprint history | [Sprint 1](00_Sprints/Sprint_1/Sprint_01.md) · [Sprint 2](00_Sprints/Sprint_2/Sprint_02.md) |
+| Academic sprint history | [Sprint 1](00_Sprints/Sprint_1/Sprint_01.md) · [Sprint 2](00_Sprints/Sprint_2/Sprint_02.md) · [Sprint 3](00_Sprints/Sprint_3/Sprint_03.md) · [Sprint 4](00_Sprints/Sprint_4/Sprint_04.md) |
 | RF ↔ implementation status | [Implementation matrix](../02_Requirements/06_Implementation_Matrix.md) |
 
 Documentation layer model: [DOCUMENTATION_LAYERS.md](../DOCUMENTATION_LAYERS.md).
