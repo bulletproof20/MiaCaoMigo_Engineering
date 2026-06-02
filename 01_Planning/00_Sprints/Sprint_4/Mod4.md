@@ -23,7 +23,6 @@ As principais lacunas face ao PDF sao:
 
 - **RF_M4_07 / RN_M4_07**: a conclusao da consulta nao exige diagnostico obrigatorio. O backend aceita `dia_app` nulo ao fechar a consulta.
 - **RF_M4_08 / RN_M4_09**: a prescricao existe, mas nao tem campo de validade nem regra de validade maxima de 30 dias.
-- **RF_M4_09**: produtos aplicados na consulta existem; produtos/medicamentos como itens formais da prescricao existem na base de dados, mas nao ha UI/API para os adicionar.
 - **RF_M4_15**: existe estado `no_show` e job automatico, mas nao ha acao manual de staff para marcar uma consulta como nao realizada no fluxo web.
 - **RF_M4_17 / RN_M4_16 / RN_M4_17**: existe ligacao tecnica consulta-fatura, mas nao foi encontrada geracao automatica de fatura ao concluir consulta.
 
@@ -179,3 +178,8 @@ O PDF descreve estados `agendada`, `em curso`, `concluida`, `atrasada` e `cancel
 | Produtos usados na consulta | **Implementado** | Produtos com stock disponivel podem ser registados e reduzem stock |
 | Faturacao da consulta | **Parcial / nao automatizada** | Ligacao estrutural existe, mas nao ha geracao automatica de fatura apos conclusao |
 | Notificacoes | **Implementado** | Lembretes, inbox do cliente, leitura e sala de espera existem |
+
+
+
+
+<!-- - **RF_M4_09**: produtos aplicados na consulta existem; produtos/medicamentos como itens formais da prescricao existem na base de dados, mas nao ha UI/API para os adicionar. -->
