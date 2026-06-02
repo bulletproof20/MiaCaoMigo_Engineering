@@ -439,6 +439,7 @@ Security is implemented across several layers:
 
 Key security points:
 
+- Principle of least privilege: access permissions are assigned according to each user's operational responsibilities, reducing unnecessary privileges and minimising the risk of later permission reviews introducing security errors.
 - The token identifies the user but does not replace server-side permission checks.
 - Permissions come from the database and are carried in the JWT to guide frontend and backend.
 - The commercial area is guarded by staff profile: only `administrador` and `assistente` can access internal sales, invoices, stock, returns and counter workflows.
