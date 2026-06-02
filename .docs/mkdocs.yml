@@ -113,7 +113,10 @@ nav:
           - Sprint 1: 01_Planning/00_Sprints/Sprint_1/Sprint_01.md
           - Sprint 2: 01_Planning/00_Sprints/Sprint_2/Sprint_02.md
           - Sprint 3: 01_Planning/00_Sprints/Sprint_3/Sprint_03.md
-          - Sprint 4: 01_Planning/00_Sprints/Sprint_4/Sprint_04.md
+          - Sprint 4:
+              - Overview: 01_Planning/00_Sprints/Sprint_4/Sprint_04.md
+              - Module 3 proof: 01_Planning/00_Sprints/Sprint_4/Mod3.md
+              - Module 4 proof: 01_Planning/00_Sprints/Sprint_4/Mod4.md
 
   # =========================================================
   # Requirements

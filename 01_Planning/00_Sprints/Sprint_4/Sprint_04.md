@@ -55,5 +55,8 @@ This PDF is the academic deliverable for Sprint 4 and consolidates the final APS
 
 ## Proof of Implementation
 
+### Module 3
+&rarr; [Implementation Proof <-> Mod3](./Mod3.md) &larr;
+
 ### Module 4
 &rarr; [Implementation Proof <-> Mod4](./Mod4.md) &larr;
