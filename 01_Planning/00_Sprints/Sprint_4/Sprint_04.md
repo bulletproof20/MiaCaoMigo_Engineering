@@ -53,5 +53,7 @@ This PDF is the academic deliverable for Sprint 4 and consolidates the final APS
 > **Note:** Use this page as the Sprint 4 entry point, matching the Sprint 1 and Sprint 2 documentation pattern: official deliverable first, then traceability and supporting project artefacts.
 
 
-## Mod4
-|[CLICK HERE](./Mod4.md)|
+## Provas de Implementação
+
+### Modulo 4
+&rarr; [Provas implementação <-> Mod4](./Mod4.md) &larr;
