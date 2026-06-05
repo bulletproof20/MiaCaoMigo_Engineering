@@ -36,14 +36,45 @@ The system prioritizes:
 
 The ApplicationLayer communicates with the DataLayer through the backend API models and controlled database workflows.
 
-```text
-Frontend
-    ↓
-ApplicationLayer
-    ↓
-Backend Models / SQL services
-    ↓
-DataLayer
+```mermaid
+flowchart TB
+    subgraph Presentation["Presentation (FrontEnd)"]
+        HTML["HTML Pages"]
+        JS["Vanilla JS + Bootstrap"]
+    end
+
+    subgraph Application["Application Layer (02_MiaCaoMigo_Application)"]
+        Express["Express server.js"]
+        Routes["Routes"]
+        MW["Middlewares"]
+        Ctrl["Controllers"]
+        Svc["Services (parcial)"]
+        Models["Models (Repository)"]
+    end
+
+    subgraph Data["Data Layer (01_MiaCaoMigo_DataLayer)"]
+        PG["PostgreSQL 15 + pg_cron"]
+        SVC["svc_* / sp_* / vw_*"]
+        Schema["Schema + Triggers + Jobs"]
+    end
+
+    subgraph Engineering["Engineering Layer (00_MiaCaoMigo_Engineering)"]
+        Docs["MkDocs Portal"]
+        Arch["Architecture Specs"]
+        QA["QA Contracts"]
+    end
+
+    HTML --> JS
+    JS -->|HTTP REST + JWT| Express
+    Express --> Routes --> MW --> Ctrl
+    Ctrl --> Svc
+    Ctrl --> Models
+    Svc --> Models
+    Models -->|pg Pool| PG
+    PG --> SVC --> Schema
+    Engineering -.->|documenta| Application
+    Engineering -.->|documenta| Data
+
 ```
 
 The EngineeringLayer provides centralized governance, documentation, and architectural visibility for the entire ecosystem.
