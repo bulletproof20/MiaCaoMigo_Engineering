@@ -16,7 +16,8 @@ Mapa de diretorias e ficheiros do portal documental MiaCaoMigo Engineering.
 ```mermaid
 flowchart TB
     ROOT["MiaCaoMigo_Engineering"]
-    ROOT --> DOCS[".docs — MkDocs"]
+    ROOT --> MKCFG["mkdocs.yml"]
+    ROOT --> DOCS[".docs — MkDocs tooling"]
     ROOT --> ASSETS["00_Assets"]
     ROOT --> PLAN["01_Planning"]
     ROOT --> REQ["02_Requirements"]
@@ -46,16 +47,16 @@ flowchart TB
 | [`.gitignore`](.gitignore) | Exclusões Git |
 | [`home.md`](home.md) | Portal overview (MkDocs) |
 | [`DOCUMENTATION_LAYERS.md`](DOCUMENTATION_LAYERS.md) | Modelo de camadas documentais |
+| [`mkdocs.yml`](mkdocs.yml) | Configuração MkDocs (navegação, tema, caminhos) |
 
 ---
 
 ## `.docs/` — infraestrutura MkDocs
 
-> Diretoria protegida: configuração e scripts de rendering; não alterar sem necessidade explícita.
+> Diretoria protegida: Docker, overrides do tema e scripts de rendering; não alterar sem necessidade explícita. A configuração principal está em [`mkdocs.yml`](mkdocs.yml) na raiz.
 
 ```
 .docs/
-├── mkdocs.yml
 ├── docker-compose.yml
 ├── requirements.txt
 └── scripts/
@@ -68,9 +69,9 @@ flowchart TB
 
 | Ficheiro | Função |
 |----------|--------|
-| `mkdocs.yml` | Navegação lateral e tema Material |
 | `docker-compose.yml` | Servidor de documentação em container |
-| `requirements.txt` | Dependências Python |
+| `requirements.txt` | Dependências Python (inclui `mkdocs-same-dir` para `docs_dir: .` na raiz) |
+| `overrides/` | Overrides do tema Material |
 
 ---
 
@@ -270,7 +271,7 @@ flowchart TB
 
 ## Navegação MkDocs vs disco
 
-A sidebar em [`.docs/mkdocs.yml`](.docs/mkdocs.yml) espelha a estrutura de pastas. Excepções úteis:
+A sidebar em [`mkdocs.yml`](mkdocs.yml) espelha a estrutura de pastas. Excepções úteis:
 
 | No disco | Na nav MkDocs |
 |----------|----------------|

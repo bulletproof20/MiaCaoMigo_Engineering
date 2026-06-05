@@ -6,7 +6,7 @@ COPY .docs/requirements.txt .docs/requirements.txt
 RUN pip install --no-cache-dir -r .docs/requirements.txt
 
 COPY . .
-RUN mkdocs build -f .docs/mkdocs.yml --site-dir /site
+RUN mkdocs build --site-dir /site
 
 FROM nginx:1.27-alpine
 

@@ -28,6 +28,5 @@ services:
 
     # MkDocs development server
     command: >
-      serve
-      -f .docs/mkdocs.yml
-      --dev-addr=0.0.0.0:8000
+      sh -c "pip install --no-cache-dir -r .docs/requirements.txt
+      && mkdocs serve --dev-addr=0.0.0.0:8000"

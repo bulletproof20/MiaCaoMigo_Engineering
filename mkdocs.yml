@@ -1,11 +1,18 @@
 site_name: MiaCaoMigo Engineering
 
-docs_dir: ..
+docs_dir: .
 site_dir: ../site
+
+exclude_docs: |
+  /mkdocs.yml
+  /.gitignore
+  /.dockerignore
+  /Dockerfile.docs.prod
+  /.docs/
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: .docs/overrides
 
   logo: 00_Assets/00_Branding/00_logos/Logo_partialBack.png
   favicon: 00_Assets/00_Branding/01_icons/Logo_pBack.ico 
@@ -42,6 +49,7 @@ extra_css:
 
 plugins:
   - search
+  - same-dir
 
 markdown_extensions:
   - admonition

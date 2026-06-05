@@ -31,7 +31,8 @@ Mapa detalhado (diretorias e ficheiros): **[STRUCTURE.md](STRUCTURE.md)**.
 06_Performance/      → Performance strategy, tests and recommendations
 home.md              → Portal overview (MkDocs)
 DOCUMENTATION_LAYERS.md → Layer model (conceptual vs technical)
-.docs/               → MkDocs, Docker and documentation tooling
+mkdocs.yml           → MkDocs configuration (nav, theme, paths)
+.docs/               → MkDocs Docker, overrides and documentation scripts
 ```
 
 ---

@@ -62,7 +62,7 @@ It also identifies the mounted Express API prefixes (`/api/users/*`, `/api/anima
 ## Protected paths (do not edit via doc tasks)
 
 - `01_Database/03_SchemaSpy/02_Output/` — generated HTML (do not edit)
-- `.docs/` — MkDocs infrastructure
+- `.docs/` — MkDocs tooling (overrides, Docker, scripts); config at [`mkdocs.yml`](../mkdocs.yml)
 
 ---
 
