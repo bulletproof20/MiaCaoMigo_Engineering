@@ -1,0 +1,5702 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../03_Business_Processes/">
+      
+      
+        <link rel="next" href="../06_Implementation_Matrix/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../00_Assets/00_Branding/01_icons/Logo_pBack.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Acceptance Criteria - MiaCaoMigo Engineering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../Extras/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#criterios-de-aceitacao-sistema-de-gestao-veterinaria" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-header__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiaCaoMigo Engineering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Acceptance Criteria
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Planning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Diagrams
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Performance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Academic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Deployment/README_Production_Docker/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Production
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-nav__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    MiaCaoMigo Engineering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCUMENTATION_LAYERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/01_Narrative_Stories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narrative Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Narrative Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ecosystem Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Employees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/03_Animals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Animals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/04_External/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — External
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_APPOINTMENT_STATES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointment States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_COMMERCIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_INCIDENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_NOTIFICATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprints
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprints
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_1/Sprint_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_2/Sprint_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_3/Sprint_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprint 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Sprint_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Non_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Business_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Business_Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptance Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Implementation_Matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagrams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER V10 — Conceptual attributes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER V10 — Conceptual attributes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/00_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/00_Application_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/01_Website_Flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/02_Runtime_Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/03_Implementation_Evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/04_Generated_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3_7" id="__nav_5_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Website Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/OpenAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Update_Docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Update Docs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/Architecture_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_2" id="__nav_5_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_3" id="__nav_5_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_4" id="__nav_5_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Rules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrity Rules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedural Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_5" id="__nav_5_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Templates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Authoring Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3_2" id="__nav_5_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Schema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Schema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_4" id="__nav_5_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SchemaSpy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SchemaSpy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06_Performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/01_Performance_Strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/02_Frontend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/03_Backend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/04_Test_Results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/05_Recommendations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Academic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/00_Statements/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/01_Academic_Reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/02_Presentation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/15min_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 min Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/Screenshots_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_Deployment/README_Production_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="criterios-de-aceitacao-sistema-de-gestao-veterinaria">Critérios de Aceitação — Sistema de Gestão Veterinária<a class="headerlink" href="#criterios-de-aceitacao-sistema-de-gestao-veterinaria" title="Permanent link">&para;</a></h1>
+<p>Condições de validação dos <a href="../00_Functional_Requirements/">requisitos funcionais</a> (<code>RF_Mx_yy</code>). Cada bloco <code>AC_RF_Mx_yy</code> é testável, objectivo e orientado a negócio — <strong>sem</strong> detalhe de implementação.</p>
+<p><strong>Contagens:</strong> M1 — 43 · M2 — 19 · M3 — 30 · M4 — 17 · <strong>Total: 109 AC</strong> (paridade 1:1 com RF).</p>
+<p><strong>Relacionado:</strong> <a href="../06_Implementation_Matrix/">06_Implementation_Matrix.md</a> · <a href="../07_Constraints/">07_Constraints.md</a> · <a href="../02_Business_Rules/">02_Business_Rules.md</a></p>
+<hr />
+<h1 id="indice">Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#módulo-1--gestão-de-utilizadores">Módulo 1</a></li>
+<li><a href="#módulo-2--gestão-de-animais">Módulo 2</a></li>
+<li><a href="#módulo-3--gestão-comercial">Módulo 3</a></li>
+<li><a href="#módulo-4--gestão-de-consultas">Módulo 4</a></li>
+<li><a href="#regras-sem-rf-dedicado">Regras sem RF dedicado</a></li>
+<li><a href="#convenções">Convenções</a></li>
+</ul>
+<hr />
+<h1 id="modulo-1-gestao-de-utilizadores">Módulo 1 — Gestão de Utilizadores<a class="headerlink" href="#modulo-1-gestao-de-utilizadores" title="Permanent link">&para;</a></h1>
+<h2 id="ac_rf_m1_01-criacao-de-conta-de-cliente">AC_RF_M1_01 — Criação de conta de cliente<a class="headerlink" href="#ac_rf_m1_01-criacao-de-conta-de-cliente" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> <a href="../00_Functional_Requirements/#módulo-1--gestão-de-utilizadores">RF_M1_01</a> · <strong>PN:</strong> PN_M1_01</p>
+<h3 id="criterios-de-aceitacao">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>O sistema permite criar conta de cliente associada a um indivíduo identificado.</li>
+<li>Não é possível criar cliente sem vínculo a indivíduo.</li>
+<li>Após criação, o cliente pode ser referenciado em processos de negócio (ex.: adoção).</li>
+</ul>
+<h2 id="ac_rf_m1_02-criacao-de-conta-de-empregado">AC_RF_M1_02 — Criação de conta de empregado<a class="headerlink" href="#ac_rf_m1_02-criacao-de-conta-de-empregado" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_02 · <strong>PN:</strong> PN_M1_01</p>
+<h3 id="criterios-de-aceitacao_1">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>O sistema permite criar conta de empregado com email institucional.</li>
+<li>O email institucional não pode ser alterado após criação.</li>
+<li>Conta inválida ou incompleta é rejeitada com mensagem compreensível.</li>
+</ul>
+<h2 id="ac_rf_m1_03-unicidade-de-conta-por-tipo">AC_RF_M1_03 — Unicidade de conta por tipo<a class="headerlink" href="#ac_rf_m1_03-unicidade-de-conta-por-tipo" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_03 · <strong>PN:</strong> PN_M1_01</p>
+<h3 id="criterios-de-aceitacao_2">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Um indivíduo não pode ter mais de uma conta de cliente activa.</li>
+<li>Um indivíduo não pode ter mais de uma conta de empregado activa.</li>
+<li>Tentativa de duplicar conta activa do mesmo tipo é rejeitada.</li>
+</ul>
+<h2 id="ac_rf_m1_04-desativacao-de-contas">AC_RF_M1_04 — Desativação de contas<a class="headerlink" href="#ac_rf_m1_04-desativacao-de-contas" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_04 · <strong>PN:</strong> PN_M1_01</p>
+<h3 id="criterios-de-aceitacao_3">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Contas podem ser desactivadas sem apagar histórico associado.</li>
+<li>Conta desactivada não pode ser usada como conta activa em novas operações.</li>
+<li>Registos históricos permanecem consultáveis conforme política de retenção.</li>
+</ul>
+<h2 id="ac_rf_m1_05-autenticacao">AC_RF_M1_05 — Autenticação<a class="headerlink" href="#ac_rf_m1_05-autenticacao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_05 · <strong>PN:</strong> PN_M1_02</p>
+<h3 id="criterios-de-aceitacao_4">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilizador com email e password válidos autentica com sucesso.</li>
+<li>Password incorrecta impede autenticação.</li>
+<li>Conta desactivada não autentica.</li>
+</ul>
+<h2 id="ac_rf_m1_06-sessao-unica">AC_RF_M1_06 — Sessão única<a class="headerlink" href="#ac_rf_m1_06-sessao-unica" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_06 · <strong>PN:</strong> PN_M1_02</p>
+<h3 id="criterios-de-aceitacao_5">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Apenas uma sessão activa por conta é permitida em simultâneo.</li>
+<li>Nova autenticação com sessão activa segue política definida (invalidar anterior ou rejeitar).</li>
+</ul>
+<h2 id="ac_rf_m1_07-registo-de-tentativas-de-autenticacao">AC_RF_M1_07 — Registo de tentativas de autenticação<a class="headerlink" href="#ac_rf_m1_07-registo-de-tentativas-de-autenticacao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_07 · <strong>PN:</strong> PN_M1_02</p>
+<h3 id="criterios-de-aceitacao_6">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada tentativa regista IP, data/hora e resultado (sucesso/falha).</li>
+<li>Tentativas falhadas ficam auditáveis.</li>
+<li>Dados registados são consultáveis para fins de segurança.</li>
+</ul>
+<h2 id="ac_rf_m1_08-login-e-logout">AC_RF_M1_08 — Login e logout<a class="headerlink" href="#ac_rf_m1_08-login-e-logout" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_08 · <strong>PN:</strong> PN_M1_02</p>
+<h3 id="criterios-de-aceitacao_7">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Login regista data e hora de início de sessão.</li>
+<li>Logout regista data e hora de encerramento quando aplicável.</li>
+<li>Eventos são associados à conta correcta.</li>
+</ul>
+<h2 id="ac_rf_m1_09-atualizacao-de-dados-pessoais">AC_RF_M1_09 — Atualização de dados pessoais<a class="headerlink" href="#ac_rf_m1_09-atualizacao-de-dados-pessoais" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_09 · <strong>PN:</strong> PN_M1_04</p>
+<h3 id="criterios-de-aceitacao_8">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dados pessoais do indivíduo podem ser actualizados por utilizador autorizado.</li>
+<li>Campos obrigatórios inválidos impedem gravação.</li>
+<li>Alteração reflecte-se nas contas ligadas ao mesmo indivíduo quando aplicável.</li>
+</ul>
+<h2 id="ac_rf_m1_10-partilha-de-dados-entre-contas">AC_RF_M1_10 — Partilha de dados entre contas<a class="headerlink" href="#ac_rf_m1_10-partilha-de-dados-entre-contas" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_10 · <strong>PN:</strong> PN_M1_04</p>
+<h3 id="criterios-de-aceitacao_9">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dados do indivíduo são consistentes entre contas cliente e empregado do mesmo indivíduo.</li>
+<li>Actualização num ponto actualiza a visão partilhada sem duplicação manual.</li>
+</ul>
+<h2 id="ac_rf_m1_11-estado-actual-dos-dados-pessoais">AC_RF_M1_11 — Estado actual dos dados pessoais<a class="headerlink" href="#ac_rf_m1_11-estado-actual-dos-dados-pessoais" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_11 · <strong>PN:</strong> PN_M1_04</p>
+<h3 id="criterios-de-aceitacao_10">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta de dados pessoais devolve apenas o estado actual.</li>
+<li>Não existe histórico versionado de alterações de PII para utilizador final.</li>
+</ul>
+<h2 id="ac_rf_m1_12-alteracao-de-password">AC_RF_M1_12 — Alteração de password<a class="headerlink" href="#ac_rf_m1_12-alteracao-de-password" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_12 · <strong>PN:</strong> PN_M1_03</p>
+<h3 id="criterios-de-aceitacao_11">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alteração exige confirmação da password actual.</li>
+<li>Password actual incorrecta bloqueia alteração.</li>
+<li>Nova password válida substitui a anterior com sucesso.</li>
+</ul>
+<h2 id="ac_rf_m1_13-armazenamento-seguro-de-passwords">AC_RF_M1_13 — Armazenamento seguro de passwords<a class="headerlink" href="#ac_rf_m1_13-armazenamento-seguro-de-passwords" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_13 · <strong>PN:</strong> PN_M1_03</p>
+<h3 id="criterios-de-aceitacao_12">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Passwords nunca são apresentadas ou armazenadas em texto claro.</li>
+<li>Autenticação valida contra representação segura (hash).</li>
+<li>Política de complexidade aplicável é respeitada quando definida.</li>
+</ul>
+<h2 id="ac_rf_m1_14-historico-de-passwords">AC_RF_M1_14 — Histórico de passwords<a class="headerlink" href="#ac_rf_m1_14-historico-de-passwords" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_14 · <strong>PN:</strong> PN_M1_03</p>
+<h3 id="criterios-de-aceitacao_13">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alterações de password geram registo de rastreabilidade (sem expor valor).</li>
+<li>Histórico permite auditoria de quantas alterações ocorreram e quando.</li>
+<li>Reutilização imediata da password anterior pode ser bloqueada se política RN o exigir.</li>
+</ul>
+<h2 id="ac_rf_m1_15-gestao-de-roles-organizacionais">AC_RF_M1_15 — Gestão de roles organizacionais<a class="headerlink" href="#ac_rf_m1_15-gestao-de-roles-organizacionais" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_15 · <strong>PN:</strong> PN_M1_05</p>
+<h3 id="criterios-de-aceitacao_14">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Roles podem ser criadas e mantidas por utilizador autorizado.</li>
+<li>Role inexistente não pode ser atribuída.</li>
+<li>Lista de roles disponíveis é consultável.</li>
+</ul>
+<h2 id="ac_rf_m1_16-multiplos-roles-por-empregado">AC_RF_M1_16 — Múltiplos roles por empregado<a class="headerlink" href="#ac_rf_m1_16-multiplos-roles-por-empregado" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_16 · <strong>PN:</strong> PN_M1_05</p>
+<h3 id="criterios-de-aceitacao_15">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Um empregado pode ter mais do que um role activo quando permitido.</li>
+<li>Atribuição duplicada do mesmo role é tratada conforme regra de negócio.</li>
+<li>Permissões efectivas reflectem a união dos roles atribuídos.</li>
+</ul>
+<h2 id="ac_rf_m1_17-permissoes-por-role">AC_RF_M1_17 — Permissões por role<a class="headerlink" href="#ac_rf_m1_17-permissoes-por-role" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_17 · <strong>PN:</strong> PN_M1_05</p>
+<h3 id="criterios-de-aceitacao_16">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Permissões podem ser associadas a roles.</li>
+<li>Empregado com role herda permissões desse role.</li>
+<li>Operação sem permissão é negada.</li>
+</ul>
+<h2 id="ac_rf_m1_18-historico-temporal-de-roles">AC_RF_M1_18 — Histórico temporal de roles<a class="headerlink" href="#ac_rf_m1_18-historico-temporal-de-roles" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_18 · <strong>PN:</strong> PN_M1_05</p>
+<h3 id="criterios-de-aceitacao_17">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada atribuição de role regista intervalo de vigência (início e fim quando aplicável).</li>
+<li>Consulta histórica mostra períodos passados e actual.</li>
+<li>Role terminado deixa de conceder permissões.</li>
+</ul>
+<h2 id="ac_rf_m1_19-responsavel-por-alteracoes-de-roles">AC_RF_M1_19 — Responsável por alterações de roles<a class="headerlink" href="#ac_rf_m1_19-responsavel-por-alteracoes-de-roles" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_19 · <strong>PN:</strong> PN_M1_05</p>
+<h3 id="criterios-de-aceitacao_18">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alterações de role registam o responsável (empregado/autor do sistema).</li>
+<li>Registo é consultável em auditoria.</li>
+</ul>
+<h2 id="ac_rf_m1_20-atribuicao-de-funcao-a-empregado">AC_RF_M1_20 — Atribuição de função a empregado<a class="headerlink" href="#ac_rf_m1_20-atribuicao-de-funcao-a-empregado" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_20 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_19">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Empregado pode ser classificado como veterinário ou auxiliar (ou equivalente do domínio).</li>
+<li>Função inválida ou incompatível é rejeitada.</li>
+<li>Função activa influencia operações clínicas permitidas.</li>
+</ul>
+<h2 id="ac_rf_m1_21-funcao-unica-activa">AC_RF_M1_21 — Função única activa<a class="headerlink" href="#ac_rf_m1_21-funcao-unica-activa" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_21 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_20">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Não existem duas funções activas em simultâneo para o mesmo empregado.</li>
+<li>Mudança de função encerra a anterior ou impede sobreposição.</li>
+</ul>
+<h2 id="ac_rf_m1_22-historico-de-funcoes">AC_RF_M1_22 — Histórico de funções<a class="headerlink" href="#ac_rf_m1_22-historico-de-funcoes" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_22 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_21">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Transições de função ficam registadas com datas de vigência.</li>
+<li>Histórico de funções desempenhadas é consultável.</li>
+</ul>
+<h2 id="ac_rf_m1_23-responsavel-por-alteracoes-de-funcao">AC_RF_M1_23 — Responsável por alterações de função<a class="headerlink" href="#ac_rf_m1_23-responsavel-por-alteracoes-de-funcao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_23 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_22">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alteração de função regista responsável pela mudança.</li>
+<li>Auditoria identifica quem autorizou a alteração.</li>
+</ul>
+<h2 id="ac_rf_m1_24-subfuncoes-de-auxiliares">AC_RF_M1_24 — Subfunções de auxiliares<a class="headerlink" href="#ac_rf_m1_24-subfuncoes-de-auxiliares" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_24 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_23">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Auxiliar pode ter subfunção definida no catálogo.</li>
+<li>Subfunção só aplica a empregados classificados como auxiliar.</li>
+<li>Subfunção incorrecta é rejeitada.</li>
+</ul>
+<h2 id="ac_rf_m1_25-veterinario-omv-e-especialidade">AC_RF_M1_25 — Veterinário: OMV e especialidade<a class="headerlink" href="#ac_rf_m1_25-veterinario-omv-e-especialidade" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_25 · <strong>PN:</strong> PN_M1_06</p>
+<h3 id="criterios-de-aceitacao_24">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Veterinário exige número OMV válido para ficar activo em função clínica.</li>
+<li>Especialidade é opcional e pode ser associada quando existir no catálogo.</li>
+<li>Veterinário sem OMV não pode assumir consultas que exijam OMV.</li>
+</ul>
+<h2 id="ac_rf_m1_26-horario-semanal-unico">AC_RF_M1_26 — Horário semanal único<a class="headerlink" href="#ac_rf_m1_26-horario-semanal-unico" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_26 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_25">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_25" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada empregado tem um horário semanal de referência definível.</li>
+<li>Horário cobre os dias da semana configurados no processo.</li>
+<li>Ausência de horário impede cálculo de disponibilidade baseado em turnos.</li>
+</ul>
+<h2 id="ac_rf_m1_27-multiplos-turnos-sem-sobreposicao">AC_RF_M1_27 — Múltiplos turnos sem sobreposição<a class="headerlink" href="#ac_rf_m1_27-multiplos-turnos-sem-sobreposicao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_27 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_26">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li>É possível definir vários turnos no mesmo dia.</li>
+<li>Turnos sobrepostos no mesmo dia são rejeitados.</li>
+<li>Turnos válidos contribuem para disponibilidade.</li>
+</ul>
+<h2 id="ac_rf_m1_28-actualizacao-de-horario-semanal">AC_RF_M1_28 — Actualização de horário semanal<a class="headerlink" href="#ac_rf_m1_28-actualizacao-de-horario-semanal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_28 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_27">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_27" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Novo horário semanal substitui o anterior para efeitos futuros.</li>
+<li>Horário anterior permanece consultável se política de histórico o exigir.</li>
+<li>Agendamentos futuros respeitam o horário vigente após actualização.</li>
+</ul>
+<h2 id="ac_rf_m1_29-pedidos-de-ausencia">AC_RF_M1_29 — Pedidos de ausência<a class="headerlink" href="#ac_rf_m1_29-pedidos-de-ausencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_29 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_28">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_28" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Empregado pode submeter ausência com data/hora de início e fim válidas.</li>
+<li>Intervalo inválido (fim antes do início) é rejeitado.</li>
+<li>Pedido fica registado em estado inicial (ex.: submetida).</li>
+</ul>
+<h2 id="ac_rf_m1_30-estados-de-ausencia">AC_RF_M1_30 — Estados de ausência<a class="headerlink" href="#ac_rf_m1_30-estados-de-ausencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_30 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_29">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_29" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ausência transita pelos estados previstos (submetida, aprovada, rejeitada, cancelada, usufruída).</li>
+<li>Transição inválida é bloqueada.</li>
+<li>Estado actual é visível ao solicitante e aprovador.</li>
+</ul>
+<h2 id="ac_rf_m1_31-cancelamento-de-ausencia-72h">AC_RF_M1_31 — Cancelamento de ausência (72h)<a class="headerlink" href="#ac_rf_m1_31-cancelamento-de-ausencia-72h" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_31 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_30">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cancelamento é permitido até 72 horas antes do início da ausência.</li>
+<li>Cancelamento fora do prazo é rejeitado.</li>
+<li>Ausência cancelada deixa de bloquear disponibilidade futura.</li>
+</ul>
+<h2 id="ac_rf_m1_32-historico-de-estados-de-ausencia">AC_RF_M1_32 — Histórico de estados de ausência<a class="headerlink" href="#ac_rf_m1_32-historico-de-estados-de-ausencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_32 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_31">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_31" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada mudança de estado da ausência fica registada com data.</li>
+<li>Histórico completo de estados é consultável por pedido de ausência.</li>
+</ul>
+<h2 id="ac_rf_m1_33-clock-in">AC_RF_M1_33 — Clock-in<a class="headerlink" href="#ac_rf_m1_33-clock-in" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_33 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_32">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_32" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Empregado pode registar entrada com data/hora.</li>
+<li>Entrada duplicada sem saída intermédia segue regra de negócio (bloquear ou encerrar anterior).</li>
+<li>Registo fica associado ao empregado correcto.</li>
+</ul>
+<h2 id="ac_rf_m1_34-clock-out">AC_RF_M1_34 — Clock-out<a class="headerlink" href="#ac_rf_m1_34-clock-out" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_34 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_33">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_33" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Empregado com entrada aberta pode registar saída.</li>
+<li>Saída sem entrada prévia é rejeitada.</li>
+<li>Duração entre entrada e saída é determinável.</li>
+</ul>
+<h2 id="ac_rf_m1_35-consistencia-temporal-de-presenca">AC_RF_M1_35 — Consistência temporal de presença<a class="headerlink" href="#ac_rf_m1_35-consistencia-temporal-de-presenca" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_35 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_34">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_34" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Saída anterior à entrada no mesmo registo é impossível.</li>
+<li>Registos inconsistentes são rejeitados na submissão.</li>
+</ul>
+<h2 id="ac_rf_m1_36-imutabilidade-de-presenca">AC_RF_M1_36 — Imutabilidade de presença<a class="headerlink" href="#ac_rf_m1_36-imutabilidade-de-presenca" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_36 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_35">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_35" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Registos de presença não podem ser eliminados por utilizador standard.</li>
+<li>Correcções seguem fluxo autorizado se existir (ajuste auditado).</li>
+</ul>
+<h2 id="ac_rf_m1_37-calculo-de-disponibilidade">AC_RF_M1_37 — Cálculo de disponibilidade<a class="headerlink" href="#ac_rf_m1_37-calculo-de-disponibilidade" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_37 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_36">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_36" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Disponibilidade reflecte horário semanal, ausências aprovadas e presenças quando aplicável.</li>
+<li>Período em ausência activa marca indisponibilidade.</li>
+<li>Resultado é utilizável para agendamento de consultas/recursos humanos.</li>
+</ul>
+<h2 id="ac_rf_m1_38-bloqueio-durante-ausencia">AC_RF_M1_38 — Bloqueio durante ausência<a class="headerlink" href="#ac_rf_m1_38-bloqueio-durante-ausencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_38 · <strong>PN:</strong> PN_M1_07</p>
+<h3 id="criterios-de-aceitacao_37">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_37" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Actividade operacional do empregado em ausência activa é bloqueada por defeito.</li>
+<li>Utilizador com permissão de excepção pode executar acções explicitamente permitidas.</li>
+<li>Bloqueio é verificável em teste de agendamento ou operação clínica.</li>
+</ul>
+<h2 id="ac_rf_m1_39-preferencias-de-tema-e-idioma">AC_RF_M1_39 — Preferências de tema e idioma<a class="headerlink" href="#ac_rf_m1_39-preferencias-de-tema-e-idioma" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_39 · <strong>PN:</strong> PN_M1_08</p>
+<h3 id="criterios-de-aceitacao_38">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_38" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilizador pode escolher tema claro ou escuro.</li>
+<li>Utilizador pode escolher idioma PT ou EN.</li>
+<li>Preferências persistem entre sessões.</li>
+</ul>
+<h2 id="ac_rf_m1_40-sincronizacao-de-preferencias">AC_RF_M1_40 — Sincronização de preferências<a class="headerlink" href="#ac_rf_m1_40-sincronizacao-de-preferencias" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_40 · <strong>PN:</strong> PN_M1_08</p>
+<h3 id="criterios-de-aceitacao_39">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_39" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alteração de preferências numa conta do indivíduo reflecte-se nas outras contas do mesmo indivíduo.</li>
+<li>Não é necessário reconfigurar manualmente em cada conta.</li>
+</ul>
+<h2 id="ac_rf_m1_41-preferencias-sem-historico">AC_RF_M1_41 — Preferências sem histórico<a class="headerlink" href="#ac_rf_m1_41-preferencias-sem-historico" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_41 · <strong>PN:</strong> PN_M1_08</p>
+<h3 id="criterios-de-aceitacao_40">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_40" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Apenas valor actual de tema/idioma é mantido para consulta.</li>
+<li>Não há histórico de versões de preferências para o utilizador.</li>
+</ul>
+<h2 id="ac_rf_m1_42-eliminacao-ou-anonimizacao-rgpd">AC_RF_M1_42 — Eliminação ou anonimização (RGPD)<a class="headerlink" href="#ac_rf_m1_42-eliminacao-ou-anonimizacao-rgpd" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_42 · <strong>PN:</strong> PN_M1_09</p>
+<h3 id="criterios-de-aceitacao_41">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_41" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Pedido válido de titular pode iniciar eliminação ou anonimização de dados pessoais.</li>
+<li>Dados sujeitos a obrigação legal não são apagados em violação da lei.</li>
+<li>Confirmação do resultado do pedido é comunicada ao solicitante autorizado.</li>
+</ul>
+<h2 id="ac_rf_m1_43-preservacao-legal-e-integridade">AC_RF_M1_43 — Preservação legal e integridade<a class="headerlink" href="#ac_rf_m1_43-preservacao-legal-e-integridade" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M1_43 · <strong>PN:</strong> PN_M1_09</p>
+<h3 id="criterios-de-aceitacao_42">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_42" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dados necessários a facturação, clínica ou auditoria legal são preservados após pedido RGPD quando aplicável.</li>
+<li>Integridade referencial do sistema não é quebrada por anonimização.</li>
+<li>Campos obrigatórios para conformidade permanecem ou são substituídos por valores anonimizados aceites.</li>
+</ul>
+<hr />
+<h1 id="modulo-2-gestao-de-animais">Módulo 2 — Gestão de Animais<a class="headerlink" href="#modulo-2-gestao-de-animais" title="Permanent link">&para;</a></h1>
+<h2 id="ac_rf_m2_01-registo-de-animal">AC_RF_M2_01 — Registo de animal<a class="headerlink" href="#ac_rf_m2_01-registo-de-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_01 · <strong>PN:</strong> PN_M2_01</p>
+<h3 id="criterios-de-aceitacao_43">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_43" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Animal pode ser registado com dados biográficos e identificadores (ex.: microchip).</li>
+<li>Identificador único duplicado é rejeitado quando aplicável.</li>
+<li>Animal registado fica disponível para processos subsequentes.</li>
+</ul>
+<h2 id="ac_rf_m2_02-especie-e-raca">AC_RF_M2_02 — Espécie e raça<a class="headerlink" href="#ac_rf_m2_02-especie-e-raca" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_02 · <strong>PN:</strong> PN_M2_07</p>
+<h3 id="criterios-de-aceitacao_44">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_44" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Animal só pode ser associado a espécie e raça existentes no catálogo.</li>
+<li>Combinação espécie/raça inválida é rejeitada.</li>
+<li>Catálogo é consultável na criação/edição.</li>
+</ul>
+<h2 id="ac_rf_m2_03-entrada-de-animal">AC_RF_M2_03 — Entrada de animal<a class="headerlink" href="#ac_rf_m2_03-entrada-de-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_03 · <strong>PN:</strong> PN_M2_02</p>
+<h3 id="criterios-de-aceitacao_45">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_45" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Entrada regista origem como cliente ou entidade externa.</li>
+<li>Entrada sem origem identificada é rejeitada.</li>
+<li>Data da entrada fica registada.</li>
+</ul>
+<h2 id="ac_rf_m2_04-estado-clinico-na-entrada">AC_RF_M2_04 — Estado clínico na entrada<a class="headerlink" href="#ac_rf_m2_04-estado-clinico-na-entrada" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_04 · <strong>PN:</strong> PN_M2_02</p>
+<h3 id="criterios-de-aceitacao_46">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_46" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Estado clínico inicial pode ser registado no momento da entrada.</li>
+<li>Campo obrigatório em falta impede conclusão se definido pelo processo.</li>
+</ul>
+<h2 id="ac_rf_m2_05-criacao-automatica-de-cliente">AC_RF_M2_05 — Criação automática de cliente<a class="headerlink" href="#ac_rf_m2_05-criacao-automatica-de-cliente" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_05 · <strong>PN:</strong> PN_M2_02</p>
+<h3 id="criterios-de-aceitacao_47">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_47" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quando entregador não existe como cliente, o sistema pode criar cliente automaticamente conforme fluxo.</li>
+<li>Cliente criado fica ligado à entrada do animal.</li>
+<li>Dados mínimos do novo cliente são validados.</li>
+</ul>
+<h2 id="ac_rf_m2_06-entidades-externas">AC_RF_M2_06 — Entidades externas<a class="headerlink" href="#ac_rf_m2_06-entidades-externas" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_06 · <strong>PN:</strong> PN_M2_06</p>
+<h3 id="criterios-de-aceitacao_48">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_48" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Entidade externa pode ser registada com identificação e contacto.</li>
+<li>Entidade duplicada é tratada conforme regra (reutilizar ou rejeitar).</li>
+<li>Entidade registada pode ser origem de entregas.</li>
+</ul>
+<h2 id="ac_rf_m2_07-actualizacao-de-estado-do-animal">AC_RF_M2_07 — Actualização de estado do animal<a class="headerlink" href="#ac_rf_m2_07-actualizacao-de-estado-do-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_07 · <strong>PN:</strong> PN_M2_03</p>
+<h3 id="criterios-de-aceitacao_49">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_49" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Estado do animal (interno, adotado, falecido, desaparecido, etc.) pode ser actualizado.</li>
+<li>Estado inválido para o contexto é rejeitado.</li>
+<li>Estado actual é consultável.</li>
+</ul>
+<h2 id="ac_rf_m2_08-historico-de-estados">AC_RF_M2_08 — Histórico de estados<a class="headerlink" href="#ac_rf_m2_08-historico-de-estados" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_08 · <strong>PN:</strong> PN_M2_03</p>
+<h3 id="criterios-de-aceitacao_50">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_50" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada alteração de estado gera novo registo histórico sem sobrescrever o anterior.</li>
+<li>Sequência temporal de estados é preservada.</li>
+</ul>
+<h2 id="ac_rf_m2_09-consulta-de-historico-de-estados">AC_RF_M2_09 — Consulta de histórico de estados<a class="headerlink" href="#ac_rf_m2_09-consulta-de-historico-de-estados" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_09 · <strong>PN:</strong> PN_M2_03</p>
+<h3 id="criterios-de-aceitacao_51">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_51" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilizador autorizado consulta todos os estados por ordem cronológica.</li>
+<li>Cada entrada mostra estado e data relevante.</li>
+</ul>
+<h2 id="ac_rf_m2_10-adocao-posse">AC_RF_M2_10 — Adoção / posse<a class="headerlink" href="#ac_rf_m2_10-adocao-posse" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_10 · <strong>PN:</strong> PN_M2_04</p>
+<h3 id="criterios-de-aceitacao_52">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_52" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Animal pode ser atribuído a cliente em processo de adoção/posse.</li>
+<li>Atribuição sem cliente válido é rejeitada.</li>
+<li>Posse activa fica identificável.</li>
+</ul>
+<h2 id="ac_rf_m2_11-periodo-de-posse">AC_RF_M2_11 — Período de posse<a class="headerlink" href="#ac_rf_m2_11-periodo-de-posse" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_11 · <strong>PN:</strong> PN_M2_04</p>
+<h3 id="criterios-de-aceitacao_53">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_53" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Posse regista data de início e, quando aplicável, data de fim.</li>
+<li>Fim anterior ao início é rejeitado.</li>
+<li>Posse encerrada não aparece como activa.</li>
+</ul>
+<h2 id="ac_rf_m2_12-responsavel-na-adocao">AC_RF_M2_12 — Responsável na adoção<a class="headerlink" href="#ac_rf_m2_12-responsavel-na-adocao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_12 · <strong>PN:</strong> PN_M2_04</p>
+<h3 id="criterios-de-aceitacao_54">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_54" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Empregado responsável pode ser associado ao processo de adoção.</li>
+<li>Apenas empregados válidos são aceites.</li>
+</ul>
+<h2 id="ac_rf_m2_13-cedencia-de-animal">AC_RF_M2_13 — Cedência de animal<a class="headerlink" href="#ac_rf_m2_13-cedencia-de-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_13 · <strong>PN:</strong> PN_M2_05</p>
+<h3 id="criterios-de-aceitacao_55">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_55" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cedência regista motivo obrigatório conforme regra de negócio.</li>
+<li>Animal em cedência fica associado ao evento de cedência.</li>
+<li>Cedência inválida (animal inexistente) é rejeitada.</li>
+</ul>
+<h2 id="ac_rf_m2_14-estado-clinico-na-cedencia">AC_RF_M2_14 — Estado clínico na cedência<a class="headerlink" href="#ac_rf_m2_14-estado-clinico-na-cedencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_14 · <strong>PN:</strong> PN_M2_05</p>
+<h3 id="criterios-de-aceitacao_56">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_56" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Estado clínico no momento da cedência pode ser registado.</li>
+<li>Informação fica ligada ao registo de cedência.</li>
+</ul>
+<h2 id="ac_rf_m2_15-intervenientes-na-cedencia">AC_RF_M2_15 — Intervenientes na cedência<a class="headerlink" href="#ac_rf_m2_15-intervenientes-na-cedencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_15 · <strong>PN:</strong> PN_M2_05</p>
+<h3 id="criterios-de-aceitacao_57">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_57" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Intervenientes (cliente, entidade, empregado) ficam identificados no processo.</li>
+<li>Pelo menos um interveniente obrigatório está presente.</li>
+</ul>
+<h2 id="ac_rf_m2_16-historico-de-posse">AC_RF_M2_16 — Histórico de posse<a class="headerlink" href="#ac_rf_m2_16-historico-de-posse" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_16 · <strong>PN:</strong> PN_M2_04</p>
+<h3 id="criterios-de-aceitacao_58">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_58" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Todas as posses passadas e actual são listáveis por animal.</li>
+<li>Cada registo indica cliente e intervalo temporal.</li>
+</ul>
+<h2 id="ac_rf_m2_17-historico-consolidado-de-eventos">AC_RF_M2_17 — Histórico consolidado de eventos<a class="headerlink" href="#ac_rf_m2_17-historico-consolidado-de-eventos" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_17 · <strong>PN:</strong> PN_M2_08</p>
+<h3 id="criterios-de-aceitacao_59">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_59" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta por animal inclui entrada, adoções/posse e cedências.</li>
+<li>Eventos aparecem ordenados de forma compreensível para o utilizador.</li>
+</ul>
+<h2 id="ac_rf_m2_18-origem-do-animal">AC_RF_M2_18 — Origem do animal<a class="headerlink" href="#ac_rf_m2_18-origem-do-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_18 · <strong>PN:</strong> PN_M2_02</p>
+<h3 id="criterios-de-aceitacao_60">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_60" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Origem (cliente ou entidade que entregou) é identificável a partir do animal.</li>
+<li>Dados de contacto da origem respeitam permissões de acesso.</li>
+</ul>
+<h2 id="ac_rf_m2_19-inactivacao-de-animal">AC_RF_M2_19 — Inactivação de animal<a class="headerlink" href="#ac_rf_m2_19-inactivacao-de-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M2_19 · <strong>PN:</strong> PN_M2_01</p>
+<h3 id="criterios-de-aceitacao_61">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_61" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Animal pode ser inactivado sem apagar histórico.</li>
+<li>Animal inactivo não participa em novos processos que exijam animal activo.</li>
+<li>Histórico permanece consultável.</li>
+</ul>
+<hr />
+<h1 id="modulo-3-gestao-comercial">Módulo 3 — Gestão Comercial<a class="headerlink" href="#modulo-3-gestao-comercial" title="Permanent link">&para;</a></h1>
+<h2 id="ac_rf_m3_01-catalogo-de-produtos">AC_RF_M3_01 — Catálogo de produtos<a class="headerlink" href="#ac_rf_m3_01-catalogo-de-produtos" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_01 · <strong>PN:</strong> PN_M3_01</p>
+<h3 id="criterios-de-aceitacao_62">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_62" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Produtos podem ser criados, editados e desactivados.</li>
+<li>Produto desactivado não aparece como seleccionável em novas vendas.</li>
+<li>Campos obrigatórios do catálogo são validados.</li>
+</ul>
+<h2 id="ac_rf_m3_02-familia-de-produto">AC_RF_M3_02 — Família de produto<a class="headerlink" href="#ac_rf_m3_02-familia-de-produto" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_02 · <strong>PN:</strong> PN_M3_01</p>
+<h3 id="criterios-de-aceitacao_63">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_63" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada produto pertence a uma família (categoria) existente.</li>
+<li>Família inexistente impede gravação.</li>
+</ul>
+<h2 id="ac_rf_m3_03-preco-e-iva">AC_RF_M3_03 — Preço e IVA<a class="headerlink" href="#ac_rf_m3_03-preco-e-iva" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_03 · <strong>PN:</strong> PN_M3_01</p>
+<h3 id="criterios-de-aceitacao_64">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_64" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Preço e taxa de IVA são definíveis por produto.</li>
+<li>Valores negativos ou inválidos são rejeitados.</li>
+<li>Preço actual é usado em novas operações comerciais.</li>
+</ul>
+<h2 id="ac_rf_m3_04-produtos-activos-em-operacoes">AC_RF_M3_04 — Produtos activos em operações<a class="headerlink" href="#ac_rf_m3_04-produtos-activos-em-operacoes" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_04 · <strong>PN:</strong> PN_M3_01</p>
+<h3 id="criterios-de-aceitacao_65">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_65" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Venda ou consumo de produto inactivo é bloqueado.</li>
+<li>Produto activado volta a estar disponível conforme stock.</li>
+</ul>
+<h2 id="ac_rf_m3_05-registo-de-compras">AC_RF_M3_05 — Registo de compras<a class="headerlink" href="#ac_rf_m3_05-registo-de-compras" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_05 · <strong>PN:</strong> PN_M3_02</p>
+<h3 id="criterios-de-aceitacao_66">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_66" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compra a fornecedor pode ser registada com linhas de produto.</li>
+<li>Compra sem fornecedor válido é rejeitada quando obrigatório.</li>
+<li>Compra concluída actualiza fluxo de stock conforme RF_M3_09.</li>
+</ul>
+<h2 id="ac_rf_m3_06-fornecedor-na-compra">AC_RF_M3_06 — Fornecedor na compra<a class="headerlink" href="#ac_rf_m3_06-fornecedor-na-compra" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_06 · <strong>PN:</strong> PN_M3_02</p>
+<h3 id="criterios-de-aceitacao_67">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_67" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compra associa-se a fornecedor (entidade externa) válido.</li>
+<li>Fornecedor inactivo ou inexistente impede registo.</li>
+</ul>
+<h2 id="ac_rf_m3_07-linhas-de-compra">AC_RF_M3_07 — Linhas de compra<a class="headerlink" href="#ac_rf_m3_07-linhas-de-compra" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_07 · <strong>PN:</strong> PN_M3_02</p>
+<h3 id="criterios-de-aceitacao_68">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_68" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Uma compra aceita múltiplos produtos e quantidades.</li>
+<li>Linha com quantidade zero ou negativa é rejeitada.</li>
+<li>Total da compra é derivável das linhas.</li>
+</ul>
+<h2 id="ac_rf_m3_08-pagamento-da-compra">AC_RF_M3_08 — Pagamento da compra<a class="headerlink" href="#ac_rf_m3_08-pagamento-da-compra" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_08 · <strong>PN:</strong> PN_M3_02</p>
+<h3 id="criterios-de-aceitacao_69">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_69" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Método de pagamento e custo total podem ser registados na compra.</li>
+<li>Campos obrigatórios em falta impedem fecho da compra se aplicável.</li>
+</ul>
+<h2 id="ac_rf_m3_09-stock-por-compra">AC_RF_M3_09 — Stock por compra<a class="headerlink" href="#ac_rf_m3_09-stock-por-compra" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_09 · <strong>PN:</strong> PN_M3_03</p>
+<h3 id="criterios-de-aceitacao_70">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_70" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Recepção de compra cria ou incrementa lotes de stock.</li>
+<li>Quantidades recebidas reflectem-se no stock disponível.</li>
+</ul>
+<h2 id="ac_rf_m3_10-lote-quantidade-e-validade">AC_RF_M3_10 — Lote: quantidade e validade<a class="headerlink" href="#ac_rf_m3_10-lote-quantidade-e-validade" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_10 · <strong>PN:</strong> PN_M3_03</p>
+<h3 id="criterios-de-aceitacao_71">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_71" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada lote regista quantidade, data de entrada e validade quando aplicável.</li>
+<li>Produto perecível sem validade pode ser rejeitado conforme RN.</li>
+</ul>
+<h2 id="ac_rf_m3_11-actualizacao-automatica-de-stock">AC_RF_M3_11 — Actualização automática de stock<a class="headerlink" href="#ac_rf_m3_11-actualizacao-automatica-de-stock" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_11 · <strong>PN:</strong> PN_M3_03</p>
+<h3 id="criterios-de-aceitacao_72">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_72" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compra, venda e devolução actualizam stock automaticamente.</li>
+<li>Stock nunca fica negativo após operação válida (rejeição ou ajuste conforme RN).</li>
+</ul>
+<h2 id="ac_rf_m3_12-consulta-de-stock">AC_RF_M3_12 — Consulta de stock<a class="headerlink" href="#ac_rf_m3_12-consulta-de-stock" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_12 · <strong>PN:</strong> PN_M3_03</p>
+<h3 id="criterios-de-aceitacao_73">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_73" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Stock disponível é consultável por produto e por lote.</li>
+<li>Totais por produto são coerentes com soma dos lotes.</li>
+</ul>
+<h2 id="ac_rf_m3_13-venda-ou-consumo">AC_RF_M3_13 — Venda ou consumo<a class="headerlink" href="#ac_rf_m3_13-venda-ou-consumo" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_13 · <strong>PN:</strong> PN_M3_04</p>
+<h3 id="criterios-de-aceitacao_74">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_74" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Registo de venda ou consumo reduz stock do produto.</li>
+<li>Operação sem produto ou quantidade válida é rejeitada.</li>
+</ul>
+<h2 id="ac_rf_m3_14-validacao-de-stock-antes-da-venda">AC_RF_M3_14 — Validação de stock antes da venda<a class="headerlink" href="#ac_rf_m3_14-validacao-de-stock-antes-da-venda" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_14 · <strong>PN:</strong> PN_M3_04</p>
+<h3 id="criterios-de-aceitacao_75">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_75" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Venda/consumo com quantidade superior ao disponível é bloqueada.</li>
+<li>Mensagem indica indisponibilidade de stock.</li>
+</ul>
+<h2 id="ac_rf_m3_15-associacao-a-consulta-ou-venda-directa">AC_RF_M3_15 — Associação a consulta ou venda directa<a class="headerlink" href="#ac_rf_m3_15-associacao-a-consulta-ou-venda-directa" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_15 · <strong>PN:</strong> PN_M3_04</p>
+<h3 id="criterios-de-aceitacao_76">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_76" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Produto pode ligar-se a consulta (consumo clínico) ou a venda directa.</li>
+<li>Associação duplicada inválida é tratada conforme regra.</li>
+</ul>
+<h2 id="ac_rf_m3_16-seleccao-de-lote">AC_RF_M3_16 — Selecção de lote<a class="headerlink" href="#ac_rf_m3_16-seleccao-de-lote" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_16 · <strong>PN:</strong> PN_M3_04</p>
+<h3 id="criterios-de-aceitacao_77">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_77" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Sistema pode sugerir lote (ex.: FIFO) ou aceitar selecção manual autorizada.</li>
+<li>Lote esgotado não pode ser utilizado.</li>
+</ul>
+<h2 id="ac_rf_m3_17-geracao-de-fatura">AC_RF_M3_17 — Geração de fatura<a class="headerlink" href="#ac_rf_m3_17-geracao-de-fatura" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_17 · <strong>PN:</strong> PN_M3_05</p>
+<h3 id="criterios-de-aceitacao_78">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_78" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fatura pode ser gerada a partir de produtos e serviços seleccionados.</li>
+<li>Fatura sem itens é rejeitada.</li>
+<li>Identificador de fatura é único no âmbito do sistema.</li>
+</ul>
+<h2 id="ac_rf_m3_18-fatura-associada-a-consulta">AC_RF_M3_18 — Fatura associada a consulta<a class="headerlink" href="#ac_rf_m3_18-fatura-associada-a-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_18 · <strong>PN:</strong> PN_M3_05</p>
+<h3 id="criterios-de-aceitacao_79">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_79" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quando aplicável, fatura liga-se à consulta de origem.</li>
+<li>Uma consulta não acumula múltiplas faturas activas se regra o proíbe.</li>
+</ul>
+<h2 id="ac_rf_m3_19-multiplos-itens-na-fatura">AC_RF_M3_19 — Múltiplos itens na fatura<a class="headerlink" href="#ac_rf_m3_19-multiplos-itens-na-fatura" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_19 · <strong>PN:</strong> PN_M3_05</p>
+<h3 id="criterios-de-aceitacao_80">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_80" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fatura suporta várias linhas de produtos/serviços.</li>
+<li>Cada linha contribui para subtotal e total.</li>
+</ul>
+<h2 id="ac_rf_m3_20-totais-automaticos-da-fatura">AC_RF_M3_20 — Totais automáticos da fatura<a class="headerlink" href="#ac_rf_m3_20-totais-automaticos-da-fatura" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_20 · <strong>PN:</strong> PN_M3_05</p>
+<h3 id="criterios-de-aceitacao_81">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_81" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Subtotal, impostos e total final são calculados automaticamente.</li>
+<li>Totais apresentados coincidem com soma das linhas e regras de IVA.</li>
+</ul>
+<h2 id="ac_rf_m3_21-pagamentos-da-fatura">AC_RF_M3_21 — Pagamentos da fatura<a class="headerlink" href="#ac_rf_m3_21-pagamentos-da-fatura" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_21 · <strong>PN:</strong> PN_M3_06</p>
+<h3 id="criterios-de-aceitacao_82">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_82" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Um ou mais pagamentos podem ser registados contra fatura.</li>
+<li>Soma dos pagamentos não excede total da fatura sem regra explícita.</li>
+</ul>
+<h2 id="ac_rf_m3_22-metodo-de-pagamento-na-venda">AC_RF_M3_22 — Método de pagamento na venda<a class="headerlink" href="#ac_rf_m3_22-metodo-de-pagamento-na-venda" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_22 · <strong>PN:</strong> PN_M3_06</p>
+<h3 id="criterios-de-aceitacao_83">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_83" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Método (dinheiro, cartão, etc.) é seleccionável no registo de pagamento.</li>
+<li>Método inválido é rejeitado.</li>
+</ul>
+<h2 id="ac_rf_m3_23-estado-da-fatura">AC_RF_M3_23 — Estado da fatura<a class="headerlink" href="#ac_rf_m3_23-estado-da-fatura" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_23 · <strong>PN:</strong> PN_M3_06</p>
+<h3 id="criterios-de-aceitacao_84">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_84" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Estado evolui para pendente, parcial ou paga conforme pagamentos registados.</li>
+<li>Fatura totalmente paga não permanece pendente.</li>
+</ul>
+<h2 id="ac_rf_m3_24-devolucoes">AC_RF_M3_24 — Devoluções<a class="headerlink" href="#ac_rf_m3_24-devolucoes" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_24 · <strong>PN:</strong> PN_M3_07</p>
+<h3 id="criterios-de-aceitacao_85">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_85" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Devolução associa-se à fatura original.</li>
+<li>Devolução sem fatura de referência válida é rejeitada quando obrigatório.</li>
+</ul>
+<h2 id="ac_rf_m3_25-motivo-e-data-da-devolucao">AC_RF_M3_25 — Motivo e data da devolução<a class="headerlink" href="#ac_rf_m3_25-motivo-e-data-da-devolucao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_25 · <strong>PN:</strong> PN_M3_07</p>
+<h3 id="criterios-de-aceitacao_86">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_86" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Motivo e data da devolução são registados.</li>
+<li>Devolução sem motivo obrigatório é bloqueada.</li>
+</ul>
+<h2 id="ac_rf_m3_26-stock-apos-devolucao">AC_RF_M3_26 — Stock após devolução<a class="headerlink" href="#ac_rf_m3_26-stock-apos-devolucao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_26 · <strong>PN:</strong> PN_M3_07</p>
+<h3 id="criterios-de-aceitacao_87">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_87" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Stock aumenta (ou reclassifica) após devolução aceite conforme política de reentrada.</li>
+<li>Produto não reentrável não incrementa stock disponível.</li>
+</ul>
+<h2 id="ac_rf_m3_27-historico-comercial">AC_RF_M3_27 — Histórico comercial<a class="headerlink" href="#ac_rf_m3_27-historico-comercial" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_27 · <strong>PN:</strong> PN_M3_08</p>
+<h3 id="criterios-de-aceitacao_88">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_88" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Histórico de compras, vendas, faturas e devoluções é consultável.</li>
+<li>Registos históricos não são apagados por consulta.</li>
+</ul>
+<h2 id="ac_rf_m3_28-filtros-no-historico">AC_RF_M3_28 — Filtros no histórico<a class="headerlink" href="#ac_rf_m3_28-filtros-no-historico" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_28 · <strong>PN:</strong> PN_M3_08</p>
+<h3 id="criterios-de-aceitacao_89">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_89" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filtro por cliente, produto, período ou tipo de operação reduz resultados correctamente.</li>
+<li>Combinação de filtros vazia devolve conjunto vazio ou aviso adequado.</li>
+</ul>
+<h2 id="ac_rf_m3_29-relatorios-de-vendas">AC_RF_M3_29 — Relatórios de vendas<a class="headerlink" href="#ac_rf_m3_29-relatorios-de-vendas" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_29 · <strong>PN:</strong> PN_M3_09</p>
+<h3 id="criterios-de-aceitacao_90">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_90" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Relatório de vendas/faturação pode ser gerado para período seleccionado.</li>
+<li>Totais do relatório são consistentes com dados transaccionais.</li>
+</ul>
+<h2 id="ac_rf_m3_30-analise-de-stock">AC_RF_M3_30 — Análise de stock<a class="headerlink" href="#ac_rf_m3_30-analise-de-stock" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M3_30 · <strong>PN:</strong> PN_M3_09</p>
+<h3 id="criterios-de-aceitacao_91">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_91" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Análise identifica produtos abaixo do limiar de reordenação quando configurado.</li>
+<li>Produtos mais utilizados são classificáveis por período.</li>
+</ul>
+<hr />
+<h1 id="modulo-4-gestao-de-consultas">Módulo 4 — Gestão de Consultas<a class="headerlink" href="#modulo-4-gestao-de-consultas" title="Permanent link">&para;</a></h1>
+<h2 id="ac_rf_m4_01-registo-de-consulta">AC_RF_M4_01 — Registo de consulta<a class="headerlink" href="#ac_rf_m4_01-registo-de-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_01 · <strong>PN:</strong> PN_M4_01</p>
+<h3 id="criterios-de-aceitacao_92">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_92" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta associa animal, veterinário, especialidade, data e intervalo horário.</li>
+<li>Recursos inválidos ou indisponíveis impedem agendamento.</li>
+<li>Consulta criada fica no estado inicial previsto (agendada).</li>
+</ul>
+<h2 id="ac_rf_m4_02-validade-do-intervalo-horario">AC_RF_M4_02 — Validade do intervalo horário<a class="headerlink" href="#ac_rf_m4_02-validade-do-intervalo-horario" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_02 · <strong>PN:</strong> PN_M4_01</p>
+<h3 id="criterios-de-aceitacao_93">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_93" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Hora de início é estritamente anterior à hora de fim.</li>
+<li>Intervalo inválido é rejeitado na criação/edição.</li>
+</ul>
+<h2 id="ac_rf_m4_03-anamnese">AC_RF_M4_03 — Anamnese<a class="headerlink" href="#ac_rf_m4_03-anamnese" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_03 · <strong>PN:</strong> PN_M4_02</p>
+<h3 id="criterios-de-aceitacao_94">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_94" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Motivo e histórico clínico podem ser registados na consulta.</li>
+<li>Anamnese fica ligada à consulta correcta.</li>
+</ul>
+<h2 id="ac_rf_m4_04-avaliacao-geral">AC_RF_M4_04 — Avaliação geral<a class="headerlink" href="#ac_rf_m4_04-avaliacao-geral" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_04 · <strong>PN:</strong> PN_M4_02</p>
+<h3 id="criterios-de-aceitacao_95">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_95" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Temperatura, peso e frequências podem ser registados na avaliação.</li>
+<li>Valores fora de limites plausíveis podem gerar aviso conforme RN.</li>
+</ul>
+<h2 id="ac_rf_m4_05-inicio-da-consulta">AC_RF_M4_05 — Início da consulta<a class="headerlink" href="#ac_rf_m4_05-inicio-da-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_05 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_96">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_96" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta agendada pode passar a «em curso».</li>
+<li>Transição inválida (ex.: de cancelada) é bloqueada.</li>
+</ul>
+<h2 id="ac_rf_m4_06-diagnostico-e-observacoes">AC_RF_M4_06 — Diagnóstico e observações<a class="headerlink" href="#ac_rf_m4_06-diagnostico-e-observacoes" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_06 · <strong>PN:</strong> PN_M4_03</p>
+<h3 id="criterios-de-aceitacao_97">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_97" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Diagnóstico final e observações podem ser registados antes ou na conclusão.</li>
+<li>Texto fica associado à consulta e visível no histórico clínico.</li>
+</ul>
+<h2 id="ac_rf_m4_07-diagnostico-obrigatorio-na-conclusao">AC_RF_M4_07 — Diagnóstico obrigatório na conclusão<a class="headerlink" href="#ac_rf_m4_07-diagnostico-obrigatorio-na-conclusao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_07 · <strong>PN:</strong> PN_M4_03</p>
+<h3 id="criterios-de-aceitacao_98">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_98" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conclusão sem diagnóstico registado é rejeitada.</li>
+<li>Consulta permanece «em curso» ou estado intermédio até diagnóstico válido.</li>
+</ul>
+<h2 id="ac_rf_m4_08-prescricao-medica">AC_RF_M4_08 — Prescrição médica<a class="headerlink" href="#ac_rf_m4_08-prescricao-medica" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_08 · <strong>PN:</strong> PN_M4_04</p>
+<h3 id="criterios-de-aceitacao_99">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_99" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prescrição pode ser criada com data, validade e observações.</li>
+<li>Prescrição está ligada à consulta de origem.</li>
+<li>Prescrição sem consulta válida é rejeitada.</li>
+</ul>
+<h2 id="ac_rf_m4_09-produtos-na-consulta-e-prescricao">AC_RF_M4_09 — Produtos na consulta e prescrição<a class="headerlink" href="#ac_rf_m4_09-produtos-na-consulta-e-prescricao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_09 · <strong>PN:</strong> PN_M4_05</p>
+<h3 id="criterios-de-aceitacao_100">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_100" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Produtos podem associar-se ao consumo em clínica ou à prescrição externa.</li>
+<li>Associação duplicada inválida é tratada conforme RN.</li>
+</ul>
+<h2 id="ac_rf_m4_10-stock-na-utilizacao-clinica">AC_RF_M4_10 — Stock na utilização clínica<a class="headerlink" href="#ac_rf_m4_10-stock-na-utilizacao-clinica" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_10 · <strong>PN:</strong> PN_M4_05</p>
+<h3 id="criterios-de-aceitacao_101">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_101" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilização de produto sem stock disponível é bloqueada.</li>
+<li>Stock é decrementado após utilização aceite.</li>
+</ul>
+<h2 id="ac_rf_m4_11-ciclo-de-vida-da-consulta">AC_RF_M4_11 — Ciclo de vida da consulta<a class="headerlink" href="#ac_rf_m4_11-ciclo-de-vida-da-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_11 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_102">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_102" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Estados possíveis incluem agendada, em curso, concluída, cancelada, não realizada.</li>
+<li>Estado actual é visível em qualquer momento.</li>
+</ul>
+<h2 id="ac_rf_m4_12-estado-inicial-agendada">AC_RF_M4_12 — Estado inicial agendada<a class="headerlink" href="#ac_rf_m4_12-estado-inicial-agendada" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_12 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_103">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_103" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Toda nova consulta nasce no estado «agendada».</li>
+<li>Não é possível criar consulta já concluída.</li>
+</ul>
+<h2 id="ac_rf_m4_13-transicoes-validas-de-estado">AC_RF_M4_13 — Transições válidas de estado<a class="headerlink" href="#ac_rf_m4_13-transicoes-validas-de-estado" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_13 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_104">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_104" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Transições proibidas pelo ciclo de vida são rejeitadas.</li>
+<li>Mensagem ou código de erro identifica transição inválida.</li>
+</ul>
+<h2 id="ac_rf_m4_14-cancelamento-de-consulta">AC_RF_M4_14 — Cancelamento de consulta<a class="headerlink" href="#ac_rf_m4_14-cancelamento-de-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_14 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_105">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_105" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta agendada pode ser cancelada por utilizador autorizado.</li>
+<li>Consulta concluída não pode ser cancelada sem fluxo excepção.</li>
+</ul>
+<h2 id="ac_rf_m4_15-nao-comparencia">AC_RF_M4_15 — Não comparência<a class="headerlink" href="#ac_rf_m4_15-nao-comparencia" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_15 · <strong>PN:</strong> PN_M4_06</p>
+<h3 id="criterios-de-aceitacao_106">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_106" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consulta pode ser marcada como não realizada quando cliente não comparece.</li>
+<li>Estado reflecte ausência do atendimento.</li>
+</ul>
+<h2 id="ac_rf_m4_16-historico-clinico-do-animal">AC_RF_M4_16 — Histórico clínico do animal<a class="headerlink" href="#ac_rf_m4_16-historico-clinico-do-animal" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_16 · <strong>PN:</strong> PN_M4_07</p>
+<h3 id="criterios-de-aceitacao_107">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_107" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Histórico lista consultas, diagnósticos, avaliações e prescrições do animal.</li>
+<li>Dados respeitam permissões de acesso clínico.</li>
+</ul>
+<h2 id="ac_rf_m4_17-fatura-automatica-na-conclusao">AC_RF_M4_17 — Fatura automática na conclusão<a class="headerlink" href="#ac_rf_m4_17-fatura-automatica-na-conclusao" title="Permanent link">&para;</a></h2>
+<p><strong>RF:</strong> RF_M4_17 · <strong>PN:</strong> PN_M4_08</p>
+<h3 id="criterios-de-aceitacao_108">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_108" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ao concluir consulta com itens facturáveis, fatura é gerada automaticamente.</li>
+<li>Itens da consulta e consumos associados aparecem na fatura.</li>
+<li>Falha na geração impede conclusão ou gera aviso conforme política acordada.</li>
+</ul>
+<hr />
+<h1 id="regras-sem-rf-dedicado">Regras sem RF dedicado<a class="headerlink" href="#regras-sem-rf-dedicado" title="Permanent link">&para;</a></h1>
+<p>Critérios complementares para <a href="../02_Business_Rules/">regras de negócio</a> sem paridade RF explícita (ver <a href="../00_Functional_Requirements/#rastreabilidade-rf--rn-lacunas-documentadas">00_Functional_Requirements.md</a>).</p>
+<h2 id="ac_rn_m1_36-classificacao-de-ausencias-ferias">AC_RN_M1_36 — Classificação de ausências (férias)<a class="headerlink" href="#ac_rn_m1_36-classificacao-de-ausencias-ferias" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M1_36</p>
+<h3 id="criterios-de-aceitacao_109">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_109" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ausências classificadas como férias seguem política de saldo definida em RN.</li>
+<li>Pedido que excede saldo disponível é rejeitado ou encaminhado para aprovação excepção.</li>
+</ul>
+<h2 id="ac_rn_m1_37-impacto-no-saldo-de-ferias">AC_RN_M1_37 — Impacto no saldo de férias<a class="headerlink" href="#ac_rn_m1_37-impacto-no-saldo-de-ferias" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M1_37</p>
+<h3 id="criterios-de-aceitacao_110">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_110" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Aprovação de ausência de férias decrementa saldo correctamente.</li>
+<li>Cancelamento dentro do prazo repõe saldo conforme regra.</li>
+</ul>
+<h2 id="ac_rn_m3_22-sequencia-legal-de-faturas">AC_RN_M3_22 — Sequência legal de faturas<a class="headerlink" href="#ac_rn_m3_22-sequencia-legal-de-faturas" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M3_22</p>
+<h3 id="criterios-de-aceitacao_111">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_111" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Identificadores de fatura seguem sequência legal contínua sem duplicados.</li>
+<li>Quebra de sequência é detectável em auditoria.</li>
+</ul>
+<h2 id="ac_rn_m4_01-desconto-5a-consulta">AC_RN_M4_01 — Desconto 5.ª consulta<a class="headerlink" href="#ac_rn_m4_01-desconto-5a-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M4_01</p>
+<h3 id="criterios-de-aceitacao_112">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_112" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Na 5.ª consulta elegível do cliente, desconto acordado é aplicado na fatura.</li>
+<li>Cliente sem elegibilidade não recebe desconto.</li>
+</ul>
+<h2 id="ac_rn_m4_02-desconto-10a-consulta">AC_RN_M4_02 — Desconto 10.ª consulta<a class="headerlink" href="#ac_rn_m4_02-desconto-10a-consulta" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M4_02</p>
+<h3 id="criterios-de-aceitacao_113">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_113" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Na 10.ª consulta elegível, desconto superior (ou definido) é aplicado.</li>
+<li>Descontos não acumulam indevidamente sem regra explícita.</li>
+</ul>
+<h2 id="ac_rn_m4_03-politica-de-fidelizacao">AC_RN_M4_03 — Política de fidelização<a class="headerlink" href="#ac_rn_m4_03-politica-de-fidelizacao" title="Permanent link">&para;</a></h2>
+<p><strong>RN:</strong> RN_M4_03</p>
+<h3 id="criterios-de-aceitacao_114">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_114" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Contagem de consultas para fidelização é consistente por cliente/animal conforme RN.</li>
+<li>Relatório ou ecrã de suporte mostra consultas contabilizadas.</li>
+</ul>
+<hr />
+<h1 id="convencoes">Convenções<a class="headerlink" href="#convencoes" title="Permanent link">&para;</a></h1>
+<h2 id="identificadores">Identificadores<a class="headerlink" href="#identificadores" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Formato</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Critério de aceitação (RF)</td>
+<td><code>AC_RF_M&lt;modulo&gt;_&lt;numero&gt;</code></td>
+<td><code>AC_RF_M1_05</code></td>
+</tr>
+<tr>
+<td>Critério complementar (RN)</td>
+<td><code>AC_RN_M&lt;modulo&gt;_&lt;numero&gt;</code></td>
+<td><code>AC_RN_M4_01</code></td>
+</tr>
+</tbody>
+</table>
+<p>Relação <strong>1:1</strong> entre <code>RF_Mx_yy</code> e <code>AC_RF_Mx_yy</code> salvo secção complementar para RN órfãs.</p>
+<h2 id="validacao">Validação<a class="headerlink" href="#validacao" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Artefacto</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../06_Implementation_Matrix/">06_Implementation_Matrix.md</a></td>
+<td>Onde e como está implementado</td>
+</tr>
+<tr>
+<td><a href="../07_Constraints/">07_Constraints.md</a></td>
+<td>Limites técnicos e legais globais</td>
+</tr>
+<tr>
+<td>Testes QA DataLayer</td>
+<td>Evidência objectiva quando aplicável</td>
+</tr>
+</tbody>
+</table>
+<h2 id="palavras-chave">Palavras-chave<a class="headerlink" href="#palavras-chave" title="Permanent link">&para;</a></h2>
+<p><code>AC</code>, <code>critério de aceitação</code>, <code>validação</code>, <code>testável</code>, <code>RF</code>, <code>M1</code>, <code>M2</code>, <code>M3</code>, <code>M4</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="ipca-site-footer">
+  <div class="ipca-site-footer__inner">
+    <span class="ipca-site-footer__text">
+      MiaCaoMigo Engineering Documentation
+    </span>
+
+    <div class="ipca-site-footer__logos" aria-label="IPCA logos">
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca.jpg"
+        alt="IPCA"
+      >
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca_est.png"
+        alt="IPCA EST"
+      >
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

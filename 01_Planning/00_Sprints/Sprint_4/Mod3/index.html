@@ -1,0 +1,5633 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Mod2/">
+      
+      
+        <link rel="next" href="../Mod4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../00_Assets/00_Branding/01_icons/Logo_pBack.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Module 3 proof - MiaCaoMigo Engineering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../Extras/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sprint-4-modulo-3-gestao-comercial-e-stock" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="MiaCaoMigo Engineering" class="md-header__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiaCaoMigo Engineering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module 3 proof
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../02_Requirements/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../03_Diagrams/00_ER_Model/er_model/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Diagrams
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../04_Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../06_Performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Performance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../05_Docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Academic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../07_Deployment/README_Production_Docker/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Production
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="MiaCaoMigo Engineering" class="md-nav__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    MiaCaoMigo Engineering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DOCUMENTATION_LAYERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../01_UserStories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../01_UserStories/01_Narrative_Stories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narrative Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Narrative Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../01_UserStories/02_Operational_Scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ecosystem Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/02_People/Customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/02_People/Employees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/03_Animals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Animals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/04_External/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — External
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/05_Operations/OPS_APPOINTMENT_STATES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointment States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/05_Operations/OPS_COMMERCIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/05_Operations/OPS_INCIDENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01_UserStories/02_Operational_Scenarios/05_Operations/OPS_NOTIFICATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprints
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprints
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sprint_1/Sprint_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sprint_2/Sprint_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sprint_3/Sprint_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprint 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sprint_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mod2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sumario-executivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumario Executivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prova-geral-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prova Geral de Implementacao
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prova Geral de Implementacao">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicacao-e-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicacao e API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datalayer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataLayer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processos-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processos de Negocio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos Nao Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras de Negocio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelacao-dicionario-de-dados-do-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelacao / Dicionario de Dados do PDF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencia-de-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia de QA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidencia de QA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notas-de-cobertura-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas de Cobertura Tecnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusao-por-area" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusao por Area
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mod4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../02_Requirements/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/00_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/01_Non_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/02_Business_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/03_Business_Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/04_Acceptance_Criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptance Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/06_Implementation_Matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_Requirements/07_Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagrams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/er_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER V10 — Conceptual attributes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER V10 — Conceptual attributes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_Diagrams/00_ER_Model/ER_V10/Atributos/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../04_Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/00_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../04_Architecture/02_Application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/00_Application_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/01_Website_Flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/02_Runtime_Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/03_Implementation_Evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3_7" id="__nav_5_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Website Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/Backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/OpenAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/02_Application/04_Generated_Docs/Update_Docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Update Docs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/Architecture_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_2" id="__nav_5_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_3" id="__nav_5_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_4" id="__nav_5_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Rules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrity Rules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedural Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_5" id="__nav_5_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Templates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Authoring Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3_2" id="__nav_5_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Schema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Schema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_4" id="__nav_5_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SchemaSpy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SchemaSpy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../06_Performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_Performance/01_Performance_Strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_Performance/02_Frontend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_Performance/03_Backend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_Performance/04_Test_Results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_Performance/05_Recommendations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../05_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Academic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_Docs/00_Statements/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../05_Docs/01_Academic_Reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../05_Docs/02_Presentation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_Docs/02_Presentation/15min_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 min Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_Docs/02_Presentation/Screenshots_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../07_Deployment/README_Production_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sprint-4-modulo-3-gestao-comercial-e-stock">Sprint 4 — Modulo 3: Gestao Comercial e Stock<a class="headerlink" href="#sprint-4-modulo-3-gestao-comercial-e-stock" title="Permanent link">&para;</a></h1>
+<p>Analise de rastreabilidade entre a especificacao da Sprint 4 e a implementacao real do Modulo 3, focada em <strong>Gestao Comercial e Stock</strong>.</p>
+<p>Fonte funcional analisada: <code>Sprint 04.pdf</code>.</p>
+<p>Repositorios verificados:</p>
+<ul>
+<li>Aplicacao/API: <code>MiaCaoMigo_</code></li>
+<li>Base de dados/QA: <code>MiaCaoMigo_DataLayer</code></li>
+</ul>
+<p>Legenda:</p>
+<ul>
+<li><strong>Implementado</strong>: existe fluxo funcional e/ou regra executavel no frontend, API ou base de dados.</li>
+<li><strong>Parcial</strong>: existe parte relevante, mas falta um detalhe pedido no PDF.</li>
+<li><strong>Nao evidenciado</strong>: nao foi encontrada implementacao real suficiente.</li>
+</ul>
+<h2 id="sumario-executivo">Sumario Executivo<a class="headerlink" href="#sumario-executivo" title="Permanent link">&para;</a></h2>
+<p>O Modulo 3 esta implementado para os fluxos principais de catalogo, consulta de stock, reposicao por compra, venda ao balcao, emissao/listagem/download de faturas, devolucoes e atualizacao automatica de stock.</p>
+<p>As principais lacunas face ao PDF sao:</p>
+<ul>
+<li><strong>RF_M3_01</strong>: existe criacao e consulta de produtos, mas nao foi encontrada edicao/desativacao via API/UI.</li>
+<li><strong>RF_M3_05 / RF_M3_06</strong>: existe registo de compras/reposicao, mas nao ha fornecedor formal associado no fluxo aplicacional.</li>
+<li><strong>RF_M3_08 / RF_M3_21 / RF_M3_22 / RF_M3_23</strong>: metodo de pagamento e estados existem no modelo, mas nao ha fluxo completo de pagamentos; vendas ao balcao criam fatura diretamente como <code>paid</code>.</li>
+<li><strong>RF_M3_16</strong>: a selecao de lote e automatica/FIFO na base de dados; nao ha selecao manual pelo utilizador.</li>
+<li><strong>RF_M3_18</strong>: a ligacao fatura-consulta existe estruturalmente, mas nao foi encontrada geracao/associacao automaticas a partir do fecho de consulta.</li>
+<li><strong>RF_M3_29 / RF_M3_30</strong>: existem vistas de stock e historicos operacionais, mas nao ha relatorios analiticos completos de vendas/faturacao/produtos mais usados.</li>
+</ul>
+<h2 id="prova-geral-de-implementacao">Prova Geral de Implementacao<a class="headerlink" href="#prova-geral-de-implementacao" title="Permanent link">&para;</a></h2>
+<h3 id="aplicacao-e-api">Aplicacao e API<a class="headerlink" href="#aplicacao-e-api" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hub comercial</td>
+<td><code>Backend/routes/Mod3_Commercial/index.js</code> monta <code>/stock</code>, <code>/restock</code>, <code>/sales</code>, <code>/return</code>, <code>/invoices</code> com <code>requireCommercialAreaAccess</code> para staff comercial</td>
+</tr>
+<tr>
+<td>Catalogo e stock</td>
+<td><code>Backend/routes/Mod3_Commercial/stockRoutes.js</code>, <code>stockControllers.js</code>, <code>stockModels.js</code></td>
+</tr>
+<tr>
+<td>Compras/reposicao</td>
+<td><code>Backend/routes/Mod3_Commercial/restockRoutes.js</code>, <code>restockControllers.js</code>, <code>restockModels.js</code></td>
+</tr>
+<tr>
+<td>Vendas e faturacao</td>
+<td><code>Backend/routes/Mod3_Commercial/salesRoutes.js</code>, <code>salesControllers.js</code>, <code>salesModels.js</code></td>
+</tr>
+<tr>
+<td>Faturas</td>
+<td><code>Backend/routes/Mod3_Commercial/invoiceRoutes.js</code>, <code>invoiceControllers.js</code>, <code>invoiceModels.js</code>, <code>Backend/services/invoicePdf.js</code></td>
+</tr>
+<tr>
+<td>Devolucoes</td>
+<td><code>Backend/routes/Mod3_Commercial/returnRoutes.js</code>, <code>returnControllers.js</code>, <code>returnModels.js</code></td>
+</tr>
+<tr>
+<td>UI catalogo</td>
+<td><code>FrontEnd/Pages/AdminPanel/productCatalog.html</code>, <code>FrontEnd/Js/Mod3/productCatalog.js</code></td>
+</tr>
+<tr>
+<td>UI stock</td>
+<td><code>FrontEnd/Pages/AdminPanel/StockManagement.html</code>, <code>FrontEnd/Js/Mod3/StockManagement.js</code></td>
+</tr>
+<tr>
+<td>UI reposicao</td>
+<td><code>FrontEnd/Pages/AdminPanel/restock.html</code>, <code>FrontEnd/Js/Mod3/restock.js</code></td>
+</tr>
+<tr>
+<td>UI vendas</td>
+<td><code>FrontEnd/Pages/AdminPanel/salesManagement.html</code>, <code>FrontEnd/Js/Mod3/salesManagement.js</code></td>
+</tr>
+<tr>
+<td>UI faturas/devolucoes</td>
+<td><code>FrontEnd/Js/Mod3/invoiceHistory.js</code>, <code>invoiceDetails.js</code>, <code>returnManagement.js</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datalayer">DataLayer<a class="headerlink" href="#datalayer" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tabelas Mod3</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/00_Tables_Mod3.sql</code> cria <code>family</code>, <code>product</code>, <code>stock</code>, <code>purchase</code>, <code>purchase_line</code>, <code>invoice</code>, <code>invoice_line</code>, <code>"return"</code></td>
+</tr>
+<tr>
+<td>Integridade referencial</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/01_ForeignKeys_Mod3.sql</code> liga produto-familia, stock-produto, compra-empregado, linhas-compra, linhas-fatura e devolucoes</td>
+</tr>
+<tr>
+<td>Funcoes de validacao</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/02_Functions_Mod3.sql</code> implementa stock disponivel, bloqueio por stock insuficiente, FIFO, totais de fatura, reposicao por devolucao e bloqueio de produto inativo</td>
+</tr>
+<tr>
+<td>Triggers</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/03_Triggers_Mod3.sql</code> aplica validacao de stock, desconto FIFO, total de fatura, devolucao/stock e produto inativo</td>
+</tr>
+<tr>
+<td>Indices</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/04_Indexes_Mod3.sql</code> cobre <code>invoice.id_app</code>, <code>stock.id_pro</code>, <code>purchase_line.id_pur</code>, <code>invoice_line.id_inv</code></td>
+</tr>
+<tr>
+<td>Procedures</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/05_Procedures_Mod3.sql</code> define <code>sp_receive_purchase</code> e <code>sp_check_restock_needs</code></td>
+</tr>
+<tr>
+<td>Views/API SQL</td>
+<td><code>DataBase/Schema/03_Module3_Commercial_Management/07_Views_Mod3.sql</code> e <code>DataBase/Services/03_Module3/99_Public_API.sql</code> expõem stock consolidado e produtos a encomendar</td>
+</tr>
+<tr>
+<td>DemoData</td>
+<td><code>DataBase/DataSeed/03_DemoData/13_Products.sql</code>, <code>14_Commercial.sql</code></td>
+</tr>
+<tr>
+<td>QA integridade</td>
+<td><code>DataBase/QA/01_Integrity/03_Module3/*</code> cobre stock antes de venda, produto inativo, devolucao e total de fatura</td>
+</tr>
+<tr>
+<td>QA stress</td>
+<td><code>DataBase/QA/04_Stress/03_Module3/*</code> cobre vendas concorrentes, volume de linhas, FIFO e devolucoes em massa</td>
+</tr>
+</tbody>
+</table>
+<h2 id="processos-de-negocio">Processos de Negocio<a class="headerlink" href="#processos-de-negocio" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Processo do PDF</th>
+<th>Estado</th>
+<th>Prova / Observacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PN_M3_01</td>
+<td>Gestao de Catalogo e Stock</td>
+<td><strong>Parcial</strong></td>
+<td>Catalogo, familia, produto, stock, minimos e consulta existem; falta edicao/desativacao funcional via app</td>
+</tr>
+<tr>
+<td>PN_M3_02</td>
+<td>Gestao de Operacoes Comerciais</td>
+<td><strong>Implementado com lacunas</strong></td>
+<td>Vendas, faturas, compras/reposicao e devolucoes existem; pagamentos/fornecedores formais estao incompletos</td>
+</tr>
+<tr>
+<td>PN_M3_03</td>
+<td>Consulta e Historico Comercial</td>
+<td><strong>Parcial</strong></td>
+<td>Historico de faturas/devolucoes e stock existe; filtros/relatorios analiticos completos nao foram evidenciados</td>
+</tr>
+</tbody>
+</table>
+<h2 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito do PDF</th>
+<th>Estado</th>
+<th>Prova / Observacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF_M3_01</td>
+<td>Criar, editar e desativar produtos no catalogo comercial</td>
+<td><strong>Parcial</strong></td>
+<td><code>createNewProduct</code>/<code>createProduct</code> e UI <code>productCatalog.js</code>; nao foram encontrados endpoints de edicao ou desativacao (<code>ina_dat_pro</code>)</td>
+</tr>
+<tr>
+<td>RF_M3_02</td>
+<td>Associar produtos a uma familia/categoria</td>
+<td><strong>Implementado</strong></td>
+<td><code>product.id_fam not null</code>, FK <code>fk_product_family</code>; <code>createProduct</code> recebe <code>id_fam</code>; DemoData cria <code>family</code></td>
+</tr>
+<tr>
+<td>RF_M3_03</td>
+<td>Definir preco e IVA para cada produto</td>
+<td><strong>Implementado</strong></td>
+<td><code>product.pri_pro</code>, <code>product.iva_pro</code>; UI envia <code>pri_pro</code> e <code>iva_pro</code>; faturas guardam <code>uni_pri_inv_lin</code> e <code>iva_inv_lin</code></td>
+</tr>
+<tr>
+<td>RF_M3_04</td>
+<td>Apenas produtos ativos podem ser usados em operacoes comerciais</td>
+<td><strong>Implementado na venda; parcial no catalogo UI</strong></td>
+<td>Trigger <code>trg_prevent_inactive_product_sale</code>; view <code>vw_product_stock_levels</code> filtra <code>ina_dat_pro is null</code>; app nao expoe desativacao</td>
+</tr>
+<tr>
+<td>RF_M3_05</td>
+<td>Registar compras a fornecedores</td>
+<td><strong>Parcial</strong></td>
+<td><code>restock.js</code>/<code>createAndReceivePurchase</code> criam <code>purchase</code> e <code>purchase_line</code>; nao ha entidade/campo fornecedor no fluxo</td>
+</tr>
+<tr>
+<td>RF_M3_06</td>
+<td>Associar compra a fornecedor valido</td>
+<td><strong>Nao evidenciado</strong></td>
+<td>O modelo <code>purchase</code> nao tem FK para entidade externa/fornecedor; app nao recolhe fornecedor</td>
+</tr>
+<tr>
+<td>RF_M3_07</td>
+<td>Registar multiplos produtos e quantidades numa compra</td>
+<td><strong>Implementado</strong></td>
+<td><code>restock.js</code> acumula <code>purchaseItems</code>; <code>createAndReceivePurchase</code> insere varias <code>purchase_line</code></td>
+</tr>
+<tr>
+<td>RF_M3_08</td>
+<td>Registar metodo de pagamento e custo total da compra</td>
+<td><strong>Parcial</strong></td>
+<td>Tabela <code>purchase</code> tem <code>tot_val_pur</code> e <code>pay_met_pur</code>; app envia <code>total_price</code>, mas nao recolhe metodo de pagamento na reposicao</td>
+</tr>
+<tr>
+<td>RF_M3_09</td>
+<td>Criar automaticamente registos de stock por lote aquando de uma compra</td>
+<td><strong>Implementado</strong></td>
+<td><code>svc_receive_purchase</code> chama <code>sp_receive_purchase</code>, que cria <code>stock</code> por linha e grava <code>purchase_line.id_sto</code></td>
+</tr>
+<tr>
+<td>RF_M3_10</td>
+<td>Registar quantidade, data de entrada e validade por lote</td>
+<td><strong>Parcial</strong></td>
+<td>Tabela <code>stock</code> tem <code>qty_sto</code>, <code>ent_dat_sto</code>, <code>val_dat_sto</code>, <code>bat_sto</code>; <code>sp_receive_purchase</code> grava quantidade/data e <code>bat_pln</code>, mas app de reposicao nao recolhe lote/validade</td>
+</tr>
+<tr>
+<td>RF_M3_11</td>
+<td>Atualizar stock apos compra, venda ou devolucao</td>
+<td><strong>Implementado</strong></td>
+<td>Compra: <code>sp_receive_purchase</code>; venda: <code>trg_stock_after_sale</code>; devolucao: <code>trg_return_restock</code> e app tambem incrementa stock</td>
+</tr>
+<tr>
+<td>RF_M3_12</td>
+<td>Consultar stock disponivel por produto e lote</td>
+<td><strong>Parcial</strong></td>
+<td>App consulta stock consolidado por produto via <code>svc_list_product_stock_levels</code>/<code>svc_get_product_stock_level</code>; consulta por lote existe na tabela, mas UI/API exposta e consolidada, nao detalhada por lote</td>
+</tr>
+<tr>
+<td>RF_M3_13</td>
+<td>Registar consumo ou venda de produtos</td>
+<td><strong>Implementado</strong></td>
+<td><code>registerNewSale</code> e <code>createInvoiceAndLines</code> criam <code>invoice</code> e <code>invoice_line</code>; Mod4 tambem usa <code>rel_app_product</code> para consumo clinico</td>
+</tr>
+<tr>
+<td>RF_M3_14</td>
+<td>Validar stock antes de venda ou consumo</td>
+<td><strong>Implementado para vendas; parcial para consumo clinico no M3</strong></td>
+<td>Venda valida em <code>createInvoiceAndLines</code> e trigger <code>trg_check_stock_before_sale</code>; consumo clinico e tratado no Mod4/DataLayer</td>
+</tr>
+<tr>
+<td>RF_M3_15</td>
+<td>Associar produtos a consulta ou venda direta</td>
+<td><strong>Parcial</strong></td>
+<td>Venda direta implementada por <code>invoice_line</code>; produtos de consulta existem em Mod4 <code>rel_app_product</code>; fatura de consulta automatica nao evidenciada</td>
+</tr>
+<tr>
+<td>RF_M3_16</td>
+<td>Selecionar automaticamente ou manualmente o lote a utilizar</td>
+<td><strong>Parcial</strong></td>
+<td>Seleciona automaticamente por FIFO em <code>tfn_stock_after_sale</code>; nao ha selecao manual na UI/API</td>
+</tr>
+<tr>
+<td>RF_M3_17</td>
+<td>Gerar fatura com base nos produtos e servicos associados</td>
+<td><strong>Implementado para venda direta; parcial para servicos/consulta</strong></td>
+<td><code>createInvoiceAndLines</code> gera fatura e linhas para produtos; nao ha servicos nem fatura automatica de consulta</td>
+</tr>
+<tr>
+<td>RF_M3_18</td>
+<td>Associar fatura a consulta quando aplicavel</td>
+<td><strong>Parcial</strong></td>
+<td><code>invoice.id_app</code>, <code>appointment.id_inv</code>, <code>uq_invoice_appointment</code> e sync Mod4 existem; app cria vendas com <code>id_app null</code></td>
+</tr>
+<tr>
+<td>RF_M3_19</td>
+<td>Incluir multiplos itens numa fatura</td>
+<td><strong>Implementado</strong></td>
+<td><code>salesManagement.js</code> cria carrinho; <code>createInvoiceAndLines</code> insere varias <code>invoice_line</code></td>
+</tr>
+<tr>
+<td>RF_M3_20</td>
+<td>Calcular automaticamente totais, impostos e valor final</td>
+<td><strong>Implementado</strong></td>
+<td>Trigger <code>trg_update_invoice_total</code> usa <code>tfn_update_invoice_total</code>; UI/PDF calcula e mostra totais</td>
+</tr>
+<tr>
+<td>RF_M3_21</td>
+<td>Registar pagamentos associados a uma fatura</td>
+<td><strong>Parcial</strong></td>
+<td><code>invoice.sta_inv</code> e <code>purchase.pay_met_pur</code> existem; venda ao balcao cria fatura <code>paid</code>, mas nao ha entidade/fluxo de pagamento separado</td>
+</tr>
+<tr>
+<td>RF_M3_22</td>
+<td>Definir metodo de pagamento</td>
+<td><strong>Parcial</strong></td>
+<td><code>purchase.pay_met_pur</code> existe; vendas criam <code>pay_met_pur='counter'</code>; UI de venda/reposicao nao recolhe metodo detalhado</td>
+</tr>
+<tr>
+<td>RF_M3_23</td>
+<td>Atualizar automaticamente estado da fatura</td>
+<td><strong>Parcial</strong></td>
+<td>Estados <code>pending</code>, <code>paid</code>, <code>overdue</code>, <code>cancelled</code> existem; venda cria <code>paid</code> diretamente e DemoData marca <code>overdue</code>; nao foi encontrado fluxo automatico de parcial/pago por pagamento</td>
+</tr>
+<tr>
+<td>RF_M3_24</td>
+<td>Registar devolucoes associadas a fatura original</td>
+<td><strong>Implementado</strong></td>
+<td><code>returnManagement.js</code> usa <code>id_inv_lin</code>; <code>registerProductReturn</code>; trigger valida linha de fatura</td>
+</tr>
+<tr>
+<td>RF_M3_25</td>
+<td>Registar motivo e data da devolucao</td>
+<td><strong>Implementado</strong></td>
+<td><code>"return".mot_ret</code>, <code>ina_dat_ret</code>; <code>trg_set_return_return_date</code>; UI recolhe motivo</td>
+</tr>
+<tr>
+<td>RF_M3_26</td>
+<td>Atualizar stock apos devolucao</td>
+<td><strong>Implementado</strong></td>
+<td><code>tfn_return_restock</code>/<code>trg_return_restock</code>; <code>returnModels.js</code> tambem repoe stock no fluxo app</td>
+</tr>
+<tr>
+<td>RF_M3_27</td>
+<td>Consultar historico de compras, vendas, faturas e devolucoes</td>
+<td><strong>Parcial</strong></td>
+<td>Faturas e devolucoes têm listagem; compras/vendas historicas completas nao têm UI dedicada clara</td>
+</tr>
+<tr>
+<td>RF_M3_28</td>
+<td>Filtrar historico por cliente, produto, periodo ou tipo</td>
+<td><strong>Parcial</strong></td>
+<td>Devolucoes filtram localmente por IDs; faturas listam origem/cliente; nao ha filtros completos por periodo/tipo/produto</td>
+</tr>
+<tr>
+<td>RF_M3_29</td>
+<td>Gerar relatorios de vendas e faturacao</td>
+<td><strong>Nao evidenciado</strong></td>
+<td>Foram encontradas listagens e PDF de fatura, mas nao relatorios agregados de vendas/faturacao</td>
+</tr>
+<tr>
+<td>RF_M3_30</td>
+<td>Analisar niveis de stock e produtos mais utilizados</td>
+<td><strong>Parcial</strong></td>
+<td>Niveis de stock e produtos a encomendar via <code>vw_product_stock_levels</code>/<code>vw_products_to_reorder</code>; produtos mais utilizados nao evidenciado</td>
+</tr>
+</tbody>
+</table>
+<h2 id="requisitos-nao-funcionais">Requisitos Nao Funcionais<a class="headerlink" href="#requisitos-nao-funcionais" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito do PDF</th>
+<th>Estado</th>
+<th>Prova / Observacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF_M3_01</td>
+<td>Garantir consistencia do stock durante operacoes simultaneas</td>
+<td><strong>Implementado</strong></td>
+<td>Triggers de stock, <code>fn_get_available_stock</code>, FIFO e stress <code>01_Concurrent_Sales.sql</code>; ainda assim o fluxo app faz validacao defensiva antes da BD</td>
+</tr>
+<tr>
+<td>RNF_M3_02</td>
+<td>Operacoes comerciais devem ser transacionais</td>
+<td><strong>Implementado</strong></td>
+<td><code>createInvoiceAndLines</code>, <code>createAndReceivePurchase</code>, <code>registerProductReturn</code> usam <code>BEGIN</code>/<code>COMMIT</code>/<code>ROLLBACK</code>; procedures SQL tambem operam atomicamente</td>
+</tr>
+<tr>
+<td>RNF_M3_03</td>
+<td>Precisao monetaria com duas casas decimais</td>
+<td><strong>Implementado</strong></td>
+<td>Campos <code>numeric(10,2)</code> para valores/precos; trigger de totais usa <code>invoice.val_inv numeric(10,2)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="regras-de-negocio">Regras de Negocio<a class="headerlink" href="#regras-de-negocio" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Regra do PDF</th>
+<th>Estado</th>
+<th>Prova / Observacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M3_01</td>
+<td>Produto deve possuir designacao, preco e taxa de IVA validos</td>
+<td><strong>Parcial</strong></td>
+<td><code>nam_pro not null</code>; app exige nome/preco/familia; preco/IVA nao têm CHECK de positividade/obrigatoriedade forte na BD</td>
+</tr>
+<tr>
+<td>RN_M3_02</td>
+<td>Produto deve estar associado a uma unica categoria</td>
+<td><strong>Implementado</strong></td>
+<td><code>product.id_fam not null</code> com FK para <code>family</code></td>
+</tr>
+<tr>
+<td>RN_M3_03</td>
+<td>Apenas produtos ativos participam em operacoes comerciais</td>
+<td><strong>Implementado para venda</strong></td>
+<td><code>trg_prevent_inactive_product_sale</code>; views filtram inativos</td>
+</tr>
+<tr>
+<td>RN_M3_04</td>
+<td>Compra deve estar associada a fornecedor valido</td>
+<td><strong>Nao evidenciado</strong></td>
+<td>Sem fornecedor formal no modelo/fluxo de reposicao</td>
+</tr>
+<tr>
+<td>RN_M3_05</td>
+<td>Compra deve conter pelo menos um produto</td>
+<td><strong>Implementado</strong></td>
+<td>App valida <code>items.length &gt; 0</code>; <code>sp_receive_purchase</code> rejeita compra sem linhas</td>
+</tr>
+<tr>
+<td>RN_M3_06</td>
+<td>Cada registo de stock deve estar associado a produto e lote validos</td>
+<td><strong>Parcial</strong></td>
+<td><code>stock.id_pro not null</code> com FK; lote <code>bat_sto</code> e validade sao opcionais</td>
+</tr>
+<tr>
+<td>RN_M3_07</td>
+<td>Quantidade em stock nao pode ser negativa</td>
+<td><strong>Implementado</strong></td>
+<td><code>ck_qty_sto</code>; triggers bloqueiam venda sem stock; stress verifica ausencia de stock negativo</td>
+</tr>
+<tr>
+<td>RN_M3_08</td>
+<td>Produto so pode ser vendido se houver stock disponivel</td>
+<td><strong>Implementado</strong></td>
+<td>Validacao app e <code>trg_check_stock_before_sale</code></td>
+</tr>
+<tr>
+<td>RN_M3_09</td>
+<td>Quantidade utilizada nao pode exceder stock disponivel</td>
+<td><strong>Implementado</strong></td>
+<td><code>tfn_check_stock_before_sale</code>; QA <code>01_Stock_Before_Sale.sql</code></td>
+</tr>
+<tr>
+<td>RN_M3_10</td>
+<td>Fatura deve conter pelo menos um item faturavel</td>
+<td><strong>Implementado na app; parcial na BD</strong></td>
+<td><code>registerNewSale</code> exige items; BD permite criar <code>invoice</code> sem linhas</td>
+</tr>
+<tr>
+<td>RN_M3_11</td>
+<td>Total da fatura corresponde a soma dos itens e impostos</td>
+<td><strong>Implementado</strong></td>
+<td><code>tfn_update_invoice_total</code>; QA <code>04_Invoice_Total_Update.sql</code></td>
+</tr>
+<tr>
+<td>RN_M3_12</td>
+<td>Apos emissao, fatura nao pode ser alterada, apenas anulada/retificada</td>
+<td><strong>Nao evidenciado</strong></td>
+<td>Nao foi encontrada trigger que bloqueie alteracao de <code>invoice</code> ou <code>invoice_line</code> apos emissao</td>
+</tr>
+<tr>
+<td>RN_M3_13</td>
+<td>Faturas devem possuir identificador unico e sequencial</td>
+<td><strong>Implementado</strong></td>
+<td><code>invoice.id_inv generated always as identity</code>, PK <code>pk_invoice</code></td>
+</tr>
+<tr>
+<td>RN_M3_14</td>
+<td>Fatura so e paga quando total pago corresponde ao total faturado</td>
+<td><strong>Nao evidenciado</strong></td>
+<td>Nao ha entidade/fluxo de pagamentos nem soma de pagamentos</td>
+</tr>
+<tr>
+<td>RN_M3_15</td>
+<td>Devolucao deve estar associada a fatura existente</td>
+<td><strong>Implementado funcionalmente; parcial por FK</strong></td>
+<td>App exige <code>id_inv_lin</code>; trigger valida existencia da linha; FK formal foi removida por design</td>
+</tr>
+<tr>
+<td>RN_M3_16</td>
+<td>Devolucao deve indicar motivo obrigatorio</td>
+<td><strong>Parcial</strong></td>
+<td>UI/controller exigem <code>mot_ret</code>; BD permite <code>mot_ret</code> nulo</td>
+</tr>
+<tr>
+<td>RN_M3_17</td>
+<td>Operacoes comerciais preservadas para consulta futura</td>
+<td><strong>Implementado</strong></td>
+<td>Listagens de faturas/devolucoes, DemoData, ausencia de deletes na API</td>
+</tr>
+<tr>
+<td>RN_M3_18</td>
+<td>Nao e permitido eliminar registos historicos comerciais</td>
+<td><strong>Parcial</strong></td>
+<td>API nao expoe delete; BD usa cascades em linhas de fatura/compra e nao tem trigger de bloqueio geral</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modelacao-dicionario-de-dados-do-pdf">Modelacao / Dicionario de Dados do PDF<a class="headerlink" href="#modelacao-dicionario-de-dados-do-pdf" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Entidade do PDF</th>
+<th>Estado</th>
+<th>Prova / Observacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Familia de Produto</td>
+<td><strong>Implementado</strong></td>
+<td>Tabela <code>family</code>; DemoData <code>13_Products.sql</code>; FK em <code>product</code></td>
+</tr>
+<tr>
+<td>Produto</td>
+<td><strong>Parcial</strong></td>
+<td>Tabela <code>product</code>, catalogo e criacao; edicao/desativacao nao expostas na app</td>
+</tr>
+<tr>
+<td>Stock</td>
+<td><strong>Implementado</strong></td>
+<td>Tabela <code>stock</code>, views, triggers de venda/devolucao/compra</td>
+</tr>
+<tr>
+<td>Compra</td>
+<td><strong>Parcial</strong></td>
+<td>Tabela <code>purchase</code>, app de reposicao e <code>sp_receive_purchase</code>; fornecedor/metodo pagamento incompletos</td>
+</tr>
+<tr>
+<td>Linha de Compra</td>
+<td><strong>Implementado</strong></td>
+<td>Tabela <code>purchase_line</code>, multiplas linhas, link a stock criado</td>
+</tr>
+<tr>
+<td>Fatura</td>
+<td><strong>Implementado com lacunas</strong></td>
+<td>Tabela <code>invoice</code>, listagem/PDF/estado/valor; pagamento e imutabilidade nao evidenciados</td>
+</tr>
+<tr>
+<td>Linha de Fatura</td>
+<td><strong>Implementado</strong></td>
+<td>Tabela <code>invoice_line</code>, multiplos itens, total automatico, stock FIFO</td>
+</tr>
+<tr>
+<td>Devolucao</td>
+<td><strong>Implementado com lacunas</strong></td>
+<td>Tabela <code>"return"</code>, UI/API e stock; motivo obrigatorio so na app e FK formal para <code>invoice_line</code> ausente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidencia-de-qa">Evidencia de QA<a class="headerlink" href="#evidencia-de-qa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Ficheiro</th>
+<th>Cobertura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integridade</td>
+<td><code>DataBase/QA/01_Integrity/03_Module3/01_Stock_Before_Sale.sql</code></td>
+<td>bloqueio de venda com stock insuficiente</td>
+</tr>
+<tr>
+<td>Integridade</td>
+<td><code>DataBase/QA/01_Integrity/03_Module3/02_Inactive_Product_Sale.sql</code></td>
+<td>bloqueio de venda de produto inativo</td>
+</tr>
+<tr>
+<td>Integridade</td>
+<td><code>DataBase/QA/01_Integrity/03_Module3/03_Return_Quantity.sql</code></td>
+<td>bloqueio de devolucao superior a quantidade vendida</td>
+</tr>
+<tr>
+<td>Integridade</td>
+<td><code>DataBase/QA/01_Integrity/03_Module3/04_Invoice_Total_Update.sql</code></td>
+<td>calculo automatico do total da fatura</td>
+</tr>
+<tr>
+<td>Stress</td>
+<td><code>DataBase/QA/04_Stress/03_Module3/01_Concurrent_Sales.sql</code></td>
+<td>tentativas de venda contra stock fixo sem oversell</td>
+</tr>
+<tr>
+<td>Stress</td>
+<td><code>DataBase/QA/04_Stress/03_Module3/02_High_Volume_Invoice_Lines.sql</code></td>
+<td>carga de 500 linhas de fatura</td>
+</tr>
+<tr>
+<td>Stress</td>
+<td><code>DataBase/QA/04_Stress/03_Module3/03_FIFO_Consumption.sql</code></td>
+<td>consumo FIFO por validade/lote</td>
+</tr>
+<tr>
+<td>Stress</td>
+<td><code>DataBase/QA/04_Stress/03_Module3/04_Return_Storm.sql</code></td>
+<td>devolucoes em massa e reposicao de stock</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notas-de-cobertura-tecnica">Notas de Cobertura Tecnica<a class="headerlink" href="#notas-de-cobertura-tecnica" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>sp_receive_purchase</code> nao impede segunda rececao de uma compra ja <code>received</code>, podendo duplicar stock; nao foi encontrado teste de integridade para este procedimento.</li>
+<li>Ao receber compra, <code>sp_receive_purchase</code> grava <code>val_dat_sto = null</code> em <code>stock</code>, pelo que a validade recolhida em <code>purchase_line</code> nao e propagada automaticamente.</li>
+<li>Nao existe entidade <code>payment</code> nem estado <code>partial</code> em <code>invoice_status</code>; <code>sta_inv</code> nao e atualizado por soma de pagamentos (apenas por DML/demo ou criacao direta como <code>paid</code> na app).</li>
+<li>Nao existe <code>DataBase/QA/05_Manual/03_Module3/</code> (Mod1 e Mod4 tem scripts de defesa manual).</li>
+<li>Consumo clinico no Mod4 (<code>tfn_deduct_product_stock</code> em <code>rel_app_product</code>) nao segue o FIFO de <code>tfn_stock_after_sale</code> — dois caminhos de reducao de stock coexistem.</li>
+<li><code>DataBase/Schema/03_Module3_Commercial_Management/06_Jobs_Mod3.sql</code> e placeholder (sem jobs agendados).</li>
+<li><code>DataBase/Queries/03_Module3/queries_03Module.sql</code> esta marcado como deprecado e referencia colunas inexistentes (<code>stock_minimo</code> em vez de <code>min_sto</code>).</li>
+</ul>
+<h2 id="conclusao-por-area">Conclusao por Area<a class="headerlink" href="#conclusao-por-area" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Estado global</th>
+<th>Justificacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catalogo</td>
+<td><strong>Parcial</strong></td>
+<td>Criacao/listagem/familia/preco/IVA existem; faltam editar/desativar na app</td>
+</tr>
+<tr>
+<td>Stock</td>
+<td><strong>Implementado</strong></td>
+<td>Stock consolidado, minimos, reposicao, FIFO e guards SQL existem</td>
+</tr>
+<tr>
+<td>Compras/reposicao</td>
+<td><strong>Parcial</strong></td>
+<td>Compra com linhas e stock automatico; falta fornecedor e recolha de lote/validade/metodo pagamento</td>
+</tr>
+<tr>
+<td>Vendas ao balcao</td>
+<td><strong>Implementado</strong></td>
+<td>Carrinho, fatura, linhas, stock e PDF funcionam</td>
+</tr>
+<tr>
+<td>Faturacao</td>
+<td><strong>Implementado com lacunas</strong></td>
+<td>Faturas/linhas/totais/PDF; faltam pagamentos formais, imutabilidade e consulta-fatura automatica</td>
+</tr>
+<tr>
+<td>Devolucoes</td>
+<td><strong>Implementado com lacunas</strong></td>
+<td>Associadas a linha de fatura e repoe stock; motivo/FK historica dependem mais da app/trigger que de constraint forte</td>
+</tr>
+<tr>
+<td>Historico/relatorios</td>
+<td><strong>Parcial</strong></td>
+<td>Listagens e filtros simples existem; faltam relatorios agregados e analise de produtos mais usados</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="ipca-site-footer">
+  <div class="ipca-site-footer__inner">
+    <span class="ipca-site-footer__text">
+      MiaCaoMigo Engineering Documentation
+    </span>
+
+    <div class="ipca-site-footer__logos" aria-label="IPCA logos">
+      <img
+        src="../../../../00_Assets/00_Branding/00_logos/ipca.jpg"
+        alt="IPCA"
+      >
+      <img
+        src="../../../../00_Assets/00_Branding/00_logos/ipca_est.png"
+        alt="IPCA EST"
+      >
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5530 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../STRUCTURE/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../00_Assets/00_Branding/01_icons/Logo_pBack.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Docker Production Guide - MiaCaoMigo Engineering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../Extras/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#production" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-header__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiaCaoMigo Engineering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker Production Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Planning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Requirements/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Diagrams
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Performance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Academic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Production
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-nav__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    MiaCaoMigo Engineering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCUMENTATION_LAYERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/01_Narrative_Stories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narrative Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Narrative Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ecosystem Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Employees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/03_Animals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Animals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/04_External/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — External
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_APPOINTMENT_STATES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointment States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_COMMERCIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_INCIDENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_NOTIFICATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprints
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprints
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_1/Sprint_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_2/Sprint_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_3/Sprint_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprint 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Sprint_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02_Requirements/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/00_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/01_Non_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/02_Business_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/03_Business_Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/04_Acceptance_Criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptance Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/06_Implementation_Matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/07_Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagrams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER V10 — Conceptual attributes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER V10 — Conceptual attributes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/00_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/00_Application_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/01_Website_Flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/02_Runtime_Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/03_Implementation_Evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/04_Generated_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3_7" id="__nav_5_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Website Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/OpenAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Update_Docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Update Docs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/Architecture_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_2" id="__nav_5_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_3" id="__nav_5_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_4" id="__nav_5_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Rules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrity Rules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedural Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_5" id="__nav_5_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Templates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Authoring Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3_2" id="__nav_5_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Schema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Schema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_4" id="__nav_5_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SchemaSpy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SchemaSpy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06_Performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/01_Performance_Strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/02_Frontend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/03_Backend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/04_Test_Results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/05_Recommendations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Academic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/00_Statements/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/01_Academic_Reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/02_Presentation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/15min_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 min Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/Screenshots_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo-academico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo Académico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-significa-pronto-para-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O Que Significa «Pronto Para Produção»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparacao-com-o-meio-profissional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparação Com o Meio Profissional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pontos-ja-bem-resolvidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pontos Já Bem Resolvidos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pontos-ainda-por-melhorar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pontos Ainda Por Melhorar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quao-parecido-e-isto-com-producao-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quão Parecido É Isto Com Produção Real?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servicos-de-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serviços de Produção
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferenca-para-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferença Para Desenvolvimento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-a-arquitetura-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como a Arquitetura Funciona
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como a Arquitetura Funciona">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Website
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-ligar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de Ligar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-a-passo-para-iniciar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo a Passo Para Iniciar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enderecos-locais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endereços Locais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-desligar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Desligar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-apagar-tudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Apagar Tudo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-atualizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Atualizar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-simples-da-bd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Simples da BD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-para-a-defesa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checklist Para a Defesa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checklist Para a Defesa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frases-uteis-na-apresentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frases úteis na apresentação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos-alem-do-academico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos Passos (Além do Académico)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h1>
+<p>Esta página explica como arrancar o MiaCaoMigo em modo de produção usando Docker. O objetivo, no contexto académico, é demonstrar que o projeto consegue sair do ambiente de desenvolvimento e ser executado com uma configuração mais próxima de um deployment real.</p>
+<p>O modo de produção fica preparado, mas não fica ligado automaticamente. Só é iniciado quando forem executados os comandos desta página.</p>
+<h2 id="objetivo-academico">Objetivo Académico<a class="headerlink" href="#objetivo-academico" title="Permanent link">&para;</a></h2>
+<p>Para a entrega/defesa, esta configuração mostra que o sistema tem:</p>
+<ul>
+<li>separação entre aplicação, base de dados e documentação;</li>
+<li>variáveis de ambiente para credenciais e segredos;</li>
+<li>base de dados persistente;</li>
+<li>documentação servida como site estático;</li>
+<li>healthchecks para verificar se os serviços estão ativos;</li>
+<li>configuração separada do modo de desenvolvimento.</li>
+</ul>
+<p>Isto não pretende substituir uma infraestrutura cloud completa, mas sim apresentar uma base organizada e tecnicamente correta para produção.</p>
+<h2 id="o-que-significa-pronto-para-producao">O Que Significa «Pronto Para Produção»<a class="headerlink" href="#o-que-significa-pronto-para-producao" title="Permanent link">&para;</a></h2>
+<p>Num ambiente profissional, <strong>produção</strong> não significa apenas «o programa corre». Significa que o sistema pode ser usado de forma fiável por pessoas reais, mantido por uma equipa e recuperado quando algo falha.</p>
+<p>Em termos simples, um sistema está mais próximo de produção quando:</p>
+<ul>
+<li>arranca sempre da mesma forma (build reproduzível);</li>
+<li>guarda dados de forma persistente;</li>
+<li>não expõe segredos no código nem no repositório;</li>
+<li>separa desenvolvimento de produção;</li>
+<li>permite verificar se os serviços estão saudáveis;</li>
+<li>pode ser atualizado sem perder dados por acidente;</li>
+<li>tem plano de backup e restauro;</li>
+<li>está protegido (HTTPS, CORS, BD não pública).</li>
+</ul>
+<p>No MiaCaoMigo, o modo Docker de produção cobre <strong>parte importante</strong> destes critérios. Ainda não cobre tudo o que uma empresa exigiria antes de abrir o sistema na internet.</p>
+<h2 id="comparacao-com-o-meio-profissional">Comparação Com o Meio Profissional<a class="headerlink" href="#comparacao-com-o-meio-profissional" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspeto</th>
+<th>Prática profissional típica</th>
+<th>MiaCaoMigo (modo produção Docker)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empacotamento</td>
+<td>Imagens Docker versionadas, registry privado</td>
+<td>Imagens Docker locais (<code>Dockerfile.prod</code>, <code>Dockerfile.docs.prod</code>)</td>
+</tr>
+<tr>
+<td>Configuração</td>
+<td>Secrets manager, variáveis por ambiente</td>
+<td><code>.env.production</code> (não commitado)</td>
+</tr>
+<tr>
+<td>Base de dados</td>
+<td>Managed DB, migrações versionadas, backups automáticos</td>
+<td>PostgreSQL em container, volume persistente, backup manual documentado</td>
+</tr>
+<tr>
+<td>Rede</td>
+<td>HTTPS, reverse proxy, firewall, BD isolada</td>
+<td>BD em rede interna; website/docs em HTTP local</td>
+</tr>
+<tr>
+<td>Documentação</td>
+<td>Site estático (S3, CDN, Nginx)</td>
+<td>MkDocs build + Nginx em container</td>
+</tr>
+<tr>
+<td>Observabilidade</td>
+<td>Logs centralizados, métricas, alertas</td>
+<td>Logs via <code>docker compose logs</code>; healthcheck <code>/health</code></td>
+</tr>
+<tr>
+<td>Entrega</td>
+<td>CI/CD, testes automáticos antes do deploy</td>
+<td>Build e arranque manuais documentados</td>
+</tr>
+<tr>
+<td>Dados iniciais</td>
+<td>Seeds controlados, sem demo em produção</td>
+<td>Bootstrap <code>init_prod</code> sem <code>DemoData</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão:</strong> o projeto demonstra <strong>consciência de produção</strong> e uma arquitetura Docker coerente para contexto académico. Em linguagem profissional, isto classifica-se como <strong>deployment local tipo produção</strong> ou <strong>base production-ready</strong>, não como produção empresarial completa.</p>
+<h2 id="pontos-ja-bem-resolvidos">Pontos Já Bem Resolvidos<a class="headerlink" href="#pontos-ja-bem-resolvidos" title="Permanent link">&para;</a></h2>
+<p>O que o projeto já faz de forma alinhada com boas práticas:</p>
+<table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>O que demonstra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compose separado</td>
+<td><code>docker-compose.prod.yml</code> não mistura com desenvolvimento</td>
+</tr>
+<tr>
+<td>Imagens imutáveis</td>
+<td>App e docs construídas em Dockerfile; sem bind mount do código em produção</td>
+</tr>
+<tr>
+<td><code>NODE_ENV=production</code></td>
+<td>Ambiente explícito no container da API</td>
+</tr>
+<tr>
+<td>BD isolada</td>
+<td>PostgreSQL só na rede <code>miacaomigo_internal</code>; sem porta <code>5432</code> no host</td>
+</tr>
+<tr>
+<td>Persistência</td>
+<td>Volume <code>miacaomigo_postgres_data</code> sobrevive a <code>down</code> sem <code>-v</code></td>
+</tr>
+<tr>
+<td>Segredos fora do Git</td>
+<td><code>.env.production.example</code> + <code>.env.production</code> ignorado</td>
+</tr>
+<tr>
+<td>JWT obrigatório em produção</td>
+<td>Backend recusa arrancar sem <code>JWT_SECRET</code> quando <code>NODE_ENV=production</code></td>
+</tr>
+<tr>
+<td>CORS configurável</td>
+<td><code>CORS_ORIGIN</code> em vez de CORS totalmente aberto em produção</td>
+</tr>
+<tr>
+<td>Healthcheck</td>
+<td>Endpoint <code>/health</code> e checks no compose</td>
+</tr>
+<tr>
+<td>Docs como site estático</td>
+<td><code>mkdocs build</code> + Nginx, não <code>mkdocs serve</code></td>
+</tr>
+<tr>
+<td>Bootstrap adequado</td>
+<td><code>init_prod_entry.sql</code> — schema + MasterData, sem DemoData</td>
+</tr>
+<tr>
+<td>Documentação operacional</td>
+<td>Guia passo a passo, backup, checklist para defesa</td>
+</tr>
+</tbody>
+</table>
+<p>Estes pontos são credíveis numa <strong>defesa académica</strong> e mostram que a equipa pensou além de «correr no portátil com <code>npm start</code>».</p>
+<h2 id="pontos-ainda-por-melhorar">Pontos Ainda Por Melhorar<a class="headerlink" href="#pontos-ainda-por-melhorar" title="Permanent link">&para;</a></h2>
+<p>O que falta ou está incompleto face a um deployment profissional «em produção real»:</p>
+<table>
+<thead>
+<tr>
+<th>Lacuna</th>
+<th>Impacto</th>
+<th>Estado no projeto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTPS / TLS</td>
+<td>Tráfego não encriptado em <code>localhost</code></td>
+<td>Não configurado (aceitável localmente; obrigatório na internet)</td>
+</tr>
+<tr>
+<td>Reverse proxy</td>
+<td>Um único ponto de entrada, domínios, certificados</td>
+<td>Não incluído no compose atual</td>
+</tr>
+<tr>
+<td>Backups automáticos</td>
+<td>Risco de perda de dados sem rotina</td>
+<td>Apenas procedimento manual documentado</td>
+</tr>
+<tr>
+<td>Monitorização e alertas</td>
+<td>Equipa não vê falhas a tempo</td>
+<td>Só logs Docker e healthcheck</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td>Deploy manual, sem gate de testes</td>
+<td>Não implementado</td>
+</tr>
+<tr>
+<td>Migrações versionadas da BD</td>
+<td>Alterações de schema difíceis de aplicar em produção</td>
+<td>Bootstrap inicial; sem pipeline de migrations</td>
+</tr>
+<tr>
+<td>Gestão avançada de secrets</td>
+<td><code>.env</code> em disco é frágil em equipas grandes</td>
+<td>Ficheiro local suficiente para académico, fraco para empresa</td>
+</tr>
+<tr>
+<td>Rotas de diagnóstico</td>
+<td><code>/db-test</code> não deve estar público</td>
+<td>Ainda presente na API</td>
+</tr>
+<tr>
+<td>URLs <code>localhost</code> no frontend</td>
+<td>Alguns módulos podem falhar fora do host esperado</td>
+<td>Revisão pendente (ex.: animais staff)</td>
+</tr>
+<tr>
+<td>Logging centralizado</td>
+<td>Dificulta auditoria e debugging em escala</td>
+<td>Não configurado</td>
+</tr>
+</tbody>
+</table>
+<p>Estas lacunas <strong>não invalidam</strong> o trabalho académico. São o que se diria numa discussão honesta: «temos uma base sólida; estes seriam os próximos passos numa empresa».</p>
+<h2 id="quao-parecido-e-isto-com-producao-real">Quão Parecido É Isto Com Produção Real?<a class="headerlink" href="#quao-parecido-e-isto-com-producao-real" title="Permanent link">&para;</a></h2>
+<p>Escala simplificada para contextualizar na defesa:</p>
+<div class="highlight"><pre><span></span><code>Desenvolvimento local (npm start, compose dev)
+        ↓
+Production-like local (o que temos agora)  ← MiaCaoMigo
+        ↓
+Staging / pré-produção (HTTPS, CI, dados de teste)
+        ↓
+Produção empresarial (cloud, monitorização, SLA, backups automáticos)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Descrição</th>
+<th>MiaCaoMigo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Dev</td>
+<td>Programar com hot reload, credenciais simples</td>
+<td><code>docker-compose.yml</code> da app, MkDocs <code>serve</code></td>
+</tr>
+<tr>
+<td>2 — Production-like</td>
+<td>Docker prod, BD persistente, segredos, healthchecks</td>
+<td><strong>Modo documentado nesta página</strong></td>
+</tr>
+<tr>
+<td>3 — Staging</td>
+<td>Ambiente espelho com HTTPS e pipeline</td>
+<td>Não implementado</td>
+</tr>
+<tr>
+<td>4 — Produção cloud</td>
+<td>Escala, alta disponibilidade, operações 24/7</td>
+<td>Fora do scope académico atual</td>
+</tr>
+</tbody>
+</table>
+<p>Para um <strong>projeto universitário</strong>, o nível 2 é um objetivo realista e defensável. Para uma <strong>startup ou empresa</strong>, seria o ponto de partida antes de investir no nível 3–4.</p>
+<h2 id="servicos-de-producao">Serviços de Produção<a class="headerlink" href="#servicos-de-producao" title="Permanent link">&para;</a></h2>
+<p>O ficheiro principal é:</p>
+<div class="highlight"><pre><span></span><code>07_Deployment/docker-compose.prod.yml
+</code></pre></div>
+<p>Ele cria três serviços:</p>
+<table>
+<thead>
+<tr>
+<th>Serviço</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db</code></td>
+<td>PostgreSQL 15 com <code>pg_cron</code> e volume persistente</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td>API Node.js/Express e frontend estático</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>documentação MkDocs compilada e servida por Nginx</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diferenca-para-desenvolvimento">Diferença Para Desenvolvimento<a class="headerlink" href="#diferenca-para-desenvolvimento" title="Permanent link">&para;</a></h2>
+<p>No modo de desenvolvimento, os containers usam ficheiros locais, portas abertas e servidores próprios para programar/testar.</p>
+<p>No modo de produção:</p>
+<ul>
+<li>a aplicação é construída numa imagem Docker própria;</li>
+<li>não há bind mount do código da aplicação;</li>
+<li><code>NODE_ENV</code> fica como <code>production</code>;</li>
+<li>a base de dados não expõe a porta <code>5432</code> para fora;</li>
+<li>a documentação não usa <code>mkdocs serve</code>;</li>
+<li>o MkDocs é compilado para HTML e servido por Nginx;</li>
+<li>as credenciais ficam num ficheiro <code>.env.production</code>, que não deve ser commitado.</li>
+</ul>
+<h2 id="como-a-arquitetura-funciona">Como a Arquitetura Funciona<a class="headerlink" href="#como-a-arquitetura-funciona" title="Permanent link">&para;</a></h2>
+<h3 id="base-de-dados">Base de Dados<a class="headerlink" href="#base-de-dados" title="Permanent link">&para;</a></h3>
+<p>A base de dados usa o repositório <code>MiaCaoMigo_DataLayer</code>.</p>
+<p>Em produção, o bootstrap usa:</p>
+<div class="highlight"><pre><span></span><code>MiaCaoMigo_DataLayer/DataBase/Bootstrap/entrypoints/init_prod_entry.sql
+</code></pre></div>
+<p>Este ficheiro carrega a estrutura da BD, regras, serviços SQL e <code>MasterData</code>. Não carrega <code>DemoData</code>, porque dados de demonstração não devem entrar num ambiente de produção.</p>
+<p>Os dados ficam guardados no volume:</p>
+<div class="highlight"><pre><span></span><code>miacaomigo_postgres_data
+</code></pre></div>
+<p>Isto permite desligar e voltar a ligar containers sem perder a base de dados.</p>
+<h3 id="website">Website<a class="headerlink" href="#website" title="Permanent link">&para;</a></h3>
+<p>O website usa:</p>
+<div class="highlight"><pre><span></span><code>MiaCaoMigo_/Dockerfile.prod
+</code></pre></div>
+<p>Este Dockerfile instala apenas dependências de produção e arranca a aplicação com:</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>Backend/server.js
+</code></pre></div>
+<p>A aplicação fala com a BD através da rede interna Docker:</p>
+<div class="highlight"><pre><span></span><code>DB_HOST=db
+DB_PORT=5432
+</code></pre></div>
+<h3 id="documentacao">Documentação<a class="headerlink" href="#documentacao" title="Permanent link">&para;</a></h3>
+<p>A documentação usa:</p>
+<div class="highlight"><pre><span></span><code>MiaCaoMigo_Engineering/Dockerfile.docs.prod
+</code></pre></div>
+<p>O processo é:</p>
+<ol>
+<li>Compilar o portal com <code>mkdocs build</code>.</li>
+<li>Servir o resultado final com Nginx.</li>
+</ol>
+<p>Assim, a documentação fica mais próxima de um site real publicado.</p>
+<h2 id="antes-de-ligar">Antes de Ligar<a class="headerlink" href="#antes-de-ligar" title="Permanent link">&para;</a></h2>
+<p>Entrar na pasta de produção:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>MiaCaoMigo_Engineering/07_Deployment
+</code></pre></div>
+<p>Criar o ficheiro real de ambiente:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>.env.production.example<span class="w"> </span>.env.production
+</code></pre></div>
+<p>Editar <code>.env.production</code> e trocar os valores de exemplo.</p>
+<p>Campos mais importantes:</p>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>O que representa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POSTGRES_USER</code></td>
+<td>utilizador da base de dados</td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>password da base de dados</td>
+</tr>
+<tr>
+<td><code>POSTGRES_DB</code></td>
+<td>nome da base de dados</td>
+</tr>
+<tr>
+<td><code>JWT_SECRET</code></td>
+<td>segredo usado para assinar tokens de login</td>
+</tr>
+<tr>
+<td><code>CORS_ORIGIN</code></td>
+<td>origem permitida para chamadas do browser</td>
+</tr>
+<tr>
+<td><code>WEB_PORT</code></td>
+<td>porta local do website</td>
+</tr>
+<tr>
+<td><code>DOCS_PORT</code></td>
+<td>porta local da documentação</td>
+</tr>
+</tbody>
+</table>
+<p>O ficheiro <code>.env.production</code> não deve ser colocado no Git.</p>
+<h2 id="passo-a-passo-para-iniciar">Passo a Passo Para Iniciar<a class="headerlink" href="#passo-a-passo-para-iniciar" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Construir as imagens:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>build
+</code></pre></div>
+<ol>
+<li>Ligar os serviços:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<ol>
+<li>Verificar o estado:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>ps
+</code></pre></div>
+<ol>
+<li>Ver logs, se necessário:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>logs<span class="w"> </span>-f
+</code></pre></div>
+<h2 id="enderecos-locais">Endereços Locais<a class="headerlink" href="#enderecos-locais" title="Permanent link">&para;</a></h2>
+<p>Com as portas por defeito:</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website</td>
+<td><code>http://localhost:3000</code></td>
+</tr>
+<tr>
+<td>Documentação</td>
+<td><code>http://localhost:8000</code></td>
+</tr>
+<tr>
+<td>Healthcheck da API</td>
+<td><code>http://localhost:3000/health</code></td>
+</tr>
+</tbody>
+</table>
+<p>A base de dados não fica acessível diretamente por uma porta local. Ela fica disponível apenas para os containers que pertencem à rede interna.</p>
+<h2 id="como-desligar">Como Desligar<a class="headerlink" href="#como-desligar" title="Permanent link">&para;</a></h2>
+<p>Para desligar sem apagar os dados:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>down
+</code></pre></div>
+<p>Este comando remove containers e redes, mas mantém o volume da base de dados.</p>
+<h2 id="como-apagar-tudo">Como Apagar Tudo<a class="headerlink" href="#como-apagar-tudo" title="Permanent link">&para;</a></h2>
+<p>Usar apenas se for aceitável apagar a base de dados:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<p>O <code>-v</code> remove também os volumes Docker.</p>
+<h2 id="como-atualizar">Como Atualizar<a class="headerlink" href="#como-atualizar" title="Permanent link">&para;</a></h2>
+<p>Depois de alterações no código ou na documentação:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>build
+docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Isto reconstrói as imagens e volta a arrancar os serviços atualizados.</p>
+<h2 id="backup-simples-da-bd">Backup Simples da BD<a class="headerlink" href="#backup-simples-da-bd" title="Permanent link">&para;</a></h2>
+<p>Criar backup:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>db<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;pg_dump -U &quot;$POSTGRES_USER&quot; &quot;$POSTGRES_DB&quot;&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>miacaomigo_backup.sql
+</code></pre></div>
+<p>Restaurar backup:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>db<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;psql -U &quot;$POSTGRES_USER&quot; &quot;$POSTGRES_DB&quot;&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>miacaomigo_backup.sql
+</code></pre></div>
+<h2 id="checklist-para-a-defesa">Checklist Para a Defesa<a class="headerlink" href="#checklist-para-a-defesa" title="Permanent link">&para;</a></h2>
+<p>Antes de demonstrar o modo de produção:</p>
+<ul>
+<li>confirmar que <code>.env.production</code> existe;</li>
+<li>confirmar que <code>JWT_SECRET</code> está definido;</li>
+<li>confirmar que o compose constrói sem erros;</li>
+<li>confirmar que <code>website</code>, <code>docs</code> e <code>db</code> aparecem como ativos;</li>
+<li>abrir <code>http://localhost:3000</code>;</li>
+<li>abrir <code>http://localhost:8000</code>;</li>
+<li>testar <code>http://localhost:3000/health</code>;</li>
+<li>explicar que a BD não está exposta diretamente;</li>
+<li>explicar que a documentação é servida por Nginx e não por <code>mkdocs serve</code>;</li>
+<li>referir que dados demo não são carregados no bootstrap de produção.</li>
+</ul>
+<h3 id="frases-uteis-na-apresentacao">Frases úteis na apresentação<a class="headerlink" href="#frases-uteis-na-apresentacao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>«Temos um ambiente Docker de produção separado do desenvolvimento, com imagens imutáveis e BD persistente.»</li>
+<li>«Isto é um deployment <em>production-like</em> local, não uma cloud enterprise completa.»</li>
+<li>«Os pontos fortes são separação de serviços, segredos por ambiente e bootstrap sem dados demo.»</li>
+<li>«Os próximos passos profissionais seriam HTTPS, reverse proxy, CI/CD e backups automáticos.»</li>
+</ul>
+<h2 id="proximos-passos-alem-do-academico">Próximos Passos (Além do Académico)<a class="headerlink" href="#proximos-passos-alem-do-academico" title="Permanent link">&para;</a></h2>
+<p>Se o projeto evoluísse para um ambiente público real, a ordem lógica seria:</p>
+<ol>
+<li>Reverse proxy com HTTPS (Nginx/Caddy/Traefik).</li>
+<li>Backups automáticos da BD com teste de restore.</li>
+<li>Pipeline CI/CD (build → testes → deploy).</li>
+<li>Remover ou proteger rotas de diagnóstico (<code>/db-test</code>).</li>
+<li>Migrações versionadas da BD em vez de depender só do bootstrap inicial.</li>
+<li>Monitorização (métricas, alertas, logs agregados).</li>
+</ol>
+<p>Estes passos estão alinhados com a secção <a href="#pontos-ainda-por-melhorar">Pontos Ainda Por Melhorar</a> e mostram maturidade técnica na discussão com o júri.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="ipca-site-footer">
+  <div class="ipca-site-footer__inner">
+    <span class="ipca-site-footer__text">
+      MiaCaoMigo Engineering Documentation
+    </span>
+
+    <div class="ipca-site-footer__logos" aria-label="IPCA logos">
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca.jpg"
+        alt="IPCA"
+      >
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca_est.png"
+        alt="IPCA EST"
+      >
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

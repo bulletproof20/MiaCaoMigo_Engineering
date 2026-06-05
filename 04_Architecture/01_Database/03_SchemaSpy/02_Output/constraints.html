@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>miacaomigo.public</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>miacaomigo</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Constraints</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="ion ion-key"></i>
+                            <h3 class="box-title">55 Foreign Key Constraints</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="fk_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="50"
+                                    data-length-change="false">
+                                <thead align='left'>
+                                    <tr>
+                                        <th>Constraint Name</th>
+                                        <th>Child Column</th>
+                                        <th>Parent Column</th>
+                                        <th>Delete Rule</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>fk_have_profile</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/have.html'>have</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/profile.html'>profile</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_have_permission</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/have.html'>have</a><span>.id_per</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/permission.html'>permission</a><span>.id_per</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_occ_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/occupies.html'>occupies</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_occ_profile</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/occupies.html'>occupies</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/profile.html'>profile</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_stock_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/stock.html'>stock</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_delivery_animal</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/delivery.html'>delivery</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_delivery_entity</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/delivery.html'>delivery</a><span>.id_ext_ent</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/external_entity.html'>external_entity</a><span>.id_ext_ent</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_purchase_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_login_record_user</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/login_record.html'>login_record</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_expert_specialty</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/expert.html'>expert</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/specialty.html'>specialty</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_expert_veterinarian</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/expert.html'>expert</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/veterinarian.html'>veterinarian</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_return_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_return_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_return_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/return.html'>return</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_invoice_line_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/invoice_line.html'>invoice_line</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_invoice_line_invoice</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/invoice_line.html'>invoice_line</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/invoice.html'>invoice</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_prescription_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/prescription.html'>prescription</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_product_family</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_fam</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/family.html'>family</a><span>.id_fam</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_veterinarian_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/veterinarian.html'>veterinarian</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_animal</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_specialty</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/specialty.html'>specialty</a><span>.id_spe</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_invoice</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/invoice.html'>invoice</a><span>.id_inv</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_absence_responsible</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/absence.html'>absence</a><span>.res_abs</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_absence_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/absence.html'>absence</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_schedule_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/schedule.html'>schedule</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_breed_species</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/breed.html'>breed</a><span>.id_spc</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/species.html'>species</a><span>.id_spc</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_pre_pro_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/rel_pre_prod.html'>rel_pre_prod</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_pre_pro_prescription</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/rel_pre_prod.html'>rel_pre_prod</a><span>.id_pre</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/prescription.html'>prescription</a><span>.id_pre</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_animal_species</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_spc</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/species.html'>species</a><span>.id_spc</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_animal_breed</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_bre</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/breed.html'>breed</a><span>.id_bre</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_employee_user</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_employee_aut_ina</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.aut_ina_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_employee_aut_reg</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.aut_reg_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_purchase_line_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/purchase_line.html'>purchase_line</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_purchase_line_purchase</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/purchase_line.html'>purchase_line</a><span>.id_pur</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/purchase.html'>purchase</a><span>.id_pur</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_overall_assessment_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/overall_assessment.html'>overall_assessment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_anamnesis_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/anamnesis.html'>anamnesis</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_client_user</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_concession_animal</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/concession.html'>concession</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_concession_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/concession.html'>concession</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_concession_entity</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/concession.html'>concession</a><span>.id_ext_ent</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/external_entity.html'>external_entity</a><span>.id_ext_ent</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_assistant_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/assistant.html'>assistant</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_setup_user</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/setup.html'>setup</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/user_account.html'>user_account</a><span>.id_usr</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_del_emp_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/delivery_employee.html'>delivery_employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_del_emp_delivery</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/delivery_employee.html'>delivery_employee</a><span>.id_del</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/delivery.html'>delivery</a><span>.id_del</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_notification_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment_notification.html'>appointment_notification</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_appointment_notification_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment_notification.html'>appointment_notification</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_app_pro_product</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/rel_app_product.html'>rel_app_product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/product.html'>product</a><span>.id_pro</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>Restrict delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_app_pro_appointment</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/rel_app_product.html'>rel_app_product</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/appointment.html'>appointment</a><span>.id_app</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_clock_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/clock_in.html'>clock_in</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_ownership_animal</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/ownership.html'>ownership</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/animal.html'>animal</a><span>.id_ani</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_ownership_client</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/ownership.html'>ownership</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/client.html'>client</a><span>.id_cli</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Cascade on delete:&#10;Deletion of parent deletes child'>Cascade on delete</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>fk_ownership_employee</td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/ownership.html'>ownership</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                <tr>
+                                                    <td><a href='tables/employee.html'>employee</a><span>.id_emp</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>Null on delete</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-sitemap"></i>
+                            <h3 class="box-title">Check Constraints</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="check_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
+                                <thead align='left'>
+                                    <tr>
+                                        <th>Table</th>
+                                        <th>Constraint Name</th>
+                                        <th>Constraint</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href='tables/permission.html'>permission</a></td>
+                                        <td>ck_nam_per_format</td>
+                                        <td>((((nam_per)::text &#61; lower(TRIM(BOTH FROM nam_per))) AND (length((nam_per)::text) &gt; 3) AND ((nam_per)::text ~ &#39;^[a-z0-9_.]+$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/specialty.html'>specialty</a></td>
+                                        <td>ck_des_spe_format</td>
+                                        <td>(((des_spe &#61; TRIM(BOTH FROM des_spe)) AND (length(TRIM(BOTH FROM des_spe)) &gt;&#61; 5)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/specialty.html'>specialty</a></td>
+                                        <td>ck_nam_spe_format</td>
+                                        <td>((((nam_spe)::text &#61; lower(TRIM(BOTH FROM nam_spe))) AND (length(TRIM(BOTH FROM nam_spe)) &gt;&#61; 5)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/stock.html'>stock</a></td>
+                                        <td>ck_qty_sto</td>
+                                        <td>((qty_sto &gt;&#61; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/delivery.html'>delivery</a></td>
+                                        <td>ck_delivery_dates</td>
+                                        <td>(((del_dat_del IS NULL) OR (reg_dat_del &lt;&#61; del_dat_del)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/login_record.html'>login_record</a></td>
+                                        <td>ck_ema_log_format</td>
+                                        <td>(((ema_log IS NULL) OR (((ema_log)::text &#61; lower(TRIM(BOTH FROM ema_log))) AND ((ema_log)::text ~ &#39;.+@.+\..+&#39;::text))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/login_record.html'>login_record</a></td>
+                                        <td>ck_login_time</td>
+                                        <td>(((sig_tim_log &lt;&#61; CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;&#61; CURRENT_TIMESTAMP)))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/login_record.html'>login_record</a></td>
+                                        <td>login_record_check</td>
+                                        <td>(((suc_log &#61; false) OR ((id_usr IS NOT NULL) AND (ema_log IS NOT NULL) AND (ip_add_log IS NOT NULL) AND (sig_tim_log IS NOT NULL) AND (ip_add_log IS NOT NULL))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/return.html'>return</a></td>
+                                        <td>ck_qty_ret</td>
+                                        <td>((qty_ret &gt; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/invoice_line.html'>invoice_line</a></td>
+                                        <td>ck_qty_inv_lin</td>
+                                        <td>((qty_inv_lin &gt; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/profile.html'>profile</a></td>
+                                        <td>ck_nam_pro_format</td>
+                                        <td>((((nam_pro)::text &#61; lower(TRIM(BOTH FROM nam_pro))) AND (length((nam_pro)::text) &gt; 3) AND ((nam_pro)::text ~ &#39;^[a-zà-ÿ\s]+$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/product.html'>product</a></td>
+                                        <td>ck_min_sto_positive</td>
+                                        <td>((min_sto &gt;&#61; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/veterinarian.html'>veterinarian</a></td>
+                                        <td>ck_num_omv_vet_format</td>
+                                        <td>((((num_omv_vet)::text &#61; TRIM(BOTH FROM num_omv_vet)) AND (length((num_omv_vet)::text) &gt; 3)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/appointment.html'>appointment</a></td>
+                                        <td>ck_appointment_flow</td>
+                                        <td>((sta_dat_app &lt; end_dat_app))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/absence.html'>absence</a></td>
+                                        <td>ck_absence_time</td>
+                                        <td>((sta_dat_tim_abs &lt; end_dat_tim_abs))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/absence.html'>absence</a></td>
+                                        <td>ck_mot_abs_format</td>
+                                        <td>((((mot_abs)::text &#61; lower(TRIM(BOTH FROM mot_abs))) AND (length((mot_abs)::text) &gt; 2)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/schedule.html'>schedule</a></td>
+                                        <td>ck_schedule_day</td>
+                                        <td>(((day_wee_sch &gt;&#61; 1) AND (day_wee_sch &lt;&#61; 7)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/schedule.html'>schedule</a></td>
+                                        <td>ck_schedule_time</td>
+                                        <td>(((sta_tim_sch &lt; fin_hou_sch) AND (sta_tim_sch &gt;&#61; &#39;00:00:00&#39;::time without time zone) AND (fin_hou_sch &lt;&#61; &#39;23:59:59&#39;::time without time zone)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_add_usr_format</td>
+                                        <td>((length(TRIM(BOTH FROM add_usr)) &gt; 3))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_ema_usr_format</td>
+                                        <td>((((ema_usr)::text &#61; lower(TRIM(BOTH FROM ema_usr))) AND ((ema_usr)::text ~ &#39;.+@.+\..+&#39;::text) AND ((ema_usr)::text !~ &#39;@miacaomigo\.pt$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_nam_usr_format</td>
+                                        <td>((((nam_usr)::text ~ &#39;^[A-Za-zÀ-ÿ\s&#39;&#39;-]+$&#39;::text) AND (length(TRIM(BOTH FROM nam_usr)) &gt; 3)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_nif_usr_format</td>
+                                        <td>(((nif_usr)::text ~ &#39;^[0-9]{9}$&#39;::text))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_pho_usr_format</td>
+                                        <td>(((pho_usr IS NULL) OR ((pho_usr)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/user_account.html'>user_account</a></td>
+                                        <td>ck_pos_usr_format</td>
+                                        <td>(((pos_usr)::text ~ &#39;^[0-9]{4}-[0-9]{3}$&#39;::text))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/rel_pre_prod.html'>rel_pre_prod</a></td>
+                                        <td>ck_qty_rel_pre_prod</td>
+                                        <td>((qty_pre_pro &gt; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/animal.html'>animal</a></td>
+                                        <td>ck_gen_ani</td>
+                                        <td>(((gen_ani &#61; ANY (ARRAY[&#39;M&#39;::bpchar, &#39;F&#39;::bpchar])) OR (gen_ani IS NULL)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_ema_emp_format</td>
+                                        <td>((((ema_emp)::text &#61; lower(TRIM(BOTH FROM ema_emp))) AND ((ema_emp)::text ~ &#39;^[^@\s]+@miacaomigo\.pt$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_employee_dates</td>
+                                        <td>(((reg_dat_emp &lt;&#61; CURRENT_TIMESTAMP) AND ((dea_dat_emp IS NULL) OR ((dea_dat_emp &gt;&#61; reg_dat_emp) AND (dea_dat_emp &lt;&#61; CURRENT_TIMESTAMP)))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_employee_inactivation</td>
+                                        <td>((((dea_dat_emp IS NULL) AND (aut_ina_emp IS NULL)) OR ((dea_dat_emp IS NOT NULL) AND (aut_ina_emp IS NOT NULL))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_pas_emp_format</td>
+                                        <td>((length(TRIM(BOTH FROM pas_emp)) &gt;&#61; 16))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_pho_emg_format</td>
+                                        <td>(((pho_emg IS NULL) OR ((pho_emg)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/employee.html'>employee</a></td>
+                                        <td>ck_pho_emp_format</td>
+                                        <td>(((pho_emp IS NULL) OR ((pho_emp)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/purchase_line.html'>purchase_line</a></td>
+                                        <td>ck_qty_pln</td>
+                                        <td>((qty_pln &gt; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_bod_tmp_ova</td>
+                                        <td>(((bod_tmp_ova IS NULL) OR ((bod_tmp_ova &gt; (20)::numeric) AND (bod_tmp_ova &lt; (50)::numeric))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_hrt_rat_ova</td>
+                                        <td>(((hrt_rat_ova IS NULL) OR (hrt_rat_ova &gt; 0)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_res_rat_ova</td>
+                                        <td>(((res_rat_ova IS NULL) OR (res_rat_ova &gt; 0)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/overall_assessment.html'>overall_assessment</a></td>
+                                        <td>ck_wei_ova</td>
+                                        <td>(((wei_ova IS NULL) OR (wei_ova &gt; (0)::numeric)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/external_entity.html'>external_entity</a></td>
+                                        <td>ck_ema_ext_ent_format</td>
+                                        <td>(((ema_ext_ent IS NULL) OR ((ema_ext_ent)::text ~ &#39;^[^@\s]+@[^@\s]+\.[^@\s]+$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/external_entity.html'>external_entity</a></td>
+                                        <td>ck_pho_ext_ent_format</td>
+                                        <td>(((pho_ext_ent IS NULL) OR ((pho_ext_ent)::text ~ &#39;^\+[1-9][0-9]{7,14}$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/client.html'>client</a></td>
+                                        <td>ck_client_dates</td>
+                                        <td>(((reg_dat_cli &lt;&#61; CURRENT_TIMESTAMP) AND ((ina_dat_cli IS NULL) OR ((ina_dat_cli &gt;&#61; reg_dat_cli) AND (ina_dat_cli &lt;&#61; CURRENT_TIMESTAMP)))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/client.html'>client</a></td>
+                                        <td>ck_pas_cli_format</td>
+                                        <td>((length(TRIM(BOTH FROM pas_cli)) &gt;&#61; 16))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/setup.html'>setup</a></td>
+                                        <td>ck_lan_set_format</td>
+                                        <td>((((lan_set)::text &#61; lower(TRIM(BOTH FROM lan_set))) AND ((lan_set)::text ~ &#39;^[a-z]{2}-[a-z]{2}$&#39;::text)))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/setup.html'>setup</a></td>
+                                        <td>ck_the_set_format</td>
+                                        <td>((((the_set)::text &#61; lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text &#61; ANY ((ARRAY[&#39;light&#39;::character varying, &#39;dark&#39;::character varying])::text[]))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/rel_app_product.html'>rel_app_product</a></td>
+                                        <td>ck_qty_rel_app_product</td>
+                                        <td>((qty_pre_pro &gt; 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/clock_in.html'>clock_in</a></td>
+                                        <td>ck_clock_time</td>
+                                        <td>(((sta_dat_clk &lt;&#61; CURRENT_TIMESTAMP) AND ((end_dat_clk IS NULL) OR ((end_dat_clk &gt; sta_dat_clk) AND (end_dat_clk &lt;&#61; CURRENT_TIMESTAMP)))))</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href='tables/ownership.html'>ownership</a></td>
+                                        <td>ck_ownership_dates</td>
+                                        <td>(((end_dat_own IS NULL) OR (sta_dat_own &lt;&#61; end_dat_own)))</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <script>
+                    var config = {
+                        pagination: true
+                    }
+                </script>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 7.0.2</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="constraint.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

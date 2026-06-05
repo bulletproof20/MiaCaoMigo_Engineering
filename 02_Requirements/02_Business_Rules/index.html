@@ -1,0 +1,5689 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../01_Non_Functional_Requirements/">
+      
+      
+        <link rel="next" href="../03_Business_Processes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../00_Assets/00_Branding/01_icons/Logo_pBack.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Business Rules - MiaCaoMigo Engineering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../Extras/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#regras-de-negocio-sistema-de-gestao-veterinaria" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-header__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiaCaoMigo Engineering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Business Rules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Planning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Diagrams
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Performance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Academic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Deployment/README_Production_Docker/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Production
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-nav__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    MiaCaoMigo Engineering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCUMENTATION_LAYERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/01_Narrative_Stories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narrative Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Narrative Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ecosystem Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Employees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/03_Animals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Animals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/04_External/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — External
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_APPOINTMENT_STATES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointment States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_COMMERCIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_INCIDENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_NOTIFICATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprints
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprints
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_1/Sprint_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_2/Sprint_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_3/Sprint_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprint 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Sprint_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Non_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Business_Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Acceptance_Criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptance Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Implementation_Matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagrams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER V10 — Conceptual attributes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER V10 — Conceptual attributes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/00_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/00_Application_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/01_Website_Flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/02_Runtime_Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/03_Implementation_Evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/04_Generated_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3_7" id="__nav_5_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Website Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/OpenAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Update_Docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Update Docs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/Architecture_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_2" id="__nav_5_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_3" id="__nav_5_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_4" id="__nav_5_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Rules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrity Rules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedural Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_5" id="__nav_5_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Templates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Authoring Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3_2" id="__nav_5_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Schema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Schema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_4" id="__nav_5_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SchemaSpy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SchemaSpy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06_Performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/01_Performance_Strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/02_Frontend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/03_Backend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/04_Test_Results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Performance/05_Recommendations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Academic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/00_Statements/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/01_Academic_Reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/02_Presentation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/15min_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 min Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/Screenshots_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_Deployment/README_Production_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="regras-de-negocio-sistema-de-gestao-veterinaria">Regras de Negócio — Sistema de Gestão Veterinária<a class="headerlink" href="#regras-de-negocio-sistema-de-gestao-veterinaria" title="Permanent link">&para;</a></h1>
+<p>Regras de validação e políticas de domínio (<code>RN_Mx_yy</code>) alinhadas com <a href="../03_Business_Processes/">processos</a> (<code>PN_Mx_yy</code>) e <a href="../00_Functional_Requirements/">requisitos funcionais</a> (<code>RF_Mx_yy</code>).</p>
+<p><strong>Relacionado:</strong> <a href="../04_Acceptance_Criteria/">04_Acceptance_Criteria.md</a> (incl. <code>AC_RN_*</code> para RN sem RF) · <a href="../06_Implementation_Matrix/">06_Implementation_Matrix.md</a> · <a href="../07_Constraints/">07_Constraints.md</a></p>
+<p><strong>Contagens:</strong> M1 — 42 RN · M2 — 30 RN · M3 — 32 RN · M4 — 25 RN · <strong>Total: 129 RN</strong>.</p>
+<hr />
+<h1 id="indice">Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#módulo-1--gestão-de-utilizadores">Módulo 1 — Gestão de Utilizadores</a></li>
+<li><a href="#módulo-2--gestão-de-animais">Módulo 2 — Gestão de Animais</a></li>
+<li><a href="#módulo-3--gestão-comercial">Módulo 3 — Gestão Comercial</a></li>
+<li><a href="#módulo-4--gestão-de-consultas">Módulo 4 — Gestão de Consultas</a></li>
+</ul>
+<hr />
+<h1 id="modulo-1-gestao-de-utilizadores">Módulo 1 — Gestão de Utilizadores<a class="headerlink" href="#modulo-1-gestao-de-utilizadores" title="Permanent link">&para;</a></h1>
+<h2 id="descricao">Descrição<a class="headerlink" href="#descricao" title="Permanent link">&para;</a></h2>
+<p>Define as regras de negócio relacionadas com autenticação, contas, roles, funções, horários, ausências e preferências dos utilizadores.</p>
+<hr />
+<h2 id="regras-de-negocio">Regras de Negócio<a class="headerlink" href="#regras-de-negocio" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Processo</th>
+<th>RF principal</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M1_01</td>
+<td>PN_M1_01</td>
+<td>RF_M1_01</td>
+<td>Um indivíduo que se registe autonomamente no sistema deve ser associado a uma conta de cliente.</td>
+</tr>
+<tr>
+<td>RN_M1_02</td>
+<td>PN_M1_01</td>
+<td>RF_M1_01</td>
+<td>Uma conta de cliente pode ser criada por um empregado, sendo gerada uma password aleatória enviada por email.</td>
+</tr>
+<tr>
+<td>RN_M1_03</td>
+<td>PN_M1_01</td>
+<td>RF_M1_02</td>
+<td>Uma conta de empregado só pode ser criada por outro empregado com permissões adequadas.</td>
+</tr>
+<tr>
+<td>RN_M1_04</td>
+<td>PN_M1_01</td>
+<td>RF_M1_03</td>
+<td>Cada indivíduo pode possuir no máximo uma conta ativa de cliente e uma conta ativa de empregado.</td>
+</tr>
+<tr>
+<td>RN_M1_05</td>
+<td>PN_M1_01</td>
+<td>RF_M1_02</td>
+<td>O email institucional de uma conta de empregado é obrigatório e imutável após criação.</td>
+</tr>
+<tr>
+<td>RN_M1_06</td>
+<td>PN_M1_02</td>
+<td>RF_M1_05</td>
+<td>O acesso ao sistema requer autenticação válida.</td>
+</tr>
+<tr>
+<td>RN_M1_07</td>
+<td>PN_M1_02</td>
+<td>RF_M1_06</td>
+<td>Cada conta pode ter no máximo uma sessão ativa em simultâneo.</td>
+</tr>
+<tr>
+<td>RN_M1_08</td>
+<td>PN_M1_02</td>
+<td>RF_M1_06</td>
+<td>Um indivíduo pode ter múltiplas sessões ativas apenas se correspondentes a contas distintas.</td>
+</tr>
+<tr>
+<td>RN_M1_09</td>
+<td>PN_M1_02</td>
+<td>RF_M1_07</td>
+<td>Todas as tentativas de autenticação devem ser registadas com data/hora, IP e resultado.</td>
+</tr>
+<tr>
+<td>RN_M1_10</td>
+<td>PN_M1_02</td>
+<td>RF_M1_08</td>
+<td>Todos os eventos de login e logout devem ser registados.</td>
+</tr>
+<tr>
+<td>RN_M1_11</td>
+<td>PN_M1_04</td>
+<td>RF_M1_09</td>
+<td>Os dados pessoais devem ser armazenados ao nível do indivíduo.</td>
+</tr>
+<tr>
+<td>RN_M1_12</td>
+<td>PN_M1_04</td>
+<td>RF_M1_10</td>
+<td>Os dados pessoais devem ser partilhados entre contas associadas ao mesmo indivíduo.</td>
+</tr>
+<tr>
+<td>RN_M1_13</td>
+<td>PN_M1_04</td>
+<td>RF_M1_11</td>
+<td>As alterações aos dados pessoais não devem manter histórico.</td>
+</tr>
+<tr>
+<td>RN_M1_14</td>
+<td>PN_M1_03</td>
+<td>RF_M1_12</td>
+<td>A alteração de password requer validação da password atual.</td>
+</tr>
+<tr>
+<td>RN_M1_15</td>
+<td>PN_M1_03</td>
+<td>RF_M1_14</td>
+<td>O sistema deve manter histórico de passwords.</td>
+</tr>
+<tr>
+<td>RN_M1_16</td>
+<td>PN_M1_05</td>
+<td>RF_M1_16</td>
+<td>Um empregado pode possuir um ou mais roles.</td>
+</tr>
+<tr>
+<td>RN_M1_17</td>
+<td>PN_M1_05</td>
+<td>RF_M1_15</td>
+<td>Roles só podem ser criados ou atribuídos por utilizadores com permissões adequadas.</td>
+</tr>
+<tr>
+<td>RN_M1_18</td>
+<td>PN_M1_05</td>
+<td>RF_M1_18</td>
+<td>As atribuições de roles devem possuir intervalo temporal (início e fim).</td>
+</tr>
+<tr>
+<td>RN_M1_19</td>
+<td>PN_M1_05</td>
+<td>RF_M1_19</td>
+<td>As alterações de roles devem registar o responsável.</td>
+</tr>
+<tr>
+<td>RN_M1_20</td>
+<td>PN_M1_06</td>
+<td>RF_M1_21</td>
+<td>Cada empregado pode possuir no máximo uma função ativa.</td>
+</tr>
+<tr>
+<td>RN_M1_21</td>
+<td>PN_M1_06</td>
+<td>RF_M1_21</td>
+<td>Um empregado não pode acumular funções de veterinário e auxiliar.</td>
+</tr>
+<tr>
+<td>RN_M1_22</td>
+<td>PN_M1_06</td>
+<td>RF_M1_24</td>
+<td>Auxiliares devem possuir obrigatoriamente uma subfunção.</td>
+</tr>
+<tr>
+<td>RN_M1_23</td>
+<td>PN_M1_06</td>
+<td>RF_M1_25</td>
+<td>Veterinários devem possuir obrigatoriamente um número OMV válido.</td>
+</tr>
+<tr>
+<td>RN_M1_24</td>
+<td>PN_M1_06</td>
+<td>RF_M1_25</td>
+<td>Um veterinário pode possuir uma ou mais especialidades.</td>
+</tr>
+<tr>
+<td>RN_M1_25</td>
+<td>PN_M1_06</td>
+<td>—</td>
+<td>O sistema deve manter histórico das especialidades de um veterinário.</td>
+</tr>
+<tr>
+<td>RN_M1_26</td>
+<td>PN_M1_06</td>
+<td>RF_M1_22</td>
+<td>As alterações de função devem ser registadas com intervalo temporal e responsável.</td>
+</tr>
+<tr>
+<td>RN_M1_27</td>
+<td>PN_M1_07</td>
+<td>RF_M1_26</td>
+<td>Cada empregado deve possuir um único horário semanal ativo.</td>
+</tr>
+<tr>
+<td>RN_M1_28</td>
+<td>PN_M1_07</td>
+<td>RF_M1_27</td>
+<td>Turnos de um horário não podem sobrepor-se.</td>
+</tr>
+<tr>
+<td>RN_M1_29</td>
+<td>PN_M1_07</td>
+<td>RF_M1_27</td>
+<td>Turnos devem ocorrer dentro do mesmo dia.</td>
+</tr>
+<tr>
+<td>RN_M1_30</td>
+<td>PN_M1_07</td>
+<td>RF_M1_29</td>
+<td>Uma ausência deve possuir data de início anterior à data de fim.</td>
+</tr>
+<tr>
+<td>RN_M1_31</td>
+<td>PN_M1_07</td>
+<td>RF_M1_31</td>
+<td>Uma ausência só pode ser cancelada até 72 horas antes da sua data de início.</td>
+</tr>
+<tr>
+<td>RN_M1_32</td>
+<td>PN_M1_07</td>
+<td>RF_M1_38</td>
+<td>Durante uma ausência ativa, o empregado não pode exercer atividade normal.</td>
+</tr>
+<tr>
+<td>RN_M1_33</td>
+<td>PN_M1_07</td>
+<td>RF_M1_38</td>
+<td>Exceções à ausência dependem das permissões do role.</td>
+</tr>
+<tr>
+<td>RN_M1_34</td>
+<td>PN_M1_07</td>
+<td>RF_M1_35</td>
+<td>Registos de presença devem garantir consistência temporal.</td>
+</tr>
+<tr>
+<td>RN_M1_35</td>
+<td>PN_M1_07</td>
+<td>RF_M1_36</td>
+<td>Registos de presença são imutáveis.</td>
+</tr>
+<tr>
+<td>RN_M1_36</td>
+<td>PN_M1_07</td>
+<td>—</td>
+<td>Ausências devem ser classificadas como justificadas ou injustificadas.</td>
+</tr>
+<tr>
+<td>RN_M1_37</td>
+<td>PN_M1_07</td>
+<td>—</td>
+<td>Ausências injustificadas devem reduzir automaticamente o saldo de férias.</td>
+</tr>
+<tr>
+<td>RN_M1_38</td>
+<td>PN_M1_08</td>
+<td>RF_M1_39</td>
+<td>Preferências devem ser definidas ao nível do indivíduo.</td>
+</tr>
+<tr>
+<td>RN_M1_39</td>
+<td>PN_M1_08</td>
+<td>RF_M1_40</td>
+<td>Preferências devem ser partilhadas entre contas associadas.</td>
+</tr>
+<tr>
+<td>RN_M1_40</td>
+<td>PN_M1_08</td>
+<td>RF_M1_41</td>
+<td>Preferências não devem manter histórico.</td>
+</tr>
+<tr>
+<td>RN_M1_41</td>
+<td>PN_M1_09</td>
+<td>RF_M1_42</td>
+<td>O sistema deve permitir anonimização ou eliminação de dados pessoais mantendo integridade referencial.</td>
+</tr>
+<tr>
+<td>RN_M1_42</td>
+<td>PN_M1_09</td>
+<td>RF_M1_43</td>
+<td>O sistema deve garantir a preservação de dados obrigatórios para cumprimento legal.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="modulo-2-gestao-de-animais">Módulo 2 — Gestão de Animais<a class="headerlink" href="#modulo-2-gestao-de-animais" title="Permanent link">&para;</a></h1>
+<h2 id="descricao_1">Descrição<a class="headerlink" href="#descricao_1" title="Permanent link">&para;</a></h2>
+<p>Define as regras de negócio relacionadas com registo, estados, posse, cedência e histórico dos animais.</p>
+<hr />
+<h2 id="regras-de-negocio_1">Regras de Negócio<a class="headerlink" href="#regras-de-negocio_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Processo</th>
+<th>RF principal</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M2_01</td>
+<td>PN_M2_01</td>
+<td>RF_M2_02</td>
+<td>Um animal só pode ser registado se estiver associado a uma espécie e raça previamente existentes.</td>
+</tr>
+<tr>
+<td>RN_M2_02</td>
+<td>PN_M2_01</td>
+<td>RF_M2_01</td>
+<td>Cada animal deve possuir um identificador único no sistema.</td>
+</tr>
+<tr>
+<td>RN_M2_03</td>
+<td>PN_M2_02</td>
+<td>RF_M2_03</td>
+<td>Um registo de entrada deve estar associado a um animal previamente registado.</td>
+</tr>
+<tr>
+<td>RN_M2_04</td>
+<td>PN_M2_02</td>
+<td>RF_M2_03</td>
+<td>Um evento de entrada deve estar associado a um responsável pela entrega (cliente ou entidade externa).</td>
+</tr>
+<tr>
+<td>RN_M2_05</td>
+<td>PN_M2_02</td>
+<td>RF_M2_05</td>
+<td>Caso o responsável pela entrega não exista no sistema, deve ser criado automaticamente como cliente.</td>
+</tr>
+<tr>
+<td>RN_M2_06</td>
+<td>PN_M2_02</td>
+<td>RF_M2_04</td>
+<td>O registo de entrada deve incluir obrigatoriamente o estado clínico inicial do animal.</td>
+</tr>
+<tr>
+<td>RN_M2_07</td>
+<td>PN_M2_03</td>
+<td>RF_M2_07</td>
+<td>O estado do animal deve assumir um valor de um conjunto pré-definido de estados válidos.</td>
+</tr>
+<tr>
+<td>RN_M2_08</td>
+<td>PN_M2_03</td>
+<td>RF_M2_07</td>
+<td>Apenas um estado pode estar ativo para um animal num dado momento.</td>
+</tr>
+<tr>
+<td>RN_M2_09</td>
+<td>PN_M2_03</td>
+<td>RF_M2_08</td>
+<td>Cada alteração de estado deve originar um novo registo histórico, preservando os anteriores.</td>
+</tr>
+<tr>
+<td>RN_M2_10</td>
+<td>PN_M2_03</td>
+<td>RF_M2_08</td>
+<td>Cada registo de estado deve possuir um intervalo temporal válido.</td>
+</tr>
+<tr>
+<td>RN_M2_11</td>
+<td>PN_M2_03</td>
+<td>RF_M2_08</td>
+<td>Não é permitido eliminar registos históricos de estado.</td>
+</tr>
+<tr>
+<td>RN_M2_12</td>
+<td>PN_M2_04</td>
+<td>RF_M2_10</td>
+<td>Um processo de posse requer a associação de um animal e um cliente válido.</td>
+</tr>
+<tr>
+<td>RN_M2_13</td>
+<td>PN_M2_04</td>
+<td>RF_M2_10</td>
+<td>Um animal só pode ter um único titular ativo num determinado momento.</td>
+</tr>
+<tr>
+<td>RN_M2_14</td>
+<td>PN_M2_04</td>
+<td>RF_M2_11</td>
+<td>A atribuição de posse deve registar a data de início e pode incluir data de fim.</td>
+</tr>
+<tr>
+<td>RN_M2_15</td>
+<td>PN_M2_04</td>
+<td>RF_M2_16</td>
+<td>O histórico de posse deve ser mantido, não sendo permitida a sua eliminação.</td>
+</tr>
+<tr>
+<td>RN_M2_16</td>
+<td>PN_M2_05</td>
+<td>RF_M2_13</td>
+<td>Um evento de cedência deve estar associado a um animal e a um interveniente válido.</td>
+</tr>
+<tr>
+<td>RN_M2_17</td>
+<td>PN_M2_05</td>
+<td>RF_M2_14</td>
+<td>Um evento de cedência deve registar obrigatoriamente o motivo e o estado clínico do animal no momento da transferência.</td>
+</tr>
+<tr>
+<td>RN_M2_18</td>
+<td>PN_M2_05</td>
+<td>RF_M2_13</td>
+<td>Um evento de cedência deve originar uma atualização do estado do animal coerente com o contexto da transferência.</td>
+</tr>
+<tr>
+<td>RN_M2_19</td>
+<td>PN_M2_06</td>
+<td>RF_M2_06</td>
+<td>Uma entidade externa deve possuir dados mínimos de identificação (nome e contacto).</td>
+</tr>
+<tr>
+<td>RN_M2_20</td>
+<td>PN_M2_06</td>
+<td>RF_M2_06</td>
+<td>Apenas entidades marcadas como parceiras podem participar em processos recorrentes de entrega.</td>
+</tr>
+<tr>
+<td>RN_M2_21</td>
+<td>PN_M2_07</td>
+<td>RF_M2_02</td>
+<td>Uma raça deve estar sempre associada a uma única espécie.</td>
+</tr>
+<tr>
+<td>RN_M2_22</td>
+<td>PN_M2_07</td>
+<td>RF_M2_02</td>
+<td>Não podem existir espécies ou raças duplicadas no sistema.</td>
+</tr>
+<tr>
+<td>RN_M2_23</td>
+<td>PN_M2_08</td>
+<td>RF_M2_17</td>
+<td>Todo o evento relevante deve ser refletido no histórico do animal.</td>
+</tr>
+<tr>
+<td>RN_M2_24</td>
+<td>PN_M2_08</td>
+<td>RF_M2_17</td>
+<td>Os eventos do animal devem ser temporalmente consistentes, não podendo existir sobreposições inválidas.</td>
+</tr>
+<tr>
+<td>RN_M2_25</td>
+<td>PN_M2_08</td>
+<td>RF_M2_17</td>
+<td>Não é permitido eliminar eventos históricos associados a um animal.</td>
+</tr>
+<tr>
+<td>RN_M2_26</td>
+<td>PN_M2_03</td>
+<td>RF_M2_07</td>
+<td>Um animal com estado “falecido” não pode transitar para outro estado ativo.</td>
+</tr>
+<tr>
+<td>RN_M2_27</td>
+<td>PN_M2_03</td>
+<td>RF_M2_03</td>
+<td>Após um evento de entrada, o estado do animal deve ser atualizado para um estado válido inicial.</td>
+</tr>
+<tr>
+<td>RN_M2_28</td>
+<td>PN_M2_04</td>
+<td>RF_M2_10</td>
+<td>Um animal com titular ativo deve possuir um estado compatível com posse.</td>
+</tr>
+<tr>
+<td>RN_M2_29</td>
+<td>PN_M2_04</td>
+<td>RF_M2_10</td>
+<td>Um animal sem titular ativo deve possuir um estado compatível com ausência de posse.</td>
+</tr>
+<tr>
+<td>RN_M2_30</td>
+<td>PN_M2_02</td>
+<td>RF_M2_03</td>
+<td>A data de resgate deve ser anterior ou igual à data de entrada do animal.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="modulo-3-gestao-comercial">Módulo 3 — Gestão Comercial<a class="headerlink" href="#modulo-3-gestao-comercial" title="Permanent link">&para;</a></h1>
+<h2 id="descricao_2">Descrição<a class="headerlink" href="#descricao_2" title="Permanent link">&para;</a></h2>
+<p>Define as regras de negócio relacionadas com produtos, stock, faturação, pagamentos e devoluções.</p>
+<hr />
+<h2 id="regras-de-negocio_2">Regras de Negócio<a class="headerlink" href="#regras-de-negocio_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Processo</th>
+<th>RF principal</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M3_01</td>
+<td>PN_M3_01</td>
+<td>RF_M3_01</td>
+<td>Um produto deve possuir uma designação, preço e taxa de IVA válidos.</td>
+</tr>
+<tr>
+<td>RN_M3_02</td>
+<td>PN_M3_01</td>
+<td>RF_M3_02</td>
+<td>Um produto deve estar associado a uma única família (categoria).</td>
+</tr>
+<tr>
+<td>RN_M3_03</td>
+<td>PN_M3_01</td>
+<td>RF_M3_01</td>
+<td>Não podem existir produtos duplicados com a mesma referência interna.</td>
+</tr>
+<tr>
+<td>RN_M3_04</td>
+<td>PN_M3_01</td>
+<td>RF_M3_04</td>
+<td>Apenas produtos com estado ativo podem ser utilizados em operações comerciais.</td>
+</tr>
+<tr>
+<td>RN_M3_05</td>
+<td>PN_M3_02</td>
+<td>RF_M3_05</td>
+<td>Uma compra deve estar associada a uma entidade externa válida (fornecedor).</td>
+</tr>
+<tr>
+<td>RN_M3_06</td>
+<td>PN_M3_02</td>
+<td>RF_M3_07</td>
+<td>Uma compra deve conter pelo menos um produto.</td>
+</tr>
+<tr>
+<td>RN_M3_07</td>
+<td>PN_M3_02</td>
+<td>RF_M3_07</td>
+<td>Cada linha de compra deve registar quantidade e custo unitário.</td>
+</tr>
+<tr>
+<td>RN_M3_08</td>
+<td>PN_M3_02</td>
+<td>RF_M3_05</td>
+<td>A data da compra não pode ser futura.</td>
+</tr>
+<tr>
+<td>RN_M3_09</td>
+<td>PN_M3_03</td>
+<td>RF_M3_09</td>
+<td>Cada registo de stock deve estar associado a um produto e a um lote (batch).</td>
+</tr>
+<tr>
+<td>RN_M3_10</td>
+<td>PN_M3_03</td>
+<td>RF_M3_11</td>
+<td>A quantidade em stock deve ser sempre maior ou igual a zero.</td>
+</tr>
+<tr>
+<td>RN_M3_11</td>
+<td>PN_M3_03</td>
+<td>RF_M3_10</td>
+<td>A data de validade de um lote deve ser posterior à data de entrada.</td>
+</tr>
+<tr>
+<td>RN_M3_12</td>
+<td>PN_M3_03</td>
+<td>RF_M3_09</td>
+<td>Não podem existir dois registos de stock ativos com o mesmo produto e lote.</td>
+</tr>
+<tr>
+<td>RN_M3_13</td>
+<td>PN_M3_03</td>
+<td>RF_M3_11</td>
+<td>Movimentos de stock devem refletir obrigatoriamente uma operação válida (compra, venda ou devolução).</td>
+</tr>
+<tr>
+<td>RN_M3_14</td>
+<td>PN_M3_04</td>
+<td>RF_M3_14</td>
+<td>Um produto só pode ser vendido ou consumido se existir stock disponível.</td>
+</tr>
+<tr>
+<td>RN_M3_15</td>
+<td>PN_M3_04</td>
+<td>RF_M3_16</td>
+<td>A quantidade utilizada não pode exceder a quantidade disponível no lote selecionado.</td>
+</tr>
+<tr>
+<td>RN_M3_16</td>
+<td>PN_M3_04</td>
+<td>RF_M3_13</td>
+<td>Cada operação de consumo/venda deve estar associada a pelo menos um produto.</td>
+</tr>
+<tr>
+<td>RN_M3_17</td>
+<td>PN_M3_04</td>
+<td>RF_M3_13</td>
+<td>Produtos utilizados devem originar obrigatoriamente uma redução de stock.</td>
+</tr>
+<tr>
+<td>RN_M3_18</td>
+<td>PN_M3_05</td>
+<td>RF_M3_17</td>
+<td>Uma fatura deve conter pelo menos um item (produto ou serviço).</td>
+</tr>
+<tr>
+<td>RN_M3_19</td>
+<td>PN_M3_05</td>
+<td>RF_M3_18</td>
+<td>Cada fatura pode estar associada no máximo a uma consulta.</td>
+</tr>
+<tr>
+<td>RN_M3_20</td>
+<td>PN_M3_05</td>
+<td>RF_M3_20</td>
+<td>O valor total da fatura deve ser igual à soma dos seus itens e respetivos impostos.</td>
+</tr>
+<tr>
+<td>RN_M3_21</td>
+<td>PN_M3_05</td>
+<td>RF_M3_17</td>
+<td>Após emissão, uma fatura não pode ser alterada, apenas anulada ou retificada.</td>
+</tr>
+<tr>
+<td>RN_M3_22</td>
+<td>PN_M3_05</td>
+<td>—</td>
+<td>As faturas devem possuir um identificador único e sequencial.</td>
+</tr>
+<tr>
+<td>RN_M3_23</td>
+<td>PN_M3_06</td>
+<td>RF_M3_21</td>
+<td>O valor total dos pagamentos não pode exceder o valor da fatura.</td>
+</tr>
+<tr>
+<td>RN_M3_24</td>
+<td>PN_M3_06</td>
+<td>RF_M3_23</td>
+<td>Uma fatura é considerada paga apenas quando o total pago for igual ao total faturado.</td>
+</tr>
+<tr>
+<td>RN_M3_25</td>
+<td>PN_M3_06</td>
+<td>RF_M3_23</td>
+<td>Uma fatura parcialmente paga deve manter estado intermédio até liquidação total.</td>
+</tr>
+<tr>
+<td>RN_M3_26</td>
+<td>PN_M3_07</td>
+<td>RF_M3_24</td>
+<td>Uma devolução deve estar associada a uma fatura previamente existente.</td>
+</tr>
+<tr>
+<td>RN_M3_27</td>
+<td>PN_M3_07</td>
+<td>RF_M3_24</td>
+<td>A quantidade devolvida não pode exceder a quantidade originalmente vendida.</td>
+</tr>
+<tr>
+<td>RN_M3_28</td>
+<td>PN_M3_07</td>
+<td>RF_M3_25</td>
+<td>Uma devolução deve indicar obrigatoriamente o motivo.</td>
+</tr>
+<tr>
+<td>RN_M3_29</td>
+<td>PN_M3_07</td>
+<td>RF_M3_26</td>
+<td>Uma devolução deve originar atualização do stock quando aplicável.</td>
+</tr>
+<tr>
+<td>RN_M3_30</td>
+<td>PN_M3_08</td>
+<td>RF_M3_27</td>
+<td>Todas as operações comerciais devem ser registadas e mantidas para consulta futura.</td>
+</tr>
+<tr>
+<td>RN_M3_31</td>
+<td>PN_M3_08</td>
+<td>RF_M3_27</td>
+<td>Não é permitido eliminar registos históricos comerciais.</td>
+</tr>
+<tr>
+<td>RN_M3_32</td>
+<td>PN_M3_09</td>
+<td>RF_M3_29</td>
+<td>Relatórios e indicadores devem basear-se exclusivamente em dados registados no sistema.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="modulo-4-gestao-de-consultas">Módulo 4 — Gestão de Consultas<a class="headerlink" href="#modulo-4-gestao-de-consultas" title="Permanent link">&para;</a></h1>
+<h2 id="descricao_3">Descrição<a class="headerlink" href="#descricao_3" title="Permanent link">&para;</a></h2>
+<p>Define as regras de negócio relacionadas com consultas, prescrições, faturação clínica e descontos de fidelização.</p>
+<hr />
+<h2 id="regras-de-negocio_3">Regras de Negócio<a class="headerlink" href="#regras-de-negocio_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Processo</th>
+<th>RF principal</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M4_01</td>
+<td>PN_M4_08</td>
+<td>—</td>
+<td>À 5ª consulta concluída de um animal, deve ser aplicado automaticamente um desconto de 30% sobre o valor do serviço de consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_02</td>
+<td>PN_M4_08</td>
+<td>—</td>
+<td>A cada 10 consultas concluídas do mesmo animal, deve ser aplicado um desconto de 50% sobre o valor base da 10ª consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_03</td>
+<td>PN_M4_08</td>
+<td>—</td>
+<td>Os descontos por fidelização aplicam-se exclusivamente ao serviço de consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_04</td>
+<td>PN_M4_03</td>
+<td>RF_M4_07</td>
+<td>Uma consulta só pode ser marcada como concluída após o registo obrigatório do diagnóstico.</td>
+</tr>
+<tr>
+<td>RN_M4_05</td>
+<td>PN_M4_01</td>
+<td>RF_M4_01</td>
+<td>Um animal deve possuir um proprietário ativo para que seja possível agendar uma consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_06</td>
+<td>PN_M4_05</td>
+<td>RF_M4_09</td>
+<td>Produtos associados a uma prescrição não podem ser faturados como consumo em clínica.</td>
+</tr>
+<tr>
+<td>RN_M4_07</td>
+<td>PN_M4_01</td>
+<td>RF_M4_01</td>
+<td>Cada consulta deve possuir exatamente um veterinário responsável.</td>
+</tr>
+<tr>
+<td>RN_M4_08</td>
+<td>PN_M4_08</td>
+<td>RF_M4_17</td>
+<td>O valor total da fatura associada a uma consulta deve corresponder à soma do serviço de consulta e dos produtos ou medicamentos utilizados.</td>
+</tr>
+<tr>
+<td>RN_M4_09</td>
+<td>PN_M4_06</td>
+<td>RF_M4_15</td>
+<td>Consultas marcadas como não realizadas não geram faturação automática e devem ser registadas para fins estatísticos.</td>
+</tr>
+<tr>
+<td>RN_M4_10</td>
+<td>PN_M4_04</td>
+<td>RF_M4_08</td>
+<td>Uma prescrição médica possui uma validade máxima de 30 dias, salvo indicação em contrário por parte do veterinário.</td>
+</tr>
+<tr>
+<td>RN_M4_11</td>
+<td>PN_M4_02</td>
+<td>RF_M4_03</td>
+<td>Não é permitido eliminar registos de anamnese após 24 horas da realização da consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_12</td>
+<td>PN_M4_08</td>
+<td>—</td>
+<td>Um benefício de desconto só pode ser aplicado se o cliente não possuir faturas pendentes de pagamento.</td>
+</tr>
+<tr>
+<td>RN_M4_13</td>
+<td>PN_M4_01</td>
+<td>RF_M4_01</td>
+<td>Cada consulta deve estar associada a exatamente uma especialidade.</td>
+</tr>
+<tr>
+<td>RN_M4_14</td>
+<td>PN_M4_01</td>
+<td>RF_M4_01</td>
+<td>Deve existir uma especialidade “Geral” que pode ser associada a qualquer consulta.</td>
+</tr>
+<tr>
+<td>RN_M4_15</td>
+<td>PN_M4_06</td>
+<td>RF_M4_11</td>
+<td>Cada consulta deve possuir um estado pertencente ao conjunto (agendada, em curso, concluída, cancelada, não realizada).</td>
+</tr>
+<tr>
+<td>RN_M4_16</td>
+<td>PN_M4_06</td>
+<td>RF_M4_12</td>
+<td>Uma consulta deve ser criada com estado inicial “agendada”.</td>
+</tr>
+<tr>
+<td>RN_M4_17</td>
+<td>PN_M4_02</td>
+<td>RF_M4_05</td>
+<td>Uma consulta em curso deve possuir data e hora de início definidas.</td>
+</tr>
+<tr>
+<td>RN_M4_18</td>
+<td>PN_M4_03</td>
+<td>RF_M4_06</td>
+<td>Uma consulta concluída deve possuir data e hora de fim definidas.</td>
+</tr>
+<tr>
+<td>RN_M4_19</td>
+<td>PN_M4_03</td>
+<td>RF_M4_07</td>
+<td>Uma consulta cancelada ou não realizada não pode possuir diagnóstico registado.</td>
+</tr>
+<tr>
+<td>RN_M4_20</td>
+<td>PN_M4_06</td>
+<td>RF_M4_13</td>
+<td>Uma consulta concluída não pode mudar para outro estado.</td>
+</tr>
+<tr>
+<td>RN_M4_21</td>
+<td>PN_M4_06</td>
+<td>RF_M4_13</td>
+<td>Uma consulta cancelada ou não realizada não pode transitar para os estados em curso ou concluída.</td>
+</tr>
+<tr>
+<td>RN_M4_22</td>
+<td>PN_M4_08</td>
+<td>RF_M4_17</td>
+<td>Apenas consultas concluídas podem originar faturação automática.</td>
+</tr>
+<tr>
+<td>RN_M4_23</td>
+<td>PN_M4_05</td>
+<td>RF_M4_10</td>
+<td>A associação de produtos a uma consulta deve respeitar a disponibilidade de stock existente.</td>
+</tr>
+<tr>
+<td>RN_M4_24</td>
+<td>PN_M4_05</td>
+<td>RF_M4_10</td>
+<td>Os produtos utilizados numa consulta devem originar obrigatoriamente uma redução de stock.</td>
+</tr>
+<tr>
+<td>RN_M4_25</td>
+<td>PN_M4_01</td>
+<td>RF_M4_01</td>
+<td>Cada consulta deve estar associada a um animal previamente registado no sistema.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="convencoes">Convenções<a class="headerlink" href="#convencoes" title="Permanent link">&para;</a></h1>
+<h2 id="estrutura-de-identificadores">Estrutura de identificadores<a class="headerlink" href="#estrutura-de-identificadores" title="Permanent link">&para;</a></h2>
+<p>Formato obrigatório: <code>RN_M&lt;modulo&gt;_&lt;numero&gt;</code> (ex.: <code>RN_M2_09</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Processo</strong></td>
+<td>Processo de negócio <code>PN_Mx_yy</code> — ver <a href="../03_Business_Processes/">03_Business_Processes.md</a></td>
+</tr>
+<tr>
+<td><strong>RF principal</strong></td>
+<td>Requisito funcional que materializa a regra; <code>—</code> quando não existe RF dedicado</td>
+</tr>
+<tr>
+<td><strong>Regra</strong></td>
+<td>Enunciado testável de negócio</td>
+</tr>
+</tbody>
+</table>
+<h2 id="palavras-chave">Palavras-chave<a class="headerlink" href="#palavras-chave" title="Permanent link">&para;</a></h2>
+<p><code>RN</code>, <code>regra de negócio</code>, <code>validação</code>, <code>política</code>, <code>integridade de domínio</code>.</p>
+<h2 id="regras-orfas-sem-rf-dedicado">Regras órfãs (sem RF dedicado)<a class="headerlink" href="#regras-orfas-sem-rf-dedicado" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>RN</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN_M1_25</td>
+<td>Histórico de especialidades — RF_M1_25 cobre OMV/especialidade, não histórico</td>
+</tr>
+<tr>
+<td>RN_M1_36, RN_M1_37</td>
+<td>Política de férias / ausências injustificadas</td>
+</tr>
+<tr>
+<td>RN_M3_22</td>
+<td>Numeração sequencial legal de faturas</td>
+</tr>
+<tr>
+<td>RN_M4_01, RN_M4_02, RN_M4_03, RN_M4_12</td>
+<td>Descontos de fidelização e pré-condições</td>
+</tr>
+</tbody>
+</table>
+<p>Lista espelhada em <a href="../00_Functional_Requirements/#rastreabilidade-rf--rn-lacunas-documentadas">00_Functional_Requirements.md</a>.</p>
+<h2 id="testabilidade">Testabilidade<a class="headerlink" href="#testabilidade" title="Permanent link">&para;</a></h2>
+<p>Cada regra deve ser verificável por: (1) teste de aceitação de negócio, (2) constraint de persistência, ou (3) validação na camada de aplicação — conforme responsabilidade indicada nos <a href="../01_Non_Functional_Requirements/">RNF</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="ipca-site-footer">
+  <div class="ipca-site-footer__inner">
+    <span class="ipca-site-footer__text">
+      MiaCaoMigo Engineering Documentation
+    </span>
+
+    <div class="ipca-site-footer__logos" aria-label="IPCA logos">
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca.jpg"
+        alt="IPCA"
+      >
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca_est.png"
+        alt="IPCA EST"
+      >
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

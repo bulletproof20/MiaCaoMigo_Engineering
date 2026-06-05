@@ -1,0 +1,87 @@
+name: miacaomigo-prod
+
+services:
+  db:
+    build:
+      context: ../../MiaCaoMigo_DataLayer
+    image: miacaomigo-db:prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - miacaomigo_postgres_data:/var/lib/postgresql/data
+      - ../../MiaCaoMigo_DataLayer/DataBase/Bootstrap:/docker-entrypoint-initdb.d:ro
+      - ../../MiaCaoMigo_DataLayer/DataBase/Schema:/docker-entrypoint-initdb.d/Schema:ro
+      - ../../MiaCaoMigo_DataLayer/DataBase/Comments:/docker-entrypoint-initdb.d/Comments:ro
+      - ../../MiaCaoMigo_DataLayer/DataBase/Services:/docker-entrypoint-initdb.d/Services:ro
+      - ../../MiaCaoMigo_DataLayer/DataBase/DataSeed:/docker-entrypoint-initdb.d/DataSeed:ro
+      - ../../MiaCaoMigo_DataLayer/DataBase/Bootstrap/entrypoints/init_prod_entry.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    command: >
+      postgres
+      -c shared_preload_libraries=pg_cron
+      -c cron.database_name=${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - miacaomigo_internal
+
+  website:
+    build:
+      context: ../../MiaCaoMigo_
+      dockerfile: Dockerfile.prod
+    image: miacaomigo-website:prod
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      API_BASE_URL: ${PUBLIC_API_BASE_URL}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - miacaomigo_internal
+      - miacaomigo_public
+
+  docs:
+    build:
+      context: ..
+      dockerfile: Dockerfile.docs.prod
+    image: miacaomigo-docs:prod
+    restart: unless-stopped
+    ports:
+      - "${DOCS_PORT:-8000}:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - miacaomigo_public
+
+volumes:
+  miacaomigo_postgres_data:
+
+networks:
+  miacaomigo_internal:
+    internal: true
+  miacaomigo_public:

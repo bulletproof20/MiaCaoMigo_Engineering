@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>miacaomigo.public</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>miacaomigo</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>All Relationships</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Diagrams</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>
+                                    <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>
+                                    <li class=""><a href="#compactimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact Implied</a></li>
+                                    <li class=""><a href="#largeimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large Implied</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/permission.html" target="_top" title="permission" alt="" coords="910,169,1101,316">
+<area shape="rect" id="node2" href="tables/species.html" target="_top" title="species" alt="" coords="421,2107,589,2224">
+<area shape="rect" id="node3" href="tables/have.html" target="_top" title="have" alt="" coords="1205,5,1336,128">
+<area shape="rect" id="node14" href="tables/profile.html" target="_top" title="profile" alt="" coords="931,5,1079,152">
+<area shape="rect" id="node4" href="tables/specialty.html" target="_top" title="specialty" alt="" coords="920,1628,1091,1775">
+<area shape="rect" id="node5" href="tables/occupies.html" target="_top" title="occupies" alt="" coords="1187,145,1355,268">
+<area shape="rect" id="node25" href="tables/employee.html" target="_top" title="employee" alt="" coords="916,973,1095,1237">
+<area shape="rect" id="node6" href="tables/stock.html" target="_top" title="stock" alt="" coords="1504,3008,1665,3155">
+<area shape="rect" id="node16" href="tables/product.html" target="_top" title="product" alt="" coords="1189,2740,1353,2887">
+<area shape="rect" id="node7" href="tables/delivery.html" target="_top" title="delivery" alt="" coords="1189,1723,1352,1899">
+<area shape="rect" id="node24" href="tables/animal.html" target="_top" title="animal" alt="" coords="925,2015,1086,2220">
+<area shape="rect" id="node28" href="tables/external_entity.html" target="_top" title="external_entity" alt="" coords="889,1493,1121,1611">
+<area shape="rect" id="node8" href="tables/family.html" target="_top" title="family" alt="" coords="933,2769,1077,2887">
+<area shape="rect" id="node9" href="tables/purchase.html" target="_top" title="purchase" alt="" coords="1183,1205,1358,1411">
+<area shape="rect" id="node10" href="tables/login_record.html" target="_top" title="login_record" alt="" coords="903,1792,1107,1997">
+<area shape="rect" id="node22" href="tables/user_account.html" target="_top" title="user_account" alt="" coords="633,1620,845,1796">
+<area shape="rect" id="node11" href="tables/expert.html" target="_top" title="expert" alt="" coords="1511,547,1658,669">
+<area shape="rect" id="node17" href="tables/veterinarian.html" target="_top" title="veterinarian" alt="" coords="1169,285,1373,408">
+<area shape="rect" id="node12" href="tables/return.html" target="_top" title="return" alt="" coords="1506,2363,1663,2597">
+<area shape="rect" id="node31" href="tables/client.html" target="_top" title="client" alt="" coords="929,2237,1082,2384">
+<area shape="rect" id="node13" href="tables/invoice_line.html" target="_top" title="invoice_line" alt="" coords="1486,2779,1683,2955">
+<area shape="rect" id="node30" href="tables/invoice.html" target="_top" title="invoice" alt="" coords="929,2579,1082,2725">
+<area shape="rect" id="node15" href="tables/prescription.html" target="_top" title="prescription" alt="" coords="1483,1841,1686,1988">
+<area shape="rect" id="node18" href="tables/appointment.html" target="_top" title="appointment" alt="" coords="1166,2175,1375,2468">
+<area shape="rect" id="node19" href="tables/absence.html" target="_top" title="absence" alt="" coords="1165,655,1376,860">
+<area shape="rect" id="node20" href="tables/schedule.html" target="_top" title="schedule" alt="" coords="1184,877,1357,1053">
+<area shape="rect" id="node21" href="tables/breed.html" target="_top" title="breed" alt="" coords="655,2129,823,2276">
+<area shape="rect" id="node23" href="tables/rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1793,2372,1999,2519">
+<area shape="rect" id="node26" href="tables/purchase_line.html" target="_top" title="purchase_line" alt="" coords="1476,2005,1693,2211">
+<area shape="rect" id="node27" href="tables/overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1447,2228,1722,2345">
+<area shape="rect" id="node29" href="tables/anamnesis.html" target="_top" title="anamnesis" alt="" coords="1491,1707,1679,1824">
+<area shape="rect" id="node32" href="tables/concession.html" target="_top" title="concession" alt="" coords="1175,1464,1366,1669">
+<area shape="rect" id="node33" href="tables/assistant.html" target="_top" title="assistant" alt="" coords="1185,1071,1357,1188">
+<area shape="rect" id="node34" href="tables/setup.html" target="_top" title="setup" alt="" coords="936,1359,1075,1476">
+<area shape="rect" id="node35" href="tables/delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1452,947,1717,1069">
+<area shape="rect" id="node36" href="tables/appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1420,1484,1749,1689">
+<area shape="rect" id="node37" href="tables/rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1465,2615,1705,2761">
+<area shape="rect" id="node38" href="tables/clock_in.html" target="_top" title="clock_in" alt="" coords="1189,425,1352,601">
+<area shape="rect" id="node39" href="tables/ownership.html" target="_top" title="ownership" alt="" coords="1178,1916,1363,2121">
+<area shape="rect" id="node40" href="tables/vw_appointments_today.html" target="_top" title="vw_appointments_today" alt="" coords="2085,456,2401,520">
+<area shape="rect" id="node41" href="tables/vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="2085,1397,2428,1491">
+<area shape="rect" id="node42" href="tables/vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="2085,1587,2392,1768">
+<area shape="rect" id="node43" href="tables/vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="2085,605,2549,728">
+<area shape="rect" id="node44" href="tables/vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="2293,2507,2613,2600">
+<area shape="rect" id="node45" href="tables/vw_active_employee_directory.html" target="_top" title="vw_active_employee_directory" alt="" coords="2085,1912,2463,1976">
+<area shape="rect" id="node46" href="tables/vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="2085,824,2413,1005">
+<area shape="rect" id="node47" href="tables/vw_products_to_reorder.html" target="_top" title="vw_products_to_reorder" alt="" coords="5,2744,320,2808">
+<area shape="rect" id="node48" href="tables/vw_active_login_sessions.html" target="_top" title="vw_active_login_sessions" alt="" coords="5,2507,331,2600">
+<area shape="rect" id="node49" href="tables/vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="2085,1131,2436,1283">
+<area shape="rect" id="node50" href="tables/vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="2085,2091,2460,2184">
+<area shape="rect" id="node51" href="tables/vw_operational_absences.html" target="_top" title="vw_operational_absences" alt="" coords="2085,2299,2413,2392">
+</map>
+                                        <a name='diagram'><img id="compactDegreeImg" src="diagrams/summary/relationships.real.compact.png" usemap="#compactRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/permission.html" target="_top" title="permission" alt="" coords="998,175,1189,327">
+<area shape="rect" id="node2" href="tables/species.html" target="_top" title="species" alt="" coords="509,2659,677,2811">
+<area shape="rect" id="node3" href="tables/have.html" target="_top" title="have" alt="" coords="1293,5,1424,128">
+<area shape="rect" id="node14" href="tables/profile.html" target="_top" title="profile" alt="" coords="1019,5,1167,157">
+<area shape="rect" id="node4" href="tables/specialty.html" target="_top" title="specialty" alt="" coords="1008,1937,1179,2089">
+<area shape="rect" id="node5" href="tables/occupies.html" target="_top" title="occupies" alt="" coords="1275,145,1443,268">
+<area shape="rect" id="node25" href="tables/employee.html" target="_top" title="employee" alt="" coords="1004,1056,1183,1413">
+<area shape="rect" id="node6" href="tables/stock.html" target="_top" title="stock" alt="" coords="1592,3776,1753,4016">
+<area shape="rect" id="node16" href="tables/product.html" target="_top" title="product" alt="" coords="1277,3427,1441,3813">
+<area shape="rect" id="node7" href="tables/delivery.html" target="_top" title="delivery" alt="" coords="1277,2019,1440,2317">
+<area shape="rect" id="node24" href="tables/animal.html" target="_top" title="animal" alt="" coords="1013,2393,1174,2780">
+<area shape="rect" id="node28" href="tables/external_entity.html" target="_top" title="external_entity" alt="" coords="977,1680,1209,1920">
+<area shape="rect" id="node8" href="tables/family.html" target="_top" title="family" alt="" coords="1021,3691,1165,3843">
+<area shape="rect" id="node9" href="tables/purchase.html" target="_top" title="purchase" alt="" coords="1271,1315,1446,1643">
+<area shape="rect" id="node10" href="tables/login_record.html" target="_top" title="login_record" alt="" coords="991,2107,1195,2376">
+<area shape="rect" id="node22" href="tables/user_account.html" target="_top" title="user_account" alt="" coords="721,1897,933,2167">
+<area shape="rect" id="node11" href="tables/expert.html" target="_top" title="expert" alt="" coords="1599,627,1746,749">
+<area shape="rect" id="node17" href="tables/veterinarian.html" target="_top" title="veterinarian" alt="" coords="1257,285,1461,408">
+<area shape="rect" id="node12" href="tables/return.html" target="_top" title="return" alt="" coords="1594,2968,1751,3267">
+<area shape="rect" id="node31" href="tables/client.html" target="_top" title="client" alt="" coords="1017,2797,1170,3008">
+<area shape="rect" id="node13" href="tables/invoice_line.html" target="_top" title="invoice_line" alt="" coords="1574,3483,1771,3723">
+<area shape="rect" id="node30" href="tables/invoice.html" target="_top" title="invoice" alt="" coords="1017,3232,1170,3472">
+<area shape="rect" id="node15" href="tables/prescription.html" target="_top" title="prescription" alt="" coords="1571,2225,1774,2407">
+<area shape="rect" id="node18" href="tables/appointment.html" target="_top" title="appointment" alt="" coords="1254,2657,1463,3073">
+<area shape="rect" id="node19" href="tables/absence.html" target="_top" title="absence" alt="" coords="1253,660,1464,959">
+<area shape="rect" id="node20" href="tables/schedule.html" target="_top" title="schedule" alt="" coords="1272,976,1445,1157">
+<area shape="rect" id="node21" href="tables/breed.html" target="_top" title="breed" alt="" coords="743,2652,911,2833">
+<area shape="rect" id="node23" href="tables/rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1881,2948,2087,3129">
+<area shape="rect" id="node26" href="tables/purchase_line.html" target="_top" title="purchase_line" alt="" coords="1564,2424,1781,2693">
+<area shape="rect" id="node27" href="tables/overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1535,2711,1810,2951">
+<area shape="rect" id="node29" href="tables/anamnesis.html" target="_top" title="anamnesis" alt="" coords="1579,2056,1767,2208">
+<area shape="rect" id="node32" href="tables/concession.html" target="_top" title="concession" alt="" coords="1263,1696,1454,1965">
+<area shape="rect" id="node33" href="tables/assistant.html" target="_top" title="assistant" alt="" coords="1273,1175,1445,1297">
+<area shape="rect" id="node34" href="tables/setup.html" target="_top" title="setup" alt="" coords="1024,1511,1163,1663">
+<area shape="rect" id="node35" href="tables/delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1540,1107,1805,1229">
+<area shape="rect" id="node36" href="tables/appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1508,1799,1837,2039">
+<area shape="rect" id="node37" href="tables/rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1553,3284,1793,3465">
+<area shape="rect" id="node38" href="tables/clock_in.html" target="_top" title="clock_in" alt="" coords="1277,425,1440,607">
+<area shape="rect" id="node39" href="tables/ownership.html" target="_top" title="ownership" alt="" coords="1266,2335,1451,2604">
+<area shape="rect" id="node40" href="tables/vw_appointments_today.html" target="_top" title="vw_appointments_today" alt="" coords="89,2956,405,3260">
+<area shape="rect" id="node41" href="tables/vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="2609,3044,2952,3260">
+<area shape="rect" id="node42" href="tables/vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="2189,504,2496,1160">
+<area shape="rect" id="node43" href="tables/vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="2189,2003,2653,2336">
+<area shape="rect" id="node44" href="tables/vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="89,1608,409,2000">
+<area shape="rect" id="node45" href="tables/vw_active_employee_directory.html" target="_top" title="vw_active_employee_directory" alt="" coords="2609,915,2987,1160">
+<area shape="rect" id="node46" href="tables/vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="2189,1323,2517,1832">
+<area shape="rect" id="node47" href="tables/vw_products_to_reorder.html" target="_top" title="vw_products_to_reorder" alt="" coords="89,1280,404,1496">
+<area shape="rect" id="node48" href="tables/vw_active_login_sessions.html" target="_top" title="vw_active_login_sessions" alt="" coords="5,2595,331,2840">
+<area shape="rect" id="node49" href="tables/vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="2273,2503,2624,2924">
+<area shape="rect" id="node50" href="tables/vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="5,2175,380,2420">
+<area shape="rect" id="node51" href="tables/vw_operational_absences.html" target="_top" title="vw_operational_absences" alt="" coords="2609,407,2937,740">
+</map>
+                                        <a name='diagram'><img id="largeDegreeImg" src="diagrams/summary/relationships.real.large.png" usemap="#largeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="compactimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactImpliedRelationshipsDiagram" name="compactImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/permission.html" target="_top" title="permission" alt="" coords="538,23,729,169">
+<area shape="rect" id="node2" href="tables/species.html" target="_top" title="species" alt="" coords="5,2908,173,3025">
+<area shape="rect" id="node3" href="tables/have.html" target="_top" title="have" alt="" coords="1004,5,1135,128">
+<area shape="rect" id="node14" href="tables/profile.html" target="_top" title="profile" alt="" coords="559,187,707,333">
+<area shape="rect" id="node4" href="tables/specialty.html" target="_top" title="specialty" alt="" coords="548,2291,719,2437">
+<area shape="rect" id="node5" href="tables/occupies.html" target="_top" title="occupies" alt="" coords="985,157,1153,280">
+<area shape="rect" id="node25" href="tables/employee.html" target="_top" title="employee" alt="" coords="544,1011,723,1275">
+<area shape="rect" id="node6" href="tables/stock.html" target="_top" title="stock" alt="" coords="989,3665,1150,3812">
+<area shape="rect" id="node16" href="tables/product.html" target="_top" title="product" alt="" coords="551,3571,715,3717">
+<area shape="rect" id="node7" href="tables/delivery.html" target="_top" title="delivery" alt="" coords="988,1476,1151,1652">
+<area shape="rect" id="node24" href="tables/animal.html" target="_top" title="animal" alt="" coords="553,2068,714,2273">
+<area shape="rect" id="node28" href="tables/external_entity.html" target="_top" title="external_entity" alt="" coords="517,1399,749,1516">
+<area shape="rect" id="node8" href="tables/family.html" target="_top" title="family" alt="" coords="251,3531,395,3648">
+<area shape="rect" id="node9" href="tables/purchase.html" target="_top" title="purchase" alt="" coords="982,2832,1157,3037">
+<area shape="rect" id="node30" href="tables/invoice.html" target="_top" title="invoice" alt="" coords="557,2763,710,2909">
+<area shape="rect" id="node31" href="tables/client.html" target="_top" title="client" alt="" coords="557,2455,710,2601">
+<area shape="rect" id="node10" href="tables/login_record.html" target="_top" title="login_record" alt="" coords="531,2947,735,3152">
+<area shape="rect" id="node22" href="tables/user_account.html" target="_top" title="user_account" alt="" coords="217,2209,429,2385">
+<area shape="rect" id="node11" href="tables/expert.html" target="_top" title="expert" alt="" coords="1447,1380,1594,1503">
+<area shape="rect" id="node17" href="tables/veterinarian.html" target="_top" title="veterinarian" alt="" coords="967,1077,1171,1200">
+<area shape="rect" id="node12" href="tables/return.html" target="_top" title="return" alt="" coords="1442,2824,1599,3059">
+<area shape="rect" id="node13" href="tables/invoice_line.html" target="_top" title="invoice_line" alt="" coords="971,3364,1168,3540">
+<area shape="rect" id="node15" href="tables/prescription.html" target="_top" title="prescription" alt="" coords="1419,2424,1622,2571">
+<area shape="rect" id="node18" href="tables/appointment.html" target="_top" title="appointment" alt="" coords="965,2287,1174,2580">
+<area shape="rect" id="node19" href="tables/absence.html" target="_top" title="absence" alt="" coords="964,491,1175,696">
+<area shape="rect" id="node20" href="tables/schedule.html" target="_top" title="schedule" alt="" coords="983,749,1156,925">
+<area shape="rect" id="node21" href="tables/breed.html" target="_top" title="breed" alt="" coords="239,2879,407,3025">
+<area shape="rect" id="node23" href="tables/rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1740,3091,1945,3237">
+<area shape="rect" id="node26" href="tables/purchase_line.html" target="_top" title="purchase_line" alt="" coords="1412,3531,1629,3736">
+<area shape="rect" id="node27" href="tables/overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1383,2588,1658,2705">
+<area shape="rect" id="node29" href="tables/anamnesis.html" target="_top" title="anamnesis" alt="" coords="1427,2289,1615,2407">
+<area shape="rect" id="node32" href="tables/concession.html" target="_top" title="concession" alt="" coords="974,1253,1165,1459">
+<area shape="rect" id="node33" href="tables/assistant.html" target="_top" title="assistant" alt="" coords="983,943,1155,1060">
+<area shape="rect" id="node34" href="tables/setup.html" target="_top" title="setup" alt="" coords="564,1933,703,2051">
+<area shape="rect" id="node35" href="tables/delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1388,791,1653,913">
+<area shape="rect" id="node36" href="tables/appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1356,2067,1685,2272">
+<area shape="rect" id="node37" href="tables/rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1401,3269,1641,3416">
+<area shape="rect" id="node38" href="tables/clock_in.html" target="_top" title="clock_in" alt="" coords="988,297,1151,473">
+<area shape="rect" id="node39" href="tables/ownership.html" target="_top" title="ownership" alt="" coords="977,1669,1162,1875">
+<area shape="rect" id="node40" href="tables/vw_appointments_today.html" target="_top" title="vw_appointments_today" alt="" coords="2225,741,2541,805">
+<area shape="rect" id="node41" href="tables/vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="1349,297,1692,391">
+<area shape="rect" id="node42" href="tables/vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="916,2597,1223,2779">
+<area shape="rect" id="node43" href="tables/vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="837,2039,1301,2161">
+<area shape="rect" id="node44" href="tables/vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="473,3460,793,3553">
+<area shape="rect" id="node45" href="tables/vw_active_employee_directory.html" target="_top" title="vw_active_employee_directory" alt="" coords="2225,1037,2603,1101">
+<area shape="rect" id="node46" href="tables/vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="905,3165,1233,3347">
+<area shape="rect" id="node47" href="tables/vw_products_to_reorder.html" target="_top" title="vw_products_to_reorder" alt="" coords="2225,1333,2540,1397">
+<area shape="rect" id="node48" href="tables/vw_active_login_sessions.html" target="_top" title="vw_active_login_sessions" alt="" coords="907,3055,1232,3148">
+<area shape="rect" id="node49" href="tables/vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="1345,1823,1696,1975">
+<area shape="rect" id="node50" href="tables/vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="882,1928,1257,2021">
+<area shape="rect" id="node51" href="tables/vw_operational_absences.html" target="_top" title="vw_operational_absences" alt="" coords="1357,491,1685,584">
+</map>
+                                        <a name='diagram'><img id="compactimpliedDegreeImg" src="diagrams/summary/relationships.implied.compact.png" usemap="#compactImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeImpliedRelationshipsDiagram" name="largeImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/permission.html" target="_top" title="permission" alt="" coords="538,461,729,613">
+<area shape="rect" id="node2" href="tables/species.html" target="_top" title="species" alt="" coords="5,4825,173,4977">
+<area shape="rect" id="node3" href="tables/have.html" target="_top" title="have" alt="" coords="1004,435,1135,557">
+<area shape="rect" id="node14" href="tables/profile.html" target="_top" title="profile" alt="" coords="559,631,707,783">
+<area shape="rect" id="node4" href="tables/specialty.html" target="_top" title="specialty" alt="" coords="548,3644,719,3796">
+<area shape="rect" id="node5" href="tables/occupies.html" target="_top" title="occupies" alt="" coords="985,575,1153,697">
+<area shape="rect" id="node25" href="tables/employee.html" target="_top" title="employee" alt="" coords="544,1468,723,1825">
+<area shape="rect" id="node6" href="tables/stock.html" target="_top" title="stock" alt="" coords="989,5807,1150,6047">
+<area shape="rect" id="node16" href="tables/product.html" target="_top" title="product" alt="" coords="551,5712,715,6099">
+<area shape="rect" id="node7" href="tables/delivery.html" target="_top" title="delivery" alt="" coords="988,2067,1151,2365">
+<area shape="rect" id="node24" href="tables/animal.html" target="_top" title="animal" alt="" coords="553,3012,714,3399">
+<area shape="rect" id="node28" href="tables/external_entity.html" target="_top" title="external_entity" alt="" coords="517,2071,749,2311">
+<area shape="rect" id="node8" href="tables/family.html" target="_top" title="family" alt="" coords="251,5699,395,5851">
+<area shape="rect" id="node9" href="tables/purchase.html" target="_top" title="purchase" alt="" coords="982,3896,1157,4224">
+<area shape="rect" id="node30" href="tables/invoice.html" target="_top" title="invoice" alt="" coords="557,4187,710,4427">
+<area shape="rect" id="node31" href="tables/client.html" target="_top" title="client" alt="" coords="557,3416,710,3627">
+<area shape="rect" id="node10" href="tables/login_record.html" target="_top" title="login_record" alt="" coords="531,175,735,444">
+<area shape="rect" id="node22" href="tables/user_account.html" target="_top" title="user_account" alt="" coords="217,924,429,1193">
+<area shape="rect" id="node11" href="tables/expert.html" target="_top" title="expert" alt="" coords="1447,1443,1594,1565">
+<area shape="rect" id="node17" href="tables/veterinarian.html" target="_top" title="veterinarian" alt="" coords="967,1229,1171,1352">
+<area shape="rect" id="node12" href="tables/return.html" target="_top" title="return" alt="" coords="1442,4405,1599,4704">
+<area shape="rect" id="node13" href="tables/invoice_line.html" target="_top" title="invoice_line" alt="" coords="971,5477,1168,5717">
+<area shape="rect" id="node15" href="tables/prescription.html" target="_top" title="prescription" alt="" coords="1419,3471,1622,3652">
+<area shape="rect" id="node18" href="tables/appointment.html" target="_top" title="appointment" alt="" coords="965,3427,1174,3843">
+<area shape="rect" id="node19" href="tables/absence.html" target="_top" title="absence" alt="" coords="964,913,1175,1212">
+<area shape="rect" id="node20" href="tables/schedule.html" target="_top" title="schedule" alt="" coords="983,1369,1156,1551">
+<area shape="rect" id="node21" href="tables/breed.html" target="_top" title="breed" alt="" coords="239,4901,407,5083">
+<area shape="rect" id="node23" href="tables/rel_pre_prod.html" target="_top" title="rel_pre_prod" alt="" coords="1740,4733,1945,4915">
+<area shape="rect" id="node26" href="tables/purchase_line.html" target="_top" title="purchase_line" alt="" coords="1412,5631,1629,5900">
+<area shape="rect" id="node27" href="tables/overall_assessment.html" target="_top" title="overall_assessment" alt="" coords="1383,3669,1658,3909">
+<area shape="rect" id="node29" href="tables/anamnesis.html" target="_top" title="anamnesis" alt="" coords="1427,3927,1615,4079">
+<area shape="rect" id="node32" href="tables/concession.html" target="_top" title="concession" alt="" coords="974,1780,1165,2049">
+<area shape="rect" id="node33" href="tables/assistant.html" target="_top" title="assistant" alt="" coords="983,1568,1155,1691">
+<area shape="rect" id="node34" href="tables/setup.html" target="_top" title="setup" alt="" coords="564,5,703,157">
+<area shape="rect" id="node35" href="tables/delivery_employee.html" target="_top" title="delivery_employee" alt="" coords="1388,1905,1653,2028">
+<area shape="rect" id="node36" href="tables/appointment_notification.html" target="_top" title="appointment_notification" alt="" coords="1356,3213,1685,3453">
+<area shape="rect" id="node37" href="tables/rel_app_product.html" target="_top" title="rel_app_product" alt="" coords="1401,5195,1641,5376">
+<area shape="rect" id="node38" href="tables/clock_in.html" target="_top" title="clock_in" alt="" coords="988,715,1151,896">
+<area shape="rect" id="node39" href="tables/ownership.html" target="_top" title="ownership" alt="" coords="977,2383,1162,2652">
+<area shape="rect" id="node40" href="tables/vw_appointments_today.html" target="_top" title="vw_appointments_today" alt="" coords="2293,2149,2609,2453">
+<area shape="rect" id="node41" href="tables/vw_open_clock_in_sessions.html" target="_top" title="vw_open_clock_in_sessions" alt="" coords="1349,697,1692,913">
+<area shape="rect" id="node42" href="tables/vw_appointment_detail.html" target="_top" title="vw_appointment_detail" alt="" coords="916,4241,1223,4897">
+<area shape="rect" id="node43" href="tables/vw_scheduled_appointments_tomorrow.html" target="_top" title="vw_scheduled_appointments_tomorrow" alt="" coords="837,2968,1301,3301">
+<area shape="rect" id="node44" href="tables/vw_product_stock_levels.html" target="_top" title="vw_product_stock_levels" alt="" coords="473,5303,793,5695">
+<area shape="rect" id="node45" href="tables/vw_active_employee_directory.html" target="_top" title="vw_active_employee_directory" alt="" coords="2293,1636,2671,1881">
+<area shape="rect" id="node46" href="tables/vw_animal_catalog_detail.html" target="_top" title="vw_animal_catalog_detail" alt="" coords="905,4915,1233,5424">
+<area shape="rect" id="node47" href="tables/vw_products_to_reorder.html" target="_top" title="vw_products_to_reorder" alt="" coords="2293,2809,2608,3025">
+<area shape="rect" id="node48" href="tables/vw_active_login_sessions.html" target="_top" title="vw_active_login_sessions" alt="" coords="907,172,1232,417">
+<area shape="rect" id="node49" href="tables/vw_active_ownership_detail.html" target="_top" title="vw_active_ownership_detail" alt="" coords="1345,2600,1696,3021">
+<area shape="rect" id="node50" href="tables/vw_internal_animals_available.html" target="_top" title="vw_internal_animals_available" alt="" coords="882,2705,1257,2951">
+<area shape="rect" id="node51" href="tables/vw_operational_absences.html" target="_top" title="vw_operational_absences" alt="" coords="1357,931,1685,1264">
+</map>
+                                        <a name='diagram'><img id="largeimpliedDegreeImg" src="diagrams/summary/relationships.implied.large.png" usemap="#largeImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 7.0.2</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="relationships.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

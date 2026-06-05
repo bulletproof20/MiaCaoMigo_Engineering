@@ -1,0 +1,5895 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../02_Frontend_Performance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../00_Assets/00_Branding/01_icons/Logo_pBack.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Strategy - MiaCaoMigo Engineering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../Extras/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estrategia-de-performance-miacaomigo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-header__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiaCaoMigo Engineering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Planning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Requirements/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Diagrams
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_Architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Performance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Academic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Deployment/README_Production_Docker/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Production
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MiaCaoMigo Engineering" class="md-nav__button md-logo" aria-label="MiaCaoMigo Engineering" data-md-component="logo">
+      
+  <img src="../../00_Assets/00_Branding/00_logos/Logo_partialBack.png" alt="logo">
+
+    </a>
+    MiaCaoMigo Engineering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCUMENTATION_LAYERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/01_Narrative_Stories/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narrative Stories
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Narrative Stories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/00_ECOSYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ecosystem Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/01_Chronology/TIMELINE_LAUNCH_2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/02_People/Employees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/03_Animals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — Animals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/04_External/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cast — External
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_APPOINTMENT_STATES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointment States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_COMMERCIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_INCIDENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/01_UserStories/02_Operational_Scenarios/05_Operations/OPS_NOTIFICATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprints
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprints
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_1/Sprint_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_2/Sprint_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_3/Sprint_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sprint 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Sprint_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Planning/00_Sprints/Sprint_4/Mod4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4 proof
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02_Requirements/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/00_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/01_Non_Functional_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/02_Business_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/03_Business_Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/04_Acceptance_Criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptance Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/06_Implementation_Matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Requirements/07_Constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagrams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/er_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER V10 — Conceptual attributes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ER V10 — Conceptual attributes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Diagrams/00_ER_Model/ER_V10/Atributos/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/00_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/00_Application_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/01_Website_Flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/02_Runtime_Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/03_Implementation_Evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04_Architecture/02_Application/04_Generated_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Website Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3_7" id="__nav_5_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Website Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Frontend_Flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/OpenAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/02_Application/04_Generated_Docs/Update_Docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Update Docs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/Architecture_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_2" id="__nav_5_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/00_Naming_Philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/01_Schema_Objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/00_Naming_Conventions/02_SQL_Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_3" id="__nav_5_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/01_SQL_Standards/00_SQL_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_4" id="__nav_5_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Rules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrity Rules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/00_Integrity_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/01_Structural_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/02_Automated_Integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/00_Governance/02_Integrity_Rules/03_Procedural_Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedural Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2_5" id="__nav_5_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Templates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/02_Templates/00_SQL_Authoring_Templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Authoring Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3_2" id="__nav_5_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public Schema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Public Schema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/00_Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/01_Module1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/02_Module2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/03_Module3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/01_Schemas/00_Public_Schema/04_Module4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_4" id="__nav_5_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SchemaSpy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SchemaSpy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Architecture/01_Database/03_SchemaSpy/00_Guide/01_User_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-o-que-significa-performance-num-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. O que significa performance num website
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. O que significa performance num website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-carregamento-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Carregamento (frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-interacao-experiencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Interação (experiência)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-servidor-backend-base-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Servidor (backend + base de dados)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-o-que-deve-ser-testado-no-miacaomigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. O que deve ser testado no MiaCaoMigo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. O que deve ser testado no MiaCaoMigo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-paginas-frontend-sugestao-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Páginas frontend (sugestão inicial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-endpoints-api-sugestao-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Endpoints API (sugestão inicial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ambiente-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Ambiente de teste
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-metricas-a-registar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Métricas a registar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Métricas a registar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-frontend-firefox-rede" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Frontend (Firefox — Rede)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-frontend-qualidade-percebida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Frontend (qualidade percebida)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-core-web-vitals-opcional-complementar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Core Web Vitals (opcional, complementar)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ferramentas-recomendadas-mozilla-firefox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ferramentas recomendadas (Mozilla Firefox)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Ferramentas recomendadas (Mozilla Firefox)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-firefox-developer-tools-obrigatorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Firefox Developer Tools (obrigatório)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-modo-de-design-responsivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Modo de design responsivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-limitacao-de-rede-throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Limitação de rede (throttling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-cliente-http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Cliente HTTP (API)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-o-que-nao-e-obrigatorio-no-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 O que não é obrigatório no início
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-criterios-de-aceitacao-projeto-academico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Critérios de aceitação (projeto académico)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Critérios de aceitação (projeto académico)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-frontend-paginas-estaticas-js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Frontend (páginas estáticas + JS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-api-alinhado-aos-rnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 API (alinhado aos RNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-classificacao-simples-para-relatorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Classificação simples (para relatório)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-plano-de-trabalho-em-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Plano de trabalho em fases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Plano de trabalho em fases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-compreensao-esta-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1 — Compreensão (esta documentação)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2 — Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3 — Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-sintese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 4 — Síntese
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-primeiro-exercicio-pratico-firefox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Primeiro exercício prático (Firefox)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Primeiro exercício prático (Firefox)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-arrancar-o-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1 — Arrancar o site
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-abrir-ferramentas-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2 — Abrir ferramentas de desenvolvimento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-ler-o-resumo-da-rede" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3 — Ler o resumo da Rede
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-4-inspecionar-pedidos-lentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4 — Inspecionar pedidos lentos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-5-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5 — Consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-6-um-clique-com-api-se-aplicavel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 6 — Um clique com API (se aplicável)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-actual-do-exercicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado actual do exercício
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-o-que-documentar-em-cada-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. O que documentar em cada teste
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Frontend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Backend_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Test_Results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_Recommendations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommendations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Academic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/00_Statements/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/01_Academic_Reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/01_Academic_Reports/Application_Report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application academic report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_Docs/02_Presentation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/15min_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 min Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Docs/02_Presentation/Screenshots_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STRUCTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Structure (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_Deployment/README_Production_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Production Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="estrategia-de-performance-miacaomigo">Estratégia de performance — MiaCaoMigo<a class="headerlink" href="#estrategia-de-performance-miacaomigo" title="Permanent link">&para;</a></h1>
+<p>Guia introdutório para testar e documentar o desempenho do website MiaCaoMigo, com foco em <strong>Mozilla Firefox</strong>.</p>
+<p><strong>Relacionado:</strong> <a href="../">README</a> · <a href="../../02_Requirements/01_Non_Functional_Requirements/">RNF Performance</a> · <a href="../../04_Architecture/02_Application/00_Application_Overview/">Application overview</a></p>
+<hr />
+<h2 id="indice">Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-o-que-significa-performance-num-website">O que significa performance num website</a></li>
+<li><a href="#2-o-que-deve-ser-testado-no-miacaomigo">O que deve ser testado no MiaCaoMigo</a></li>
+<li><a href="#3-métricas-a-registar">Métricas a registar</a></li>
+<li><a href="#4-ferramentas-recomendadas-mozilla-firefox">Ferramentas recomendadas (Mozilla Firefox)</a></li>
+<li><a href="#5-critérios-de-aceitação-projeto-académico">Critérios de aceitação (projeto académico)</a></li>
+<li><a href="#6-plano-de-trabalho-em-fases">Plano de trabalho em fases</a></li>
+<li><a href="#7-primeiro-exercício-prático-firefox">Primeiro exercício prático (Firefox)</a></li>
+<li><a href="#8-o-que-documentar-em-cada-teste">O que documentar em cada teste</a></li>
+</ol>
+<hr />
+<h2 id="1-o-que-significa-performance-num-website">1. O que significa performance num website<a class="headerlink" href="#1-o-que-significa-performance-num-website" title="Permanent link">&para;</a></h2>
+<p>Performance web é a <strong>velocidade e fluidez</strong> com que o utilizador consegue usar o site. Não corresponde a um único número; deve ser analisada em três camadas principais.</p>
+<h3 id="11-carregamento-frontend">1.1 Carregamento (frontend)<a class="headerlink" href="#11-carregamento-frontend" title="Permanent link">&para;</a></h3>
+<p>O que acontece quando o utilizador abre um URL (ex.: página inicial ou login).</p>
+<table>
+<thead>
+<tr>
+<th>Aspeto</th>
+<th>Questão de análise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Peso</td>
+<td>Quantos KB/MB são transferidos?</td>
+</tr>
+<tr>
+<td>Pedidos</td>
+<td>Quantos ficheiros o browser pede (HTML, CSS, JS, imagens, fontes)?</td>
+</tr>
+<tr>
+<td>Bloqueios</td>
+<td>Há scripts ou CSS que atrasam a página de aparecer?</td>
+</tr>
+<tr>
+<td>Recursos</td>
+<td>Imagens ou fontes demasiado grandes?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ferramenta principal no Firefox:</strong> separador <strong>Rede</strong> (Network).</p>
+<h3 id="12-interacao-experiencia">1.2 Interação (experiência)<a class="headerlink" href="#12-interacao-experiencia" title="Permanent link">&para;</a></h3>
+<p>O que acontece <strong>depois</strong> da página carregar: clicar em “Entrar”, abrir a área de cliente, listar animais.</p>
+<table>
+<thead>
+<tr>
+<th>Aspeto</th>
+<th>Questão de análise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feedback</td>
+<td>O botão responde de imediato ou “congela”?</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Quanto tempo demora o pedido ao servidor?</td>
+</tr>
+<tr>
+<td>Erros</td>
+<td>Aparecem erros na consola JavaScript?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ferramentas:</strong> <strong>Rede</strong> (pedidos <code>fetch</code>/XHR) + <strong>Consola</strong> + opcionalmente <strong>Desempenho</strong> (Performance).</p>
+<h3 id="13-servidor-backend-base-de-dados">1.3 Servidor (backend + base de dados)<a class="headerlink" href="#13-servidor-backend-base-de-dados" title="Permanent link">&para;</a></h3>
+<p>O tempo que o <strong>Node/Express</strong> e o <strong>PostgreSQL</strong> demoram a processar um pedido HTTP.</p>
+<table>
+<thead>
+<tr>
+<th>Aspeto</th>
+<th>Questão de análise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latência API</td>
+<td>Tempo entre pedido e resposta JSON</td>
+</tr>
+<tr>
+<td>Consultas</td>
+<td>Operações pesadas (listas grandes, joins)</td>
+</tr>
+<tr>
+<td>Carga</td>
+<td>Comportamento com vários pedidos seguidos (opcional, fase avançada)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ferramentas:</strong> cliente HTTP (Postman, Insomnia, <code>curl</code>) e logs do servidor.</p>
+<pre class="mermaid"><code>flowchart TB
+    U[Utilizador no Firefox]
+    U --&gt; FE[FrontEnd HTML/CSS/JS]
+    FE --&gt; API[Backend Express]
+    API --&gt; DB[(PostgreSQL)]
+    subgraph medir_frontend [Medir no browser]
+        FE
+    end
+    subgraph medir_api [Medir na API]
+        API
+        DB
+    end</code></pre>
+<hr />
+<h2 id="2-o-que-deve-ser-testado-no-miacaomigo">2. O que deve ser testado no MiaCaoMigo<a class="headerlink" href="#2-o-que-deve-ser-testado-no-miacaomigo" title="Permanent link">&para;</a></h2>
+<p>Não é necessário testar todas as páginas. Deve ser selecionado um <strong>conjunto representativo</strong>, alinhado com os módulos do projeto.</p>
+<h3 id="21-paginas-frontend-sugestao-inicial">2.1 Páginas frontend (sugestão inicial)<a class="headerlink" href="#21-paginas-frontend-sugestao-inicial" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Prioridade</th>
+<th>Página / fluxo</th>
+<th>Repositório <code>MiaCaoMigo_</code> (exemplos)</th>
+<th>Módulo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alta</td>
+<td>Página inicial</td>
+<td><code>FrontEnd/index.html</code></td>
+<td>Geral</td>
+</tr>
+<tr>
+<td>Alta</td>
+<td>Login</td>
+<td><code>FrontEnd/Pages/Mod1_Users/Autenticacao/login.html</code></td>
+<td>M1</td>
+</tr>
+<tr>
+<td>Alta</td>
+<td>Área do cliente</td>
+<td><code>FrontEnd/Pages/Mod1_Users/Clientes/area_cliente.html</code></td>
+<td>M1</td>
+</tr>
+<tr>
+<td>Média</td>
+<td>Adoções / animais</td>
+<td><code>FrontEnd/Pages/Public/adocoes.html</code></td>
+<td>M2</td>
+</tr>
+<tr>
+<td>Média</td>
+<td>Área funcionário / consultas</td>
+<td><code>FrontEnd/Pages/Mod1_Users/Funcionarios/MainDashboard.html</code>, <code>FrontEnd/Pages/Mod4_Appointments/AdicionarConsulta.html</code></td>
+<td>M1/M4</td>
+</tr>
+<tr>
+<td>Baixa</td>
+<td>Loja / serviços</td>
+<td>páginas em <code>FrontEnd/Pages/...</code></td>
+<td>M3</td>
+</tr>
+</tbody>
+</table>
+<p>A lista final deve constar em <code>02_Frontend_Performance.md</code>.</p>
+<h3 id="22-endpoints-api-sugestao-inicial">2.2 Endpoints API (sugestão inicial)<a class="headerlink" href="#22-endpoints-api-sugestao-inicial" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Exemplo de rota</th>
+<th>RNF relacionado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login</td>
+<td><code>POST</code> autenticação</td>
+<td>RNF_M1_01</td>
+</tr>
+<tr>
+<td>Listar animais</td>
+<td>rotas Mod2</td>
+<td>RNF_M2_13</td>
+</tr>
+<tr>
+<td>Consulta produto/stock</td>
+<td>rotas Mod3</td>
+<td>RNF_M3_19</td>
+</tr>
+<tr>
+<td>Histórico / consultas</td>
+<td>rotas Mod4</td>
+<td>RNF_M4_01</td>
+</tr>
+</tbody>
+</table>
+<p>Rotas exactas: ver Swagger no runtime da aplicação ou <a href="../../04_Architecture/02_Application/04_Generated_Docs/Swagger/">Swagger.md</a>.</p>
+<h3 id="23-ambiente-de-teste">2.3 Ambiente de teste<a class="headerlink" href="#23-ambiente-de-teste" title="Permanent link">&para;</a></h3>
+<p>Para obter resultados comparáveis, cada teste deve registar:</p>
+<ul>
+<li>Data e hora do teste</li>
+<li>Versão do Firefox (<code>about:support</code>)</li>
+<li>SO e máquina (aproximado: portátil/desktop, RAM quando conhecida)</li>
+<li>Modo de execução do projeto: Docker vs <code>node</code> local</li>
+<li>URL base (ex.: <code>http://localhost:3000</code>)</li>
+<li>Rede: local (sem throttling) — opcionalmente repetir com limitação de rede no Firefox (ver §7)</li>
+</ul>
+<hr />
+<h2 id="3-metricas-a-registar">3. Métricas a registar<a class="headerlink" href="#3-metricas-a-registar" title="Permanent link">&para;</a></h2>
+<h3 id="31-frontend-firefox-rede">3.1 Frontend (Firefox — Rede)<a class="headerlink" href="#31-frontend-firefox-rede" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Onde ver no Firefox</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tempo total de carregamento</strong></td>
+<td>Rede → coluna ou resumo no rodapé</td>
+<td>Tempo até os pedidos principais terminarem</td>
+</tr>
+<tr>
+<td><strong>DOMContentLoaded</strong></td>
+<td>Rede / Desempenho</td>
+<td>HTML parseado; DOM disponível</td>
+</tr>
+<tr>
+<td><strong>load</strong></td>
+<td>Rede / Desempenho</td>
+<td>Recursos da página carregados</td>
+</tr>
+<tr>
+<td><strong>Tamanho transferido</strong></td>
+<td>Rede → “Transferido”</td>
+<td>Dados efectivamente recebidos</td>
+</tr>
+<tr>
+<td><strong>Número de pedidos</strong></td>
+<td>Rede → contagem</td>
+<td>Muitos pedidos pequenos podem atrasar</td>
+</tr>
+<tr>
+<td><strong>Erros 4xx/5xx</strong></td>
+<td>Rede (estado vermelho)</td>
+<td>Falhas de API ou recursos em falta</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-frontend-qualidade-percebida">3.2 Frontend (qualidade percebida)<a class="headerlink" href="#32-frontend-qualidade-percebida" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Como medir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Erros na <strong>Consola</strong></td>
+<td>F12 → Consola → erros (vermelho)</td>
+</tr>
+<tr>
+<td>Página utilizável</td>
+<td>Critério qualitativo: o conteúdo principal fica legível e interativo em &lt; 3 s em ambiente local?</td>
+</tr>
+<tr>
+<td>Responsividade</td>
+<td>Modo de design responsivo (F12 → ícone telemóvel/tablet)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-core-web-vitals-opcional-complementar">3.3 Core Web Vitals (opcional, complementar)<a class="headerlink" href="#33-core-web-vitals-opcional-complementar" title="Permanent link">&para;</a></h3>
+<p>Métricas standard da indústria (LCP, INP, CLS). O Firefox <strong>não inclui Lighthouse</strong> integrado como o Chrome.</p>
+<p>Para referência académica, podem ser usados serviços online <strong>sem alterar o browser principal de desenvolvimento</strong>:</p>
+<ul>
+<li><a href="https://pagespeed.web.dev/">PageSpeed Insights</a> — permite testar o URL público do site (requer deploy ou túnel tipo ngrok)</li>
+<li><a href="https://www.webpagetest.org/">WebPageTest</a> — teste de laboratório com relatório exportável</li>
+</ul>
+<p>Isto é <strong>opcional</strong> na Fase 1; o núcleo do trabalho pode basear-se apenas em Firefox DevTools + testes de API.</p>
+<h3 id="34-backend">3.4 Backend<a class="headerlink" href="#34-backend" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Ferramenta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tempo de resposta (ms)</td>
+<td>Postman / Insomnia / Thunder Client — campo “Time”</td>
+</tr>
+<tr>
+<td>Código HTTP</td>
+<td>200, 401, 500, etc.</td>
+</tr>
+<tr>
+<td>Tamanho do body</td>
+<td>Útil para listas grandes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-ferramentas-recomendadas-mozilla-firefox">4. Ferramentas recomendadas (Mozilla Firefox)<a class="headerlink" href="#4-ferramentas-recomendadas-mozilla-firefox" title="Permanent link">&para;</a></h2>
+<h3 id="41-firefox-developer-tools-obrigatorio">4.1 Firefox Developer Tools (obrigatório)<a class="headerlink" href="#41-firefox-developer-tools-obrigatorio" title="Permanent link">&para;</a></h3>
+<p>Abrir: <strong>F12</strong> ou <code>Ctrl+Shift+I</code> (Linux/Windows) / <code>Cmd+Option+I</code> (macOS).</p>
+<table>
+<thead>
+<tr>
+<th>Separador</th>
+<th>Uso no MiaCaoMigo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inspetor</strong></td>
+<td>Ver estrutura HTML/CSS (não mede tempo, mas ajuda a encontrar recursos pesados)</td>
+</tr>
+<tr>
+<td><strong>Consola</strong></td>
+<td>Erros JavaScript que podem quebrar fluxos</td>
+</tr>
+<tr>
+<td><strong>Rede</strong></td>
+<td><strong>Principal</strong> — tempos, tamanhos, pedidos à API</td>
+</tr>
+<tr>
+<td><strong>Desempenho</strong></td>
+<td>Gravação de carregamento ou clique (análise mais avançada)</td>
+</tr>
+<tr>
+<td><strong>Armazenamento</strong></td>
+<td>Cookies/sessão (contexto de login, não é métrica de tempo)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recomendação:</strong> no separador Rede, deve ativar-se “Desativar cache” durante os testes, para simular uma primeira visita (ícone de engrenagem ou barra da Rede).</p>
+<h3 id="42-modo-de-design-responsivo">4.2 Modo de design responsivo<a class="headerlink" href="#42-modo-de-design-responsivo" title="Permanent link">&para;</a></h3>
+<p><strong>Ctrl+Shift+M</strong> — testar se páginas pesadas em mobile (ligação a RNF de usabilidade móvel).</p>
+<h3 id="43-limitacao-de-rede-throttling">4.3 Limitação de rede (throttling)<a class="headerlink" href="#43-limitacao-de-rede-throttling" title="Permanent link">&para;</a></h3>
+<p>Na barra <strong>Rede</strong>, menu de limitação (ex.: “Regular 3G”) para simular ligação mais lenta. Útil para 1–2 capturas comparativas, não para todos os testes.</p>
+<h3 id="44-cliente-http-api">4.4 Cliente HTTP (API)<a class="headerlink" href="#44-cliente-http-api" title="Permanent link">&para;</a></h3>
+<p>Pode ser usado qualquer cliente HTTP familiar ao projeto ou à unidade curricular:</p>
+<ul>
+<li>Postman</li>
+<li>Insomnia</li>
+<li>Extensão <strong>Thunder Client</strong> no VS Code/Cursor</li>
+<li><code>curl</code> na linha de comandos</li>
+</ul>
+<h3 id="45-o-que-nao-e-obrigatorio-no-inicio">4.5 O que <strong>não</strong> é obrigatório no início<a class="headerlink" href="#45-o-que-nao-e-obrigatorio-no-inicio" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chrome Lighthouse</td>
+<td>Muito citado em tutoriais; <strong>não é a ferramenta principal desta documentação</strong>. Pode ser ignorado na Fase 1.</td>
+</tr>
+<tr>
+<td>k6 / Apache Bench</td>
+<td>Testes de carga — fase opcional em <code>03_Backend_Performance.md</code></td>
+</tr>
+<tr>
+<td>Firefox Profiler (profiler.firefox.com)</td>
+<td>Profiling profundo; apenas necessário para analisar JavaScript muito lento</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-criterios-de-aceitacao-projeto-academico">5. Critérios de aceitação (projeto académico)<a class="headerlink" href="#5-criterios-de-aceitacao-projeto-academico" title="Permanent link">&para;</a></h2>
+<p>Critérios <strong>pragmáticos</strong> para ambiente local + alinhamento com RNF existentes.</p>
+<h3 id="51-frontend-paginas-estaticas-js">5.1 Frontend (páginas estáticas + JS)<a class="headerlink" href="#51-frontend-paginas-estaticas-js" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Meta sugerida</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carregamento percebido</td>
+<td>≤ 3 s em localhost, rede sem throttling</td>
+<td>Página principal utilizável</td>
+</tr>
+<tr>
+<td>Erros na consola</td>
+<td>0 erros em fluxos críticos testados</td>
+<td>Warnings podem ser listados à parte</td>
+</tr>
+<tr>
+<td>Pedidos falhados</td>
+<td>0 recursos essenciais em 404</td>
+<td>CSS/JS/API em falta degradam a nota</td>
+</tr>
+<tr>
+<td>Tamanho total (página típica)</td>
+<td>Registar valor; alerta se &gt; ~2–3 MB sem justificação</td>
+<td>Imagens são causa comum</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-api-alinhado-aos-rnf">5.2 API (alinhado aos RNF)<a class="headerlink" href="#52-api-alinhado-aos-rnf" title="Permanent link">&para;</a></h3>
+<p>Devem ser usados os valores já definidos no projeto quando aplicável:</p>
+<table>
+<thead>
+<tr>
+<th>RNF</th>
+<th>Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF_M1_01</td>
+<td>Autenticação ≤ 2 s</td>
+</tr>
+<tr>
+<td>RNF_M2_13</td>
+<td>Consultas simples animais &lt; 1 s</td>
+</tr>
+<tr>
+<td>RNF_M3_19</td>
+<td>Consultas simples comercial &lt; 1 s</td>
+</tr>
+<tr>
+<td>RNF_M4_01</td>
+<td>Histórico clínico &lt; 3 s</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Como demonstrar “95% dos pedidos” em contexto académico:</strong> repetir o mesmo pedido <strong>5–10 vezes</strong>, registar mínimo/média/máximo e indicar quantas execuções cumpriram a meta.</p>
+<h3 id="53-classificacao-simples-para-relatorio">5.3 Classificação simples (para relatório)<a class="headerlink" href="#53-classificacao-simples-para-relatorio" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Verde</strong></td>
+<td>Cumpre critério + sem erros bloqueantes</td>
+</tr>
+<tr>
+<td><strong>Amarelo</strong></td>
+<td>Funciona mas acima da meta ou com warnings</td>
+</tr>
+<tr>
+<td><strong>Vermelho</strong></td>
+<td>Erros na consola, falhas HTTP ou tempo inaceitável</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-plano-de-trabalho-em-fases">6. Plano de trabalho em fases<a class="headerlink" href="#6-plano-de-trabalho-em-fases" title="Permanent link">&para;</a></h2>
+<h3 id="fase-1-compreensao-esta-documentacao">Fase 1 — Compreensão (esta documentação)<a class="headerlink" href="#fase-1-compreensao-esta-documentacao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Ler este documento</li>
+<li>[x] Executar o <a href="#7-primeiro-exercício-prático-firefox">primeiro exercício §7</a></li>
+<li>[x] Registar valores da página inicial em <code>04_Test_Results.md</code></li>
+<li>[x] Confirmar versão Firefox: 151.0.2</li>
+<li>[ ] Confirmar estado da Consola (opcional; <code>indexConsoleResult.jpeg</code> mostra Rede)</li>
+<li>[x] Corrigir e repetir <code>GET /api/animals/adoptions</code> (2026-06-01)</li>
+</ul>
+<h3 id="fase-2-frontend">Fase 2 — Frontend<a class="headerlink" href="#fase-2-frontend" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] <code>02_Frontend_Performance.md</code> com lista de páginas baseline</li>
+<li>[x] Páginas baseline: tabela Rede + capturas Firefox</li>
+<li>[x] Registar em <code>04_Test_Results.md</code></li>
+<li>[ ] Opcional: print real da Consola da página inicial</li>
+</ul>
+<h3 id="fase-3-backend">Fase 3 — Backend<a class="headerlink" href="#fase-3-backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] <code>03_Backend_Performance.md</code> com endpoints e payloads</li>
+<li>[x] Medições mín/média/máx (db-test, adoptions, login 10×)</li>
+<li>[x] Registar em <code>04_Test_Results.md</code></li>
+</ul>
+<h3 id="fase-4-sintese">Fase 4 — Síntese<a class="headerlink" href="#fase-4-sintese" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] <code>05_Recommendations.md</code> — melhorias priorizadas</li>
+<li>[x] Parágrafo e tabela em <code>Application_Report.md</code> §3.11</li>
+</ul>
+<hr />
+<h2 id="7-primeiro-exercicio-pratico-firefox">7. Primeiro exercício prático (Firefox)<a class="headerlink" href="#7-primeiro-exercicio-pratico-firefox" title="Permanent link">&para;</a></h2>
+<p>Objetivo: demonstrar como medir performance <strong>sem ferramentas extra</strong>, usando apenas o Firefox.</p>
+<h3 id="passo-1-arrancar-o-site">Passo 1 — Arrancar o site<a class="headerlink" href="#passo-1-arrancar-o-site" title="Permanent link">&para;</a></h3>
+<p>Deve seguir-se <a href="../../04_Architecture/02_Application/02_Runtime_Setup/">02_Runtime_Setup</a> até ser possível abrir a URL local no Firefox (ex.: <code>http://localhost:3000</code>).</p>
+<h3 id="passo-2-abrir-ferramentas-de-desenvolvimento">Passo 2 — Abrir ferramentas de desenvolvimento<a class="headerlink" href="#passo-2-abrir-ferramentas-de-desenvolvimento" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Abrir a <strong>página inicial</strong> no Firefox.</li>
+<li>Pressionar <strong>F12</strong>.</li>
+<li>Abrir o separador <strong>Rede</strong>.</li>
+<li>Ativar <strong>Desativar cache</strong> (se disponível).</li>
+<li>Recarregar a página com <strong>Ctrl+Shift+R</strong> (recarregar ignorando cache).</li>
+</ol>
+<h3 id="passo-3-ler-o-resumo-da-rede">Passo 3 — Ler o resumo da Rede<a class="headerlink" href="#passo-3-ler-o-resumo-da-rede" title="Permanent link">&para;</a></h3>
+<p>No rodapé ou barra de resumo da Rede, devem ser registados os seguintes valores:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor observado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Número de pedidos</td>
+<td></td>
+</tr>
+<tr>
+<td>Transferido (tamanho)</td>
+<td></td>
+</tr>
+<tr>
+<td>Tempo (finish / DOMContentLoaded se visível)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="passo-4-inspecionar-pedidos-lentos">Passo 4 — Inspecionar pedidos lentos<a class="headerlink" href="#passo-4-inspecionar-pedidos-lentos" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Clicar na coluna <strong>Tempo</strong> para ordenar do mais lento para o mais rápido.</li>
+<li>Identificar os <strong>3 pedidos mais lentos</strong> (ficheiros ou chamadas API).</li>
+<li>Registar o tipo: <code>.css</code>, <code>.js</code>, <code>.png</code>, <code>fetch</code>/XHR, etc.</li>
+</ol>
+<h3 id="passo-5-consola">Passo 5 — Consola<a class="headerlink" href="#passo-5-consola" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Abrir o separador <strong>Consola</strong>.</li>
+<li>Registar se existem <strong>erros</strong> (texto a vermelho). Se existirem, a mensagem deve ser copiada como evidência para <code>04_Test_Results.md</code>.</li>
+</ol>
+<h3 id="passo-6-um-clique-com-api-se-aplicavel">Passo 6 — Um clique com API (se aplicável)<a class="headerlink" href="#passo-6-um-clique-com-api-se-aplicavel" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Com a Rede ainda aberta, executar <strong>login</strong> ou outra ação que chame o backend.</li>
+<li>Filtrar por <strong>XHR</strong> ou <strong>Fetch</strong> na Rede.</li>
+<li>Abrir o pedido da API e registar:</li>
+<li>URL</li>
+<li>Estado HTTP (ex.: 200)</li>
+<li>Tempo (ms)</li>
+</ol>
+<p>Este exercício conclui o primeiro ciclo de medição. O documento <code>02_Frontend_Performance.md</code> formalizará o mesmo processo para todas as páginas escolhidas.</p>
+<h3 id="resultado-actual-do-exercicio">Resultado actual do exercício<a class="headerlink" href="#resultado-actual-do-exercicio" title="Permanent link">&para;</a></h3>
+<p>O primeiro ciclo já tem evidência em Firefox para:</p>
+<ul>
+<li>Página inicial: 16 pedidos, ~2,72 MB transferidos, tempo total ~165 ms.</li>
+<li><code>/db-test</code>: resposta HTTP 200 validada no browser.</li>
+</ul>
+<p>Os valores e prints estão registados em <a href="../04_Test_Results/">04_Test_Results.md</a>. A baseline inicial já inclui página inicial, login, adoções, área cliente, <code>db-test</code>, <code>adoptions</code> e login; a continuação natural passa por medições adicionais em páginas Mod3/Mod4 ou por optimizar assets pesados identificados.</p>
+<hr />
+<h2 id="8-o-que-documentar-em-cada-teste">8. O que documentar em cada teste<a class="headerlink" href="#8-o-que-documentar-em-cada-teste" title="Permanent link">&para;</a></h2>
+<p>O modelo seguinte deve ser usado posteriormente em <code>04_Test_Results.md</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="gu">### Teste: [Nome da página ou endpoint]</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**Data:**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Firefox:**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**URL:**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Ambiente:**</span> local Docker / node
+
+<span class="gu">#### Resultados</span>
+| Métrica | Valor |
+|---------|-------|
+| Pedidos HTTP | |
+| Transferido | |
+| Tempo total | |
+| Erros consola | sim/não — detalhe |
+| RNF aplicável | RNF_Mx_yy |
+
+<span class="gu">#### Evidências</span>
+<span class="k">-</span><span class="w"> </span>Captura: Rede (Firefox)
+<span class="k">-</span><span class="w"> </span>Captura: Consola (se erros)
+
+<span class="gu">#### Observações</span>
+<span class="k">-</span><span class="w"> </span>...
+</code></pre></div>
+<hr />
+<h2 id="resumo">Resumo<a class="headerlink" href="#resumo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Ferramenta Firefox</th>
+<th>Documento futuro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carregamento</td>
+<td>Rede</td>
+<td><code>02_Frontend_Performance.md</code></td>
+</tr>
+<tr>
+<td>Interação + API no browser</td>
+<td>Rede (XHR) + Consola</td>
+<td><code>02_Frontend_Performance.md</code></td>
+</tr>
+<tr>
+<td>API isolada</td>
+<td>Postman / curl</td>
+<td><code>03_Backend_Performance.md</code></td>
+</tr>
+<tr>
+<td>Resultados e melhorias</td>
+<td>Tabelas + capturas</td>
+<td><code>04_</code> e <code>05_</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Próximo passo:</strong> seguir a lista operacional em <a href="../04_Test_Results/#próximo-passo">04_Test_Results.md</a>: confirmar Consola/versão Firefox, corrigir <code>GET /api/animals/adoptions</code>, repetir a medição da API e avançar para login + adoções no Firefox.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="ipca-site-footer">
+  <div class="ipca-site-footer__inner">
+    <span class="ipca-site-footer__text">
+      MiaCaoMigo Engineering Documentation
+    </span>
+
+    <div class="ipca-site-footer__logos" aria-label="IPCA logos">
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca.jpg"
+        alt="IPCA"
+      >
+      <img
+        src="../../00_Assets/00_Branding/00_logos/ipca_est.png"
+        alt="IPCA EST"
+      >
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

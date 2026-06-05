@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="miacaomigo" schema="public" type="PostgreSQL - 15.17 (Debian 15.17-1.pgdg13+1)">
+   <tables>
+      <table name="absence" remarks="stores employee absences, operational interruptions, and approval lifecycle" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_abs" nullable="false" remarks="unique absence identifier" size="10" type="int4" typeCode="4">
+            <child column="id_abs" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_operational_absences"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_absence_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_tim_abs" nullable="false" remarks="absence start timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_tim_abs" nullable="false" remarks="absence end timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mot_abs" nullable="false" remarks="normalized absence reason" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pending'::absence_status" digits="0" id="5" name="sta_abs" nullable="false" remarks="workflow state using centralized absence_status enum" size="2147483647" type="absence_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="res_abs" nullable="true" remarks="employee responsible for absence validation or resolution" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_absence_responsible" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="cre_tim_abs" nullable="false" remarks="absence creation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_abs" sequenceNumberInPK="1"/>
+         <index name="pk_absence" unique="true">
+            <column ascending="true" name="id_abs"/>
+         </index>
+         <index name="ix_absence_id_emp" unique="false">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="ix_absence_pending_expiry" unique="false">
+            <column ascending="true" name="end_dat_tim_abs"/>
+         </index>
+         <checkConstraint constraint="((sta_dat_tim_abs &lt; end_dat_tim_abs))" name="ck_absence_time"/>
+         <checkConstraint constraint="((((mot_abs)::text = lower(TRIM(BOTH FROM mot_abs))) AND (length((mot_abs)::text) &gt; 2)))" name="ck_mot_abs_format"/>
+      </table>
+      <table name="anamnesis" remarks="client-reported history snippets tied to appointments" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="false" remarks="related appointment" size="10" type="int4" typeCode="4">
+            <parent column="id_app" foreignKey="fk_anamnesis_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="1" name="reg_dat_ana" nullable="false" remarks="capture timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_ana" nullable="true" remarks="detailed history narrative" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_app" sequenceNumberInPK="1"/>
+         <index name="pk_anamnesis" unique="true">
+            <column ascending="true" name="id_app"/>
+         </index>
+      </table>
+      <table name="animal" remarks="clinical and administrative record for each animal patient" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_ani" nullable="false" remarks="unique animal identifier" size="10" type="int4" typeCode="4">
+            <child column="id_ani" foreignKey="fk_appointment_animal" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+            <child column="id_ani" foreignKey="fk_concession_animal" implied="false" onDeleteCascade="true" schema="public" table="concession"/>
+            <child column="id_ani" foreignKey="fk_delivery_animal" implied="false" onDeleteCascade="true" schema="public" table="delivery"/>
+            <child column="id_ani" foreignKey="fk_ownership_animal" implied="false" onDeleteCascade="true" schema="public" table="ownership"/>
+            <child column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_active_ownership_detail"/>
+            <child column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_animal_catalog_detail"/>
+            <child column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_appointment_detail"/>
+            <child column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_internal_animals_available"/>
+            <child column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_scheduled_appointments_tomorrow"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="reg_id_ani" nullable="false" remarks="external or clinic-wide registration code" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_ani" nullable="true" remarks="animal name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dat_bir_ani" nullable="true" remarks="birth date when known" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="gen_ani" nullable="true" remarks="biological sex marker (M/F)" size="1" type="bpchar" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ori_ani" nullable="true" remarks="origin or intake source narrative" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="sta_ani" nullable="true" remarks="operational status (e.g. internal, adopted, transferred)" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="id_spc" nullable="false" remarks="required species reference" size="10" type="int4" typeCode="4">
+            <parent column="id_spc" foreignKey="fk_animal_species" implied="false" onDeleteCascade="false" schema="public" table="species"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="id_bre" nullable="true" remarks="optional breed reference" size="10" type="int4" typeCode="4">
+            <parent column="id_bre" foreignKey="fk_animal_breed" implied="false" onDeleteCascade="false" schema="public" table="breed"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_DATE" digits="0" id="9" name="reg_dat_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="ina_dat_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <primaryKey column="id_ani" sequenceNumberInPK="1"/>
+         <index name="pk_animal" unique="true">
+            <column ascending="true" name="id_ani"/>
+         </index>
+         <index name="uq_reg_id_ani" unique="true">
+            <column ascending="true" name="reg_id_ani"/>
+         </index>
+         <checkConstraint constraint="(((gen_ani = ANY (ARRAY['M'::bpchar, 'F'::bpchar])) OR (gen_ani IS NULL)))" name="ck_gen_ani"/>
+      </table>
+      <table name="appointment" remarks="scheduling and consultation session for a client animal with assigned veterinarian and declared clinical specialty" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_app" nullable="false" remarks="unique appointment identifier" size="10" type="int4" typeCode="4">
+            <child column="id_app" foreignKey="fk_anamnesis_appointment" implied="false" onDeleteCascade="true" schema="public" table="anamnesis"/>
+            <child column="id_app" foreignKey="fk_notification_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment_notification"/>
+            <child column="id_app" foreignKey="fk_overall_assessment_appointment" implied="false" onDeleteCascade="true" schema="public" table="overall_assessment"/>
+            <child column="id_app" foreignKey="fk_prescription_appointment" implied="false" onDeleteCascade="true" schema="public" table="prescription"/>
+            <child column="id_app" foreignKey="fk_app_pro_appointment" implied="false" onDeleteCascade="true" schema="public" table="rel_app_product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_ani" nullable="false" remarks="animal receiving care" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="fk_appointment_animal" implied="false" onDeleteCascade="true" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_emp" nullable="false" remarks="assigned employee (veterinarian)" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_appointment_employee" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_cli" nullable="false" remarks="client responsible for the visit" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="fk_appointment_client" implied="false" onDeleteCascade="true" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_spe" nullable="false" remarks="clinical specialty requested for this consultation; FK to module 1 specialty catalog; must match an expert(id_emp,id_spe) assignment for the veterinarian" size="10" type="int4" typeCode="4">
+            <parent column="id_spe" foreignKey="fk_appointment_specialty" implied="false" onDeleteCascade="false" schema="public" table="specialty"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_inv" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_inv" foreignKey="fk_appointment_invoice" implied="false" onDeleteCascade="false" schema="public" table="invoice"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="sch_dat_app" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="sta_dat_app" nullable="true" remarks="actual consultation start timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="end_dat_app" nullable="true" remarks="actual consultation end timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="'scheduled'::appointment_status" digits="0" id="9" name="status_app" nullable="false" remarks="workflow status using appointment_status enum" size="2147483647" type="appointment_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="dia_app" nullable="true" remarks="diagnosis captured when closing the visit" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="com_app" nullable="true" remarks="free-form clinical or operational notes" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_app" sequenceNumberInPK="1"/>
+         <index name="pk_appointment" unique="true">
+            <column ascending="true" name="id_app"/>
+         </index>
+         <index name="ex_appointment_vet_overlap" unique="false">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="ix_appointment_id_ani" unique="false">
+            <column ascending="true" name="id_ani"/>
+         </index>
+         <index name="ix_appointment_id_cli" unique="false">
+            <column ascending="true" name="id_cli"/>
+         </index>
+         <index name="ix_appointment_id_emp" unique="false">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="ix_appointment_operational_day" unique="false">
+            <column ascending="true" name="sch_dat_app"/>
+         </index>
+         <index name="ix_appointment_status_for_jobs" unique="false">
+            <column ascending="true" name="sch_dat_app"/>
+         </index>
+         <index name="ix_appointment_vet_schedule" unique="false">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="sch_dat_app"/>
+         </index>
+         <index name="uq_appointment_invoice" unique="true">
+            <column ascending="true" name="id_inv"/>
+         </index>
+         <checkConstraint constraint="((sta_dat_app &lt; end_dat_app))" name="ck_appointment_flow"/>
+      </table>
+      <table name="appointment_notification" remarks="client notifications such as reminders generated by jobs or procedures" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_not" nullable="false" remarks="unique notification identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_cli" nullable="false" remarks="target client" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="fk_appointment_notification_client" implied="false" onDeleteCascade="true" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_app" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_app" foreignKey="fk_notification_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="msg_not" nullable="false" remarks="human-readable notification body" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="cre_tim_not" nullable="true" remarks="creation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="5" name="rea_not" nullable="true" remarks="read/unread flag for client portals" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="id_not" sequenceNumberInPK="1"/>
+         <index name="pk_appointment_notification" unique="true">
+            <column ascending="true" name="id_not"/>
+         </index>
+         <index name="ix_notification_client_read_status" unique="false">
+            <column ascending="true" name="id_cli"/>
+            <column ascending="true" name="rea_not"/>
+         </index>
+      </table>
+      <table name="assistant" remarks="defines assistant employees and their operational functions" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_assistant_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fun_ass" nullable="false" remarks="operational function or assistant role" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_assistant" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+      </table>
+      <table name="breed" remarks="breed catalog scoped to a parent species" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_bre" nullable="false" remarks="unique breed identifier" size="10" type="int4" typeCode="4">
+            <child column="id_bre" foreignKey="fk_animal_breed" implied="false" onDeleteCascade="false" schema="public" table="animal"/>
+            <child column="id_bre" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_animal_catalog_detail"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_bre" nullable="false" remarks="breed display name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="sci_nam_bre" nullable="true" remarks="optional scientific breed name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_spc" nullable="false" remarks="reference to species (FK applied in 01_ForeignKeys_Mod2.sql)" size="10" type="int4" typeCode="4">
+            <parent column="id_spc" foreignKey="fk_breed_species" implied="false" onDeleteCascade="true" schema="public" table="species"/>
+         </column>
+         <primaryKey column="id_bre" sequenceNumberInPK="1"/>
+         <index name="pk_breed" unique="true">
+            <column ascending="true" name="id_bre"/>
+         </index>
+      </table>
+      <table name="client" remarks="stores client authentication and operational lifecycle information" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_cli" nullable="false" remarks="unique client identifier" size="10" type="int4" typeCode="4">
+            <child column="id_cli" foreignKey="fk_appointment_client" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+            <child column="id_cli" foreignKey="fk_appointment_notification_client" implied="false" onDeleteCascade="true" schema="public" table="appointment_notification"/>
+            <child column="id_cli" foreignKey="fk_ownership_client" implied="false" onDeleteCascade="true" schema="public" table="ownership"/>
+            <child column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="purchase"/>
+            <child column="id_cli" foreignKey="fk_return_client" implied="false" onDeleteCascade="false" schema="public" table="return"/>
+            <child column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_active_ownership_detail"/>
+            <child column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_animal_catalog_detail"/>
+            <child column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_appointment_detail"/>
+            <child column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_scheduled_appointments_tomorrow"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="false" remarks="reference to associated user account; unique per row (one client per user_account)" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_client_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="pas_cli" nullable="false" remarks="hashed client authentication password" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="reg_dat_cli" nullable="false" remarks="client registration timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="ina_dat_cli" nullable="true" remarks="client inactivation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_cli" sequenceNumberInPK="1"/>
+         <index name="pk_client" unique="true">
+            <column ascending="true" name="id_cli"/>
+         </index>
+         <index name="uq_client_user" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <checkConstraint constraint="(((reg_dat_cli &lt;= CURRENT_TIMESTAMP) AND ((ina_dat_cli IS NULL) OR ((ina_dat_cli &gt;= reg_dat_cli) AND (ina_dat_cli &lt;= CURRENT_TIMESTAMP)))))" name="ck_client_dates"/>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM pas_cli)) &gt;= 16))" name="ck_pas_cli_format"/>
+      </table>
+      <table name="clock_in" remarks="stores employee attendance intervals and operational presence records" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_clk" nullable="false" remarks="unique attendance record identifier" size="10" type="int4" typeCode="4">
+            <child column="id_clk" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_open_clock_in_sessions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_clock_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_clk" nullable="false" remarks="attendance start timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_clk" nullable="true" remarks="attendance end timestamp" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id_clk" sequenceNumberInPK="1"/>
+         <index name="pk_clock_in" unique="true">
+            <column ascending="true" name="id_clk"/>
+         </index>
+         <index name="ix_clock_in_open_by_start" unique="false">
+            <column ascending="true" name="sta_dat_clk"/>
+         </index>
+         <index name="uq_clock_in_active_per_employee" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <checkConstraint constraint="(((sta_dat_clk &lt;= CURRENT_TIMESTAMP) AND ((end_dat_clk IS NULL) OR ((end_dat_clk &gt; sta_dat_clk) AND (end_dat_clk &lt;= CURRENT_TIMESTAMP)))))" name="ck_clock_time"/>
+      </table>
+      <table name="concession" remarks="transfer of an animal to an external entity with clinical context" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_con" nullable="false" remarks="unique concession identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dat_con" nullable="false" remarks="transfer date" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mot_con" nullable="true" remarks="reason for concession" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="cli_sta_con" nullable="true" remarks="clinical status snapshot at transfer" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_ext_ent" nullable="false" remarks="target external entity" size="10" type="int4" typeCode="4">
+            <parent column="id_ext_ent" foreignKey="fk_concession_entity" implied="false" onDeleteCascade="false" schema="public" table="external_entity"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_emp" nullable="false" remarks="employee authorizing the transfer" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_concession_employee" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_ani" nullable="false" remarks="animal being transferred" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="fk_concession_animal" implied="false" onDeleteCascade="true" schema="public" table="animal"/>
+         </column>
+         <primaryKey column="id_con" sequenceNumberInPK="1"/>
+         <index name="pk_concession" unique="true">
+            <column ascending="true" name="id_con"/>
+         </index>
+      </table>
+      <table name="delivery" remarks="rescue or intake workflow metadata for an animal" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_del" nullable="false" remarks="unique delivery identifier" size="10" type="int4" typeCode="4">
+            <child column="id_del" foreignKey="fk_del_emp_delivery" implied="false" onDeleteCascade="true" schema="public" table="delivery_employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="reg_dat_del" nullable="true" remarks="record creation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="res_dat_del" nullable="true" remarks="rescue event timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="del_dat_del" nullable="true" remarks="delivery or handover timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="res_loc_del" nullable="true" remarks="location narrative for rescue" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="cli_sta_del" nullable="true" remarks="clinical status at intake" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_ext_ent" nullable="true" remarks="optional originating partner" size="10" type="int4" typeCode="4">
+            <parent column="id_ext_ent" foreignKey="fk_delivery_entity" implied="false" onDeleteCascade="false" schema="public" table="external_entity"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="id_ani" nullable="false" remarks="animal associated with the delivery" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="fk_delivery_animal" implied="false" onDeleteCascade="true" schema="public" table="animal"/>
+         </column>
+         <primaryKey column="id_del" sequenceNumberInPK="1"/>
+         <index name="pk_delivery" unique="true">
+            <column ascending="true" name="id_del"/>
+         </index>
+         <index name="uq_animal_single_delivery" unique="true">
+            <column ascending="true" name="id_ani"/>
+         </index>
+         <checkConstraint constraint="(((del_dat_del IS NULL) OR (reg_dat_del &lt;= del_dat_del)))" name="ck_delivery_dates"/>
+      </table>
+      <table name="delivery_employee" remarks="associates employees with a delivery operation" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_del" nullable="false" remarks="reference to delivery" size="10" type="int4" typeCode="4">
+            <parent column="id_del" foreignKey="fk_del_emp_delivery" implied="false" onDeleteCascade="true" schema="public" table="delivery"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="false" remarks="reference to participating employee" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_del_emp_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <primaryKey column="id_del" sequenceNumberInPK="1"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="2"/>
+         <index name="pk_delivery_employee" unique="true">
+            <column ascending="true" name="id_del"/>
+            <column ascending="true" name="id_emp"/>
+         </index>
+      </table>
+      <table name="employee" remarks="stores operational employee authentication and lifecycle information" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="unique employee identifier" size="10" type="int4" typeCode="4">
+            <child column="id_emp" foreignKey="fk_absence_employee" implied="false" onDeleteCascade="true" schema="public" table="absence"/>
+            <child column="res_abs" foreignKey="fk_absence_responsible" implied="false" onDeleteCascade="false" schema="public" table="absence"/>
+            <child column="id_emp" foreignKey="fk_appointment_employee" implied="false" onDeleteCascade="false" schema="public" table="appointment"/>
+            <child column="id_emp" foreignKey="fk_assistant_employee" implied="false" onDeleteCascade="true" schema="public" table="assistant"/>
+            <child column="id_emp" foreignKey="fk_clock_employee" implied="false" onDeleteCascade="true" schema="public" table="clock_in"/>
+            <child column="id_emp" foreignKey="fk_concession_employee" implied="false" onDeleteCascade="false" schema="public" table="concession"/>
+            <child column="id_emp" foreignKey="fk_del_emp_employee" implied="false" onDeleteCascade="true" schema="public" table="delivery_employee"/>
+            <child column="aut_ina_emp" foreignKey="fk_employee_aut_ina" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+            <child column="aut_reg_emp" foreignKey="fk_employee_aut_reg" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+            <child column="id_emp" foreignKey="fk_occ_employee" implied="false" onDeleteCascade="true" schema="public" table="occupies"/>
+            <child column="id_emp" foreignKey="fk_ownership_employee" implied="false" onDeleteCascade="false" schema="public" table="ownership"/>
+            <child column="id_emp" foreignKey="fk_purchase_employee" implied="false" onDeleteCascade="false" schema="public" table="purchase"/>
+            <child column="id_emp" foreignKey="fk_return_employee" implied="false" onDeleteCascade="false" schema="public" table="return"/>
+            <child column="id_emp" foreignKey="fk_schedule_employee" implied="false" onDeleteCascade="true" schema="public" table="schedule"/>
+            <child column="id_emp" foreignKey="fk_veterinarian_employee" implied="false" onDeleteCascade="true" schema="public" table="veterinarian"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="false" remarks="reference to associated user account" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_employee_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="2" name="reg_dat_emp" nullable="false" remarks="employee registration timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="aut_reg_emp" nullable="true" remarks="employee responsible for registration" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_employee_aut_reg" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="dea_dat_emp" nullable="true" remarks="employee deactivation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="aut_ina_emp" nullable="true" remarks="employee responsible for deactivation" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_employee_aut_ina" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="pho_emp" nullable="true" remarks="professional contact phone number" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="pho_emg" nullable="true" remarks="emergency contact phone number" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ema_emp" nullable="false" remarks="corporate normalized email address" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="pas_emp" nullable="false" remarks="hashed employee authentication password" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_employee" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="ix_employee_user_history" unique="false">
+            <column ascending="true" name="id_usr"/>
+            <column ascending="false" name="reg_dat_emp"/>
+            <column ascending="false" name="id_emp"/>
+         </index>
+         <index name="uq_ema_emp" unique="true">
+            <column ascending="true" name="ema_emp"/>
+         </index>
+         <index name="uq_employee_active_per_user" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <checkConstraint constraint="((((ema_emp)::text = lower(TRIM(BOTH FROM ema_emp))) AND ((ema_emp)::text ~ '^[^@\s]+@miacaomigo\.pt$'::text)))" name="ck_ema_emp_format"/>
+         <checkConstraint constraint="(((reg_dat_emp &lt;= CURRENT_TIMESTAMP) AND ((dea_dat_emp IS NULL) OR ((dea_dat_emp &gt;= reg_dat_emp) AND (dea_dat_emp &lt;= CURRENT_TIMESTAMP)))))" name="ck_employee_dates"/>
+         <checkConstraint constraint="((((dea_dat_emp IS NULL) AND (aut_ina_emp IS NULL)) OR ((dea_dat_emp IS NOT NULL) AND (aut_ina_emp IS NOT NULL))))" name="ck_employee_inactivation"/>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM pas_emp)) &gt;= 16))" name="ck_pas_emp_format"/>
+         <checkConstraint constraint="(((pho_emg IS NULL) OR ((pho_emg)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="ck_pho_emg_format"/>
+         <checkConstraint constraint="(((pho_emp IS NULL) OR ((pho_emp)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="ck_pho_emp_format"/>
+      </table>
+      <table name="expert" remarks="associates veterinarians with one or more specialties" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to veterinarian employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_expert_veterinarian" implied="false" onDeleteCascade="true" schema="public" table="veterinarian"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_spe" nullable="false" remarks="reference to specialty entity" size="10" type="int4" typeCode="4">
+            <parent column="id_spe" foreignKey="fk_expert_specialty" implied="false" onDeleteCascade="true" schema="public" table="specialty"/>
+         </column>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <primaryKey column="id_spe" sequenceNumberInPK="2"/>
+         <index name="pk_expert" unique="true">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="id_spe"/>
+         </index>
+      </table>
+      <table name="external_entity" remarks="partners such as shelters or suppliers involved in intake or transfers" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_ext_ent" nullable="false" remarks="unique external entity identifier" size="10" type="int4" typeCode="4">
+            <child column="id_ext_ent" foreignKey="fk_concession_entity" implied="false" onDeleteCascade="false" schema="public" table="concession"/>
+            <child column="id_ext_ent" foreignKey="fk_delivery_entity" implied="false" onDeleteCascade="false" schema="public" table="delivery"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_ext_ent" nullable="false" remarks="organization name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="loc_ext_ent" nullable="true" remarks="location descriptor" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pho_ext_ent" nullable="true" remarks="contact phone in international format" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ema_ext_ent" nullable="true" remarks="contact email" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="typ_ext_ent" nullable="true" remarks="entity classification label" size="50" type="varchar" typeCode="12"/>
+         <primaryKey column="id_ext_ent" sequenceNumberInPK="1"/>
+         <index name="pk_external_entity" unique="true">
+            <column ascending="true" name="id_ext_ent"/>
+         </index>
+         <checkConstraint constraint="(((ema_ext_ent IS NULL) OR ((ema_ext_ent)::text ~ '^[^@\s]+@[^@\s]+\.[^@\s]+$'::text)))" name="ck_ema_ext_ent_format"/>
+         <checkConstraint constraint="(((pho_ext_ent IS NULL) OR ((pho_ext_ent)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="ck_pho_ext_ent_format"/>
+      </table>
+      <table name="family" remarks="product family or category grouping for catalog organization" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_fam" nullable="false" remarks="unique family identifier" size="10" type="int4" typeCode="4">
+            <child column="id_fam" foreignKey="fk_product_family" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+            <child column="id_fam" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_product_stock_levels"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_fam" nullable="false" remarks="display name of the family" size="70" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_fam" nullable="true" remarks="long-form description" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_fam" sequenceNumberInPK="1"/>
+         <index name="pk_family" unique="true">
+            <column ascending="true" name="id_fam"/>
+         </index>
+      </table>
+      <table name="have" remarks="associates profiles with granular operational permissions" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_pro" nullable="false" remarks="reference to profile entity" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_have_profile" implied="false" onDeleteCascade="true" schema="public" table="profile"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_per" nullable="false" remarks="reference to permission entity" size="10" type="int4" typeCode="4">
+            <parent column="id_per" foreignKey="fk_have_permission" implied="false" onDeleteCascade="true" schema="public" table="permission"/>
+         </column>
+         <primaryKey column="id_pro" sequenceNumberInPK="1"/>
+         <primaryKey column="id_per" sequenceNumberInPK="2"/>
+         <index name="pk_have" unique="true">
+            <column ascending="true" name="id_pro"/>
+            <column ascending="true" name="id_per"/>
+         </index>
+      </table>
+      <table name="invoice" remarks="billing header that may reference an appointment" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_inv" nullable="false" remarks="unique invoice identifier" size="10" type="int4" typeCode="4">
+            <child column="id_inv" foreignKey="fk_appointment_invoice" implied="false" onDeleteCascade="false" schema="public" table="appointment"/>
+            <child column="id_inv" foreignKey="fk_invoice_line_invoice" implied="false" onDeleteCascade="true" schema="public" table="invoice_line"/>
+            <child column="id_inv" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="purchase"/>
+            <child column="id_inv" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_appointment_detail"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="1" name="val_inv" nullable="true" remarks="monetary total for the invoice" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="dat_inv" nullable="true" remarks="issue timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="bod_inv" nullable="true" remarks="free-text body or notes" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pending'::invoice_status" digits="0" id="4" name="sta_inv" nullable="true" remarks="invoice workflow state using centralized invoice_status enum" size="2147483647" type="invoice_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_app" nullable="true" remarks="consultation back-reference mirrored from appointment.id_inv (unique when set; retail invoices stay null)" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id_inv" sequenceNumberInPK="1"/>
+         <index name="pk_invoice" unique="true">
+            <column ascending="true" name="id_inv"/>
+         </index>
+         <index name="uq_invoice_appointment" unique="true">
+            <column ascending="true" name="id_app"/>
+         </index>
+      </table>
+      <table name="invoice_line" remarks="sales line items contributing to invoice totals" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_inv_lin" nullable="false" remarks="unique invoice line identifier" size="10" type="int4" typeCode="4">
+            <child column="id_inv_lin" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="return"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_inv" nullable="false" remarks="parent invoice" size="10" type="int4" typeCode="4">
+            <parent column="id_inv" foreignKey="fk_invoice_line_invoice" implied="false" onDeleteCascade="true" schema="public" table="invoice"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_pro" nullable="false" remarks="product sold" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_invoice_line_product" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="qty_inv_lin" nullable="false" remarks="quantity sold" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="uni_pri_inv_lin" nullable="false" remarks="unit selling price" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="iva_inv_lin" nullable="false" remarks="vat rate applied to the line" size="5" type="numeric" typeCode="2"/>
+         <primaryKey column="id_inv_lin" sequenceNumberInPK="1"/>
+         <index name="pk_invoice_line" unique="true">
+            <column ascending="true" name="id_inv_lin"/>
+         </index>
+         <index name="ix_invoice_line_id_inv" unique="false">
+            <column ascending="true" name="id_inv"/>
+         </index>
+         <checkConstraint constraint="((qty_inv_lin &gt; 0))" name="ck_qty_inv_lin"/>
+      </table>
+      <table name="login_record" remarks="stores authentication attempts, session lifecycle, and login audit history" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_log" nullable="false" remarks="unique login record identifier" size="10" type="int4" typeCode="4">
+            <child column="id_log" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_active_login_sessions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="1" name="sig_tim_log" nullable="false" remarks="login/sign-in timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sou_tim_log" nullable="true" remarks="logout/sign-out timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="suc_log" nullable="false" remarks="indicates whether authentication was successful" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ip_add_log" nullable="true" remarks="ip address used during authentication attempt" size="2147483647" type="inet" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ema_log" nullable="true" remarks="email snapshot used during authentication attempt" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_usr" nullable="true" remarks="reference to associated user account when applicable" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_login_record_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <primaryKey column="id_log" sequenceNumberInPK="1"/>
+         <index name="pk_login_record" unique="true">
+            <column ascending="true" name="id_log"/>
+         </index>
+         <index name="ix_login_record_user_history" unique="false">
+            <column ascending="true" name="id_usr"/>
+            <column ascending="false" name="sig_tim_log"/>
+            <column ascending="false" name="id_log"/>
+         </index>
+         <index name="uq_login_single_active_session_email" unique="true">
+            <column ascending="true" name="ema_log"/>
+         </index>
+         <checkConstraint constraint="(((ema_log IS NULL) OR (((ema_log)::text = lower(TRIM(BOTH FROM ema_log))) AND ((ema_log)::text ~ '.+@.+\..+'::text))))" name="ck_ema_log_format"/>
+         <checkConstraint constraint="(((sig_tim_log &lt;= CURRENT_TIMESTAMP) AND ((sou_tim_log IS NULL) OR ((sou_tim_log &gt; sig_tim_log) AND (sou_tim_log &lt;= CURRENT_TIMESTAMP)))))" name="ck_login_time"/>
+         <checkConstraint constraint="(((suc_log = false) OR ((id_usr IS NOT NULL) AND (ema_log IS NOT NULL) AND (ip_add_log IS NOT NULL) AND (sig_tim_log IS NOT NULL) AND (ip_add_log IS NOT NULL))))" name="login_record_check"/>
+      </table>
+      <table name="occupies" remarks="associates employees with operational access profiles" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_occ_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pro" nullable="false" remarks="reference to profile entity" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_occ_profile" implied="false" onDeleteCascade="true" schema="public" table="profile"/>
+         </column>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="2"/>
+         <index name="pk_occupies" unique="true">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="id_pro"/>
+         </index>
+      </table>
+      <table name="overall_assessment" remarks="structured vitals captured during an appointment" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="false" remarks="primary key and foreign key to appointment" size="10" type="int4" typeCode="4">
+            <parent column="id_app" foreignKey="fk_overall_assessment_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="1" id="1" name="bod_tmp_ova" nullable="true" remarks="body temperature in degrees celsius" size="4" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="wei_ova" nullable="true" remarks="weight measurement in kilograms" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="hrt_rat_ova" nullable="true" remarks="heart rate in beats per minute" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="res_rat_ova" nullable="true" remarks="respiratory rate in breaths per minute" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="gen_sta_ova" nullable="true" remarks="qualitative assessment narrative" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_app" sequenceNumberInPK="1"/>
+         <index name="pk_overall_assessment" unique="true">
+            <column ascending="true" name="id_app"/>
+         </index>
+         <checkConstraint constraint="(((bod_tmp_ova IS NULL) OR ((bod_tmp_ova &gt; (20)::numeric) AND (bod_tmp_ova &lt; (50)::numeric))))" name="ck_bod_tmp_ova"/>
+         <checkConstraint constraint="(((hrt_rat_ova IS NULL) OR (hrt_rat_ova &gt; 0)))" name="ck_hrt_rat_ova"/>
+         <checkConstraint constraint="(((res_rat_ova IS NULL) OR (res_rat_ova &gt; 0)))" name="ck_res_rat_ova"/>
+         <checkConstraint constraint="(((wei_ova IS NULL) OR (wei_ova &gt; (0)::numeric)))" name="ck_wei_ova"/>
+      </table>
+      <table name="ownership" remarks="client-to-animal ownership intervals with optional staff attribution" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_own" nullable="false" remarks="unique ownership interval identifier" size="10" type="int4" typeCode="4">
+            <child column="id_own" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_active_ownership_detail"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_cli" nullable="false" remarks="client who holds the animal" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="fk_ownership_client" implied="false" onDeleteCascade="true" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_ani" nullable="false" remarks="animal subject to ownership" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="fk_ownership_animal" implied="false" onDeleteCascade="true" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sta_dat_own" nullable="false" remarks="ownership start date" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="end_dat_own" nullable="true" remarks="ownership end date when closed" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="mot_own" nullable="true" remarks="reason narrative for the change" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_emp" nullable="true" remarks="optional employee validating the change" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_ownership_employee" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <primaryKey column="id_own" sequenceNumberInPK="1"/>
+         <index name="pk_ownership" unique="true">
+            <column ascending="true" name="id_own"/>
+         </index>
+         <index name="ex_ownership_overlap" unique="false">
+            <column ascending="true" name="id_ani"/>
+         </index>
+         <index name="uq_ownership_active_per_animal" unique="true">
+            <column ascending="true" name="id_ani"/>
+         </index>
+         <checkConstraint constraint="(((end_dat_own IS NULL) OR (sta_dat_own &lt;= end_dat_own)))" name="ck_ownership_dates"/>
+      </table>
+      <table name="permission" remarks="defines granular permissions used for access control" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_per" nullable="false" remarks="unique permission identifier" size="10" type="int4" typeCode="4">
+            <child column="id_per" foreignKey="fk_have_permission" implied="false" onDeleteCascade="true" schema="public" table="have"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_per" nullable="false" remarks="normalized permission name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_per" nullable="true" remarks="description of the permission purpose" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_per" sequenceNumberInPK="1"/>
+         <index name="pk_permission" unique="true">
+            <column ascending="true" name="id_per"/>
+         </index>
+         <index name="uq_nam_per" unique="true">
+            <column ascending="true" name="nam_per"/>
+         </index>
+         <checkConstraint constraint="((((nam_per)::text = lower(TRIM(BOTH FROM nam_per))) AND (length((nam_per)::text) &gt; 3) AND ((nam_per)::text ~ '^[a-z0-9_.]+$'::text)))" name="ck_nam_per_format"/>
+      </table>
+      <table name="prescription" remarks="prescription metadata issued during a consultation" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pre" nullable="false" remarks="unique prescription identifier" size="10" type="int4" typeCode="4">
+            <child column="id_pre" foreignKey="fk_pre_pro_prescription" implied="false" onDeleteCascade="true" schema="public" table="rel_pre_prod"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_app" nullable="false" remarks="parent appointment" size="10" type="int4" typeCode="4">
+            <parent column="id_app" foreignKey="fk_prescription_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="2" name="reg_dat_pre" nullable="false" remarks="issuance timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="des_pre" nullable="true" remarks="instructions or pharmaceutical narrative" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_pre" sequenceNumberInPK="1"/>
+         <index name="pk_prescription" unique="true">
+            <column ascending="true" name="id_pre"/>
+         </index>
+         <index name="uq_prescription_per_appointment" unique="true">
+            <column ascending="true" name="id_app"/>
+         </index>
+      </table>
+      <table name="product" remarks="catalog item with pricing, tax, and lifecycle metadata" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pro" nullable="false" remarks="unique product identifier" size="10" type="int4" typeCode="4">
+            <child column="id_pro" foreignKey="fk_invoice_line_product" implied="false" onDeleteCascade="false" schema="public" table="invoice_line"/>
+            <child column="id_pro" foreignKey="fk_purchase_line_product" implied="false" onDeleteCascade="false" schema="public" table="purchase_line"/>
+            <child column="id_pro" foreignKey="fk_app_pro_product" implied="false" onDeleteCascade="false" schema="public" table="rel_app_product"/>
+            <child column="id_pro" foreignKey="fk_pre_pro_product" implied="false" onDeleteCascade="false" schema="public" table="rel_pre_prod"/>
+            <child column="id_pro" foreignKey="fk_return_product" implied="false" onDeleteCascade="false" schema="public" table="return"/>
+            <child column="id_pro" foreignKey="fk_stock_product" implied="false" onDeleteCascade="true" schema="public" table="stock"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ref_pro" nullable="true" remarks="internal reference code" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="bar_pro" nullable="true" remarks="barcode or alternate scanner key" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nam_pro" nullable="false" remarks="product name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="des_pro" nullable="true" remarks="detailed description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="pri_pro" nullable="true" remarks="unit list price" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="6" name="iva_pro" nullable="true" remarks="vat percentage" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="reg_dat_pro" nullable="false" remarks="catalog registration timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="ina_dat_pro" nullable="true" remarks="inactivation timestamp when the sku retires" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="id_fam" nullable="false" remarks="required catalog family" size="10" type="int4" typeCode="4">
+            <parent column="id_fam" foreignKey="fk_product_family" implied="false" onDeleteCascade="false" schema="public" table="family"/>
+         </column>
+         <column autoUpdated="false" defaultValue="5" digits="0" id="10" name="min_sto" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="1"/>
+         <index name="pk_product" unique="true">
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <checkConstraint constraint="((min_sto &gt;= 0))" name="ck_min_sto_positive"/>
+      </table>
+      <table name="profile" remarks="defines operational roles and access profiles within the system" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pro" nullable="false" remarks="unique profile identifier" size="10" type="int4" typeCode="4">
+            <child column="id_pro" foreignKey="fk_have_profile" implied="false" onDeleteCascade="true" schema="public" table="have"/>
+            <child column="id_pro" foreignKey="fk_occ_profile" implied="false" onDeleteCascade="true" schema="public" table="occupies"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_pro" nullable="false" remarks="normalized profile name" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_pro" nullable="false" remarks="description of profile responsibilities and purpose" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="1"/>
+         <index name="pk_profile" unique="true">
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <index name="uq_nam_pro" unique="true">
+            <column ascending="true" name="nam_pro"/>
+         </index>
+         <checkConstraint constraint="((((nam_pro)::text = lower(TRIM(BOTH FROM nam_pro))) AND (length((nam_pro)::text) &gt; 3) AND ((nam_pro)::text ~ '^[a-zà-ÿ\s]+$'::text)))" name="ck_nam_pro_format"/>
+      </table>
+      <table name="purchase" remarks="purchase order header with totals and workflow status" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pur" nullable="false" remarks="unique purchase identifier" size="10" type="int4" typeCode="4">
+            <child column="id_pur" foreignKey="fk_purchase_line_purchase" implied="false" onDeleteCascade="true" schema="public" table="purchase_line"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="1" name="pur_dat_pur" nullable="false" remarks="purchase timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="tot_val_pur" nullable="true" remarks="order total" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ord_num_pur" nullable="true" remarks="external order reference" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="pay_met_pur" nullable="true" remarks="payment method label" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pending'::purchase_status" digits="0" id="5" name="sta_pur" nullable="true" remarks="workflow state using centralized purchase_status enum (nullable until confirmed)" size="2147483647" type="purchase_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_inv" nullable="true" remarks="linked invoice when billed (nullable; no FK)" size="10" type="int4" typeCode="4">
+            <parent column="id_inv" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="invoice"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="id_cli" nullable="true" remarks="client for retail purchases (nullable; no FK)" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="id_emp" nullable="true" remarks="employee responsible for the purchase" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_purchase_employee" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <primaryKey column="id_pur" sequenceNumberInPK="1"/>
+         <index name="pk_purchase" unique="true">
+            <column ascending="true" name="id_pur"/>
+         </index>
+      </table>
+      <table name="purchase_line" remarks="line-level detail for incoming stock tied to a purchase" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_pur_lin" nullable="false" remarks="unique line identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pur" nullable="false" remarks="parent purchase" size="10" type="int4" typeCode="4">
+            <parent column="id_pur" foreignKey="fk_purchase_line_purchase" implied="false" onDeleteCascade="true" schema="public" table="purchase"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_pro" nullable="false" remarks="product being procured" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_purchase_line_product" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="bat_pln" nullable="true" remarks="batch label captured at receipt" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="qty_pln" nullable="false" remarks="ordered quantity" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="uni_cos_pln" nullable="false" remarks="unit cost" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_sto" nullable="true" remarks="stock row created on receive (nullable; no FK; set by sp_receive_purchase)" size="10" type="int4" typeCode="4">
+            <parent column="id_sto" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="stock"/>
+         </column>
+         <primaryKey column="id_pur_lin" sequenceNumberInPK="1"/>
+         <index name="pk_purchase_line" unique="true">
+            <column ascending="true" name="id_pur_lin"/>
+         </index>
+         <index name="ix_purchase_line_id_pur" unique="false">
+            <column ascending="true" name="id_pur"/>
+         </index>
+         <checkConstraint constraint="((qty_pln &gt; 0))" name="ck_qty_pln"/>
+      </table>
+      <table name="rel_app_product" remarks="products consumed or billed directly through an appointment" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="false" remarks="appointment reference" size="10" type="int4" typeCode="4">
+            <parent column="id_app" foreignKey="fk_app_pro_appointment" implied="false" onDeleteCascade="true" schema="public" table="appointment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pro" nullable="false" remarks="product reference" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_app_pro_product" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="qty_pre_pro" nullable="false" remarks="quantity associated with the appointment usage" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dos_pre_pro" nullable="true" remarks="dosage or administration instructions" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_app" sequenceNumberInPK="1"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="2"/>
+         <index name="pk_appointment_product" unique="true">
+            <column ascending="true" name="id_app"/>
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <checkConstraint constraint="((qty_pre_pro &gt; 0))" name="ck_qty_rel_app_product"/>
+      </table>
+      <table name="rel_pre_prod" remarks="line items that materialize a prescription into catalog skus" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_pre" nullable="false" remarks="prescription reference" size="10" type="int4" typeCode="4">
+            <parent column="id_pre" foreignKey="fk_pre_pro_prescription" implied="false" onDeleteCascade="true" schema="public" table="prescription"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pro" nullable="false" remarks="product reference" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_pre_pro_product" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="qty_pre_pro" nullable="false" remarks="prescribed quantity" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dos_pre_pro" nullable="true" remarks="dosage instructions" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_pre" sequenceNumberInPK="1"/>
+         <primaryKey column="id_pro" sequenceNumberInPK="2"/>
+         <index name="pk_prescription_product" unique="true">
+            <column ascending="true" name="id_pre"/>
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <checkConstraint constraint="((qty_pre_pro &gt; 0))" name="ck_qty_rel_pre_prod"/>
+      </table>
+      <table name="return" remarks="commercial return header: one client, one employee, one product; optional invoice line trace" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_ret" nullable="false" remarks="unique return identifier" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_cli" nullable="false" remarks="client who returned the product" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="fk_return_client" implied="false" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_emp" nullable="false" remarks="employee who processed the return" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_return_employee" implied="false" onDeleteCascade="false" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_pro" nullable="false" remarks="returned product (source of truth for restock)" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_return_product" implied="false" onDeleteCascade="false" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mot_ret" nullable="true" remarks="reason narrative" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="ina_dat_ret" nullable="true" remarks="closure or inactivation timestamp" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_inv_lin" nullable="true" remarks="optional originating invoice line (nullable; no FK; validated in tfn_return_restock)" size="10" type="int4" typeCode="4">
+            <parent column="id_inv_lin" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="invoice_line"/>
+         </column>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="7" name="qty_ret" nullable="false" remarks="quantity being returned" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id_ret" sequenceNumberInPK="1"/>
+         <index name="pk_return" unique="true">
+            <column ascending="true" name="id_ret"/>
+         </index>
+         <checkConstraint constraint="((qty_ret &gt; 0))" name="ck_qty_ret"/>
+      </table>
+      <table name="schedule" remarks="defines recurring weekly operational schedules for employees" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <parent column="id_emp" foreignKey="fk_schedule_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="day_wee_sch" nullable="false" remarks="day of the week associated with the schedule entry" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_tim_sch" nullable="false" remarks="schedule start time" size="15" type="time" typeCode="92"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="fin_hou_sch" nullable="false" remarks="schedule end time" size="15" type="time" typeCode="92"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <primaryKey column="day_wee_sch" sequenceNumberInPK="2"/>
+         <primaryKey column="sta_tim_sch" sequenceNumberInPK="3"/>
+         <index name="pk_schedule" unique="true">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="day_wee_sch"/>
+            <column ascending="true" name="sta_tim_sch"/>
+         </index>
+         <index name="ex_schedule_overlap" unique="false">
+            <column ascending="true" name="id_emp"/>
+            <column ascending="true" name="day_wee_sch"/>
+         </index>
+         <checkConstraint constraint="(((day_wee_sch &gt;= 1) AND (day_wee_sch &lt;= 7)))" name="ck_schedule_day"/>
+         <checkConstraint constraint="(((sta_tim_sch &lt; fin_hou_sch) AND (sta_tim_sch &gt;= '00:00:00'::time without time zone) AND (fin_hou_sch &lt;= '23:59:59'::time without time zone)))" name="ck_schedule_time"/>
+      </table>
+      <table name="setup" remarks="stores user interface preferences and operational configuration settings" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_usr" nullable="false" remarks="reference to associated user account" size="10" type="int4" typeCode="4">
+            <parent column="id_usr" foreignKey="fk_setup_user" implied="false" onDeleteCascade="true" schema="public" table="user_account"/>
+         </column>
+         <column autoUpdated="false" defaultValue="'light'::character varying" digits="0" id="1" name="the_set" nullable="false" remarks="user interface theme preference" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="'pt-pt'::character varying" digits="0" id="2" name="lan_set" nullable="false" remarks="user interface language preference" size="20" type="varchar" typeCode="12"/>
+         <primaryKey column="id_usr" sequenceNumberInPK="1"/>
+         <index name="pk_setup" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <checkConstraint constraint="((((lan_set)::text = lower(TRIM(BOTH FROM lan_set))) AND ((lan_set)::text ~ '^[a-z]{2}-[a-z]{2}$'::text)))" name="ck_lan_set_format"/>
+         <checkConstraint constraint="((((the_set)::text = lower(TRIM(BOTH FROM the_set))) AND ((the_set)::text = ANY ((ARRAY['light'::character varying, 'dark'::character varying])::text[]))))" name="ck_the_set_format"/>
+      </table>
+      <table name="specialty" remarks="defines veterinary and operational specialties" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_spe" nullable="false" remarks="unique specialty identifier" size="10" type="int4" typeCode="4">
+            <child column="id_spe" foreignKey="fk_appointment_specialty" implied="false" onDeleteCascade="false" schema="public" table="appointment"/>
+            <child column="id_spe" foreignKey="fk_expert_specialty" implied="false" onDeleteCascade="true" schema="public" table="expert"/>
+            <child column="id_spe" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_appointment_detail"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_spe" nullable="false" remarks="name of the specialty" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="des_spe" nullable="false" remarks="description of specialty scope and responsibilities (required)" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id_spe" sequenceNumberInPK="1"/>
+         <index name="pk_specialty" unique="true">
+            <column ascending="true" name="id_spe"/>
+         </index>
+         <index name="uq_nam_spe" unique="true">
+            <column ascending="true" name="nam_spe"/>
+         </index>
+         <checkConstraint constraint="(((des_spe = TRIM(BOTH FROM des_spe)) AND (length(TRIM(BOTH FROM des_spe)) &gt;= 5)))" name="ck_des_spe_format"/>
+         <checkConstraint constraint="((((nam_spe)::text = lower(TRIM(BOTH FROM nam_spe))) AND (length(TRIM(BOTH FROM nam_spe)) &gt;= 5)))" name="ck_nam_spe_format"/>
+      </table>
+      <table name="species" remarks="catalog of animal species supported by the clinic" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_spc" nullable="false" remarks="unique species identifier" size="10" type="int4" typeCode="4">
+            <child column="id_spc" foreignKey="fk_animal_species" implied="false" onDeleteCascade="false" schema="public" table="animal"/>
+            <child column="id_spc" foreignKey="fk_breed_species" implied="false" onDeleteCascade="true" schema="public" table="breed"/>
+            <child column="id_spc" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="vw_animal_catalog_detail"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_spc" nullable="false" remarks="common name of the species" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="sci_nam_spc" nullable="true" remarks="optional scientific name" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_spc" sequenceNumberInPK="1"/>
+         <index name="pk_species" unique="true">
+            <column ascending="true" name="id_spc"/>
+         </index>
+      </table>
+      <table name="stock" remarks="quantity ledger per product with batch and expiry metadata" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_sto" nullable="false" remarks="unique stock row identifier" size="10" type="int4" typeCode="4">
+            <child column="id_sto" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="purchase_line"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_pro" nullable="false" remarks="product being stocked" size="10" type="int4" typeCode="4">
+            <parent column="id_pro" foreignKey="fk_stock_product" implied="false" onDeleteCascade="true" schema="public" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="bat_sto" nullable="true" remarks="batch or lot identifier" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="qty_sto" nullable="false" remarks="available quantity in this batch" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="val_dat_sto" nullable="true" remarks="expiration date" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ent_dat_sto" nullable="true" remarks="warehouse entry date" size="13" type="date" typeCode="91"/>
+         <primaryKey column="id_sto" sequenceNumberInPK="1"/>
+         <index name="pk_stock" unique="true">
+            <column ascending="true" name="id_sto"/>
+         </index>
+         <index name="ix_stock_id_pro" unique="false">
+            <column ascending="true" name="id_pro"/>
+         </index>
+         <checkConstraint constraint="((qty_sto &gt;= 0))" name="ck_qty_sto"/>
+      </table>
+      <table name="user_account" remarks="stores general personal, contact, and identification data for all system users" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_usr" nullable="false" remarks="unique identifier of the user account" size="10" type="int4" typeCode="4">
+            <child column="id_usr" foreignKey="fk_client_user" implied="false" onDeleteCascade="true" schema="public" table="client"/>
+            <child column="id_usr" foreignKey="fk_employee_user" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+            <child column="id_usr" foreignKey="fk_login_record_user" implied="false" onDeleteCascade="true" schema="public" table="login_record"/>
+            <child column="id_usr" foreignKey="fk_setup_user" implied="false" onDeleteCascade="true" schema="public" table="setup"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_usr" nullable="false" remarks="full legal name of the user" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="add_usr" nullable="false" remarks="residential or registered address of the user" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pos_usr" nullable="false" remarks="postal code formatted as xxxx-xxx" size="8" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="nif_usr" nullable="false" remarks="portuguese tax identification number" size="9" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="pho_usr" nullable="true" remarks="personal phone number stored in international format" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ema_usr" nullable="false" remarks="personal normalized email address excluding corporate domains" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id_usr" sequenceNumberInPK="1"/>
+         <index name="pk_user_account" unique="true">
+            <column ascending="true" name="id_usr"/>
+         </index>
+         <index name="uq_ema_usr" unique="true">
+            <column ascending="true" name="ema_usr"/>
+         </index>
+         <index name="uq_nif_usr" unique="true">
+            <column ascending="true" name="nif_usr"/>
+         </index>
+         <checkConstraint constraint="((length(TRIM(BOTH FROM add_usr)) &gt; 3))" name="ck_add_usr_format"/>
+         <checkConstraint constraint="((((ema_usr)::text = lower(TRIM(BOTH FROM ema_usr))) AND ((ema_usr)::text ~ '.+@.+\..+'::text) AND ((ema_usr)::text !~ '@miacaomigo\.pt$'::text)))" name="ck_ema_usr_format"/>
+         <checkConstraint constraint="((((nam_usr)::text ~ '^[A-Za-zÀ-ÿ\s''-]+$'::text) AND (length(TRIM(BOTH FROM nam_usr)) &gt; 3)))" name="ck_nam_usr_format"/>
+         <checkConstraint constraint="(((nif_usr)::text ~ '^[0-9]{9}$'::text))" name="ck_nif_usr_format"/>
+         <checkConstraint constraint="(((pho_usr IS NULL) OR ((pho_usr)::text ~ '^\+[1-9][0-9]{7,14}$'::text)))" name="ck_pho_usr_format"/>
+         <checkConstraint constraint="(((pos_usr)::text ~ '^[0-9]{4}-[0-9]{3}$'::text))" name="ck_pos_usr_format"/>
+      </table>
+      <table name="veterinarian" remarks="defines veterinarian employees and professional specialization" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="false" remarks="reference to employee entity" size="10" type="int4" typeCode="4">
+            <child column="id_emp" foreignKey="fk_expert_veterinarian" implied="false" onDeleteCascade="true" schema="public" table="expert"/>
+            <parent column="id_emp" foreignKey="fk_veterinarian_employee" implied="false" onDeleteCascade="true" schema="public" table="employee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="num_omv_vet" nullable="false" remarks="official veterinarian professional registration number" size="50" type="varchar" typeCode="12"/>
+         <primaryKey column="id_emp" sequenceNumberInPK="1"/>
+         <index name="pk_veterinarian" unique="true">
+            <column ascending="true" name="id_emp"/>
+         </index>
+         <index name="uq_num_omv_vet" unique="true">
+            <column ascending="true" name="num_omv_vet"/>
+         </index>
+         <checkConstraint constraint="((((num_omv_vet)::text = TRIM(BOTH FROM num_omv_vet)) AND (length((num_omv_vet)::text) &gt; 3)))" name="ck_num_omv_vet_format"/>
+      </table>
+      <table name="vw_active_employee_directory" numRows="0" remarks="active employees joined to user_account for directory and scheduling consumers" schema="public" type="VIEW" viewSql=" SELECT e.id_emp,&#10;    e.id_usr,&#10;    u.nam_usr,&#10;    e.ema_emp,&#10;    e.pho_emp,&#10;    e.pho_emg,&#10;    e.reg_dat_emp&#10;   FROM (employee e&#10;     JOIN user_account u ON ((u.id_usr = e.id_usr)))&#10;  WHERE (e.dea_dat_emp IS NULL);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_usr" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ema_emp" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="pho_emp" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="pho_emg" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="reg_dat_emp" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+      </table>
+      <table name="vw_active_login_sessions" numRows="0" remarks="" schema="public" type="VIEW" viewSql=" SELECT lr.id_log,&#10;    lr.id_usr,&#10;    lr.ema_log,&#10;    lr.sig_tim_log,&#10;    lr.sou_tim_log,&#10;    lr.suc_log,&#10;    lr.ip_add_log&#10;   FROM login_record lr&#10;  WHERE ((lr.sou_tim_log IS NULL) AND (lr.suc_log = true));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_log" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_log" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="login_record"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_usr" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ema_log" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="sig_tim_log" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="sou_tim_log" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="suc_log" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ip_add_log" nullable="true" remarks="" size="2147483647" type="inet" typeCode="1111"/>
+      </table>
+      <table name="vw_active_ownership_detail" numRows="0" remarks="open ownership intervals with client, animal, and taxonomy attributes" schema="public" type="VIEW" viewSql=" SELECT o.id_own,&#10;    o.id_ani,&#10;    o.id_cli,&#10;    u.nam_usr AS client_name,&#10;    u.ema_usr AS client_email,&#10;    a.reg_id_ani,&#10;    a.nam_ani,&#10;    a.sta_ani,&#10;    s.nam_spc,&#10;    b.nam_bre,&#10;    o.sta_dat_own,&#10;    o.mot_own,&#10;    o.id_emp&#10;   FROM (((((ownership o&#10;     JOIN client c ON ((c.id_cli = o.id_cli)))&#10;     JOIN user_account u ON ((u.id_usr = c.id_usr)))&#10;     JOIN animal a ON ((a.id_ani = o.id_ani)))&#10;     JOIN species s ON ((s.id_spc = a.id_spc)))&#10;     LEFT JOIN breed b ON ((b.id_bre = a.id_bre)))&#10;  WHERE (o.end_dat_own IS NULL);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_own" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_own" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="ownership"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_ani" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_cli" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="client_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="client_email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="reg_id_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="nam_ani" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="sta_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="nam_spc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="nam_bre" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="sta_dat_own" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="mot_own" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+      </table>
+      <table name="vw_animal_catalog_detail" numRows="0" remarks="full animal registry joined to species, breed, and active ownership owner identity" schema="public" type="VIEW" viewSql=" SELECT a.id_ani,&#10;    a.reg_id_ani,&#10;    a.nam_ani,&#10;    a.dat_bir_ani,&#10;    a.gen_ani,&#10;    a.ori_ani,&#10;    a.sta_ani,&#10;    a.reg_dat_ani,&#10;    a.ina_dat_ani,&#10;    s.id_spc,&#10;    s.nam_spc,&#10;    b.id_bre,&#10;    b.nam_bre,&#10;    o.id_cli,&#10;    u.nam_usr AS owner_name,&#10;    u.ema_usr AS owner_email&#10;   FROM (((((animal a&#10;     JOIN species s ON ((s.id_spc = a.id_spc)))&#10;     LEFT JOIN breed b ON ((b.id_bre = a.id_bre)))&#10;     LEFT JOIN ownership o ON (((o.id_ani = a.id_ani) AND (o.end_dat_own IS NULL))))&#10;     LEFT JOIN client c ON ((c.id_cli = o.id_cli)))&#10;     LEFT JOIN user_account u ON ((u.id_usr = c.id_usr)));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_ani" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="reg_id_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_ani" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dat_bir_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="gen_ani" nullable="true" remarks="" size="1" type="bpchar" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ori_ani" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="sta_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="reg_dat_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ina_dat_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="id_spc" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_spc" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="species"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="nam_spc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_bre" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_bre" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="breed"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="nam_bre" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="id_cli" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="owner_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="owner_email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+      </table>
+      <table name="vw_appointment_detail" numRows="0" remarks="appointments enriched with client, clinician, animal, and specialty context" schema="public" type="VIEW" viewSql=" SELECT a.id_app,&#10;    a.sch_dat_app,&#10;    a.sta_dat_app,&#10;    a.end_dat_app,&#10;    a.status_app,&#10;    a.id_cli,&#10;    u_cli.nam_usr AS client_name,&#10;    u_cli.ema_usr AS client_email,&#10;    a.id_emp,&#10;    u_emp.nam_usr AS veterinarian_name,&#10;    e.ema_emp AS veterinarian_email,&#10;    a.id_ani,&#10;    an.reg_id_ani,&#10;    an.nam_ani AS animal_name,&#10;    sp.nam_spc,&#10;    br.nam_bre,&#10;    a.id_spe,&#10;    s.nam_spe AS appointment_specialty,&#10;    a.id_inv,&#10;    a.dia_app,&#10;    a.com_app&#10;   FROM ((((((((appointment a&#10;     JOIN client c ON ((c.id_cli = a.id_cli)))&#10;     JOIN user_account u_cli ON ((u_cli.id_usr = c.id_usr)))&#10;     JOIN employee e ON ((e.id_emp = a.id_emp)))&#10;     JOIN user_account u_emp ON ((u_emp.id_usr = e.id_usr)))&#10;     JOIN animal an ON ((an.id_ani = a.id_ani)))&#10;     JOIN specialty s ON ((s.id_spe = a.id_spe)))&#10;     JOIN species sp ON ((sp.id_spc = an.id_spc)))&#10;     LEFT JOIN breed br ON ((br.id_bre = an.id_bre)));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="sch_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="status_app" nullable="true" remarks="" size="2147483647" type="appointment_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_cli" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="client_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="client_email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="veterinarian_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="veterinarian_email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_ani" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="reg_id_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="animal_name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="nam_spc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="nam_bre" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="id_spe" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_spe" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="specialty"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="appointment_specialty" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="id_inv" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_inv" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="invoice"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="dia_app" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="com_app" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
+      <table name="vw_appointments_today" numRows="0" remarks="scheduled and in-progress appointments for the current calendar day" schema="public" type="VIEW" viewSql=" SELECT d.id_app,&#10;    d.sch_dat_app,&#10;    d.sta_dat_app,&#10;    d.end_dat_app,&#10;    d.status_app,&#10;    d.client_name,&#10;    d.veterinarian_name,&#10;    d.animal_name,&#10;    d.appointment_specialty&#10;   FROM vw_appointment_detail d&#10;  WHERE (((d.sch_dat_app)::date = CURRENT_DATE) AND (d.status_app = ANY (ARRAY['scheduled'::appointment_status, 'in_progress'::appointment_status])));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="sch_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="sta_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="end_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="status_app" nullable="true" remarks="" size="2147483647" type="appointment_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="client_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="veterinarian_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="animal_name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="appointment_specialty" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+      </table>
+      <table name="vw_internal_animals_available" numRows="0" remarks="non-inactivated animals in internal status available for adoption workflows" schema="public" type="VIEW" viewSql=" SELECT a.id_ani,&#10;    a.reg_id_ani,&#10;    a.nam_ani,&#10;    a.sta_ani,&#10;    s.nam_spc,&#10;    b.nam_bre,&#10;    a.reg_dat_ani&#10;   FROM ((animal a&#10;     JOIN species s ON ((s.id_spc = a.id_spc)))&#10;     LEFT JOIN breed b ON ((b.id_bre = a.id_bre)))&#10;  WHERE (((a.sta_ani)::text = 'Interno'::text) AND (a.ina_dat_ani IS NULL));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_ani" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="reg_id_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_ani" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sta_ani" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="nam_spc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="nam_bre" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="reg_dat_ani" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+      </table>
+      <table name="vw_open_clock_in_sessions" numRows="0" remarks="open clock-in rows without end timestamp, enriched with employee identity" schema="public" type="VIEW" viewSql=" SELECT c.id_clk,&#10;    c.id_emp,&#10;    u.nam_usr,&#10;    e.ema_emp,&#10;    c.sta_dat_clk,&#10;    c.end_dat_clk&#10;   FROM ((clock_in c&#10;     JOIN employee e ON ((e.id_emp = c.id_emp)))&#10;     JOIN user_account u ON ((u.id_usr = e.id_usr)))&#10;  WHERE (c.end_dat_clk IS NULL);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_clk" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_clk" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="clock_in"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_usr" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ema_emp" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="sta_dat_clk" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="end_dat_clk" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+      </table>
+      <table name="vw_operational_absences" numRows="0" remarks="pending, approved, and detected absences with employee and user context" schema="public" type="VIEW" viewSql=" SELECT a.id_abs,&#10;    a.id_emp,&#10;    u.nam_usr,&#10;    e.ema_emp,&#10;    a.sta_dat_tim_abs,&#10;    a.end_dat_tim_abs,&#10;    a.mot_abs,&#10;    a.sta_abs,&#10;    a.res_abs,&#10;    a.cre_tim_abs&#10;   FROM ((absence a&#10;     JOIN employee e ON ((e.id_emp = a.id_emp)))&#10;     JOIN user_account u ON ((u.id_usr = e.id_usr)))&#10;  WHERE (a.sta_abs = ANY (ARRAY['pending'::absence_status, 'approved'::absence_status, 'detected'::absence_status]));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_abs" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_abs" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="absence"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_usr" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ema_emp" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="sta_dat_tim_abs" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="end_dat_tim_abs" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="mot_abs" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="sta_abs" nullable="true" remarks="" size="2147483647" type="absence_status" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="res_abs" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="9" name="cre_tim_abs" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+      </table>
+      <table name="vw_product_stock_levels" numRows="0" remarks="active catalog products with family metadata and consolidated available quantity" schema="public" type="VIEW" viewSql=" SELECT p.id_pro,&#10;    p.ref_pro,&#10;    p.bar_pro,&#10;    p.nam_pro,&#10;    f.id_fam,&#10;    f.nam_fam,&#10;    p.pri_pro,&#10;    p.iva_pro,&#10;    p.min_sto,&#10;    fn_get_available_stock(p.id_pro) AS qty_available,&#10;    p.reg_dat_pro,&#10;    p.ina_dat_pro&#10;   FROM (product p&#10;     JOIN family f ON ((f.id_fam = p.id_fam)))&#10;  WHERE (p.ina_dat_pro IS NULL);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_pro" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ref_pro" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="bar_pro" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nam_pro" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_fam" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_fam" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="family"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="nam_fam" nullable="true" remarks="" size="70" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="6" name="pri_pro" nullable="true" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="7" name="iva_pro" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="min_sto" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="qty_available" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="reg_dat_pro" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="ina_dat_pro" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+      </table>
+      <table name="vw_products_to_reorder" numRows="0" remarks="active products at or below minimum stock; consumed by sp_check_restock_needs" schema="public" type="VIEW" viewSql=" SELECT p.id_pro,&#10;    p.nam_pro,&#10;    f.nam_fam,&#10;    fn_get_available_stock(p.id_pro) AS qty_available,&#10;    p.min_sto,&#10;    ((p.min_sto * 2) - fn_get_available_stock(p.id_pro)) AS qty_reorder_suggestion&#10;   FROM (product p&#10;     JOIN family f ON ((f.id_fam = p.id_fam)))&#10;  WHERE ((fn_get_available_stock(p.id_pro) &lt;= p.min_sto) AND (p.ina_dat_pro IS NULL));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_pro" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nam_pro" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nam_fam" nullable="true" remarks="" size="70" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="qty_available" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="min_sto" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="qty_reorder_suggestion" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+      </table>
+      <table name="vw_scheduled_appointments_tomorrow" numRows="0" remarks="scheduled appointments for the next calendar day; supports reminder workflows" schema="public" type="VIEW" viewSql=" SELECT d.id_app,&#10;    d.id_cli,&#10;    d.client_name,&#10;    d.client_email,&#10;    d.id_emp,&#10;    d.veterinarian_name,&#10;    d.id_ani,&#10;    d.animal_name,&#10;    d.sch_dat_app,&#10;    d.status_app&#10;   FROM vw_appointment_detail d&#10;  WHERE ((d.status_app = 'scheduled'::appointment_status) AND ((d.sch_dat_app)::date = (CURRENT_DATE + '1 day'::interval)));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_app" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_cli" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_cli" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="client"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="client_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="client_email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_emp" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="veterinarian_name" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_ani" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_ani" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="animal"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="animal_name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="sch_dat_app" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="status_app" nullable="true" remarks="" size="2147483647" type="appointment_status" typeCode="12"/>
+      </table>
+   </tables>
+</database>
